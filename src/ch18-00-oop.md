@@ -1,17 +1,18 @@
-# Object-Oriented Programming Features
+# Features der objektorientierten Programmierung {#object-oriented-programming-features}
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="object-oriented-programming-features-of-rust"></a>
 
-Object-oriented programming (OOP) is a way of modeling programs. Objects as a
-programmatic concept were introduced in the programming language Simula in the
-1960s. Those objects influenced Alan Kay’s programming architecture in which
-objects pass messages to each other. To describe this architecture, he coined
-the term _object-oriented programming_ in 1967. Many competing definitions
-describe what OOP is, and by some of these definitions Rust is object oriented
-but by others it is not. In this chapter, we’ll explore certain characteristics
-that are commonly considered object oriented and how those characteristics
-translate to idiomatic Rust. We’ll then show you how to implement an
-object-oriented design pattern in Rust and discuss the trade-offs of doing so
-versus implementing a solution using some of Rust’s strengths instead.
+Objektorientierte Programmierung (OOP) ist eine Art, Programme zu modellieren.
+Objekte als programmiertechnisches Konzept wurden in den 1960er-Jahren in der
+Programmiersprache Simula eingeführt. Diese Objekte beeinflussten Alan Kays
+Programmierarchitektur, in der Objekte einander Nachrichten übermitteln. Um
+diese Architektur zu beschreiben, prägte er 1967 den Begriff _objektorientierte
+Programmierung_. Viele konkurrierende Definitionen beschreiben, was OOP ist, und
+nach manchen dieser Definitionen ist Rust objektorientiert, nach anderen nicht.
+In diesem Kapitel untersuchen wir bestimmte Merkmale, die allgemein als
+objektorientiert gelten, und wie sich diese Merkmale in idiomatisches Rust
+übertragen lassen. Anschließend zeigen wir dir, wie man ein objektorientiertes
+Design-Pattern in Rust implementiert, und besprechen die Vor- und Nachteile
+davon gegenüber einer Lösung, die stattdessen einige der Stärken von Rust nutzt.

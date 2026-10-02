@@ -1,10 +1,10 @@
 [multipart]
 q = """
-**Context:** You are designing a serialization library that converts Rust data types into formats like JSON.
+**Kontext:** Du entwirfst eine Serialisierungsbibliothek, die Rust-Datentypen in Formate wie JSON umwandelt.
 
-**Functionality:** A `Serialize` trait that can be implemented by serializable types, and a `to_json` function that converts serializable types into JSON.
+**Funktionalität:** Ein Trait `Serialize`, der von serialisierbaren Typen implementiert werden kann, und eine Funktion `to_json`, die serialisierbare Typen in JSON umwandelt.
 
-**Designs:** Below are several proposed designs to implement the functionality.
+**Designs:** Unten stehen mehrere vorgeschlagene Designs, um die Funktionalität zu implementieren.
 
 ```
 // Option 1: types serialize to a `Value` enum
@@ -54,19 +54,19 @@ pub fn to_json(data: impl Serialize) -> String {
 type = "MultipleChoice"
 multipart = "q"
 prompt.prompt = """
-Select each design option that satisfies the following requirement:
+Wähle jede Design-Option aus, die die folgende Anforderung erfüllt:
 
-**Requirement:** It should be possible to add a new data format without needing to modify code in existing implementations of the `Serialize` trait.
+**Anforderung:** Es soll möglich sein, ein neues Datenformat hinzuzufügen, ohne Code in bestehenden Implementierungen des Traits `Serialize` ändern zu müssen.
 """
 prompt.distractors = []
 prompt.sortAnswers = true
 answer.answer = ["1", "2"]
 context = """
-Both designs are sufficiently decoupled such that each new data format is independent of any `Serialize` implementations. For Option 1,
-each data format converts a `Value` into the format's representation. `Value` acts as a module boundary.
+Beide Designs sind ausreichend entkoppelt, sodass jedes neue Datenformat unabhängig von allen `Serialize`-Implementierungen ist. Bei Option 1
+wandelt jedes Datenformat einen `Value` in die Darstellung des Formats um. `Value` dient als Modulgrenze.
 
-For Option 2, there is no explicit intermediate representation of a serialized value, but rather each `Serialize` implementation is explicitly generic
-over any choice of `S` that implements `Serializer`.
+Bei Option 2 gibt es keine explizite Zwischendarstellung eines serialisierten Werts, stattdessen ist jede `Serialize`-Implementierung explizit generisch
+über jede Wahl von `S`, die `Serializer` implementiert.
 """
 id = "66e036c9-91a0-4611-8110-967b5ed1a514"
 
@@ -74,16 +74,16 @@ id = "66e036c9-91a0-4611-8110-967b5ed1a514"
 type = "MultipleChoice"
 multipart = "q"
 prompt.prompt = """
-Select each design option that satisfies the following requirement:
+Wähle jede Design-Option aus, die die folgende Anforderung erfüllt:
 
-**Requirement:** The process of serialization should consume as little memory as possible.
+**Anforderung:** Der Serialisierungsvorgang soll so wenig Speicher wie möglich verbrauchen.
 """
 prompt.distractors = ["1"]
 prompt.sortAnswers = true
 answer.answer = ["2"]
 context = """
-Option 1 serializes data by first converting a data structure into an intermediate representation, `Value`, and then converting `Value` into the final format.
-This intermediate data structure consumes memory which is not needed by Option 2, where data is converted directly into the final format.
+Option 1 serialisiert Daten, indem sie eine Datenstruktur zuerst in eine Zwischendarstellung, `Value`, umwandelt und dann `Value` in das endgültige Format.
+Diese Zwischendatenstruktur verbraucht Speicher, der bei Option 2 nicht benötigt wird, wo Daten direkt in das endgültige Format umgewandelt werden.
 """
 id = "eaa95520-1b72-4f7d-a600-5444b6368785"
 
@@ -92,16 +92,16 @@ id = "eaa95520-1b72-4f7d-a600-5444b6368785"
 multipart = "q"
 type = "MultipleChoice"
 prompt.prompt = """
-Select each design option that satisfies the following requirement:
+Wähle jede Design-Option aus, die die folgende Anforderung erfüllt:
 
-**Requirement:** When the same data type is serialized into multiple formats, that should increase the size of the compiled binary as little as possible.
+**Anforderung:** Wenn derselbe Datentyp in mehrere Formate serialisiert wird, soll das die Größe der kompilierten Binärdatei so wenig wie möglich erhöhen.
 """
 prompt.distractors = ["2"]
 prompt.sortAnswers = true
 answer.answer = ["1"]
 context = """
-With Option 1, there is only a single instantiation of `Serialize` that converts a type `T` into a `Value`. Because Option 2 is generic over serializers `S`,
-then every time `T::serialize` is called with a new `S`, the Rust compiler will monomorphize a new instance of `T::serialize` which would increase the size of
-the binary by comparison to Option 1.
+Bei Option 1 gibt es nur eine einzige Instanziierung von `Serialize`, die einen Typ `T` in einen `Value` umwandelt. Weil Option 2 generisch über Serialisierer `S` ist,
+erzeugt der Rust-Compiler jedes Mal, wenn `T::serialize` mit einem neuen `S` aufgerufen wird, durch Monomorphisierung eine neue Instanz von `T::serialize`, was die Größe
+der Binärdatei im Vergleich zu Option 1 erhöhen würde.
 """
 id = "2751731e-7d18-46a1-aaea-b5734bf51c80"

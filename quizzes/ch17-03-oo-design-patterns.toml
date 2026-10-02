@@ -2,9 +2,9 @@
 id = "d19f9e83-d4c2-41d5-9fc7-81db5135eb1e"
 type = "MultipleChoice"
 prompt.prompt = """
-In the running example from this section, a blog post could have one of three states: `Draft`, `PendingReview`, and `Published`. In the example, each state was represented as a struct, and state transitions was represented as trait methods returning trait objects.
+Im durchgehenden Beispiel dieses Abschnitts konnte ein Blogbeitrag einen von drei Zuständen haben: `Draft`, `PendingReview` und `Published`. Im Beispiel wurde jeder Zustand als Struct dargestellt, und Zustandsübergänge wurden als Trait-Methoden dargestellt, die Trait-Objekte zurückgeben.
 
-An alternative implementation could represent the states as an enum, like this:
+Eine alternative Implementierung könnte die Zustände als Enum darstellen, etwa so:
 
 ```
 enum BlogState {
@@ -25,29 +25,29 @@ impl Post {
 }
 ```
 
-Which of the following are good reasons to prefer the struct/trait representation over the enum representation?
+Welche der folgenden Gründe sprechen dafür, die Darstellung mit Structs/Traits der Darstellung mit einem Enum vorzuziehen?
 """
 answer.answer = [
-    "An API client could add a new state to the system",
-    "Adding a new state does not require modifying methods on every other state"
+    "Ein Nutzer der API könnte dem System einen neuen Zustand hinzufügen",
+    "Das Hinzufügen eines neuen Zustands erfordert keine Änderung der Methoden aller anderen Zustände"
 ]
 prompt.distractors = [
-    "The use of `match` is slower at runtime than dynamic dispatch",
-    "An API client could add a new method for all states in the system"
+    "`match` ist zur Laufzeit langsamer als dynamischer Dispatch",
+    "Ein Nutzer der API könnte für alle Zustände im System eine neue Methode hinzufügen"
 ]
 context = """
-The struct/trait approach is extensible in the sense that an API client could potentially
-create a new state (such as `Retracted`) without changing the core API functionality. When
-adding this state, the methods for other states do not need to be changed. Whereas with enums,
-a client cannot add a new branch to the enum. Moreover, all `match` expressions must be updated
-when a state is added.
+Der Ansatz mit Structs/Traits ist in dem Sinne erweiterbar, dass ein Nutzer der API potenziell
+einen neuen Zustand (etwa `Retracted`) erstellen könnte, ohne die Kernfunktionalität der API zu ändern. Beim
+Hinzufügen dieses Zustands müssen die Methoden der anderen Zustände nicht geändert werden. Bei Enums dagegen
+kann ein Nutzer dem Enum keinen neuen Zweig hinzufügen. Außerdem müssen alle `match`-Ausdrücke aktualisiert werden,
+wenn ein Zustand hinzugefügt wird.
 
-A `match` is not likely to be slower than dynamic dispatch. A match is a simple branch based on
-an enum's tag, while dynamic dispatch requires a layer of indirection through a trait
-object's virtual table with non-inlined function calls.
+Ein `match` ist wahrscheinlich nicht langsamer als dynamischer Dispatch. Ein match ist eine einfache Verzweigung anhand
+des Tags eines Enums, während dynamischer Dispatch eine Ebene der Indirektion über die virtuelle Tabelle (vtable) eines
+Trait-Objekts mit nicht geinlinten Funktionsaufrufen erfordert.
 
-An API client cannot add a new *method* for existing states in the struct/trait approach, they 
-can only add new states. The methods are fixed by the API author's trait definition. Note that you could add a new method which only builds on existing methods via extension traits, such as:
+Ein Nutzer der API kann beim Ansatz mit Structs/Traits für bestehende Zustände keine neue *Methode* hinzufügen,
+sondern nur neue Zustände. Die Methoden sind durch die Trait-Definition des API-Autors festgelegt. Beachte, dass du über Erweiterungs-Traits eine neue Methode hinzufügen könntest, die nur auf bestehenden Methoden aufbaut, etwa so:
 
 ```
 trait StateExt {
@@ -61,5 +61,5 @@ impl<S: State> StateExt for S {
 }
 ```
 
-But these extensions cannot read the private data of the states.
+Diese Erweiterungen können aber nicht auf die privaten Daten der Zustände zugreifen.
 """

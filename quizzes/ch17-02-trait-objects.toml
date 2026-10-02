@@ -15,30 +15,30 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 6
 context = """
-Unlike some OOP languages, a trait object cannot be "downcasted" to a more concrete type
-(except in the case of the [`Any`](https://doc.rust-lang.org/std/any/index.html) trait).
+Anders als in manchen OOP-Sprachen kann ein Trait-Objekt nicht in einen konkreteren Typ „herabgecastet“ (*downcast*) werden
+(außer im Fall des Traits [`Any`](https://doc.rust-lang.org/std/any/index.html)).
 """
 
 [[questions]]
 id = "cce62358-5291-4eb3-84d6-fbc570873ee3"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider implementing a generic function in two ways:
+Stell dir vor, du implementierst eine generische Funktion auf zwei Arten:
 
 ```
 fn f_opt1<T: SomeTrait>(t: &T) { /* ... */ }
 fn f_opt2(t: &dyn SomeTrait) { /* ... */ }
 ```
 
-In most cases, which of the following are good reasons to prefer the trait object version (`f_opt2`) over the type-parametric version (`f_opt1`)? 
-Select each that applies.
+Welche der folgenden Gründe sprechen in den meisten Fällen dafür, die Version mit Trait-Objekt (`f_opt2`) der typparametrischen Version (`f_opt1`) vorzuziehen?
+Wähle alle zutreffenden aus.
 """
-answer.answer = ["Faster compile times", "Smaller binary size"]
+answer.answer = ["Kürzere Kompilierzeiten", "Kleinere Binärdatei"]
 prompt.distractors = [
-    "Improved runtime performance",
-    "Better developer ergonomics"
+    "Bessere Laufzeit-Performance",
+    "Bessere Ergonomie für Entwickler"
 ]
 context = """
-By avoiding monomorphization, trait-object functions will be both faster to compile and produce smaller binaries. However, this usually
-comes at the cost of runtime performance. Trait objects are rarely easier for developers to work with than trait-bounded generics.
+Weil die Monomorphisierung entfällt, lassen sich Funktionen mit Trait-Objekten schneller kompilieren und erzeugen kleinere Binärdateien. Das geht jedoch
+meist auf Kosten der Laufzeit-Performance. Für Entwickler sind Trait-Objekte selten einfacher zu handhaben als Generics mit Trait-Bounds.
 """

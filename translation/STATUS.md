@@ -42,7 +42,8 @@ Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 | Kapitel 15                                | ch15-* mit Quizzen                           | ✅     |
 | Kapitel 16                                | ch16-* mit Quizzen                           | ✅     |
 | Kapitel 17                                | ch17-* mit Quizzen (async-*)                 | ✅     |
-| Kapitel 18–21, Anhänge, end-of-experiment | –                                            | ⬜     |
+| Kapitel 18                                | ch18-* mit Quizzen (ch17-0x-*, Inventur #4)  | ✅     |
+| Kapitel 19–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
@@ -84,7 +85,6 @@ Links auf Abschnitte, die noch nicht übersetzt sind. Beim Übersetzen des Ziels
 die Überschrift so wählen, dass sie zum Linktext passt (oder den Linktext
 anpassen).
 
-| Ziel                                                         | Linktext                                                     | Quelle  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| ch18-02#using-trait-objects-to-abstract-over-shared-behavior | „Mit Trait-Objekten über gemeinsames Verhalten abstrahieren“ | ch09-02 |
-| ch18-03#encoding-states-and-behavior-as-types                | „Zustände und Verhalten als Typen kodieren“                  | ch09-03 |
+| Ziel                                                | Linktext                                      | Quelle  |
+| --------------------------------------------------- | --------------------------------------------- | ------- |
+| ch20-03#dynamically-sized-types-and-the-sized-trait | „Dynamisch große Typen und der Trait `Sized`“ | ch18-02 |

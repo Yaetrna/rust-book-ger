@@ -172,7 +172,7 @@
 id = "2c6d6e2e-ad6e-4e98-bf88-8cada144ebee"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 1:**
+**Programm 1:**
 
 ```ide
 /// Adds a Display-able object into a vector of 
@@ -186,7 +186,7 @@ fn add_displayable<T: Display>(
 }
 ```
 
-If you tried to compile this program, which of the following best describes the compiler error you would get?
+Welche der folgenden Fehlermeldungen beschreibt am besten den Compilerfehler, den du beim Kompilieren dieses Programms bekommen würdest?
 """
 answer.answer = "the type `T` does not live long enough when cast to a trait object"
 prompt.distractors = [
@@ -195,8 +195,8 @@ prompt.distractors = [
   "the type `T` does not outlive the lifetime of the reference `&mut Vec<..>`"
 ]
 context = """
-When casting `Box<T>` to `Box<dyn Display>` (implicitly in `v.push(..)`), Rust requires that the trait object `dyn Display`
-must outlive the vector. However, the lifetime of `T` is unspecified, so `T` may not live long enough.
+Bei der Umwandlung von `Box<T>` in `Box<dyn Display>` (implizit in `v.push(..)`) verlangt Rust, dass das Trait-Objekt `dyn Display`
+länger lebt als der Vektor. Die Lifetime von `T` ist jedoch nicht angegeben, daher lebt `T` möglicherweise nicht lange genug.
 """
 
 
@@ -204,7 +204,7 @@ must outlive the vector. However, the lifetime of `T` is unspecified, so `T` may
 id = "36da4652-baeb-47a6-9ee1-1448b02cbe8e"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 1:**
+**Programm 1:**
 
 ```ide
 /// Adds a Display-able object into a vector of 
@@ -218,7 +218,7 @@ fn add_displayable<T: Display>(
 }
 ```
 
-Normally if you try to compile this function, the compiler returns the following error:
+Wenn du versuchst, diese Funktion zu kompilieren, gibt der Compiler normalerweise folgenden Fehler aus:
 
 ```text
 error[E0310]: the parameter type `T` may not live long enough
@@ -228,9 +228,9 @@ error[E0310]: the parameter type `T` may not live long enough
   |            ^^^^^^^^^^^
 ```
 
-Assume that the compiler did NOT reject this function. Which (if any) of the following programs would
-(1) pass the compiler, and (2) possibly cause undefined behavior if executed?
-Check each program that satisfies both criteria, OR check "None of these programs" if none are satisfying."""
+Nimm an, der Compiler würde diese Funktion NICHT zurückweisen. Welche (falls überhaupt) der folgenden Programme würden
+(1) den Compiler passieren und (2) bei der Ausführung möglicherweise undefiniertes Verhalten verursachen?
+Wähle jedes Programm aus, das beide Kriterien erfüllt, ODER wähle „Keines dieser Programme“, wenn keines sie erfüllt."""
 answer.answer = [
 """
 ```
@@ -244,7 +244,7 @@ println!("{}", v[0]);
 """,
 ]
 prompt.distractors = [
-  "None of these programs",
+  "Keines dieser Programme",
 """
 ```
 let mut v: Vec<Box<dyn Display>> = Vec::new();
@@ -263,9 +263,9 @@ add_displayable(&mut v, 5);
 """
 ]
 context = """
-This program is memory-unsafe. To create a memory safety violation, the program must create a type `T` that contains
-references which do not outlive the vector. For example, adding `&n` where `n` goes out of scope before `v` means that
-the later use of `v[0]` is a read of deallocated memory.
+Dieses Programm ist speicherunsicher. Um eine Verletzung der Speichersicherheit herbeizuführen, muss das Programm einen Typ `T` erzeugen, der
+Referenzen enthält, die nicht länger leben als der Vektor. Wird zum Beispiel `&n` hinzugefügt, wobei `n` vor `v` den Gültigkeitsbereich verlässt, dann ist
+die spätere Verwendung von `v[0]` ein Lesezugriff auf freigegebenen Speicher.
 """
 
 
@@ -273,7 +273,7 @@ the later use of `v[0]` is a read of deallocated memory.
 id = "2da21d0e-5722-4908-b528-dc87bbce1faf"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 1:**
+**Programm 1:**
 
 ```ide
 /// Adds a Display-able object into a vector of 
@@ -287,10 +287,10 @@ fn add_displayable<T: Display>(
 }
 ```
 
-Of the following fixes (highlighted in yellow), which fix best satisfies these three criteria:
-1. The fixed function passes the Rust compiler,
-2. The fixed function preserves the intention of the original code, and
-3. The fixed function does not introduce unnecessary inefficiencies
+Welche der folgenden Korrekturen (gelb hervorgehoben) erfüllt diese drei Kriterien am besten:
+1. Die korrigierte Funktion besteht den Rust-Compiler,
+2. die korrigierte Funktion bewahrt die Absicht des ursprünglichen Codes und
+3. die korrigierte Funktion führt keine unnötigen Ineffizienzen ein?
 """
 answer.answer = """
 ```ide
@@ -335,11 +335,11 @@ fn add_displayable<`['a]`, T: Display `[+ 'a]`>(
 """,
 ]
 context = """
-The most idiomatic fix is to specify how the lifetime of `T` should relate to the lifetime of the trait object `dyn Display`.
-Here, that means adding a lifetime parameter `'a`, saying that `T` outlives `'a`, and that the trait objects also live for
-at least `'a`. 
+Die idiomatischste Korrektur besteht darin, anzugeben, wie die Lifetime von `T` mit der Lifetime des Trait-Objekts `dyn Display` zusammenhängen soll.
+Hier bedeutet das, einen Lifetime-Parameter `'a` hinzuzufügen, der besagt, dass `T` länger lebt als `'a` und dass auch die Trait-Objekte mindestens
+für `'a` leben.
 
-Using a `'static` bound is the same thing but worse: it is simply less expressive, disallowing the vector's trait objects
-from ever holding references. Putting the lifetime `'a` on the `&'a mut Vec<..>` reference is not correct and does not
-fix the compiler error.
+Ein `'static`-Bound bewirkt dasselbe, ist aber schlechter: Er ist schlicht weniger ausdrucksstark und verbietet den Trait-Objekten des Vektors,
+jemals Referenzen zu enthalten. Die Lifetime `'a` an die Referenz `&'a mut Vec<..>` zu setzen, ist nicht korrekt und behebt
+den Compilerfehler nicht.
 """
