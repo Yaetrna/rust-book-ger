@@ -2,23 +2,23 @@
 id = "affe428d-0a8e-430b-9567-99e6b7563c0f"
 type = "MultipleChoice"
 prompt.prompt = """
-When running `cargo test` with no additional configuration, which of the following actions may not work correctly if done by multiple tests?
+Welche der folgenden Aktionen funktioniert möglicherweise nicht korrekt, wenn sie von mehreren Tests ausgeführt wird und `cargo test` ohne zusätzliche Konfiguration läuft?
 """
-answer.answer = "Writing text to a single file"
+answer.answer = "Text in eine einzige Datei schreiben"
 prompt.distractors = [
-  "Logging strings to stdout",
-  "Failing via panics",
-  "Reading data from a single database"
+  "Strings auf stdout protokollieren",
+  "Durch Panics fehlschlagen",
+  "Daten aus einer einzigen Datenbank lesen"
 ]
 context = """
-Tests are run in parallel by default, so actions which are not thread-safe (like writing to a single file) may cause a race condition.
+Tests laufen standardmäßig parallel, daher können Aktionen, die nicht threadsicher sind (etwa das Schreiben in eine einzige Datei), eine Race-Condition verursachen.
 """
 
 [[questions]]
 id = "19e292f4-4bc4-4868-a58a-edf62c3e3b2a"
 type = "ShortAnswer"
 prompt.prompt = """
-Consider a program with the following unit test:
+Betrachte ein Programm mit folgenden Unit-Tests:
 
 ```
 #[test]
@@ -31,10 +31,10 @@ fn test_the_database() { /* ... */ }
 fn test_logger_and_database() { /* ... */ }
 ```
 
-What is the *shortest* string you can pass to `cargo test <the_string>` such that *only* `test_the_logger` and `test_the_database` are executed?
+Was ist der *kürzeste* String, den du `cargo test <the_string>` übergeben kannst, sodass *nur* `test_the_logger` und `test_the_database` ausgeführt werden?
 """
 answer.answer = "h"
 context = """
-The shortest substring string that is not contained in `test_logger_and_database` but is contained in `test_the_logger` and `test_the_database`
-is "h" (the middle character of "the").
+Der kürzeste Teilstring, der nicht in `test_logger_and_database`, aber in `test_the_logger` und `test_the_database` enthalten ist,
+ist „h“ (das mittlere Zeichen von „the“).
 """

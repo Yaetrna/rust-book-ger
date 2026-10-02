@@ -35,7 +35,8 @@ Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 | Kapitel 8                                 | ch08-* mit Quizzen                           | ✅     |
 | Kapitel 9                                 | ch09-* mit Quizzen                           | ✅     |
 | Kapitel 10                                | ch10-* mit Quizzen                           | ✅     |
-| Kapitel 11–21, Anhänge, end-of-experiment | –                                            | ⬜     |
+| Kapitel 11                                | ch11-* mit Quizzen                           | ✅     |
+| Kapitel 12–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
@@ -85,3 +86,4 @@ anpassen).
 | ch18-02#using-trait-objects-to-abstract-over-shared-behavior | „Mit Trait-Objekten über gemeinsames Verhalten abstrahieren“ | ch09-02 |
 | ch18-03#encoding-states-and-behavior-as-types                | „Zustände und Verhalten als Typen kodieren“                  | ch09-03 |
 | ch13-02 (Seite)                                              | „Eine Folge von Elementen mit Iteratoren verarbeiten“        | ch08-01 |
+| ch14-02#documentation-comments-as-tests                      | „Dokumentationskommentare als Tests“                         | ch11-01 |

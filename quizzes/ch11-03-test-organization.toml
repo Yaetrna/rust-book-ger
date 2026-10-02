@@ -2,14 +2,14 @@
 id = "3da96b29-d975-4cd8-a8eb-b1a6bd9b5c0a"
 type = "MultipleChoice"
 prompt.prompt = """
-Which of the following is NOT a good reason to wrap unit tests in `#[cfg(test)] mod tests { ... }`?
+Was ist KEIN guter Grund, Unit-Tests in `#[cfg(test)] mod tests { ... }` zu verpacken?
 """
-answer.answer = "It gives your tests access to private functions"
+answer.answer = "Es gibt deinen Tests Zugriff auf private Funktionen"
 prompt.distractors = [
-  "It can reduce the size of generated compiler artifacts",
-  "It can improve compile times",
-  "It separates test helper functions from library code"
+  "Es kann die Größe der vom Compiler erzeugten Artefakte verringern",
+  "Es kann die Kompilierzeiten verbessern",
+  "Es trennt Test-Hilfsfunktionen vom Bibliothekscode"
 ]
 context = """
-All unit tests in a given file have access to that file's private functions, regardless of being in a `mod tests` or not.
+Alle Unit-Tests in einer Datei haben Zugriff auf die privaten Funktionen dieser Datei, unabhängig davon, ob sie in einem `mod tests` stehen oder nicht.
 """

@@ -221,6 +221,10 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | lifetime elision rules                     | Regeln zur Lifetime-Elision / Elisionsregeln | die                               |                                                        | entschieden |
 | static lifetime                            | statische Lifetime / Lifetime `'static`      | die                               |                                                        | entschieden |
 | pattern (allgemein, kein Pattern-Matching) | Schema / Muster vermeiden                    | das / die Schemata                | „Muster“ kollidiert mit Pattern; „Schema“ nehmen       | entschieden |
+| assert / assertion                         | zusichern / Assertion                        | die / die Assertions              | (_assert_) bei der Einführung                          | entschieden |
+| test runner / test harness                 | Testrunner / Test-Harness                    | der / das                         |                                                        | entschieden |
+| pass / fail (test)                         | bestehen / fehlschlagen                      | –                                 |                                                        | entschieden |
+| doc test                                   | Dokumentationstest                           | der / die Dokumentationstests     | Ausgabe `Doc-tests` bleibt                             | entschieden |
 | standard library                           | Standardbibliothek                           | die / –                           |                                                        | entschieden |
 | dependency                                 | Abhängigkeit                                 | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                                   | Compiler                                     | der / die Compiler                |                                                        | entschieden |
@@ -353,3 +357,4 @@ dort, wo das Buch sie definiert.
 | Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                               | –   | neu aufgenommen | ch08-*             |
 | Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread  | –   | neu aufgenommen | ch09-*             |
 | Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein) | –   | neu aufgenommen | ch10-*             |
+| Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                        | –   | neu aufgenommen | ch11-*             |

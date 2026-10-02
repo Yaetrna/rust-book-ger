@@ -1,34 +1,37 @@
-# Writing Automated Tests
+# Automatisierte Tests schreiben {#writing-automated-tests}
 
-In his 1972 essay “The Humble Programmer,” Edsger W. Dijkstra said that “program
-testing can be a very effective way to show the presence of bugs, but it is
-hopelessly inadequate for showing their absence.” That doesn’t mean we shouldn’t
-try to test as much as we can!
+In seinem Essay „The Humble Programmer“ von 1972 sagte Edsger W. Dijkstra, dass
+„Programmtests ein sehr wirksames Mittel sein können, um das Vorhandensein von
+Bugs zu zeigen, aber hoffnungslos unzureichend sind, um ihre Abwesenheit zu
+zeigen“. Das heißt nicht, dass wir nicht versuchen sollten, so viel wie möglich
+zu testen!
 
-_Correctness_ in our programs is the extent to which our code does what we
-intend it to do. Rust is designed with a high degree of concern about the
-correctness of programs, but correctness is complex and not easy to prove.
-Rust’s type system shoulders a huge part of this burden, but the type system
-cannot catch everything. As such, Rust includes support for writing automated
-software tests.
+Die _Korrektheit_ (_correctness_) unserer Programme ist das Ausmaß, in dem unser
+Code das tut, was wir beabsichtigen. Rust wurde mit großem Augenmerk auf die
+Korrektheit von Programmen entworfen, aber Korrektheit ist komplex und nicht
+leicht zu beweisen. Das Typsystem von Rust trägt einen großen Teil dieser Last,
+kann aber nicht alles abfangen. Deshalb unterstützt Rust das Schreiben
+automatisierter Softwaretests.
 
-Say we write a function `add_two` that adds 2 to whatever number is passed to
-it. This function’s signature accepts an integer as a parameter and returns an
-integer as a result. When we implement and compile that function, Rust does all
-the type checking and borrow checking that you’ve learned so far to ensure
-that, for instance, we aren’t passing a `String` value or an invalid reference
-to this function. But Rust _can’t_ check that this function will do precisely
-what we intend, which is return the parameter plus 2 rather than, say, the
-parameter plus 10 or the parameter minus 50! That’s where tests come in.
+Angenommen, wir schreiben eine Funktion `add_two`, die zu der Zahl, die ihr
+übergeben wird, 2 addiert. Die Signatur dieser Funktion akzeptiert eine Ganzzahl
+als Parameter und gibt eine Ganzzahl als Ergebnis zurück. Wenn wir diese
+Funktion implementieren und kompilieren, führt Rust die gesamte Typprüfung und
+Borrow-Prüfung durch, die du bisher kennengelernt hast, um zum Beispiel
+sicherzustellen, dass wir dieser Funktion keinen `String`-Wert und keine
+ungültige Referenz übergeben. Rust _kann_ aber nicht prüfen, ob diese Funktion
+genau das tut, was wir beabsichtigen, nämlich den Parameter plus 2 zurückzugeben
+und nicht etwa den Parameter plus 10 oder den Parameter minus 50! Hier kommen
+Tests ins Spiel.
 
-We can write tests that assert, for example, that when we pass `3` to the
-`add_two` function, the returned value is `5`. We can run these tests whenever
-we make changes to our code to make sure any existing correct behavior has not
-changed.
+Wir können Tests schreiben, die zum Beispiel zusichern, dass der Rückgabewert
+`5` ist, wenn wir `3` an die Funktion `add_two` übergeben. Diese Tests können
+wir immer dann ausführen, wenn wir unseren Code ändern, um sicherzustellen, dass
+sich bestehendes korrektes Verhalten nicht geändert hat.
 
-Testing is a complex skill: Although we can’t cover in one chapter every detail
-about how to write good tests, in this chapter we will discuss the mechanics of
-Rust’s testing facilities. We’ll talk about the annotations and macros
-available to you when writing your tests, the default behavior and options
-provided for running your tests, and how to organize tests into unit tests and
-integration tests.
+Testen ist eine komplexe Fähigkeit: Wir können zwar nicht in einem Kapitel jedes
+Detail dazu behandeln, wie man gute Tests schreibt, besprechen in diesem Kapitel
+aber die Mechanik der Testwerkzeuge von Rust. Wir sprechen über die Annotationen
+und Makros, die dir beim Schreiben deiner Tests zur Verfügung stehen, über das
+Standardverhalten und die Optionen beim Ausführen deiner Tests und darüber, wie
+man Tests in Unit-Tests und Integrationstests organisiert.
