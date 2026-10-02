@@ -25,17 +25,17 @@ fn area(rectangle: Rectangle) -> u32 {
 answer.doesCompile = false
 answer.lineNumber = 14
 context = """ 
-The `area` function takes ownership of its argument `rectangle`. Calling `area(rect1)` therefore
-moves `rect1`, meaning it cannot be used on the next line.
+Die Funktion `area` übernimmt die Ownership ihres Arguments `rectangle`. Der Aufruf `area(rect1)` verschiebt
+`rect1` deshalb, sodass es in der nächsten Zeile nicht mehr verwendet werden kann.
 """
 
 [[questions]]
 id = "9ce4156e-4112-4101-a2c7-51758ceca639"
 type = "MultipleChoice"
-prompt.prompt = "Which statement best describes a difference between the `Display` and `Debug` traits?"
-answer.answer = "`Display` is for presenting values to an end-user, while `Debug` is for developers' internal use"
+prompt.prompt = "Welche Aussage beschreibt am besten einen Unterschied zwischen den Traits `Display` und `Debug`?"
+answer.answer = "`Display` dient dazu, Werte Endnutzern zu präsentieren, `Debug` dagegen dem internen Gebrauch durch Entwickler"
 prompt.distractors = [
-  "`Display` is for printing values to the console, while `Debug` is for viewing values in a debugger",
-  "`Display` cannot be implemented for structs, while `Debug` can be implemented for structs",
-  "There is no difference, `Display` and `Debug` are aliases for the same trait."
+  "`Display` dient dazu, Werte auf der Konsole auszugeben, `Debug` dagegen dazu, Werte in einem Debugger anzusehen",
+  "`Display` kann nicht für Structs implementiert werden, `Debug` dagegen schon",
+  "Es gibt keinen Unterschied, `Display` und `Debug` sind Aliasse für denselben Trait."
 ]
