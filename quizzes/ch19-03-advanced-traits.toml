@@ -2,7 +2,7 @@
 id = "7859b06e-72ba-4c07-a3e2-b4f8cb7fd903"
 type = "MultipleChoice"
 prompt.prompt = """
-Recall the definition of the `Add` trait:
+Erinnere dich an die Definition des Traits `Add`:
 
 ```
 trait Add<Rhs=Self> {
@@ -11,24 +11,24 @@ trait Add<Rhs=Self> {
 }
 ```
 
-Which of the following best describes why `Output` is an associated type, while `Rhs` is a type parameter?
+Welche der folgenden Aussagen beschreibt am besten, warum `Output` ein assoziierter Typ ist, `Rhs` dagegen ein Typparameter?
 """
-answer.answer = "A type `T` should be addable to many other types `S`, but a given `T + S` operation should always have a single output type"
+answer.answer = "Ein Typ `T` soll sich zu vielen anderen Typen `S` addieren lassen, aber eine gegebene Operation `T + S` soll immer genau einen Ausgabetyp haben"
 prompt.distractors = [
-    "The add operation takes `Rhs` as input and produces `Output` as output, and type parameters are used for input while associated types are used for output",
-    "A trait can only have a single associated type, so `Rhs` must be a type parameter to `Add`",
-    "An associated type cannot have a default, while a trait type parameter can have a default"
+    "Die Additionsoperation nimmt `Rhs` als Eingabe und erzeugt `Output` als Ausgabe, und Typparameter werden für Eingaben verwendet, assoziierte Typen dagegen für Ausgaben",
+    "Ein Trait kann nur einen einzigen assoziierten Typ haben, daher muss `Rhs` ein Typparameter von `Add` sein",
+    "Ein assoziierter Typ kann keinen Standardwert haben, ein Typparameter eines Traits dagegen schon"
 ]
 context = """
-It is true that an associated type cannot currently have a default, but that is not the main
-motivating factor for having `Rhs` be a type parameter in the `Add` trait.
+Es stimmt, dass ein assoziierter Typ derzeit keinen Standardwert haben kann, aber das ist nicht der Hauptgrund
+dafür, dass `Rhs` im Trait `Add` ein Typparameter ist.
 """
 
 [[questions]]
 id = "d2c77d93-3887-40a2-b93a-501aa315d676"
 type = "MultipleChoice"
 prompt.prompt = """
-Recall the definition of the `Add` trait:
+Erinnere dich an die Definition des Traits `Add`:
 
 ```
 trait Add<Rhs=Self> {
@@ -37,7 +37,7 @@ trait Add<Rhs=Self> {
 }
 ```
 
-Which of the following best describes why `Rhs` is a type parameter to the trait `Add` rather than the function `add`? That is, why is `Add` not designed like this:
+Welche der folgenden Aussagen beschreibt am besten, warum `Rhs` ein Typparameter des Traits `Add` und nicht der Funktion `add` ist? Das heißt, warum ist `Add` nicht so entworfen:
 
 ```
 trait Add {
@@ -46,15 +46,15 @@ trait Add {
 }
 ```
 """
-answer.answer = "If `Rhs` were a function-level type parameter, then the definition of `add` could not assume any structure to `Rhs`"
+answer.answer = "Wäre `Rhs` ein Typparameter auf Funktionsebene, könnte die Definition von `add` keinerlei Struktur von `Rhs` voraussetzen"
 prompt.distractors = [
-    "The type-checker executes more efficiently when `Rhs` is a trait-level type parameter than a function-level type parameter",
-    "`Rhs` cannot have a default type as a function-level type parameter",
-    "Code generation for the `add` function would require additional time for monomorphization due to the function-level type parameter"
+    "Die Typprüfung läuft effizienter, wenn `Rhs` ein Typparameter auf Trait-Ebene statt auf Funktionsebene ist",
+    "`Rhs` kann als Typparameter auf Funktionsebene keinen Standardtyp haben",
+    "Die Codegenerierung für die Funktion `add` würde wegen des Typparameters auf Funktionsebene zusätzliche Zeit für die Monomorphisierung erfordern"
 ]
 context = """
-Such a design would not make much sense because `add<Rhs>` would not have any information about
-the structure of `Rhs`, so it would be impossible to implement any sensible addition function this way.
+Ein solches Design wäre nicht sehr sinnvoll, weil `add<Rhs>` keinerlei Informationen über
+die Struktur von `Rhs` hätte, sodass es unmöglich wäre, auf diese Weise eine sinnvolle Additionsfunktion zu implementieren.
 """
 
 [[questions]]
@@ -80,27 +80,27 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "1"
 context = """
-When only one of two conflicting trait implementations is imported, then Rust uses the imported
-implementation. Fully-qualified syntax is not necessary here.
+Wenn nur eine von zwei kollidierenden Trait-Implementierungen importiert wird, verwendet Rust die importierte
+Implementierung. Vollständig qualifizierte Syntax ist hier nicht nötig.
 """
 
 [[questions]]
 id = "cb7e4d54-e95b-4153-99d6-e8f380e4f8b4"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider implementing a trait `Trait` for a type `T`. In which of the following situations
-do you need to wrap `T` in a newtype?
+Stell dir vor, du implementierst einen Trait `Trait` für einen Typ `T`. In welcher der folgenden Situationen
+musst du `T` in einen Newtype hüllen?
 """
 answer.answer = [
-    "`Trait` is defined in an external crate and `T` is defined in an external crate",
+    "`Trait` ist in einem externen Crate definiert und `T` ist in einem externen Crate definiert",
 ]
 prompt.distractors = [
-    "`Trait` is defined in the local crate and `T` is defined in an external crate",
-    "`Trait` is defined in an external crate and `T` is defined in the local crate",
-    "`Trait` is defined in the local crate and `T` is defined in the local crate",
+    "`Trait` ist im lokalen Crate definiert und `T` ist in einem externen Crate definiert",
+    "`Trait` ist in einem externen Crate definiert und `T` ist im lokalen Crate definiert",
+    "`Trait` ist im lokalen Crate definiert und `T` ist im lokalen Crate definiert",
 ]
 context = """
-The orphan rule dictates that a trait cannot be implemented for a type if both are
-defined in an external crate, thus necessitating a newtype. If either the trait or the type
-are defined locally, then a newtype is unnecessary.
+Die Orphan-Rule schreibt vor, dass ein Trait nicht für einen Typ implementiert werden kann, wenn beide
+in einem externen Crate definiert sind, weshalb ein Newtype nötig ist. Wenn entweder der Trait oder der Typ
+lokal definiert ist, ist kein Newtype nötig.
 """

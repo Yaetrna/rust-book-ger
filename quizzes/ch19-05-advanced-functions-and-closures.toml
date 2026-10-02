@@ -2,20 +2,20 @@
 id = "f08ab588-1dca-438e-8108-a1b2410a4343"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider implementing a `register` function that takes a callback in two ways:
+Stell dir vor, du implementierst eine Funktion `register`, die einen Callback nimmt, auf zwei Arten:
 
 ```
 fn register1(cb: fn(Event) -> ());
 fn register2<F>(cb: F) where F: Fn(Event) -> ();
 ```
 
-Which type signature permits `register` to take the widest variety of arguments?
+Welche Typsignatur erlaubt es `register`, die größte Vielfalt an Argumenten anzunehmen?
 """
 answer.answer = "`register2`"
 prompt.distractors = [
   "`register1`",
-  "They are equivalent"
+  "Beide sind gleichwertig"
 ]
 context = """
-Closures with environments can be passed to `register2`, while only top-level functions (or closures without environments) can be passed to `register1`.
+An `register2` können Closures mit Umgebung übergeben werden, an `register1` dagegen nur Funktionen auf oberster Ebene (oder Closures ohne Umgebung).
 """

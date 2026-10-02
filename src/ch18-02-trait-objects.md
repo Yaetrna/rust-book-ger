@@ -54,13 +54,13 @@ nachgeschlagen werden. Wir erstellen ein Trait-Objekt, indem wir eine Art Zeiger
 angeben, etwa eine Referenz oder einen Smart-Pointer `Box<T>`, dann das
 Schlüsselwort `dyn` und dann den betreffenden Trait. (Warum Trait-Objekte einen
 Zeiger verwenden müssen, besprechen wir im Abschnitt
-[„Dynamisch große Typen
-und der Trait `Sized`“][dynamically-sized]<!-- ignore --> in Kapitel 20.) Wir
-können Trait-Objekte anstelle eines generischen oder konkreten Typs verwenden.
-Wo immer wir ein Trait-Objekt verwenden, stellt das Typsystem von Rust zur
-Kompilierzeit sicher, dass jeder in diesem Kontext verwendete Wert den Trait des
-Trait-Objekts implementiert. Folglich müssen wir zur Kompilierzeit nicht alle
-möglichen Typen kennen.
+[„Typen mit dynamischer
+Größe und der Trait `Sized`“][dynamically-sized]<!-- ignore --> in Kapitel 20.)
+Wir können Trait-Objekte anstelle eines generischen oder konkreten Typs
+verwenden. Wo immer wir ein Trait-Objekt verwenden, stellt das Typsystem von
+Rust zur Kompilierzeit sicher, dass jeder in diesem Kontext verwendete Wert den
+Trait des Trait-Objekts implementiert. Folglich müssen wir zur Kompilierzeit
+nicht alle möglichen Typen kennen.
 
 Wir haben erwähnt, dass wir in Rust darauf verzichten, Structs und Enums
 „Objekte“ zu nennen, um sie von den Objekten anderer Sprachen zu unterscheiden.

@@ -21,30 +21,31 @@ Alle Prüfungen in `translation/check.py` vergleichen gegen diesen Commit.
 
 Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 
-| Teil                                      | Dateien                                      | Status |
-| ----------------------------------------- | -------------------------------------------- | ------ |
-| `src/SUMMARY.md`                          | –                                            | ✅     |
-| Vorspann                                  | experiment-intro, title-page, foreword, ch00 | ✅     |
-| Kapitel 1                                 | ch01-* mit Quizzen                           | ✅     |
-| Kapitel 2                                 | ch02-00                                      | ✅     |
-| Kapitel 3                                 | ch03-* mit Quizzen                           | ✅     |
-| Kapitel 4                                 | ch04-* mit Quizzen                           | ✅     |
-| Kapitel 5                                 | ch05-* mit Quizzen                           | ✅     |
-| Kapitel 6                                 | ch06-* mit Quizzen                           | ✅     |
-| Kapitel 7                                 | ch07-* mit Quizzen                           | ✅     |
-| Kapitel 8                                 | ch08-* mit Quizzen                           | ✅     |
-| Kapitel 9                                 | ch09-* mit Quizzen                           | ✅     |
-| Kapitel 10                                | ch10-* mit Quizzen                           | ✅     |
-| Kapitel 11                                | ch11-* mit Quizzen                           | ✅     |
-| Kapitel 12                                | ch12-* (keine Quizze)                        | ✅     |
-| Kapitel 13                                | ch13-* mit Quizzen                           | ✅     |
-| Kapitel 14                                | ch14-* mit Quizzen                           | ✅     |
-| Kapitel 15                                | ch15-* mit Quizzen                           | ✅     |
-| Kapitel 16                                | ch16-* mit Quizzen                           | ✅     |
-| Kapitel 17                                | ch17-* mit Quizzen (async-*)                 | ✅     |
-| Kapitel 18                                | ch18-* mit Quizzen (ch17-0x-*, Inventur #4)  | ✅     |
-| Kapitel 19                                | ch19-* mit Quizzen (ch18-0x-*)               | ✅     |
-| Kapitel 20–21, Anhänge, end-of-experiment | –                                            | ⬜     |
+| Teil                                   | Dateien                                      | Status |
+| -------------------------------------- | -------------------------------------------- | ------ |
+| `src/SUMMARY.md`                       | –                                            | ✅     |
+| Vorspann                               | experiment-intro, title-page, foreword, ch00 | ✅     |
+| Kapitel 1                              | ch01-* mit Quizzen                           | ✅     |
+| Kapitel 2                              | ch02-00                                      | ✅     |
+| Kapitel 3                              | ch03-* mit Quizzen                           | ✅     |
+| Kapitel 4                              | ch04-* mit Quizzen                           | ✅     |
+| Kapitel 5                              | ch05-* mit Quizzen                           | ✅     |
+| Kapitel 6                              | ch06-* mit Quizzen                           | ✅     |
+| Kapitel 7                              | ch07-* mit Quizzen                           | ✅     |
+| Kapitel 8                              | ch08-* mit Quizzen                           | ✅     |
+| Kapitel 9                              | ch09-* mit Quizzen                           | ✅     |
+| Kapitel 10                             | ch10-* mit Quizzen                           | ✅     |
+| Kapitel 11                             | ch11-* mit Quizzen                           | ✅     |
+| Kapitel 12                             | ch12-* (keine Quizze)                        | ✅     |
+| Kapitel 13                             | ch13-* mit Quizzen                           | ✅     |
+| Kapitel 14                             | ch14-* mit Quizzen                           | ✅     |
+| Kapitel 15                             | ch15-* mit Quizzen                           | ✅     |
+| Kapitel 16                             | ch16-* mit Quizzen                           | ✅     |
+| Kapitel 17                             | ch17-* mit Quizzen (async-*)                 | ✅     |
+| Kapitel 18                             | ch18-* mit Quizzen (ch17-0x-*, Inventur #4)  | ✅     |
+| Kapitel 19                             | ch19-* mit Quizzen (ch18-0x-*)               | ✅     |
+| Kapitel 20                             | ch20-* mit Quizzen (ch19-0x-*)               | ✅     |
+| Kapitel 21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
@@ -86,6 +87,5 @@ Links auf Abschnitte, die noch nicht übersetzt sind. Beim Übersetzen des Ziels
 die Überschrift so wählen, dass sie zum Linktext passt (oder den Linktext
 anpassen).
 
-| Ziel                                                | Linktext                                      | Quelle  |
-| --------------------------------------------------- | --------------------------------------------- | ------- |
-| ch20-03#dynamically-sized-types-and-the-sized-trait | „Dynamisch große Typen und der Trait `Sized`“ | ch18-02 |
+| Ziel | Linktext | Quelle |
+| ---- | -------- | ------ |

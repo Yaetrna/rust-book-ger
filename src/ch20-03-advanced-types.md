@@ -1,84 +1,90 @@
-## Advanced Types
+## Fortgeschrittene Typen {#advanced-types}
 
-The Rust type system has some features that we’ve so far mentioned but haven’t
-yet discussed. We’ll start by discussing newtypes in general as we examine why
-they are useful as types. Then, we’ll move on to type aliases, a feature
-similar to newtypes but with slightly different semantics. We’ll also discuss
-the `!` type and dynamically sized types.
+Das Typsystem von Rust hat einige Features, die wir bisher erwähnt, aber noch
+nicht besprochen haben. Wir beginnen mit Newtypes im Allgemeinen und
+untersuchen, warum sie als Typen nützlich sind. Dann gehen wir zu Typaliassen
+über, einem Feature, das Newtypes ähnelt, aber eine etwas andere Semantik hat.
+Außerdem besprechen wir den Typ `!` und Typen mit dynamischer Größe.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="using-the-newtype-pattern-for-type-safety-and-abstraction"></a>
 
-### Type Safety and Abstraction with the Newtype Pattern
+### Typsicherheit und Abstraktion mit dem Newtype-Pattern {#type-safety-and-abstraction-with-the-newtype-pattern}
 
-This section assumes you’ve read the earlier section [“Implementing External
-Traits with the Newtype Pattern”][newtype]<!-- ignore -->. The newtype pattern
-is also useful for tasks beyond those we’ve discussed so far, including
-statically enforcing that values are never confused and indicating the units of
-a value. You saw an example of using newtypes to indicate units in Listing
-20-16: Recall that the `Millimeters` and `Meters` structs wrapped `u32` values
-in a newtype. If we wrote a function with a parameter of type `Millimeters`, we
-wouldn’t be able to compile a program that accidentally tried to call that
-function with a value of type `Meters` or a plain `u32`.
+Dieser Abschnitt setzt voraus, dass du den früheren Abschnitt
+[„Externe Traits
+mit dem Newtype-Pattern implementieren“][newtype]<!-- ignore --> gelesen hast.
+Das Newtype-Pattern ist auch für Aufgaben nützlich, die über die bisher
+besprochenen hinausgehen, etwa um statisch sicherzustellen, dass Werte nie
+verwechselt werden, und um die Einheiten eines Werts anzugeben. Ein Beispiel für
+die Verwendung von Newtypes zur Angabe von Einheiten hast du in Listing 20-16
+gesehen: Erinnere dich, dass die Structs `Millimeters` und `Meters` `u32`-Werte
+in einen Newtype gehüllt haben. Würden wir eine Funktion mit einem Parameter vom
+Typ `Millimeters` schreiben, könnten wir kein Programm kompilieren, das
+versehentlich versucht, diese Funktion mit einem Wert vom Typ `Meters` oder
+einem einfachen `u32` aufzurufen.
 
-We can also use the newtype pattern to abstract away some implementation
-details of a type: The new type can expose a public API that is different from
-the API of the private inner type.
+Wir können das Newtype-Pattern auch verwenden, um einige Implementierungsdetails
+eines Typs zu abstrahieren: Der neue Typ kann eine öffentliche API
+bereitstellen, die sich von der API des privaten inneren Typs unterscheidet.
 
-Newtypes can also hide internal implementation. For example, we could provide a
-`People` type to wrap a `HashMap<i32, String>` that stores a person’s ID
-associated with their name. Code using `People` would only interact with the
-public API we provide, such as a method to add a name string to the `People`
-collection; that code wouldn’t need to know that we assign an `i32` ID to names
-internally. The newtype pattern is a lightweight way to achieve encapsulation
-to hide implementation details, which we discussed in the [“Encapsulation that
-Hides Implementation
-Details”][encapsulation-that-hides-implementation-details]<!-- ignore -->
-section in Chapter 18.
+Newtypes können auch die interne Implementierung verbergen. Wir könnten zum
+Beispiel einen Typ `People` bereitstellen, der eine `HashMap<i32, String>`
+umhüllt, die die ID einer Person zusammen mit ihrem Namen speichert. Code, der
+`People` verwendet, würde nur mit der öffentlichen API interagieren, die wir
+bereitstellen, etwa einer Methode, um der Collection `People` einen Namen als
+String hinzuzufügen; dieser Code müsste nicht wissen, dass wir Namen intern eine
+`i32`-ID zuweisen. Das Newtype-Pattern ist eine leichtgewichtige Möglichkeit,
+Kapselung zu erreichen, um Implementierungsdetails zu verbergen, was wir im
+Abschnitt
+[„Kapselung, die Implementierungsdetails
+verbirgt“][encapsulation-that-hides-implementation-details]<!-- ignore --> in
+Kapitel 18 besprochen haben.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="creating-type-synonyms-with-type-aliases"></a>
 
-### Type Synonyms and Type Aliases
+### Typsynonyme und Typaliasse {#type-synonyms-and-type-aliases}
 
-Rust provides the ability to declare a _type alias_ to give an existing type
-another name. For this we use the `type` keyword. For example, we can create
-the alias `Kilometers` to `i32` like so:
+Rust bietet die Möglichkeit, einen _Typalias_ (_type alias_) zu deklarieren, um
+einem bestehenden Typ einen anderen Namen zu geben. Dafür verwenden wir das
+Schlüsselwort `type`. Wir können zum Beispiel den Alias `Kilometers` für `i32`
+so erstellen:
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-04-kilometers-alias/src/main.rs:here}}
 ```
 
-Now the alias `Kilometers` is a _synonym_ for `i32`; unlike the `Millimeters`
-and `Meters` types we created in Listing 20-16, `Kilometers` is not a separate,
-new type. Values that have the type `Kilometers` will be treated the same as
-values of type `i32`:
+Jetzt ist der Alias `Kilometers` ein _Synonym_ für `i32`; anders als die Typen
+`Millimeters` und `Meters`, die wir in Listing 20-16 erstellt haben, ist
+`Kilometers` kein separater, neuer Typ. Werte vom Typ `Kilometers` werden
+genauso behandelt wie Werte vom Typ `i32`:
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-04-kilometers-alias/src/main.rs:there}}
 ```
 
-Because `Kilometers` and `i32` are the same type, we can add values of both
-types and can pass `Kilometers` values to functions that take `i32`
-parameters. However, using this method, we don’t get the type-checking benefits
-that we get from the newtype pattern discussed earlier. In other words, if we
-mix up `Kilometers` and `i32` values somewhere, the compiler will not give us
-an error.
+Weil `Kilometers` und `i32` derselbe Typ sind, können wir Werte beider Typen
+addieren und `Kilometers`-Werte an Funktionen übergeben, die `i32`-Parameter
+nehmen. Mit dieser Methode bekommen wir jedoch nicht die Vorteile der
+Typprüfung, die uns das zuvor besprochene Newtype-Pattern bietet. Mit anderen
+Worten: Wenn wir irgendwo `Kilometers`- und `i32`-Werte verwechseln, gibt uns
+der Compiler keinen Fehler.
 
-The main use case for type synonyms is to reduce repetition. For example, we
-might have a lengthy type like this:
+Der Hauptanwendungsfall für Typsynonyme ist, Wiederholungen zu reduzieren. Wir
+könnten zum Beispiel einen langen Typ wie diesen haben:
 
 ```rust,ignore
 Box<dyn Fn() + Send + 'static>
 ```
 
-Writing this lengthy type in function signatures and as type annotations all
-over the code can be tiresome and error-prone. Imagine having a project full of
-code like that in Listing 20-25.
+Diesen langen Typ überall im Code in Funktionssignaturen und als Typannotation
+zu schreiben, kann ermüdend und fehleranfällig sein. Stell dir ein Projekt vor,
+das voller Code wie in Listing 20-25 ist.
 
-<Listing number="20-25" caption="Using a long type in many places">
+<Listing number="20-25" caption="Einen langen Typ an vielen Stellen verwenden">
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-25/src/main.rs:here}}
@@ -86,11 +92,12 @@ code like that in Listing 20-25.
 
 </Listing>
 
-A type alias makes this code more manageable by reducing the repetition. In
-Listing 20-26, we’ve introduced an alias named `Thunk` for the verbose type and
-can replace all uses of the type with the shorter alias `Thunk`.
+Ein Typalias macht diesen Code handhabbarer, indem er die Wiederholung
+reduziert. In Listing 20-26 haben wir für den langen Typ einen Alias namens
+`Thunk` eingeführt und können alle Verwendungen des Typs durch den kürzeren
+Alias `Thunk` ersetzen.
 
-<Listing number="20-26" caption="Introducing a type alias, `Thunk`, to reduce repetition">
+<Listing number="20-26" caption="Einen Typalias `Thunk` einführen, um Wiederholungen zu reduzieren">
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-26/src/main.rs:here}}
@@ -98,64 +105,66 @@ can replace all uses of the type with the shorter alias `Thunk`.
 
 </Listing>
 
-This code is much easier to read and write! Choosing a meaningful name for a
-type alias can help communicate your intent as well (_thunk_ is a word for code
-to be evaluated at a later time, so it’s an appropriate name for a closure that
-gets stored).
+Dieser Code ist viel leichter zu lesen und zu schreiben! Ein aussagekräftiger
+Name für einen Typalias kann auch helfen, deine Absicht zu vermitteln (_Thunk_
+ist ein Wort für Code, der zu einem späteren Zeitpunkt ausgewertet wird, daher
+ist es ein passender Name für eine Closure, die gespeichert wird).
 
-Type aliases are also commonly used with the `Result<T, E>` type for reducing
-repetition. Consider the `std::io` module in the standard library. I/O
-operations often return a `Result<T, E>` to handle situations when operations
-fail to work. This library has a `std::io::Error` struct that represents all
-possible I/O errors. Many of the functions in `std::io` will be returning
-`Result<T, E>` where the `E` is `std::io::Error`, such as these functions in
-the `Write` trait:
+Typaliasse werden auch häufig mit dem Typ `Result<T, E>` verwendet, um
+Wiederholungen zu reduzieren. Betrachte das Modul `std::io` in der
+Standardbibliothek. I/O-Operationen geben oft ein `Result<T, E>` zurück, um
+Situationen zu behandeln, in denen Operationen fehlschlagen. Diese Bibliothek
+hat ein Struct `std::io::Error`, das alle möglichen I/O-Fehler darstellt. Viele
+der Funktionen in `std::io` geben `Result<T, E>` zurück, wobei `E`
+`std::io::Error` ist, etwa diese Funktionen im Trait `Write`:
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-05-write-trait/src/lib.rs}}
 ```
 
-The `Result<..., Error>` is repeated a lot. As such, `std::io` has this type
-alias declaration:
+Das `Result<..., Error>` wiederholt sich oft. Deshalb hat `std::io` diese
+Deklaration eines Typalias:
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-06-result-alias/src/lib.rs:here}}
 ```
 
-Because this declaration is in the `std::io` module, we can use the fully
-qualified alias `std::io::Result<T>`; that is, a `Result<T, E>` with the `E`
-filled in as `std::io::Error`. The `Write` trait function signatures end up
-looking like this:
+Weil diese Deklaration im Modul `std::io` steht, können wir den vollständig
+qualifizierten Alias `std::io::Result<T>` verwenden, also ein `Result<T, E>`,
+bei dem `E` mit `std::io::Error` ausgefüllt ist. Die Funktionssignaturen des
+Traits `Write` sehen dann so aus:
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-06-result-alias/src/lib.rs:there}}
 ```
 
-The type alias helps in two ways: It makes code easier to write _and_ it gives
-us a consistent interface across all of `std::io`. Because it’s an alias, it’s
-just another `Result<T, E>`, which means we can use any methods that work on
-`Result<T, E>` with it, as well as special syntax like the `?` operator.
+Der Typalias hilft auf zweierlei Weise: Er macht Code leichter zu schreiben,
+_und_ er gibt uns eine einheitliche Schnittstelle in ganz `std::io`. Weil er ein
+Alias ist, ist er nur ein weiteres `Result<T, E>`, was bedeutet, dass wir alle
+Methoden, die mit `Result<T, E>` funktionieren, auch damit verwenden können,
+ebenso wie spezielle Syntax wie den Operator `?`.
 
-### The Never Type That Never Returns
+### Der Never-Typ, der nie zurückkehrt {#the-never-type-that-never-returns}
 
-Rust has a special type named `!` that’s known in type theory lingo as the
-_empty type_ because it has no values. We prefer to call it the _never type_
-because it stands in the place of the return type when a function will never
-return. Here is an example:
+Rust hat einen speziellen Typ namens `!`, der im Jargon der Typtheorie als
+_leerer Typ_ (_empty type_) bekannt ist, weil er keine Werte hat. Wir nennen ihn
+lieber den _Never-Typ_ (_never type_), weil er an der Stelle des Rückgabetyps
+steht, wenn eine Funktion nie zurückkehrt. Hier ist ein Beispiel:
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-07-never-type/src/lib.rs:here}}
 ```
 
-This code is read as “the function `bar` returns never.” Functions that return
-never are called _diverging functions_. We can’t create values of the type `!`,
-so `bar` can never possibly return.
+Dieser Code wird gelesen als „die Funktion `bar` kehrt nie zurück“ (wörtlich:
+„gibt never zurück“). Funktionen, die nie zurückkehren, heißen _divergierende
+Funktionen_ (_diverging functions_). Wir können keine Werte vom Typ `!`
+erzeugen, daher kann `bar` unmöglich jemals zurückkehren.
 
-But what use is a type you can never create values for? Recall the code from
-Listing 2-5, part of the number-guessing game; we’ve reproduced a bit of it
-here in Listing 20-27.
+Aber wozu dient ein Typ, für den man nie Werte erzeugen kann? Erinnere dich an
+den Code aus Listing 2-5, einem Teil des Zahlenratespiels; einen Ausschnitt
+davon haben wir hier in Listing 20-27 wiedergegeben.
 
-<Listing number="20-27" caption="A `match` with an arm that ends in `continue`">
+<Listing number="20-27" caption="Ein `match` mit einem Arm, der mit `continue` endet">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-05/src/main.rs:ch19}}
@@ -163,138 +172,145 @@ here in Listing 20-27.
 
 </Listing>
 
-At the time, we skipped over some details in this code. In [“The `match`
-Control Flow Construct”][the-match-control-flow-construct]<!-- ignore -->
-section in Chapter 6, we discussed that `match` arms must all return the same
-type. So, for example, the following code doesn’t work:
+Damals haben wir einige Details in diesem Code übersprungen. Im Abschnitt
+[„Das Kontrollflusskonstrukt `match`“][the-match-control-flow-construct]<!-- ignore -->
+in Kapitel 6 haben wir besprochen, dass alle `match`-Arme denselben Typ
+zurückgeben müssen. Der folgende Code funktioniert also zum Beispiel nicht:
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-08-match-arms-different-types/src/main.rs:here}}
 ```
 
-The type of `guess` in this code would have to be an integer _and_ a string,
-and Rust requires that `guess` have only one type. So, what does `continue`
-return? How were we allowed to return a `u32` from one arm and have another arm
-that ends with `continue` in Listing 20-27?
+Der Typ von `guess` müsste in diesem Code eine Ganzzahl _und_ ein String sein,
+und Rust verlangt, dass `guess` nur einen einzigen Typ hat. Was gibt `continue`
+also zurück? Wie konnten wir in Listing 20-27 aus einem Arm ein `u32`
+zurückgeben und einen anderen Arm haben, der mit `continue` endet?
 
-As you might have guessed, `continue` has a `!` value. That is, when Rust
-computes the type of `guess`, it looks at both match arms, the former with a
-value of `u32` and the latter with a `!` value. Because `!` can never have a
-value, Rust decides that the type of `guess` is `u32`.
+Wie du vielleicht schon vermutet hast, hat `continue` einen `!`-Wert. Das heißt,
+wenn Rust den Typ von `guess` berechnet, betrachtet es beide Match-Arme, den
+ersten mit einem Wert vom Typ `u32` und den zweiten mit einem `!`-Wert. Weil `!`
+nie einen Wert haben kann, entscheidet Rust, dass der Typ von `guess` `u32` ist.
 
-The formal way of describing this behavior is that expressions of type `!` can
-be coerced into any other type. We’re allowed to end this `match` arm with
-`continue` because `continue` doesn’t return a value; instead, it moves control
-back to the top of the loop, so in the `Err` case, we never assign a value to
-`guess`.
+Formal beschreibt man dieses Verhalten so, dass Ausdrücke vom Typ `!` in jeden
+anderen Typ umgewandelt (_coerced_) werden können. Wir dürfen diesen `match`-Arm
+mit `continue` beenden, weil `continue` keinen Wert zurückgibt; stattdessen gibt
+es die Kontrolle an den Anfang der Schleife zurück, sodass wir im Fall `Err`
+`guess` nie einen Wert zuweisen.
 
-The never type is useful with the `panic!` macro as well. Recall the `unwrap`
-function that we call on `Option<T>` values to produce a value or panic with
-this definition:
+Der Never-Typ ist auch mit dem Makro `panic!` nützlich. Erinnere dich an die
+Funktion `unwrap`, die wir auf `Option<T>`-Werten aufrufen, um einen Wert zu
+erhalten oder einen Panic auszulösen, mit dieser Definition:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-09-unwrap-definition/src/lib.rs:here}}
 ```
 
-In this code, the same thing happens as in the `match` in Listing 20-27: Rust
-sees that `val` has the type `T` and `panic!` has the type `!`, so the result
-of the overall `match` expression is `T`. This code works because `panic!`
-doesn’t produce a value; it ends the program. In the `None` case, we won’t be
-returning a value from `unwrap`, so this code is valid.
+In diesem Code passiert dasselbe wie im `match` in Listing 20-27: Rust sieht,
+dass `val` den Typ `T` und `panic!` den Typ `!` hat, also ist das Ergebnis des
+gesamten `match`-Ausdrucks `T`. Dieser Code funktioniert, weil `panic!` keinen
+Wert erzeugt, sondern das Programm beendet. Im Fall `None` geben wir aus
+`unwrap` keinen Wert zurück, daher ist dieser Code gültig.
 
-One final expression that has the type `!` is a loop:
+Ein letzter Ausdruck, der den Typ `!` hat, ist eine Schleife:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-10-loop-returns-never/src/main.rs:here}}
 ```
 
-Here, the loop never ends, so `!` is the value of the expression. However, this
-wouldn’t be true if we included a `break`, because the loop would terminate
-when it got to the `break`.
+Hier endet die Schleife nie, also ist `!` der Wert des Ausdrucks. Das wäre
+jedoch nicht der Fall, wenn wir ein `break` einfügen würden, weil die Schleife
+enden würde, sobald sie das `break` erreicht.
 
-### Dynamically Sized Types and the `Sized` Trait
+### Typen mit dynamischer Größe und der Trait `Sized` {#dynamically-sized-types-and-the-sized-trait}
 
-Rust needs to know certain details about its types, such as how much space to
-allocate for a value of a particular type. This leaves one corner of its type
-system a little confusing at first: the concept of _dynamically sized types_.
-Sometimes referred to as _DSTs_ or _unsized types_, these types let us write
-code using values whose size we can know only at runtime.
+Rust muss bestimmte Details über seine Typen kennen, etwa wie viel Speicherplatz
+für einen Wert eines bestimmten Typs zu allozieren ist. Dadurch ist eine Ecke
+seines Typsystems anfangs etwas verwirrend: das Konzept der _Typen mit
+dynamischer Größe_ (_dynamically sized types_). Diese Typen, die manchmal als
+_DSTs_ oder _Typen ohne Größe_ (_unsized types_) bezeichnet werden, ermöglichen
+es uns, Code mit Werten zu schreiben, deren Größe wir erst zur Laufzeit kennen
+können.
 
-Let’s dig into the details of a dynamically sized type called `str`, which
-we’ve been using throughout the book. That’s right, not `&str`, but `str` on
-its own, is a DST. In many cases, such as when storing text entered by a user,
-we can’t know how long the string is until runtime. That means we can’t create
-a variable of type `str`, nor can we take an argument of type `str`. Consider
-the following code, which does not work:
+Sehen wir uns die Details eines Typs mit dynamischer Größe namens `str` an, den
+wir im ganzen Buch verwendet haben. Richtig, nicht `&str`, sondern `str` für
+sich allein ist ein DST. In vielen Fällen, etwa beim Speichern von Text, den ein
+Benutzer eingegeben hat, können wir erst zur Laufzeit wissen, wie lang der
+String ist. Das bedeutet, dass wir weder eine Variable vom Typ `str` erzeugen
+noch ein Argument vom Typ `str` entgegennehmen können. Betrachte den folgenden
+Code, der nicht funktioniert:
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-11-cant-create-str/src/main.rs:here}}
 ```
 
-Rust needs to know how much memory to allocate for any value of a particular
-type, and all values of a type must use the same amount of memory. If Rust
-allowed us to write this code, these two `str` values would need to take up the
-same amount of space. But they have different lengths: `s1` needs 12 bytes of
-storage and `s2` needs 15. This is why it’s not possible to create a variable
-holding a dynamically sized type.
+Rust muss wissen, wie viel Speicher für jeden Wert eines bestimmten Typs zu
+allozieren ist, und alle Werte eines Typs müssen dieselbe Menge Speicher
+belegen. Würde Rust uns erlauben, diesen Code zu schreiben, müssten diese beiden
+`str`-Werte gleich viel Platz einnehmen. Sie haben aber unterschiedliche Längen:
+`s1` braucht 12 Bytes Speicher und `s2` 15. Deshalb ist es nicht möglich, eine
+Variable zu erzeugen, die einen Typ mit dynamischer Größe enthält.
 
-So, what do we do? In this case, you already know the answer: We make the type
-of `s1` and `s2` string slice (`&str`) rather than `str`. Recall from the
-[“String Slices”][string-slices]<!-- ignore --> section in Chapter 4 that the
-slice data structure only stores the starting position and the length of the
-slice. So, although `&T` is a single value that stores the memory address of
-where the `T` is located, a string slice is _two_ values: the address of the
-`str` and its length. As such, we can know the size of a string slice value at
-compile time: It’s twice the length of a `usize`. That is, we always know the
-size of a string slice, no matter how long the string it refers to is. In
-general, this is the way in which dynamically sized types are used in Rust:
-They have an extra bit of metadata that stores the size of the dynamic
-information. The golden rule of dynamically sized types is that we must always
-put values of dynamically sized types behind a pointer of some kind.
+Was tun wir also? In diesem Fall kennst du die Antwort schon: Wir geben `s1` und
+`s2` den Typ String-Slice (`&str`) statt `str`. Erinnere dich aus dem Abschnitt
+[„String-Slices“][string-slices]<!-- ignore --> in Kapitel 4, dass die
+Datenstruktur eines Slices nur die Startposition und die Länge des Slices
+speichert. Während `&T` also ein einzelner Wert ist, der die Speicheradresse
+speichert, an der sich das `T` befindet, besteht ein String-Slice aus _zwei_
+Werten: der Adresse des `str` und seiner Länge. Daher können wir die Größe eines
+String-Slice-Werts zur Kompilierzeit kennen: Sie ist doppelt so groß wie ein
+`usize`. Das heißt, wir kennen die Größe eines String-Slices immer, egal wie
+lang der String ist, auf den er verweist. Im Allgemeinen werden Typen mit
+dynamischer Größe in Rust auf diese Weise verwendet: Sie haben zusätzliche
+Metadaten, die die Größe der dynamischen Information speichern. Die goldene
+Regel für Typen mit dynamischer Größe lautet, dass wir Werte solcher Typen immer
+hinter eine Art Zeiger legen müssen.
 
-We can combine `str` with all kinds of pointers: for example, `Box<str>` or
-`Rc<str>`. In fact, you’ve seen this before but with a different dynamically
-sized type: traits. Every trait is a dynamically sized type we can refer to by
-using the name of the trait. In the [“Using Trait Objects to Abstract over
-Shared Behavior”][using-trait-objects-to-abstract-over-shared-behavior]<!--
-ignore --> section in Chapter 18, we mentioned that to use traits as trait
-objects, we must put them behind a pointer, such as `&dyn Trait` or `Box<dyn
-Trait>` (`Rc<dyn Trait>` would work too).
+Wir können `str` mit allen möglichen Zeigern kombinieren, zum Beispiel
+`Box<str>` oder `Rc<str>`. Tatsächlich hast du das schon gesehen, aber mit einem
+anderen Typ mit dynamischer Größe: Traits. Jeder Trait ist ein Typ mit
+dynamischer Größe, auf den wir über den Namen des Traits verweisen können. Im
+Abschnitt
+[„Mit Trait-Objekten über gemeinsames Verhalten
+abstrahieren“][using-trait-objects-to-abstract-over-shared-behavior]<!--
+ignore --> in Kapitel 18 haben wir erwähnt, dass wir Traits, um sie als
+Trait-Objekte zu verwenden, hinter einen Zeiger legen müssen, etwa `&dyn Trait`
+oder `Box<dyn
+Trait>` (`Rc<dyn Trait>` würde auch funktionieren).
 
-To work with DSTs, Rust provides the `Sized` trait to determine whether or not
-a type’s size is known at compile time. This trait is automatically implemented
-for everything whose size is known at compile time. In addition, Rust
-implicitly adds a bound on `Sized` to every generic function. That is, a
-generic function definition like this:
+Um mit DSTs zu arbeiten, stellt Rust den Trait `Sized` bereit, mit dem bestimmt
+wird, ob die Größe eines Typs zur Kompilierzeit bekannt ist oder nicht. Dieser
+Trait ist automatisch für alles implementiert, dessen Größe zur Kompilierzeit
+bekannt ist. Außerdem fügt Rust jeder generischen Funktion implizit einen Bound
+auf `Sized` hinzu. Das heißt, eine generische Funktionsdefinition wie diese:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-12-generic-fn-definition/src/lib.rs}}
 ```
 
-is actually treated as though we had written this:
+wird tatsächlich so behandelt, als hätten wir Folgendes geschrieben:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-13-generic-implicit-sized-bound/src/lib.rs}}
 ```
 
-By default, generic functions will work only on types that have a known size at
-compile time. However, you can use the following special syntax to relax this
-restriction:
+Standardmäßig funktionieren generische Funktionen nur mit Typen, deren Größe zur
+Kompilierzeit bekannt ist. Mit der folgenden speziellen Syntax kannst du diese
+Einschränkung jedoch lockern:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-14-generic-maybe-sized/src/lib.rs}}
 ```
 
-A trait bound on `?Sized` means “`T` may or may not be `Sized`,” and this
-notation overrides the default that generic types must have a known size at
-compile time. The `?Trait` syntax with this meaning is only available for
-`Sized`, not any other traits.
+Ein Trait-Bound auf `?Sized` bedeutet: „`T` kann `Sized` sein oder auch nicht.“
+Diese Notation überschreibt den Standard, dass generische Typen zur
+Kompilierzeit eine bekannte Größe haben müssen. Die Syntax `?Trait` mit dieser
+Bedeutung gibt es nur für `Sized`, nicht für andere Traits.
 
-Also note that we switched the type of the `t` parameter from `T` to `&T`.
-Because the type might not be `Sized`, we need to use it behind some kind of
-pointer. In this case, we’ve chosen a reference.
+Beachte auch, dass wir den Typ des Parameters `t` von `T` in `&T` geändert
+haben. Weil der Typ möglicherweise nicht `Sized` ist, müssen wir ihn hinter
+einer Art Zeiger verwenden. In diesem Fall haben wir eine Referenz gewählt.
 
-Next, we’ll talk about functions and closures!
+Als Nächstes sprechen wir über Funktionen und Closures!
 
 {{#quiz ../quizzes/ch19-04-advanced-types.toml}}
 
