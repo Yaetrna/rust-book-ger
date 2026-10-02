@@ -22,3 +22,13 @@ reason = "Antwortoptionen geben englische Compiler-Meldungen wieder"
 file = "quizzes/*inventory*.toml"
 contains = "cannot "
 reason = "Antwortoptionen geben englische Compiler-Meldungen wieder"
+
+[[english_allow]]
+file = "quizzes/*inventory*.toml"
+contains = "does not outlive"
+reason = "Antwortoptionen geben englische Compiler-Meldungen wieder"
+
+[[english_allow]]
+file = "quizzes/ch18-03-pattern-syntax.toml"
+contains = "Der erste Zweig"
+reason = "Falscher Treffer: deutscher Text, nach Entfernen des Inline-Codes bleiben kurze Wörter übrig"

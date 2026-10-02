@@ -42,7 +42,7 @@ prompt.distractors = [
 ]
 context = """
 Prozedurale Makros sind die einzige Möglichkeit, ein benutzerdefiniertes derive zu erstellen. Prozedurale Makros
-sind auch nützlich, wenn du Code brauchst, der die Syntax des Makro-Benutzers analysiert &mdash; deklarative
+sind auch nützlich, wenn du Code brauchst, der die Syntax des Makro-Benutzers analysiert – deklarative
 Makros erlauben nur, die Eingabe umzustellen, aber z. B. nicht, ihre Größe zu berechnen.
 
 Deklarative Makros können Codefolgen variabler Länge erzeugen und können Elemente umhüllen/erzeugen,
