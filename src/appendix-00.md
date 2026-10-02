@@ -1,4 +1,4 @@
-# Appendix
+# Anhang {#appendix}
 
-The following sections contain reference material you may find useful in your
-Rust journey.
+Die folgenden Abschnitte enthalten Referenzmaterial, das dir auf deiner Reise
+mit Rust nützlich sein kann.

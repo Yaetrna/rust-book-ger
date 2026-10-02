@@ -1,70 +1,77 @@
-## Appendix A: Keywords
+## Anhang A: Schlüsselwörter {#appendix-a-keywords}
 
-The following lists contain keywords that are reserved for current or future
-use by the Rust language. As such, they cannot be used as identifiers (except
-as raw identifiers, as we discuss in the [“Raw
-Identifiers”][raw-identifiers]<!-- ignore --> section). _Identifiers_ are names
-of functions, variables, parameters, struct fields, modules, crates, constants,
-macros, static values, attributes, types, traits, or lifetimes.
+Die folgenden Listen enthalten Schlüsselwörter, die für die aktuelle oder
+künftige Verwendung durch die Sprache Rust reserviert sind. Daher können sie
+nicht als Bezeichner verwendet werden (außer als Raw-Bezeichner, wie wir im
+Abschnitt [„Raw-Bezeichner“][raw-identifiers]<!-- ignore --> besprechen).
+_Bezeichner_ (_identifiers_) sind Namen von Funktionen, Variablen, Parametern,
+Struct-Feldern, Modulen, Crates, Konstanten, Makros, statischen Werten,
+Attributen, Typen, Traits oder Lifetimes.
 
 [raw-identifiers]: #raw-identifiers
 
-### Keywords Currently in Use
+### Derzeit verwendete Schlüsselwörter {#keywords-currently-in-use}
 
-The following is a list of keywords currently in use, with their functionality
-described.
+Es folgt eine Liste der derzeit verwendeten Schlüsselwörter mit einer
+Beschreibung ihrer Funktion.
 
-- **`as`**: Perform primitive casting, disambiguate the specific trait
-  containing an item, or rename items in `use` statements.
-- **`async`**: Return a `Future` instead of blocking the current thread.
-- **`await`**: Suspend execution until the result of a `Future` is ready.
-- **`break`**: Exit a loop immediately.
-- **`const`**: Define constant items or constant raw pointers.
-- **`continue`**: Continue to the next loop iteration.
-- **`crate`**: In a module path, refers to the crate root.
-- **`dyn`**: Dynamic dispatch to a trait object.
-- **`else`**: Fallback for `if` and `if let` control flow constructs.
-- **`enum`**: Define an enumeration.
-- **`extern`**: Link an external function or variable.
-- **`false`**: Boolean false literal.
-- **`fn`**: Define a function or the function pointer type.
-- **`for`**: Loop over items from an iterator, implement a trait, or specify a
-  higher ranked lifetime.
-- **`if`**: Branch based on the result of a conditional expression.
-- **`impl`**: Implement inherent or trait functionality.
-- **`in`**: Part of `for` loop syntax.
-- **`let`**: Bind a variable.
-- **`loop`**: Loop unconditionally.
-- **`match`**: Match a value to patterns.
-- **`mod`**: Define a module.
-- **`move`**: Make a closure take ownership of all its captures.
-- **`mut`**: Denote mutability in references, raw pointers, or pattern bindings.
-- **`pub`**: Denote public visibility in struct fields, `impl` blocks, or
-  modules.
-- **`ref`**: Bind by reference.
-- **`return`**: Return from function.
-- **`Self`**: A type alias for the type we are defining or implementing.
-- **`self`**: Method subject or current module.
-- **`static`**: Global variable or lifetime lasting the entire program
-  execution.
-- **`struct`**: Define a structure.
-- **`super`**: Parent module of the current module.
-- **`trait`**: Define a trait.
-- **`true`**: Boolean true literal.
-- **`type`**: Define a type alias or associated type.
-- **`union`**: Define a [union][union]<!-- ignore -->; is a keyword only when
-  used in a union declaration.
-- **`unsafe`**: Denote unsafe code, functions, traits, or implementations.
-- **`use`**: Bring symbols into scope.
-- **`where`**: Denote clauses that constrain a type.
-- **`while`**: Loop conditionally based on the result of an expression.
+- **`as`**: Primitive Typumwandlung durchführen, den bestimmten Trait eindeutig
+  machen, der ein Element enthält, oder Elemente in `use`-Anweisungen
+  umbenennen.
+- **`async`**: Ein `Future` zurückgeben, statt den aktuellen Thread zu
+  blockieren.
+- **`await`**: Die Ausführung anhalten, bis das Ergebnis eines `Future` bereit
+  ist.
+- **`break`**: Eine Schleife sofort verlassen.
+- **`const`**: Konstante Elemente oder konstante Raw-Pointer definieren.
+- **`continue`**: Mit der nächsten Schleifeniteration fortfahren.
+- **`crate`**: Verweist in einem Modulpfad auf die Crate-Root.
+- **`dyn`**: Dynamischer Dispatch an ein Trait-Objekt.
+- **`else`**: Alternative für die Kontrollflusskonstrukte `if` und `if let`.
+- **`enum`**: Ein Enum definieren.
+- **`extern`**: Eine externe Funktion oder Variable einbinden.
+- **`false`**: Boolesches Literal für falsch.
+- **`fn`**: Eine Funktion oder den Funktionszeigertyp definieren.
+- **`for`**: Über Elemente eines Iterators iterieren, einen Trait implementieren
+  oder eine Lifetime höheren Rangs angeben.
+- **`if`**: Abhängig vom Ergebnis eines bedingten Ausdrucks verzweigen.
+- **`impl`**: Eigene Funktionalität oder Trait-Funktionalität implementieren.
+- **`in`**: Teil der Syntax der `for`-Schleife.
+- **`let`**: Eine Variable binden.
+- **`loop`**: Bedingungslos in einer Schleife laufen.
+- **`match`**: Einen Wert mit Patterns abgleichen.
+- **`mod`**: Ein Modul definieren.
+- **`move`**: Eine Closure die Ownership an allem übernehmen lassen, was sie
+  erfasst.
+- **`mut`**: Veränderlichkeit bei Referenzen, Raw-Pointern oder
+  Pattern-Bindungen kennzeichnen.
+- **`pub`**: Öffentliche Sichtbarkeit bei Struct-Feldern, `impl`-Blöcken oder
+  Modulen kennzeichnen.
+- **`ref`**: Per Referenz binden.
+- **`return`**: Aus einer Funktion zurückkehren.
+- **`Self`**: Ein Typalias für den Typ, den wir definieren oder implementieren.
+- **`self`**: Subjekt einer Methode oder aktuelles Modul.
+- **`static`**: Globale Variable oder Lifetime, die die gesamte
+  Programmausführung überdauert.
+- **`struct`**: Ein Struct definieren.
+- **`super`**: Elternmodul des aktuellen Moduls.
+- **`trait`**: Einen Trait definieren.
+- **`true`**: Boolesches Literal für wahr.
+- **`type`**: Einen Typalias oder assoziierten Typ definieren.
+- **`union`**: Eine [Union][union]<!-- ignore --> definieren; ist nur in einer
+  Union-Deklaration ein Schlüsselwort.
+- **`unsafe`**: Unsicheren Code, unsichere Funktionen, Traits oder
+  Implementierungen kennzeichnen.
+- **`use`**: Symbole in den Gültigkeitsbereich (_scope_) bringen.
+- **`where`**: Klauseln kennzeichnen, die einen Typ einschränken.
+- **`while`**: Abhängig vom Ergebnis eines Ausdrucks in einer Schleife laufen.
 
 [union]: https://doc.rust-lang.org/reference/items/unions.html
 
-### Keywords Reserved for Future Use
+### Für die künftige Verwendung reservierte Schlüsselwörter {#keywords-reserved-for-future-use}
 
-The following keywords do not yet have any functionality but are reserved by
-Rust for potential future use:
+Die folgenden Schlüsselwörter haben noch keine Funktion, sind aber von Rust für
+eine mögliche künftige Verwendung reserviert:
 
 - `abstract`
 - `become`
@@ -81,15 +88,16 @@ Rust for potential future use:
 - `virtual`
 - `yield`
 
-### Raw Identifiers
+### Raw-Bezeichner {#raw-identifiers}
 
-_Raw identifiers_ are the syntax that lets you use keywords where they wouldn’t
-normally be allowed. You use a raw identifier by prefixing a keyword with `r#`.
+_Raw-Bezeichner_ (_raw identifiers_) sind die Syntax, mit der du Schlüsselwörter
+dort verwenden kannst, wo sie normalerweise nicht erlaubt wären. Du verwendest
+einen Raw-Bezeichner, indem du einem Schlüsselwort `r#` voranstellst.
 
-For example, `match` is a keyword. If you try to compile the following function
-that uses `match` as its name:
+Zum Beispiel ist `match` ein Schlüsselwort. Wenn du versuchst, die folgende
+Funktion zu kompilieren, die `match` als Namen verwendet:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Dateiname: src/main.rs</span>
 
 ```rust,ignore,does_not_compile
 fn match(needle: &str, haystack: &str) -> bool {
@@ -97,7 +105,7 @@ fn match(needle: &str, haystack: &str) -> bool {
 }
 ```
 
-you’ll get this error:
+bekommst du diesen Fehler:
 
 ```text
 error: expected identifier, found keyword `match`
@@ -107,11 +115,11 @@ error: expected identifier, found keyword `match`
   |    ^^^^^ expected identifier, found keyword
 ```
 
-The error shows that you can’t use the keyword `match` as the function
-identifier. To use `match` as a function name, you need to use the raw
-identifier syntax, like this:
+Der Fehler zeigt, dass du das Schlüsselwort `match` nicht als Bezeichner der
+Funktion verwenden kannst. Um `match` als Funktionsnamen zu verwenden, musst du
+die Syntax für Raw-Bezeichner verwenden, etwa so:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Dateiname: src/main.rs</span>
 
 ```rust
 fn r#match(needle: &str, haystack: &str) -> bool {
@@ -123,18 +131,21 @@ fn main() {
 }
 ```
 
-This code will compile without any errors. Note the `r#` prefix on the function
-name in its definition as well as where the function is called in `main`.
+Dieser Code kompiliert ohne Fehler. Beachte das Präfix `r#` beim Funktionsnamen
+in seiner Definition und dort, wo die Funktion in `main` aufgerufen wird.
 
-Raw identifiers allow you to use any word you choose as an identifier, even if
-that word happens to be a reserved keyword. This gives us more freedom to choose
-identifier names, as well as lets us integrate with programs written in a
-language where these words aren’t keywords. In addition, raw identifiers allow
-you to use libraries written in a different Rust edition than your crate uses.
-For example, `try` isn’t a keyword in the 2015 edition but is in the 2018, 2021,
-and 2024 editions. If you depend on a library that is written using the 2015
-edition and has a `try` function, you’ll need to use the raw identifier syntax,
-`r#try` in this case, to call that function from your code on later editions.
-See [Appendix E][appendix-e]<!-- ignore --> for more information on editions.
+Mit Raw-Bezeichnern kannst du jedes beliebige Wort als Bezeichner verwenden,
+selbst wenn dieses Wort ein reserviertes Schlüsselwort ist. Das gibt uns mehr
+Freiheit bei der Wahl von Bezeichnernamen und ermöglicht es uns außerdem, mit
+Programmen zusammenzuarbeiten, die in einer Sprache geschrieben sind, in der
+diese Wörter keine Schlüsselwörter sind. Darüber hinaus ermöglichen es
+Raw-Bezeichner, Bibliotheken zu verwenden, die in einer anderen Rust-Edition
+geschrieben sind als dein Crate. Zum Beispiel ist `try` in der Edition 2015 kein
+Schlüsselwort, in den Editionen 2018, 2021 und 2024 aber schon. Wenn du von
+einer Bibliothek abhängst, die mit der Edition 2015 geschrieben ist und eine
+Funktion `try` hat, musst du die Syntax für Raw-Bezeichner verwenden, in diesem
+Fall `r#try`, um diese Funktion in späteren Editionen aus deinem Code
+aufzurufen. Weitere Informationen zu Editionen findest du in
+[Anhang E][appendix-e]<!-- ignore -->.
 
 [appendix-e]: appendix-05-editions.html

@@ -1,179 +1,195 @@
-## Appendix C: Derivable Traits
+## Anhang C: Ableitbare Traits {#appendix-c-derivable-traits}
 
-In various places in the book, we’ve discussed the `derive` attribute, which
-you can apply to a struct or enum definition. The `derive` attribute generates
-code that will implement a trait with its own default implementation on the
-type you’ve annotated with the `derive` syntax.
+An verschiedenen Stellen im Buch haben wir das Attribut `derive` besprochen, das
+du auf eine Struct- oder Enum-Definition anwenden kannst. Das Attribut `derive`
+erzeugt Code, der einen Trait mit seiner eigenen Standardimplementierung für den
+Typ implementiert, den du mit der `derive`-Syntax annotiert hast.
 
-In this appendix, we provide a reference of all the traits in the standard
-library that you can use with `derive`. Each section covers:
+In diesem Anhang stellen wir eine Referenz aller Traits der Standardbibliothek
+bereit, die du mit `derive` verwenden kannst. Jeder Abschnitt behandelt:
 
-- What operators and methods deriving this trait will enable
-- What the implementation of the trait provided by `derive` does
-- What implementing the trait signifies about the type
-- The conditions in which you’re allowed or not allowed to implement the trait
-- Examples of operations that require the trait
+- Welche Operatoren und Methoden das Ableiten (_deriving_) dieses Traits
+  ermöglicht
+- Was die durch `derive` bereitgestellte Implementierung des Traits tut
+- Was die Implementierung des Traits über den Typ aussagt
+- Unter welchen Bedingungen du den Trait implementieren darfst und unter welchen
+  nicht
+- Beispiele für Operationen, die den Trait erfordern
 
-If you want different behavior from that provided by the `derive` attribute,
-consult the [standard library documentation](../std/index.html)<!-- ignore -->
-for each trait for details on how to manually implement them.
+Wenn du ein anderes Verhalten möchtest als das, das das Attribut `derive`
+bereitstellt, findest du in der
+[Dokumentation der Standardbibliothek](../std/index.html)<!-- ignore --> zu
+jedem Trait Details dazu, wie man ihn manuell implementiert.
 
-The traits listed here are the only ones defined by the standard library that
-can be implemented on your types using `derive`. Other traits defined in the
-standard library don’t have sensible default behavior, so it’s up to you to
-implement them in the way that makes sense for what you’re trying to accomplish.
+Die hier aufgeführten Traits sind die einzigen in der Standardbibliothek
+definierten Traits, die mit `derive` für deine Typen implementiert werden
+können. Andere in der Standardbibliothek definierte Traits haben kein sinnvolles
+Standardverhalten, daher liegt es an dir, sie so zu implementieren, wie es für
+dein Vorhaben sinnvoll ist.
 
-An example of a trait that can’t be derived is `Display`, which handles
-formatting for end users. You should always consider the appropriate way to
-display a type to an end user. What parts of the type should an end user be
-allowed to see? What parts would they find relevant? What format of the data
-would be most relevant to them? The Rust compiler doesn’t have this insight, so
-it can’t provide appropriate default behavior for you.
+Ein Beispiel für einen Trait, der nicht abgeleitet werden kann, ist `Display`,
+der die Formatierung für Endbenutzer übernimmt. Du solltest dir immer überlegen,
+wie ein Typ einem Endbenutzer angemessen angezeigt wird. Welche Teile des Typs
+sollte ein Endbenutzer sehen dürfen? Welche Teile wären für ihn relevant?
+Welches Format der Daten wäre für ihn am relevantesten? Der Rust-Compiler hat
+diese Einsicht nicht und kann dir daher kein angemessenes Standardverhalten
+bieten.
 
-The list of derivable traits provided in this appendix is not comprehensive:
-Libraries can implement `derive` for their own traits, making the list of
-traits you can use `derive` with truly open ended. Implementing `derive`
-involves using a procedural macro, which is covered in the [“Custom `derive`
-Macros”][custom-derive-macros]<!-- ignore --> section in Chapter 20.
+Die Liste der ableitbaren Traits in diesem Anhang ist nicht vollständig:
+Bibliotheken können `derive` für ihre eigenen Traits implementieren, wodurch die
+Liste der Traits, mit denen du `derive` verwenden kannst, wirklich offen ist.
+Die Implementierung von `derive` erfordert ein prozedurales Makro, das im
+Abschnitt
+[„Benutzerdefinierte `derive`-Makros“][custom-derive-macros]<!-- ignore --> in
+Kapitel 20 behandelt wird.
 
-### `Debug` for Programmer Output
+### `Debug` für Ausgaben für Programmierer {#debug-for-programmer-output}
 
-The `Debug` trait enables debug formatting in format strings, which you
-indicate by adding `:?` within `{}` placeholders.
+Der Trait `Debug` ermöglicht die Debug-Formatierung in Formatstrings, die du
+angibst, indem du `:?` innerhalb von `{}`-Platzhaltern hinzufügst.
 
-The `Debug` trait allows you to print instances of a type for debugging
-purposes, so you and other programmers using your type can inspect an instance
-at a particular point in a program’s execution.
+Mit dem Trait `Debug` kannst du Instanzen eines Typs zu Debugging-Zwecken
+ausgeben, sodass du und andere Programmierer, die deinen Typ verwenden, eine
+Instanz an einem bestimmten Punkt der Programmausführung untersuchen können.
 
-The `Debug` trait is required, for example, in the use of the `assert_eq!`
-macro. This macro prints the values of instances given as arguments if the
-equality assertion fails so that programmers can see why the two instances
-weren’t equal.
+Der Trait `Debug` ist zum Beispiel für die Verwendung des Makros `assert_eq!`
+erforderlich. Dieses Makro gibt die Werte der als Argumente übergebenen
+Instanzen aus, wenn die Gleichheitszusicherung fehlschlägt, damit Programmierer
+sehen können, warum die beiden Instanzen nicht gleich waren.
 
-### `PartialEq` and `Eq` for Equality Comparisons
+### `PartialEq` und `Eq` für Gleichheitsvergleiche {#partialeq-and-eq-for-equality-comparisons}
 
-The `PartialEq` trait allows you to compare instances of a type to check for
-equality and enables use of the `==` and `!=` operators.
+Mit dem Trait `PartialEq` kannst du Instanzen eines Typs auf Gleichheit
+vergleichen, und er ermöglicht die Verwendung der Operatoren `==` und `!=`.
 
-Deriving `PartialEq` implements the `eq` method. When `PartialEq` is derived on
-structs, two instances are equal only if _all_ fields are equal, and the
-instances are not equal if _any_ fields are not equal. When derived on enums,
-each variant is equal to itself and not equal to the other variants.
+Das Ableiten von `PartialEq` implementiert die Methode `eq`. Wenn `PartialEq`
+für Structs abgeleitet wird, sind zwei Instanzen nur dann gleich, wenn _alle_
+Felder gleich sind, und die Instanzen sind ungleich, wenn _irgendein_ Feld
+ungleich ist. Bei Enums ist jede Variante gleich sich selbst und ungleich den
+anderen Varianten.
 
-The `PartialEq` trait is required, for example, with the use of the
-`assert_eq!` macro, which needs to be able to compare two instances of a type
-for equality.
+Der Trait `PartialEq` ist zum Beispiel bei der Verwendung des Makros
+`assert_eq!` erforderlich, das zwei Instanzen eines Typs auf Gleichheit
+vergleichen können muss.
 
-The `Eq` trait has no methods. Its purpose is to signal that for every value of
-the annotated type, the value is equal to itself. The `Eq` trait can only be
-applied to types that also implement `PartialEq`, although not all types that
-implement `PartialEq` can implement `Eq`. One example of this is floating-point
-number types: The implementation of floating-point numbers states that two
-instances of the not-a-number (`NaN`) value are not equal to each other.
+Der Trait `Eq` hat keine Methoden. Sein Zweck ist es, zu signalisieren, dass
+jeder Wert des annotierten Typs gleich sich selbst ist. Der Trait `Eq` kann nur
+auf Typen angewendet werden, die auch `PartialEq` implementieren, wobei aber
+nicht alle Typen, die `PartialEq` implementieren, auch `Eq` implementieren
+können. Ein Beispiel dafür sind Gleitkommazahltypen: Die Implementierung von
+Gleitkommazahlen legt fest, dass zwei Instanzen des Werts „keine Zahl“
+(_not-a-number_, `NaN`) nicht gleich sind.
 
-An example of when `Eq` is required is for keys in a `HashMap<K, V>` so that
-the `HashMap<K, V>` can tell whether two keys are the same.
+Ein Beispiel dafür, wann `Eq` erforderlich ist, sind die Schlüssel in einer
+`HashMap<K, V>`, damit die `HashMap<K, V>` erkennen kann, ob zwei Schlüssel
+gleich sind.
 
-### `PartialOrd` and `Ord` for Ordering Comparisons
+### `PartialOrd` und `Ord` für Ordnungsvergleiche {#partialord-and-ord-for-ordering-comparisons}
 
-The `PartialOrd` trait allows you to compare instances of a type for sorting
-purposes. A type that implements `PartialOrd` can be used with the `<`, `>`,
-`<=`, and `>=` operators. You can only apply the `PartialOrd` trait to types
-that also implement `PartialEq`.
+Mit dem Trait `PartialOrd` kannst du Instanzen eines Typs zum Sortieren
+vergleichen. Ein Typ, der `PartialOrd` implementiert, kann mit den Operatoren
+`<`, `>`, `<=` und `>=` verwendet werden. Du kannst den Trait `PartialOrd` nur
+auf Typen anwenden, die auch `PartialEq` implementieren.
 
-Deriving `PartialOrd` implements the `partial_cmp` method, which returns an
-`Option<Ordering>` that will be `None` when the values given don’t produce an
-ordering. An example of a value that doesn’t produce an ordering, even though
-most values of that type can be compared, is the `NaN` floating point value.
-Calling `partial_cmp` with any floating-point number and the `NaN`
-floating-point value will return `None`.
+Das Ableiten von `PartialOrd` implementiert die Methode `partial_cmp`, die ein
+`Option<Ordering>` zurückgibt, das `None` ist, wenn die übergebenen Werte keine
+Ordnung ergeben. Ein Beispiel für einen Wert, der keine Ordnung ergibt, obwohl
+die meisten Werte dieses Typs verglichen werden können, ist der Gleitkommawert
+`NaN`. Ein Aufruf von `partial_cmp` mit einer beliebigen Gleitkommazahl und dem
+Gleitkommawert `NaN` gibt `None` zurück.
 
-When derived on structs, `PartialOrd` compares two instances by comparing the
-value in each field in the order in which the fields appear in the struct
-definition. When derived on enums, variants of the enum declared earlier in the
-enum definition are considered less than the variants listed later.
+Bei Structs vergleicht ein abgeleitetes `PartialOrd` zwei Instanzen, indem es
+den Wert jedes Felds in der Reihenfolge vergleicht, in der die Felder in der
+Struct-Definition stehen. Bei Enums gelten Varianten, die in der Enum-Definition
+früher deklariert sind, als kleiner als später aufgeführte Varianten.
 
-The `PartialOrd` trait is required, for example, for the `gen_range` method
-from the `rand` crate that generates a random value in the range specified by a
-range expression.
+Der Trait `PartialOrd` ist zum Beispiel für die Methode `gen_range` aus dem
+Crate `rand` erforderlich, die einen Zufallswert in dem durch einen
+Bereichsausdruck angegebenen Bereich erzeugt.
 
-The `Ord` trait allows you to know that for any two values of the annotated
-type, a valid ordering will exist. The `Ord` trait implements the `cmp` method,
-which returns an `Ordering` rather than an `Option<Ordering>` because a valid
-ordering will always be possible. You can only apply the `Ord` trait to types
-that also implement `PartialOrd` and `Eq` (and `Eq` requires `PartialEq`). When
-derived on structs and enums, `cmp` behaves the same way as the derived
-implementation for `partial_cmp` does with `PartialOrd`.
+Mit dem Trait `Ord` weißt du, dass für zwei beliebige Werte des annotierten Typs
+eine gültige Ordnung existiert. Der Trait `Ord` implementiert die Methode `cmp`,
+die ein `Ordering` statt eines `Option<Ordering>` zurückgibt, weil immer eine
+gültige Ordnung möglich ist. Du kannst den Trait `Ord` nur auf Typen anwenden,
+die auch `PartialOrd` und `Eq` implementieren (und `Eq` erfordert `PartialEq`).
+Bei Structs und Enums verhält sich ein abgeleitetes `cmp` genauso wie die
+abgeleitete Implementierung von `partial_cmp` bei `PartialOrd`.
 
-An example of when `Ord` is required is when storing values in a `BTreeSet<T>`,
-a data structure that stores data based on the sort order of the values.
+Ein Beispiel dafür, wann `Ord` erforderlich ist, ist das Speichern von Werten in
+einem `BTreeSet<T>`, einer Datenstruktur, die Daten anhand der
+Sortierreihenfolge der Werte speichert.
 
-### `Clone` and `Copy` for Duplicating Values
+### `Clone` und `Copy` zum Duplizieren von Werten {#clone-and-copy-for-duplicating-values}
 
-The `Clone` trait allows you to explicitly create a deep copy of a value, and
-the duplication process might involve running arbitrary code and copying heap
-data.
+Mit dem Trait `Clone` kannst du ausdrücklich eine tiefe Kopie eines Werts
+erstellen, und der Duplizierungsvorgang kann das Ausführen beliebigen Codes und
+das Kopieren von Heap-Daten beinhalten.
 
-Deriving `Clone` implements the `clone` method, which when implemented for the
-whole type, calls `clone` on each of the parts of the type. This means all the
-fields or values in the type must also implement `Clone` to derive `Clone`.
+Das Ableiten von `Clone` implementiert die Methode `clone`, die, wenn sie für
+den ganzen Typ implementiert wird, `clone` auf jedem Teil des Typs aufruft. Das
+bedeutet, dass alle Felder oder Werte im Typ ebenfalls `Clone` implementieren
+müssen, damit `Clone` abgeleitet werden kann.
 
-An example of when `Clone` is required is when calling the `to_vec` method on a
-slice. The slice doesn’t own the type instances it contains, but the vector
-returned from `to_vec` will need to own its instances, so `to_vec` calls
-`clone` on each item. Thus, the type stored in the slice must implement `Clone`.
+Ein Beispiel dafür, wann `Clone` erforderlich ist, ist der Aufruf der Methode
+`to_vec` auf einem Slice. Der Slice besitzt die Typinstanzen, die er enthält,
+nicht, aber der von `to_vec` zurückgegebene Vektor muss seine Instanzen
+besitzen, daher ruft `to_vec` `clone` für jedes Element auf. Der im Slice
+gespeicherte Typ muss also `Clone` implementieren.
 
-The `Copy` trait allows you to duplicate a value by only copying bits stored on
-the stack; no arbitrary code is necessary.
+Mit dem Trait `Copy` kannst du einen Wert duplizieren, indem du nur die auf dem
+Stack gespeicherten Bits kopierst; beliebiger Code ist dafür nicht nötig.
 
-The `Copy` trait doesn’t define any methods to prevent programmers from
-overloading those methods and violating the assumption that no arbitrary code
-is being run. That way, all programmers can assume that copying a value will be
-very fast.
+Der Trait `Copy` definiert keine Methoden, um zu verhindern, dass Programmierer
+diese Methoden überladen und damit die Annahme verletzen, dass kein beliebiger
+Code ausgeführt wird. So können alle Programmierer davon ausgehen, dass das
+Kopieren eines Werts sehr schnell ist.
 
-You can derive `Copy` on any type whose parts all implement `Copy`. A type that
-implements `Copy` must also implement `Clone` because a type that implements
-`Copy` has a trivial implementation of `Clone` that performs the same task as
-`Copy`.
+Du kannst `Copy` für jeden Typ ableiten, dessen Teile alle `Copy`
+implementieren. Ein Typ, der `Copy` implementiert, muss auch `Clone`
+implementieren, weil ein Typ, der `Copy` implementiert, eine triviale
+Implementierung von `Clone` hat, die dieselbe Aufgabe wie `Copy` erfüllt.
 
-The `Copy` trait is rarely required; types that implement `Copy` have
-optimizations available, meaning you don’t have to call `clone`, which makes
-the code more concise.
+Der Trait `Copy` ist selten erforderlich; für Typen, die `Copy` implementieren,
+stehen Optimierungen zur Verfügung, sodass du `clone` nicht aufrufen musst, was
+den Code prägnanter macht.
 
-Everything possible with `Copy` you can also accomplish with `Clone`, but the
-code might be slower or have to use `clone` in places.
+Alles, was mit `Copy` möglich ist, kannst du auch mit `Clone` erreichen, aber
+der Code ist dann möglicherweise langsamer oder muss an manchen Stellen `clone`
+verwenden.
 
-### `Hash` for Mapping a Value to a Value of Fixed Size
+### `Hash` zum Abbilden eines Werts auf einen Wert fester Größe {#hash-for-mapping-a-value-to-a-value-of-fixed-size}
 
-The `Hash` trait allows you to take an instance of a type of arbitrary size and
-map that instance to a value of fixed size using a hash function. Deriving
-`Hash` implements the `hash` method. The derived implementation of the `hash`
-method combines the result of calling `hash` on each of the parts of the type,
-meaning all fields or values must also implement `Hash` to derive `Hash`.
+Mit dem Trait `Hash` kannst du eine Instanz eines Typs beliebiger Größe nehmen
+und diese Instanz mit einer Hashfunktion auf einen Wert fester Größe abbilden.
+Das Ableiten von `Hash` implementiert die Methode `hash`. Die abgeleitete
+Implementierung der Methode `hash` kombiniert das Ergebnis des Aufrufs von
+`hash` auf jedem Teil des Typs, das heißt, alle Felder oder Werte müssen
+ebenfalls `Hash` implementieren, damit `Hash` abgeleitet werden kann.
 
-An example of when `Hash` is required is in storing keys in a `HashMap<K, V>`
-to store data efficiently.
+Ein Beispiel dafür, wann `Hash` erforderlich ist, ist das Speichern von
+Schlüsseln in einer `HashMap<K, V>`, um Daten effizient zu speichern.
 
-### `Default` for Default Values
+### `Default` für Standardwerte {#default-for-default-values}
 
-The `Default` trait allows you to create a default value for a type. Deriving
-`Default` implements the `default` function. The derived implementation of the
-`default` function calls the `default` function on each part of the type,
-meaning all fields or values in the type must also implement `Default` to
-derive `Default`.
+Mit dem Trait `Default` kannst du einen Standardwert für einen Typ erzeugen. Das
+Ableiten von `Default` implementiert die Funktion `default`. Die abgeleitete
+Implementierung der Funktion `default` ruft die Funktion `default` auf jedem
+Teil des Typs auf, das heißt, alle Felder oder Werte im Typ müssen ebenfalls
+`Default` implementieren, damit `Default` abgeleitet werden kann.
 
-The `Default::default` function is commonly used in combination with the struct
-update syntax discussed in the [“Creating Instances from Other Instances with
-Struct Update
-Syntax”][creating-instances-from-other-instances-with-struct-update-syntax]<!--
-ignore --> section in Chapter 5. You can customize a few fields of a struct and
-then set and use a default value for the rest of the fields by using
-`..Default::default()`.
+Die Funktion `Default::default` wird häufig in Kombination mit der
+Struct-Update-Syntax verwendet, die im Abschnitt
+[„Instanzen mit der Struct-Update-Syntax
+erzeugen“][creating-instances-from-other-instances-with-struct-update-syntax]<!--
+ignore --> in Kapitel 5 besprochen wird. Du kannst einige Felder eines Structs
+anpassen und dann mit `..Default::default()` für die übrigen Felder einen
+Standardwert setzen und verwenden.
 
-The `Default` trait is required when you use the method `unwrap_or_default` on
-`Option<T>` instances, for example. If the `Option<T>` is `None`, the method
-`unwrap_or_default` will return the result of `Default::default` for the type
-`T` stored in the `Option<T>`.
+Der Trait `Default` ist zum Beispiel erforderlich, wenn du die Methode
+`unwrap_or_default` auf `Option<T>`-Instanzen verwendest. Wenn die `Option<T>`
+`None` ist, gibt die Methode `unwrap_or_default` das Ergebnis von
+`Default::default` für den Typ `T` zurück, der in der `Option<T>` gespeichert
+ist.
 
 [creating-instances-from-other-instances-with-struct-update-syntax]: ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax
 [stack-only-data-copy]: ch04-01-what-is-ownership.html#stack-only-data-copy
