@@ -244,6 +244,14 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | strong / weak reference                    | starke / schwache Referenz                         | die                               |                                                        | entschieden |
 | test double / mock object                  | Test-Double / Mock-Objekt                          | das                               |                                                        | entschieden |
 | destructor / constructor                   | Destruktor / Konstruktor                           | der                               |                                                        | entschieden |
+| fearless concurrency                       | furchtlose Nebenläufigkeit                         | die                               | (_fearless concurrency_) bei der Einführung            | entschieden |
+| spawn (thread)                             | erzeugen / erzeugter Thread                        | –                                 | „spawned thread“ → „erzeugter Thread“                  | entschieden |
+| main thread                                | Haupt-Thread                                       | der                               |                                                        | entschieden |
+| join handle                                | Join-Handle                                        | das                               | Typ `JoinHandle<T>` bleibt                             | entschieden |
+| transmitter / receiver                     | Sender / Empfänger                                 | der                               | `tx` / `rx` bleiben                                    | entschieden |
+| lock (Mutex)                               | Lock / sperren / entsperren                        | der                               |                                                        | entschieden |
+| concurrency primitive                      | Nebenläufigkeitsprimitiv                           | das / die …primitive              |                                                        | entschieden |
+| marker trait                               | Marker-Trait                                       | der                               |                                                        | entschieden |
 | standard library                           | Standardbibliothek                                 | die / –                           |                                                        | entschieden |
 | dependency                                 | Abhängigkeit                                       | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                                   | Compiler                                           | der / die Compiler                |                                                        | entschieden |
@@ -370,14 +378,15 @@ dort, wo das Buch sie definiert.
 
 ## Änderungsprotokoll
 
-| Datum   | Begriff                                                                                                           | alt | neu             | betroffene Dateien |
-| ------- | ----------------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
-| Kap. 7  | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house          | –   | neu aufgenommen | ch07-*             |
-| Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                               | –   | neu aufgenommen | ch08-*             |
-| Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread  | –   | neu aufgenommen | ch09-*             |
-| Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein) | –   | neu aufgenommen | ch10-*             |
-| Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                        | –   | neu aufgenommen | ch11-*             |
-| Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                | –   | neu aufgenommen | ch12-*             |
-| Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                   | –   | neu aufgenommen | ch13-*             |
-| Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                             | –   | neu aufgenommen | ch14-*             |
-| Kap. 15 | pointer, design pattern, recursive type, indirection, memory leak, strong/weak reference, test double, destructor | –   | neu aufgenommen | ch15-*             |
+| Datum   | Begriff                                                                                                                             | alt | neu             | betroffene Dateien |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
+| Kap. 7  | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house                            | –   | neu aufgenommen | ch07-*             |
+| Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                                                 | –   | neu aufgenommen | ch08-*             |
+| Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread                    | –   | neu aufgenommen | ch09-*             |
+| Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein)                   | –   | neu aufgenommen | ch10-*             |
+| Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                                          | –   | neu aufgenommen | ch11-*             |
+| Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                                  | –   | neu aufgenommen | ch12-*             |
+| Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                                     | –   | neu aufgenommen | ch13-*             |
+| Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                                               | –   | neu aufgenommen | ch14-*             |
+| Kap. 15 | pointer, design pattern, recursive type, indirection, memory leak, strong/weak reference, test double, destructor                   | –   | neu aufgenommen | ch15-*             |
+| Kap. 16 | fearless concurrency, spawn, main thread, join handle, transmitter/receiver, lock, concurrency primitive, marker trait, raw pointer | –   | neu aufgenommen | ch16-*             |

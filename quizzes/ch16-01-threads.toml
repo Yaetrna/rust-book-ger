@@ -19,15 +19,15 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "2"
 context = """
-The `move` keyword causes `n` to be copied into the closure, so the assignments
-`n = n + 1` within `thread::spawn` have no effect on the outer `n`.
+Das Schlüsselwort `move` sorgt dafür, dass `n` in die Closure kopiert wird, daher haben die Zuweisungen
+`n = n + 1` innerhalb von `thread::spawn` keine Auswirkung auf das äußere `n`.
 """
 
 [[questions]]
 id = "c2a84e6d-8143-4944-bf20-b00e49144ac9"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider this example from the text where a vector is improperly captured by a thread:
+Betrachte dieses Beispiel aus dem Text, in dem ein Thread einen Vektor unzulässig erfasst:
 
 ```
 use std::thread;
@@ -43,7 +43,7 @@ fn main() {
 }
 ```
 
-The Rust compiler includes this diagnostic:
+Der Rust-Compiler gibt dabei diese Diagnose aus:
 
 ```text
 note: function requires argument type to outlive `'static`
@@ -56,18 +56,18 @@ note: function requires argument type to outlive `'static`
   | |______^
 ```
 
-Recall that `'static` is the lifetime of references that are valid for the entire program's duration.
+Erinnere dich, dass `'static` die Lifetime von Referenzen ist, die während der gesamten Laufzeit des Programms gültig sind.
 
-Which of the following best describes the note "function requires argument type to outlive `'static`"?
+Was beschreibt den Hinweis „function requires argument type to outlive `'static`“ am besten?
 """
-answer.answer = "Rust doesn't know how long a thread will run, so the thread's captures must live forever"
+answer.answer = "Rust weiß nicht, wie lange ein Thread läuft, daher müssen die vom Thread erfassten Werte ewig leben"
 prompt.distractors = [
-    "The closure passed to `thread::spawn` is not allowed to take any arguments",
-    "The vector `v` contains values that do not outlive `'static`",
-    "A closure may only capture string constants of type `&'static str`"
+    "Die an `thread::spawn` übergebene Closure darf keine Argumente nehmen",
+    "Der Vektor `v` enthält Werte, die `'static` nicht überleben",
+    "Eine Closure darf nur String-Konstanten vom Typ `&'static str` erfassen"
 ]
 context = """
-If a closure captures a reference to a value that lived less than `'static`, it's possible that the thread would live 
-longer than the value and violate memory safety. Note that [`thread::scope`](https://doc.rust-lang.org/std/thread/fn.scope.html) 
-can be used to allow threads to capture non-static references by statically limiting the lifetime of the thread.
+Erfasst eine Closure eine Referenz auf einen Wert, der kürzer als `'static` lebt, könnte der Thread länger leben 
+als der Wert und die Speichersicherheit verletzen. Beachte, dass sich mit [`thread::scope`](https://doc.rust-lang.org/std/thread/fn.scope.html) 
+nicht statische Referenzen in Threads erfassen lassen, indem die Lifetime des Threads statisch begrenzt wird.
 """

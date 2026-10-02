@@ -36,8 +36,8 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "1"
 context = """
-This is an example of how to use enums to send different kinds of messages over a channel.
-Here, the client increments a number, retrieves the number, then exits the server.
+Das ist ein Beispiel dafür, wie man mit Enums verschiedene Arten von Nachrichten über einen Kanal sendet.
+Hier erhöht der Client eine Zahl, ruft die Zahl ab und beendet dann den Server.
 """
 
 [[questions]]
@@ -61,7 +61,7 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 8
 context = """
-Channels can only send values of a single type, so `tx.send(s.len())` is a type error.
-If you want to send values of multiple types, you can use either an enum or the 
-[`Any`](https://doc.rust-lang.org/std/any/trait.Any.html) trait.
+Kanäle können nur Werte eines einzigen Typs senden, daher ist `tx.send(s.len())` ein Typfehler.
+Willst du Werte mehrerer Typen senden, kannst du entweder ein Enum oder den 
+Trait [`Any`](https://doc.rust-lang.org/std/any/trait.Any.html) verwenden.
 """
