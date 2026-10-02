@@ -2,7 +2,7 @@
 id = "0aad53ff-89d7-4d14-8e3d-c17809220252"
 type = "ShortAnswer"
 prompt.prompt = """
-Imagine using a third-party function whose implementation you don't know, but whose type signature is this:
+Stell dir vor, du verwendest eine Funktion eines Drittanbieters, deren Implementierung du nicht kennst, deren Typsignatur aber so aussieht:
 
 ```
 fn mystery<T>(x: T) -> T {
@@ -10,17 +10,17 @@ fn mystery<T>(x: T) -> T {
 }
 ```
 
-Then you call `mystery` like this:
+Dann rufst du `mystery` so auf:
 
 ```
 let y = mystery(3);
 ```
 
-Assuming `mystery` uses no unsafe code, then the value of `y` must be :
+Angenommen, `mystery` verwendet keinen unsicheren Code, dann muss der Wert von `y` folgender sein:
 """
 answer.answer = "3"
 context = """
-The only possible function (without unsafe code) that has the signature `T -> T` is the identity function:
+Die einzige mögliche Funktion (ohne unsicheren Code) mit der Signatur `T -> T` ist die Identitätsfunktion:
 
 ```
 fn mystery<T>(x: T) -> T {
@@ -28,11 +28,11 @@ fn mystery<T>(x: T) -> T {
 }
 ```
 
-The function could of course panic or print, but the return value can only be the input. `mystery` does not know
-what type `T` is, so there is no way for `mystery` to generate or mutate a value of `T`.
-See [Theorems for free!](https://dl.acm.org/doi/pdf/10.1145/99370.99404) for more examples of this idea.
+Die Funktion könnte natürlich einen Panic auslösen oder etwas ausgeben, aber der Rückgabewert kann nur die Eingabe sein. `mystery` weiß nicht,
+welcher Typ `T` ist, also kann `mystery` keinen Wert vom Typ `T` erzeugen oder verändern.
+Weitere Beispiele für diese Idee findest du in [Theorems for free!](https://dl.acm.org/doi/pdf/10.1145/99370.99404).
 
-**3 really is the correct answer! If you disagree with the answer, please don't submit a bug report!**
+**3 ist wirklich die richtige Antwort! Wenn du mit der Antwort nicht einverstanden bist, reiche bitte keinen Fehlerbericht ein!**
 """
 
 [[questions]]
@@ -52,8 +52,8 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 3
 context = """
-If a type is generic (like `T`), we cannot assume anything about it, including the ability to turn it into a string. Therefore `println!("{x}")` is invalid
-because `x: &T`.
+Ist ein Typ generisch (wie `T`), können wir nichts über ihn annehmen, auch nicht, dass er sich in einen String umwandeln lässt. Daher ist `println!("{x}")` ungültig,
+weil `x: &T`.
 """
 
 
@@ -79,5 +79,5 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 8
 context = """
-These definitions of `f` conflict, and there is no way for Rust to determine which `f` should be used when `p.f()` is called. Therefore this is a compiler error.
+Diese Definitionen von `f` stehen in Konflikt, und Rust kann nicht bestimmen, welches `f` beim Aufruf von `p.f()` verwendet werden soll. Daher ist das ein Compilerfehler.
 """

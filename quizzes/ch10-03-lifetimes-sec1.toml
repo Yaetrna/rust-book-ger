@@ -1,15 +1,15 @@
 [[questions]]
 id = "8b7f93c3-efb0-44e2-a0ca-b45e35620b30"
 type = "MultipleChoice"
-prompt.prompt = "Which kind of programming error is a lifetime supposed to prevent?"
-answer.answer = "Using a reference to an object after its memory has been freed"
+prompt.prompt = "Welche Art von Programmierfehler soll eine Lifetime verhindern?"
+answer.answer = "Eine Referenz auf ein Objekt verwenden, nachdem dessen Speicher freigegeben wurde"
 prompt.distractors = [
-  "Using the result of a fallible computation before checking for the possibility of error",
-  "Indexing past the bounds of an array (buffer overflow)",
-  "Not allocating enough memory for an object"
+  "Das Ergebnis einer Berechnung, die fehlschlagen kann, verwenden, bevor auf einen möglichen Fehler geprüft wurde",
+  "Über die Grenzen eines Arrays hinaus indexieren (Pufferüberlauf)",
+  "Nicht genug Speicher für ein Objekt allozieren"
 ]
 context = """
-Lifetimes help identify how long an object is "live", and whether references to that object outlive the object itself. 
+Lifetimes helfen festzustellen, wie lange ein Objekt „lebt“ und ob Referenzen auf dieses Objekt länger leben als das Objekt selbst. 
 """
 
 [[questions]]
@@ -31,6 +31,6 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 5
 context = """
-If the type signature says that the function must return a reference with lifetime `'a`, then it would be invalid to return
-a reference with a different lifetime '`b`, i.e. `y` here.
+Wenn die Typsignatur besagt, dass die Funktion eine Referenz mit der Lifetime `'a` zurückgeben muss, wäre es ungültig,
+eine Referenz mit einer anderen Lifetime '`b` zurückzugeben, hier also `y`.
 """

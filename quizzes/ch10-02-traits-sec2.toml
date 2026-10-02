@@ -15,9 +15,9 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 7
 context = """
-Because `displayable` returns `impl Display`, then we only know that `s2` is *some* type that implements `Display`, 
-not that it is a `String` which has a `push_str` method. Therefore we cannot call `s2.push_str(..)`. If the return
-type of `displayable` was `-> T`, then this program would compile.
+Da `displayable` `impl Display` zurückgibt, wissen wir nur, dass `s2` *irgendein* Typ ist, der `Display` implementiert, 
+nicht aber, dass es ein `String` mit einer Methode `push_str` ist. Daher können wir `s2.push_str(..)` nicht aufrufen. Wäre der Rückgabetyp
+von `displayable` `-> T`, würde dieses Programm kompilieren.
 """
 
 
@@ -25,7 +25,7 @@ type of `displayable` was `-> T`, then this program would compile.
 id = "8b35f91c-ced2-4b8f-bf1c-90550f2b744b"
 type = "MultipleChoice"
 prompt.prompt = """
-What is the smallest set of trait bounds on `T` needed to make this function type-check?
+Was ist die kleinste Menge von Trait-Bounds für `T`, mit der diese Funktion die Typprüfung besteht?
 ```
 fn f<T: /* ??? */>(t: &T) {
   let t2 = t.clone();
@@ -34,7 +34,7 @@ fn f<T: /* ??? */>(t: &T) {
 ```
 """
 answer.answer = "`Clone + Display`"
-prompt.distractors = [ "(no bounds)", "`Clone`", "`Clone + Display + Debug`" ]
+prompt.distractors = [ "(keine Bounds)", "`Clone`", "`Clone + Display + Debug`" ]
 context = """
-Because `clone` is called and the `{}` display brackets are used in a formatter, then `T` must be `Clone` and `Display`.
+Da `clone` aufgerufen wird und die Display-Klammern `{}` in einem Formatierer verwendet werden, muss `T` `Clone` und `Display` sein.
 """

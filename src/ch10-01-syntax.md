@@ -1,22 +1,24 @@
-## Generic Data Types
+## Generische Datentypen {#generic-data-types}
 
-We use generics to create definitions for items like function signatures or
-structs, which we can then use with many different concrete data types. Let’s
-first look at how to define functions, structs, enums, and methods using
-generics. Then, we’ll discuss how generics affect code performance.
+Mit Generics erstellen wir Definitionen für Elemente wie Funktionssignaturen
+oder Structs, die wir dann mit vielen verschiedenen konkreten Datentypen
+verwenden können. Sehen wir uns zuerst an, wie man Funktionen, Structs, Enums
+und Methoden mit Generics definiert. Dann besprechen wir, wie sich Generics auf
+die Performance des Codes auswirken.
 
-### In Function Definitions
+### In Funktionsdefinitionen {#in-function-definitions}
 
-When defining a function that uses generics, we place the generics in the
-signature of the function where we would usually specify the data types of the
-parameters and return value. Doing so makes our code more flexible and provides
-more functionality to callers of our function while preventing code duplication.
+Wenn wir eine Funktion definieren, die Generics verwendet, setzen wir die
+Generics in die Signatur der Funktion, dort, wo wir normalerweise die Datentypen
+der Parameter und des Rückgabewerts angeben würden. Dadurch wird unser Code
+flexibler und bietet den Aufrufern unserer Funktion mehr Funktionalität, während
+Codeduplizierung vermieden wird.
 
-Continuing with our `largest` function, Listing 10-4 shows two functions that
-both find the largest value in a slice. We’ll then combine these into a single
-function that uses generics.
+Um mit unserer Funktion `largest` weiterzumachen, zeigt Listing 10-4 zwei
+Funktionen, die beide den größten Wert in einem Slice finden. Diese fassen wir
+dann zu einer einzigen Funktion zusammen, die Generics verwendet.
 
-<Listing number="10-4" file-name="src/main.rs" caption="Two functions that differ only in their names and in the types in their signatures">
+<Listing number="10-4" file-name="src/main.rs" caption="Zwei Funktionen, die sich nur in ihren Namen und den Typen in ihren Signaturen unterscheiden">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-04/src/main.rs:here}}
@@ -24,40 +26,44 @@ function that uses generics.
 
 </Listing>
 
-The `largest_i32` function is the one we extracted in Listing 10-3 that finds
-the largest `i32` in a slice. The `largest_char` function finds the largest
-`char` in a slice. The function bodies have the same code, so let’s eliminate
-the duplication by introducing a generic type parameter in a single function.
+Die Funktion `largest_i32` ist die, die wir in Listing 10-3 extrahiert haben und
+die den größten `i32` in einem Slice findet. Die Funktion `largest_char` findet
+den größten `char` in einem Slice. Die Funktionsrümpfe enthalten denselben Code,
+also beseitigen wir die Duplizierung, indem wir in einer einzigen Funktion einen
+generischen Typparameter einführen.
 
-To parameterize the types in a new single function, we need to name the type
-parameter, just as we do for the value parameters to a function. You can use
-any identifier as a type parameter name. But we’ll use `T` because, by
-convention, type parameter names in Rust are short, often just one letter, and
-Rust’s type-naming convention is UpperCamelCase. Short for _type_, `T` is the
-default choice of most Rust programmers.
+Um die Typen in einer neuen, einzigen Funktion zu parametrisieren, müssen wir
+den Typparameter benennen, genau wie wir es bei den Wertparametern einer
+Funktion tun. Du kannst jeden Bezeichner als Namen für einen Typparameter
+verwenden. Wir verwenden aber `T`, weil Typparameternamen in Rust nach
+Konvention kurz sind, oft nur ein Buchstabe, und die Namenskonvention für Typen
+in Rust UpperCamelCase ist. `T`, kurz für _Typ_ (_type_), ist die Standardwahl
+der meisten Rust-Programmierenden.
 
-When we use a parameter in the body of the function, we have to declare the
-parameter name in the signature so that the compiler knows what that name
-means. Similarly, when we use a type parameter name in a function signature, we
-have to declare the type parameter name before we use it. To define the generic
-`largest` function, we place type name declarations inside angle brackets,
-`<>`, between the name of the function and the parameter list, like this:
+Wenn wir einen Parameter im Rumpf der Funktion verwenden, müssen wir den
+Parameternamen in der Signatur deklarieren, damit der Compiler weiß, was dieser
+Name bedeutet. Ebenso müssen wir, wenn wir einen Typparameternamen in einer
+Funktionssignatur verwenden, den Typparameternamen deklarieren, bevor wir ihn
+verwenden. Um die generische Funktion `largest` zu definieren, setzen wir
+Deklarationen von Typnamen in spitze Klammern, `<>`, zwischen den Namen der
+Funktion und die Parameterliste, etwa so:
 
 ```rust,ignore
 fn largest<T>(list: &[T]) -> &T {
 ```
 
-We read this definition as “The function `largest` is generic over some type
-`T`.” This function has one parameter named `list`, which is a slice of values
-of type `T`. The `largest` function will return a reference to a value of the
-same type `T`.
+Wir lesen diese Definition so: „Die Funktion `largest` ist generisch über einen
+Typ `T`.“ Diese Funktion hat einen Parameter namens `list`, der ein Slice von
+Werten vom Typ `T` ist. Die Funktion `largest` gibt eine Referenz auf einen Wert
+desselben Typs `T` zurück.
 
-Listing 10-5 shows the combined `largest` function definition using the generic
-data type in its signature. The listing also shows how we can call the function
-with either a slice of `i32` values or `char` values. Note that this code won’t
-compile yet.
+Listing 10-5 zeigt die zusammengefasste Definition der Funktion `largest`, die
+den generischen Datentyp in ihrer Signatur verwendet. Das Listing zeigt
+außerdem, wie wir die Funktion entweder mit einem Slice von `i32`-Werten oder
+mit `char`-Werten aufrufen können. Beachte, dass dieser Code noch nicht
+kompiliert.
 
-<Listing number="10-5" file-name="src/main.rs" caption="The `largest` function using generic type parameters; this doesn’t compile yet">
+<Listing number="10-5" file-name="src/main.rs" caption="Die Funktion `largest` mit generischen Typparametern; das kompiliert noch nicht">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-05/src/main.rs}}
@@ -65,27 +71,50 @@ compile yet.
 
 </Listing>
 
-If we compile this code right now, we’ll get this error:
+Wenn wir diesen Code jetzt kompilieren, erhalten wir diesen Fehler:
 
 ```console
 {{#include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-05/output.txt}}
 ```
 
 <!-- BEGIN INTERVENTION: 0aad53ff-89d7-4d14-8e3d-c17809220252 -->
-The issue above is that when `largest` takes a slice `&[T]` as input, the function cannot assume *anything* about the type `T`. It could be `i32`, it could be `String`, it could be [`File`](https://doc.rust-lang.org/std/fs/struct.File.html). However, `largest` requires that `T` is something you can compare with `>` (i.e. that `T` implements `PartialOrd`, a trait which we will discuss in the next section). Some types like `i32` and `String` are comparable, but other types like `File` are not comparable.
 
-In a language like C++ with [templates](https://en.cppreference.com/w/cpp/language/templates), the compiler would not complain about the implementation of `largest`, but instead it would complain about trying to call `largest` on e.g. a file slice `&[File]`. Rust instead requires you to state the expected capabilities of generic types up front. If `T` needs to be comparable, then `largest` must say so. Therefore this compiler error says `largest` will not compile until `T` is restricted.
+Das Problem ist hier: Wenn `largest` einen Slice `&[T]` als Eingabe nimmt, kann
+die Funktion _nichts_ über den Typ `T` annehmen. Er könnte `i32` sein, er könnte
+`String` sein, er könnte
+[`File`](https://doc.rust-lang.org/std/fs/struct.File.html) sein. `largest`
+setzt aber voraus, dass sich `T` mit `>` vergleichen lässt (d. h., dass `T`
+`PartialOrd` implementiert, einen Trait, den wir im nächsten Abschnitt
+besprechen). Manche Typen wie `i32` und `String` sind vergleichbar, andere Typen
+wie `File` dagegen nicht.
 
-Additionally, unlike languages like Java where all objects have a set of core methods like [`Object.toString()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#toString()), there are no core methods in Rust. Without restrictions, a generic type `T` has no capabilities: it cannot be printed, cloned, or mutated (although it can be dropped).
+In einer Sprache wie C++ mit
+[Templates](https://en.cppreference.com/w/cpp/language/templates) würde sich der
+Compiler nicht über die Implementierung von `largest` beschweren, sondern
+stattdessen über den Versuch, `largest` z. B. auf einem Datei-Slice `&[File]`
+aufzurufen. Rust verlangt dagegen, dass du die erwarteten Fähigkeiten
+generischer Typen von vornherein angibst. Muss `T` vergleichbar sein, muss
+`largest` das sagen. Deshalb besagt dieser Compilerfehler, dass `largest` erst
+kompiliert, wenn `T` eingeschränkt ist.
+
+Anders als in Sprachen wie Java, in denen alle Objekte eine Reihe grundlegender
+Methoden wie
+[`Object.toString()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#toString())
+haben, gibt es in Rust außerdem keine grundlegenden Methoden. Ohne
+Einschränkungen hat ein generischer Typ `T` keine Fähigkeiten: Er kann nicht
+ausgegeben, geklont oder verändert werden (verworfen (_dropped_) werden kann er
+allerdings).
+
 <!-- END INTERVENTION -->
 
-### In Struct Definitions
+### In Struct-Definitionen {#in-struct-definitions}
 
-We can also define structs to use a generic type parameter in one or more
-fields using the `<>` syntax. Listing 10-6 defines a `Point<T>` struct to hold
-`x` and `y` coordinate values of any type.
+Wir können auch Structs so definieren, dass sie in einem oder mehreren Feldern
+einen generischen Typparameter verwenden, und zwar mit der Syntax `<>`. Listing
+10-6 definiert ein Struct `Point<T>`, das `x`- und `y`-Koordinaten eines
+beliebigen Typs enthält.
 
-<Listing number="10-6" file-name="src/main.rs" caption="A `Point<T>` struct that holds `x` and `y` values of type `T`">
+<Listing number="10-6" file-name="src/main.rs" caption="Ein Struct `Point<T>`, das `x`- und `y`-Werte vom Typ `T` enthält">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-06/src/main.rs}}
@@ -93,18 +122,20 @@ fields using the `<>` syntax. Listing 10-6 defines a `Point<T>` struct to hold
 
 </Listing>
 
-The syntax for using generics in struct definitions is similar to that used in
-function definitions. First, we declare the name of the type parameter inside
-angle brackets just after the name of the struct. Then, we use the generic type
-in the struct definition where we would otherwise specify concrete data types.
+Die Syntax für Generics in Struct-Definitionen ähnelt der in
+Funktionsdefinitionen. Zuerst deklarieren wir den Namen des Typparameters in
+spitzen Klammern direkt nach dem Namen des Structs. Dann verwenden wir den
+generischen Typ in der Struct-Definition dort, wo wir sonst konkrete Datentypen
+angeben würden.
 
-Note that because we’ve used only one generic type to define `Point<T>`, this
-definition says that the `Point<T>` struct is generic over some type `T`, and
-the fields `x` and `y` are _both_ that same type, whatever that type may be. If
-we create an instance of a `Point<T>` that has values of different types, as in
-Listing 10-7, our code won’t compile.
+Beachte: Da wir nur einen generischen Typ verwendet haben, um `Point<T>` zu
+definieren, besagt diese Definition, dass das Struct `Point<T>` generisch über
+einen Typ `T` ist und die Felder `x` und `y` _beide_ denselben Typ haben,
+welcher das auch sein mag. Erzeugen wir eine Instanz von `Point<T>`, die Werte
+unterschiedlicher Typen enthält, wie in Listing 10-7, kompiliert unser Code
+nicht.
 
-<Listing number="10-7" file-name="src/main.rs" caption="The fields `x` and `y` must be the same type because both have the same generic data type `T`.">
+<Listing number="10-7" file-name="src/main.rs" caption="Die Felder `x` und `y` müssen denselben Typ haben, weil beide denselben generischen Datentyp `T` haben.">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-07/src/main.rs}}
@@ -112,21 +143,23 @@ Listing 10-7, our code won’t compile.
 
 </Listing>
 
-In this example, when we assign the integer value `5` to `x`, we let the
-compiler know that the generic type `T` will be an integer for this instance of
-`Point<T>`. Then, when we specify `4.0` for `y`, which we’ve defined to have
-the same type as `x`, we’ll get a type mismatch error like this:
+Wenn wir in diesem Beispiel `x` den Ganzzahlwert `5` zuweisen, teilen wir dem
+Compiler mit, dass der generische Typ `T` für diese Instanz von `Point<T>` eine
+Ganzzahl sein wird. Wenn wir dann `4.0` für `y` angeben, das wir mit demselben
+Typ wie `x` definiert haben, erhalten wir einen Fehler wegen nicht
+übereinstimmender Typen wie diesen:
 
 ```console
 {{#include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-07/output.txt}}
 ```
 
-To define a `Point` struct where `x` and `y` are both generics but could have
-different types, we can use multiple generic type parameters. For example, in
-Listing 10-8, we change the definition of `Point` to be generic over types `T`
-and `U` where `x` is of type `T` and `y` is of type `U`.
+Um ein Struct `Point` zu definieren, in dem `x` und `y` beide generisch sind,
+aber unterschiedliche Typen haben können, können wir mehrere generische
+Typparameter verwenden. In Listing 10-8 ändern wir die Definition von `Point`
+zum Beispiel so, dass sie generisch über die Typen `T` und `U` ist, wobei `x`
+vom Typ `T` und `y` vom Typ `U` ist.
 
-<Listing number="10-8" file-name="src/main.rs" caption="A `Point<T, U>` generic over two types so that `x` and `y` can be values of different types">
+<Listing number="10-8" file-name="src/main.rs" caption="Ein `Point<T, U>`, das über zwei Typen generisch ist, sodass `x` und `y` Werte unterschiedlicher Typen sein können">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-08/src/main.rs}}
@@ -134,17 +167,17 @@ and `U` where `x` is of type `T` and `y` is of type `U`.
 
 </Listing>
 
-Now all the instances of `Point` shown are allowed! You can use as many generic
-type parameters in a definition as you want, but using more than a few makes
-your code hard to read. If you’re finding you need lots of generic types in
-your code, it could indicate that your code needs restructuring into smaller
-pieces.
+Jetzt sind alle gezeigten Instanzen von `Point` erlaubt! Du kannst in einer
+Definition so viele generische Typparameter verwenden, wie du willst, aber mehr
+als ein paar machen deinen Code schwer lesbar. Wenn du feststellst, dass du in
+deinem Code viele generische Typen brauchst, kann das ein Hinweis darauf sein,
+dass dein Code in kleinere Teile umstrukturiert werden sollte.
 
-### In Enum Definitions
+### In Enum-Definitionen {#in-enum-definitions}
 
-As we did with structs, we can define enums to hold generic data types in their
-variants. Let’s take another look at the `Option<T>` enum that the standard
-library provides, which we used in Chapter 6:
+Wie bei Structs können wir Enums so definieren, dass sie in ihren Varianten
+generische Datentypen enthalten. Sehen wir uns noch einmal das Enum `Option<T>`
+aus der Standardbibliothek an, das wir in Kapitel 6 verwendet haben:
 
 ```rust
 enum Option<T> {
@@ -153,15 +186,15 @@ enum Option<T> {
 }
 ```
 
-This definition should now make more sense to you. As you can see, the
-`Option<T>` enum is generic over type `T` and has two variants: `Some`, which
-holds one value of type `T`, and a `None` variant that doesn’t hold any value.
-By using the `Option<T>` enum, we can express the abstract concept of an
-optional value, and because `Option<T>` is generic, we can use this abstraction
-no matter what the type of the optional value is.
+Diese Definition sollte jetzt verständlicher für dich sein. Wie du siehst, ist
+das Enum `Option<T>` generisch über den Typ `T` und hat zwei Varianten: `Some`,
+die einen Wert vom Typ `T` enthält, und eine Variante `None`, die keinen Wert
+enthält. Mit dem Enum `Option<T>` können wir das abstrakte Konzept eines
+optionalen Werts ausdrücken, und da `Option<T>` generisch ist, können wir diese
+Abstraktion verwenden, egal welchen Typ der optionale Wert hat.
 
-Enums can use multiple generic types as well. The definition of the `Result`
-enum that we used in Chapter 9 is one example:
+Enums können auch mehrere generische Typen verwenden. Die Definition des Enums
+`Result`, die wir in Kapitel 9 verwendet haben, ist ein Beispiel dafür:
 
 ```rust
 enum Result<T, E> {
@@ -170,26 +203,29 @@ enum Result<T, E> {
 }
 ```
 
-The `Result` enum is generic over two types, `T` and `E`, and has two variants:
-`Ok`, which holds a value of type `T`, and `Err`, which holds a value of type
-`E`. This definition makes it convenient to use the `Result` enum anywhere we
-have an operation that might succeed (return a value of some type `T`) or fail
-(return an error of some type `E`). In fact, this is what we used to open a
-file in Listing 9-3, where `T` was filled in with the type `std::fs::File` when
-the file was opened successfully and `E` was filled in with the type
-`std::io::Error` when there were problems opening the file.
+Das Enum `Result` ist generisch über zwei Typen, `T` und `E`, und hat zwei
+Varianten: `Ok`, die einen Wert vom Typ `T` enthält, und `Err`, die einen Wert
+vom Typ `E` enthält. Durch diese Definition lässt sich das Enum `Result` bequem
+überall verwenden, wo wir eine Operation haben, die erfolgreich sein (einen Wert
+eines Typs `T` zurückgeben) oder fehlschlagen (einen Fehler eines Typs `E`
+zurückgeben) kann. Genau das haben wir verwendet, um in Listing 9-3 eine Datei
+zu öffnen: Dort wurde `T` mit dem Typ `std::fs::File` gefüllt, wenn die Datei
+erfolgreich geöffnet wurde, und `E` mit dem Typ `std::io::Error`, wenn es
+Probleme beim Öffnen der Datei gab.
 
-When you recognize situations in your code with multiple struct or enum
-definitions that differ only in the types of the values they hold, you can
-avoid duplication by using generic types instead.
+Wenn du in deinem Code Situationen mit mehreren Struct- oder Enum-Definitionen
+erkennst, die sich nur in den Typen der Werte unterscheiden, die sie enthalten,
+kannst du Duplizierung vermeiden, indem du stattdessen generische Typen
+verwendest.
 
-### In Method Definitions
+### In Methodendefinitionen {#in-method-definitions}
 
-We can implement methods on structs and enums (as we did in Chapter 5) and use
-generic types in their definitions too. Listing 10-9 shows the `Point<T>`
-struct we defined in Listing 10-6 with a method named `x` implemented on it.
+Wir können Methoden auf Structs und Enums implementieren (wie in Kapitel 5) und
+auch in ihren Definitionen generische Typen verwenden. Listing 10-9 zeigt das
+Struct `Point<T>`, das wir in Listing 10-6 definiert haben, mit einer darauf
+implementierten Methode namens `x`.
 
-<Listing number="10-9" file-name="src/main.rs" caption="Implementing a method named `x` on the `Point<T>` struct that will return a reference to the `x` field of type `T`">
+<Listing number="10-9" file-name="src/main.rs" caption="Eine Methode namens `x` auf dem Struct `Point<T>` implementieren, die eine Referenz auf das Feld `x` vom Typ `T` zurückgibt">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-09/src/main.rs}}
@@ -197,25 +233,27 @@ struct we defined in Listing 10-6 with a method named `x` implemented on it.
 
 </Listing>
 
-Here, we’ve defined a method named `x` on `Point<T>` that returns a reference
-to the data in the field `x`.
+Hier haben wir auf `Point<T>` eine Methode namens `x` definiert, die eine
+Referenz auf die Daten im Feld `x` zurückgibt.
 
-Note that we have to declare `T` just after `impl` so that we can use `T` to
-specify that we’re implementing methods on the type `Point<T>`. By declaring
-`T` as a generic type after `impl`, Rust can identify that the type in the
-angle brackets in `Point` is a generic type rather than a concrete type. We
-could have chosen a different name for this generic parameter than the generic
-parameter declared in the struct definition, but using the same name is
-conventional. If you write a method within an `impl` that declares a generic
-type, that method will be defined on any instance of the type, no matter what
-concrete type ends up substituting for the generic type.
+Beachte, dass wir `T` direkt nach `impl` deklarieren müssen, damit wir mit `T`
+angeben können, dass wir Methoden auf dem Typ `Point<T>` implementieren. Indem
+wir `T` nach `impl` als generischen Typ deklarieren, kann Rust erkennen, dass
+der Typ in den spitzen Klammern bei `Point` ein generischer und kein konkreter
+Typ ist. Wir hätten für diesen generischen Parameter einen anderen Namen wählen
+können als für den generischen Parameter in der Struct-Definition, aber
+denselben Namen zu verwenden ist üblich. Wenn du eine Methode in einem `impl`
+schreibst, das einen generischen Typ deklariert, wird diese Methode für jede
+Instanz des Typs definiert, egal welcher konkrete Typ am Ende für den
+generischen Typ eingesetzt wird.
 
-We can also specify constraints on generic types when defining methods on the
-type. We could, for example, implement methods only on `Point<f32>` instances
-rather than on `Point<T>` instances with any generic type. In Listing 10-10, we
-use the concrete type `f32`, meaning we don’t declare any types after `impl`.
+Wir können beim Definieren von Methoden auf dem Typ auch Einschränkungen für
+generische Typen angeben. Wir könnten zum Beispiel Methoden nur auf
+`Point<f32>`-Instanzen implementieren statt auf `Point<T>`-Instanzen mit
+beliebigem generischem Typ. In Listing 10-10 verwenden wir den konkreten Typ
+`f32`, das heißt, wir deklarieren nach `impl` keine Typen.
 
-<Listing number="10-10" file-name="src/main.rs" caption="An `impl` block that only applies to a struct with a particular concrete type for the generic type parameter `T`">
+<Listing number="10-10" file-name="src/main.rs" caption="Ein `impl`-Block, der nur für ein Struct mit einem bestimmten konkreten Typ für den generischen Typparameter `T` gilt">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-10/src/main.rs:here}}
@@ -223,24 +261,36 @@ use the concrete type `f32`, meaning we don’t declare any types after `impl`.
 
 </Listing>
 
-This code means the type `Point<f32>` will have a `distance_from_origin`
-method; other instances of `Point<T>` where `T` is not of type `f32` will not
-have this method defined. The method measures how far our point is from the
-point at coordinates (0.0, 0.0) and uses mathematical operations that are
-available only for floating-point types.
+Dieser Code bedeutet, dass der Typ `Point<f32>` eine Methode
+`distance_from_origin` hat; andere Instanzen von `Point<T>`, bei denen `T` nicht
+vom Typ `f32` ist, haben diese Methode nicht. Die Methode misst, wie weit unser
+Punkt vom Punkt mit den Koordinaten (0.0, 0.0) entfernt ist, und verwendet
+mathematische Operationen, die nur für Gleitkommatypen verfügbar sind.
 
 <!-- BEGIN INTERVENTION: 694bb2d0-f2e6-4b0b-a3e7-2d9f9e8b3d09 -->
-You cannot simultaneously implement specific *and* generic methods of the same name this way. For example, if you implemented a general `distance_from_origin` for all types `T` and a specific `distance_from_origin` for `f32`, then the compiler will reject your program: Rust does not know which implementation to use when you call `Point<f32>::distance_from_origin`. More generally, Rust does not have inheritance-like mechanisms for specializing methods as you might find in an object-oriented language, with one exception (default trait methods) discussed in the next section.
+
+Auf diese Weise kannst du nicht gleichzeitig spezifische _und_ generische
+Methoden mit demselben Namen implementieren. Würdest du zum Beispiel eine
+allgemeine Methode `distance_from_origin` für alle Typen `T` und eine
+spezifische `distance_from_origin` für `f32` implementieren, würde der Compiler
+dein Programm zurückweisen: Rust weiß nicht, welche Implementierung es verwenden
+soll, wenn du `Point<f32>::distance_from_origin` aufrufst. Allgemeiner gesagt
+hat Rust keine vererbungsähnlichen Mechanismen zum Spezialisieren von Methoden,
+wie du sie vielleicht aus einer objektorientierten Sprache kennst – mit einer
+Ausnahme (Standardmethoden von Traits), die im nächsten Abschnitt besprochen
+wird.
+
 <!-- END INTERVENTION -->
 
-Generic type parameters in a struct definition aren’t always the same as those
-you use in that same struct’s method signatures. Listing 10-11 uses the generic
-types `X1` and `Y1` for the `Point` struct and `X2` and `Y2` for the `mixup`
-method signature to make the example clearer. The method creates a new `Point`
-instance with the `x` value from the `self` `Point` (of type `X1`) and the `y`
-value from the passed-in `Point` (of type `Y2`).
+Die generischen Typparameter in einer Struct-Definition sind nicht immer
+dieselben wie die, die du in den Methodensignaturen desselben Structs
+verwendest. Listing 10-11 verwendet die generischen Typen `X1` und `Y1` für das
+Struct `Point` und `X2` und `Y2` für die Signatur der Methode `mixup`, um das
+Beispiel deutlicher zu machen. Die Methode erzeugt eine neue `Point`-Instanz mit
+dem `x`-Wert aus dem `Point` in `self` (vom Typ `X1`) und dem `y`-Wert aus dem
+übergebenen `Point` (vom Typ `Y2`).
 
-<Listing number="10-11" file-name="src/main.rs" caption="A method that uses generic types that are different from its struct’s definition">
+<Listing number="10-11" file-name="src/main.rs" caption="Eine Methode, die andere generische Typen verwendet als die Definition ihres Structs">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-11/src/main.rs}}
@@ -248,52 +298,52 @@ value from the passed-in `Point` (of type `Y2`).
 
 </Listing>
 
-In `main`, we’ve defined a `Point` that has an `i32` for `x` (with value `5`)
-and an `f64` for `y` (with value `10.4`). The `p2` variable is a `Point` struct
-that has a string slice for `x` (with value `"Hello"`) and a `char` for `y`
-(with value `c`). Calling `mixup` on `p1` with the argument `p2` gives us `p3`,
-which will have an `i32` for `x` because `x` came from `p1`. The `p3` variable
-will have a `char` for `y` because `y` came from `p2`. The `println!` macro
-call will print `p3.x = 5, p3.y = c`.
+In `main` haben wir einen `Point` definiert, der einen `i32` für `x` (mit dem
+Wert `5`) und einen `f64` für `y` (mit dem Wert `10.4`) hat. Die Variable `p2`
+ist ein Struct `Point`, das einen String-Slice für `x` (mit dem Wert `"Hello"`)
+und einen `char` für `y` (mit dem Wert `c`) hat. Rufen wir `mixup` auf `p1` mit
+dem Argument `p2` auf, erhalten wir `p3`, das einen `i32` für `x` hat, weil `x`
+aus `p1` stammt. Die Variable `p3` hat einen `char` für `y`, weil `y` aus `p2`
+stammt. Der Aufruf des Makros `println!` gibt `p3.x = 5, p3.y = c` aus.
 
-The purpose of this example is to demonstrate a situation in which some generic
-parameters are declared with `impl` and some are declared with the method
-definition. Here, the generic parameters `X1` and `Y1` are declared after
-`impl` because they go with the struct definition. The generic parameters `X2`
-and `Y2` are declared after `fn mixup` because they’re only relevant to the
-method.
+Dieses Beispiel soll eine Situation zeigen, in der manche generischen Parameter
+mit `impl` und manche mit der Methodendefinition deklariert werden. Hier werden
+die generischen Parameter `X1` und `Y1` nach `impl` deklariert, weil sie zur
+Struct-Definition gehören. Die generischen Parameter `X2` und `Y2` werden nach
+`fn mixup` deklariert, weil sie nur für die Methode relevant sind.
 
-### Performance of Code Using Generics
+### Performance von Code mit Generics {#performance-of-code-using-generics}
 
-You might be wondering whether there is a runtime cost when using generic type
-parameters. The good news is that using generic types won’t make your program
-run any slower than it would with concrete types.
+Vielleicht fragst du dich, ob generische Typparameter Kosten zur Laufzeit
+verursachen. Die gute Nachricht ist: Mit generischen Typen läuft dein Programm
+nicht langsamer, als es mit konkreten Typen laufen würde.
 
-Rust accomplishes this by performing monomorphization of the code using
-generics at compile time. _Monomorphization_ is the process of turning generic
-code into specific code by filling in the concrete types that are used when
-compiled. In this process, the compiler does the opposite of the steps we used
-to create the generic function in Listing 10-5: The compiler looks at all the
-places where generic code is called and generates code for the concrete types
-the generic code is called with.
+Rust erreicht das durch eine Monomorphisierung des Codes mit Generics zur
+Kompilierzeit. _Monomorphisierung_ (_monomorphization_) ist der Vorgang,
+generischen Code in spezifischen Code umzuwandeln, indem die konkreten Typen
+eingesetzt werden, die beim Kompilieren verwendet werden. Dabei tut der Compiler
+das Gegenteil der Schritte, mit denen wir die generische Funktion in Listing
+10-5 erstellt haben: Der Compiler sieht sich alle Stellen an, an denen
+generischer Code aufgerufen wird, und erzeugt Code für die konkreten Typen, mit
+denen der generische Code aufgerufen wird.
 
-Let’s look at how this works by using the standard library’s generic
-`Option<T>` enum:
+Sehen wir uns an, wie das funktioniert, und verwenden dafür das generische Enum
+`Option<T>` der Standardbibliothek:
 
 ```rust
 let integer = Some(5);
 let float = Some(5.0);
 ```
 
-When Rust compiles this code, it performs monomorphization. During that
-process, the compiler reads the values that have been used in `Option<T>`
-instances and identifies two kinds of `Option<T>`: One is `i32` and the other
-is `f64`. As such, it expands the generic definition of `Option<T>` into two
-definitions specialized to `i32` and `f64`, thereby replacing the generic
-definition with the specific ones.
+Wenn Rust diesen Code kompiliert, führt es eine Monomorphisierung durch. Dabei
+liest der Compiler die Werte, die in `Option<T>`-Instanzen verwendet wurden, und
+erkennt zwei Arten von `Option<T>`: Die eine ist `i32` und die andere `f64`.
+Daher erweitert er die generische Definition von `Option<T>` zu zwei
+Definitionen, die auf `i32` und `f64` spezialisiert sind, und ersetzt so die
+generische Definition durch die spezifischen.
 
-The monomorphized version of the code looks similar to the following (the
-compiler uses different names than what we’re using here for illustration):
+Die monomorphisierte Version des Codes sieht ungefähr so aus (der Compiler
+verwendet andere Namen als die, die wir hier zur Veranschaulichung verwenden):
 
 <Listing file-name="src/main.rs">
 
@@ -316,11 +366,11 @@ fn main() {
 
 </Listing>
 
-The generic `Option<T>` is replaced with the specific definitions created by
-the compiler. Because Rust compiles generic code into code that specifies the
-type in each instance, we pay no runtime cost for using generics. When the code
-runs, it performs just as it would if we had duplicated each definition by
-hand. The process of monomorphization makes Rust’s generics extremely efficient
-at runtime.
+Das generische `Option<T>` wird durch die spezifischen Definitionen ersetzt, die
+der Compiler erzeugt. Da Rust generischen Code in Code kompiliert, der in jeder
+Instanz den Typ angibt, zahlen wir für die Verwendung von Generics keine Kosten
+zur Laufzeit. Wenn der Code läuft, verhält er sich genauso, als hätten wir jede
+Definition von Hand dupliziert. Durch die Monomorphisierung sind die Generics
+von Rust zur Laufzeit äußerst effizient.
 
 {{#quiz ../quizzes/ch10-01-generics.toml}}

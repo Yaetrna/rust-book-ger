@@ -2,24 +2,24 @@
 id = "a91417cd-cd6d-416b-b72d-4af6b3fb2fd6"
 type = "MultipleChoice"
 prompt.prompt = """
-If a reference has a lifetime `'static`, then this means:
+Hat eine Referenz die Lifetime `'static`, bedeutet das:
 """
-answer.answer = "The data under the reference is never deallocated"
+answer.answer = "Die Daten hinter der Referenz werden nie freigegeben"
 prompt.distractors = [
-  "The data under the reference cannot be mutated",
-  "The data under the reference lives in the static region of memory",
-  "The data under the reference is not dynamic"
+  "Die Daten hinter der Referenz können nicht verändert werden",
+  "Die Daten hinter der Referenz liegen im statischen Speicherbereich",
+  "Die Daten hinter der Referenz sind nicht dynamisch"
 ]
 context = """
-`'static` means "live for the entire program", and so data under a static reference must never be deallocated. While in practice `'static` references are
-usually not mutable, the meaning of the `'static` lifetime has no essential relationship to mutability.
+`'static` bedeutet „lebt während des gesamten Programms“, daher dürfen Daten hinter einer statischen Referenz nie freigegeben werden. In der Praxis sind `'static`-Referenzen zwar
+meist nicht veränderlich, aber die Bedeutung der Lifetime `'static` hat im Kern nichts mit Veränderlichkeit zu tun.
 """
 
 [[questions]]
 id = "e521409a-6cbd-48f5-bee0-7fa7f17cc562"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the following un-annotated function signature.
+Betrachte die folgende nicht annotierte Funktionssignatur.
 
 ```
 struct Foo<'a> {
@@ -29,7 +29,7 @@ struct Foo<'a> {
 fn baz(f: Foo) -> &i32 { /* ... */ }
 ```
 
-Will Rust accept this function signature? If so, what lifetimes will it infer?
+Akzeptiert Rust diese Funktionssignatur? Wenn ja, welche Lifetimes leitet es ab?
 """
 answer.answer = """
 ```
@@ -37,7 +37,7 @@ fn baz<'a>(f: Foo<'a>) -> &'a i32
 ```
   """
 prompt.distractors = [
-  "Rust will reject this function signature",
+  "Rust weist diese Funktionssignatur zurück",
   """
 ```
 fn baz(f: Foo) -> &i32
@@ -57,14 +57,14 @@ fn baz<'a>(f: Foo) -> &'a i32
 ]
 prompt.answerIndex = 4
 context = """
-The struct takes a single lifetime parameter, and the output has a single lifetime, so Rust assumes they are the same.
+Das Struct nimmt einen einzigen Lifetime-Parameter, und die Ausgabe hat eine einzige Lifetime, also nimmt Rust an, dass sie gleich sind.
 """
 
 [[questions]]
 id = "d03748df-8dcf-4ec8-bd30-341927544665"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the following un-annotated function signature.
+Betrachte die folgende nicht annotierte Funktionssignatur.
 
 ```
 struct Foo<'a> {
@@ -75,9 +75,9 @@ struct Foo<'a> {
 fn baz(f: &Foo) -> &i32 { /* ... */ }
 ```
 
-Will Rust accept this function signature? If so, what lifetimes will it infer?
+Akzeptiert Rust diese Funktionssignatur? Wenn ja, welche Lifetimes leitet es ab?
 """
-answer.answer = "Rust will reject this function signature"
+answer.answer = "Rust weist diese Funktionssignatur zurück"
 prompt.distractors = [  
   """
 ```
@@ -107,6 +107,6 @@ fn baz<'a, 'b>(f: &'a Foo<'b>) -> &'b i32
 ]
 prompt.answerIndex = 0
 context = """
-Rust will not compile this program, because it is ambiguous whether the lifetime of the output is tied to
-the lifetime of `&Foo` or the reference `Foo.bar`.
+Rust kompiliert dieses Programm nicht, weil mehrdeutig ist, ob die Lifetime der Ausgabe an
+die Lifetime von `&Foo` oder an die der Referenz `Foo.bar` gebunden ist.
 """

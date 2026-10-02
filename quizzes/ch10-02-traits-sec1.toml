@@ -29,21 +29,21 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "bark\n(silence)"
 context = """
-The implementation of `MakeNoise` provides a specific implementation for `Dog` and uses the default implementation for `Cat`.
-Therefore calling `make_noise` on each prints `bark` and `(silence)`, respectively. 
+Die Implementierung von `MakeNoise` stellt für `Dog` eine spezifische Implementierung bereit und verwendet für `Cat` die Standardimplementierung.
+Daher gibt der Aufruf von `make_noise` auf beiden `bark` bzw. `(silence)` aus. 
 """
 
 [[questions]]
 id = "783f2485-e5b9-483b-8368-064366c77285"
 type = "MultipleChoice"
-prompt.prompt = "The following are statements about what kinds of trait implementations are permitted by Rust. Select each statement which is true."
-prompt.distractors = ["You can implement an external trait for an external type"]
+prompt.prompt = "Die folgenden Aussagen betreffen die Arten von Trait-Implementierungen, die Rust erlaubt. Wähle jede Aussage aus, die zutrifft."
+prompt.distractors = ["Du kannst einen externen Trait für einen externen Typ implementieren"]
 answer.answer = [
-  "You can implement an external trait for a local type",
-  "You can implement a local trait for an external type",
-  "You can implement a local trait for a local type"
+  "Du kannst einen externen Trait für einen lokalen Typ implementieren",
+  "Du kannst einen lokalen Trait für einen externen Typ implementieren",
+  "Du kannst einen lokalen Trait für einen lokalen Typ implementieren"
 ]
 context = """
-The "orphan rule" requires that you cannot implement an external trait for an external type, 
-to ensure code doesn't break if two crates provide conflicting implementations.
+Die „Orphan-Rule“ verlangt, dass du keinen externen Trait für einen externen Typ implementieren kannst, 
+damit Code nicht kaputtgeht, wenn zwei Crates widersprüchliche Implementierungen bereitstellen.
 """

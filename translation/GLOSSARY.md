@@ -113,157 +113,164 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 
 ## 2. Übersetzt
 
-| Englisch                            | Deutsch                                 | Genus / Plural                    | Hinweis                                                | Status      |
-| ----------------------------------- | --------------------------------------- | --------------------------------- | ------------------------------------------------------ | ----------- |
-| package                             | Paket                                   | das / die Pakete                  |                                                        | fest        |
-| module                              | Modul                                   | das / die Module                  |                                                        | fest        |
-| module tree                         | Modulbaum                               | der / die Modulbäume              |                                                        | entschieden |
-| macro                               | Makro                                   | das / die Makros                  | deklaratives / prozedurales Makro                      | fest        |
-| reference                           | Referenz                                | die / die Referenzen              |                                                        | fest        |
-| immutable / shared reference        | unveränderliche / geteilte Referenz     | die                               | _shared reference_ beim ersten Auftreten englisch dazu | entschieden |
-| mutable / unique reference          | veränderliche / exklusive Referenz      | die                               | _unique_ heißt hier „exklusiv“; englisch dazu          | entschieden |
-| dangling reference                  | hängende Referenz                       | die / die hängenden Referenzen    | (_dangling reference_) beim ersten Auftreten           | entschieden |
-| pointer                             | Zeiger                                  | der / die Zeiger                  |                                                        | fest        |
-| non-owning pointer                  | nicht-besitzender Zeiger                | der                               |                                                        | entschieden |
-| owned pointer                       | besitzender Zeiger                      | der                               |                                                        | entschieden |
-| function pointer                    | Funktionszeiger                         | der / die Funktionszeiger         |                                                        | entschieden |
-| mutable / immutable                 | veränderlich / unveränderlich           | –                                 | Glosse pro Seite, siehe Abschnitt 5                    | fest        |
-| mutability                          | Veränderlichkeit                        | die / –                           |                                                        | entschieden |
-| interior mutability                 | innere Veränderlichkeit                 | die / –                           | beim ersten Auftreten: (_interior mutability_)         | offen       |
-| mutate / mutation                   | verändern / Veränderung                 | die / die Veränderungen           |                                                        | entschieden |
-| scope                               | Gültigkeitsbereich                      | der / die Gültigkeitsbereiche     | nie „out of scope“; Glosse pro Seite                   | fest        |
-| permission                          | Berechtigung                            | die / die Berechtigungen          |                                                        | fest        |
-| undefined behavior                  | undefiniertes Verhalten                 | das / –                           |                                                        | fest        |
-| compile time                        | Kompilierzeit                           | die / –                           |                                                        | fest        |
-| runtime (Zeitpunkt)                 | Laufzeit                                | die / –                           |                                                        | fest        |
-| statement                           | Anweisung                               | die / die Anweisungen             |                                                        | fest        |
-| expression                          | Ausdruck                                | der / die Ausdrücke               |                                                        | fest        |
-| field                               | Feld                                    | das / die Felder                  |                                                        | fest        |
-| variant                             | Variante                                | die / die Varianten               |                                                        | fest        |
-| associated function                 | assoziierte Funktion                    | die / die assoziierten Funktionen |                                                        | fest        |
-| associated type                     | assoziierter Typ                        | der / die assoziierten Typen      |                                                        | entschieden |
-| method                              | Methode                                 | die / die Methoden                |                                                        | entschieden |
-| method call                         | Methodenaufruf                          | der / die Methodenaufrufe         |                                                        | entschieden |
-| receiver                            | Empfänger                               | der / die Empfänger               | für Methoden und Kanäle                                | entschieden |
-| allocate / deallocate               | allozieren / freigeben                  | –                                 |                                                        | fest        |
-| allocation / deallocation           | Allokation / Freigabe                   | die                               |                                                        | entschieden |
-| allocator                           | Allokator                               | der / die Allokatoren             |                                                        | entschieden |
-| concurrency                         | Nebenläufigkeit                         | die / –                           |                                                        | fest        |
-| parallelism                         | Parallelität                            | die / –                           |                                                        | entschieden |
-| listing                             | Listing                                 | das / die Listings                |                                                        | fest        |
-| type                                | Typ                                     | der / die Typen                   |                                                        | entschieden |
-| value                               | Wert                                    | der / die Werte                   |                                                        | entschieden |
-| variable                            | Variable                                | die / die Variablen               |                                                        | entschieden |
-| function                            | Funktion                                | die / die Funktionen              |                                                        | entschieden |
-| parameter / argument                | Parameter / Argument                    | der / das                         |                                                        | entschieden |
-| return value                        | Rückgabewert                            | der / die Rückgabewerte           |                                                        | entschieden |
-| signature                           | Signatur                                | die / die Signaturen              |                                                        | entschieden |
-| implement / implementation          | implementieren / Implementierung        | die                               | `impl`-Block                                           | entschieden |
-| default implementation              | Standardimplementierung                 | die                               |                                                        | entschieden |
-| type annotation                     | Typannotation                           | die / die Typannotationen         |                                                        | entschieden |
-| type inference                      | Typinferenz                             | die / –                           |                                                        | entschieden |
-| type alias                          | Typalias                                | der / die Typaliasse              |                                                        | entschieden |
-| dynamically sized type              | Typ mit dynamischer Größe               | der                               | (_dynamically sized type_, DST)                        | entschieden |
-| never type                          | Never-Typ                               | der / –                           |                                                        | entschieden |
-| unit type                           | Unit-Typ                                | der / –                           |                                                        | entschieden |
-| loop                                | Schleife                                | die / die Schleifen               |                                                        | entschieden |
-| loop label                          | Schleifenlabel                          | das / die Schleifenlabels         |                                                        | entschieden |
-| control flow                        | Kontrollfluss                           | der / –                           |                                                        | entschieden |
-| branch                              | Zweig                                   | der / die Zweige                  |                                                        | entschieden |
-| condition                           | Bedingung                               | die / die Bedingungen             |                                                        | entschieden |
-| tuple                               | Tupel                                   | das / die Tupel                   |                                                        | entschieden |
-| vector                              | Vektor                                  | der / die Vektoren                | Typ `Vec<T>`                                           | entschieden |
-| integer                             | Ganzzahl                                | die / die Ganzzahlen              | Ganzzahltyp, Ganzzahlüberlauf                          | entschieden |
-| floating-point number               | Gleitkommazahl                          | die / die Gleitkommazahlen        |                                                        | entschieden |
-| Boolean                             | boolescher Wert                         | der                               |                                                        | entschieden |
-| character                           | Zeichen                                 | das / die Zeichen                 |                                                        | entschieden |
-| literal                             | Literal                                 | das / die Literale                |                                                        | entschieden |
-| range                               | Bereich                                 | der / die Bereiche                | (_range_) beim ersten Auftreten                        | entschieden |
-| keyword                             | Schlüsselwort                           | das / die Schlüsselwörter         |                                                        | entschieden |
-| identifier                          | Bezeichner                              | der / die Bezeichner              |                                                        | entschieden |
-| operator                            | Operator                                | der / die Operatoren              | Dereferenzierungsoperator, Fragezeichen-Operator       | entschieden |
-| attribute                           | Attribut                                | das / die Attribute               |                                                        | entschieden |
-| comment / doc comment               | Kommentar / Dokumentationskommentar     | der                               |                                                        | entschieden |
-| bracket(s)                          | Klammer(n)                              | die                               | geschweifte / eckige / spitze / runde Klammern         | entschieden |
-| semicolon                           | Semikolon                               | das / die Semikolons              |                                                        | entschieden |
-| placeholder                         | Platzhalter                             | der / die Platzhalter             |                                                        | entschieden |
-| binding                             | Bindung                                 | die / die Bindungen               |                                                        | entschieden |
-| destructure                         | destrukturieren / Destrukturierung      | die                               |                                                        | entschieden |
-| dereference                         | dereferenzieren / Dereferenzierung      | die                               |                                                        | entschieden |
-| path                                | Pfad                                    | der / die Pfade                   |                                                        | entschieden |
-| public / private                    | öffentlich / privat                     | –                                 |                                                        | entschieden |
-| privacy / visibility                | Sichtbarkeit                            | die / –                           |                                                        | entschieden |
-| re-export                           | Re-Export / reexportieren               | der                               |                                                        | entschieden |
-| item (Modulsystem)                  | Element                                 | das / die Elemente                | Funktion, Struct, Modul usw.                           | entschieden |
-| parent / child module               | Elternmodul / Kindmodul                 | das / die …module                 |                                                        | entschieden |
-| submodule                           | Untermodul                              | das / die Untermodule             |                                                        | entschieden |
-| ancestor module                     | Vorfahrenmodul                          | das / die Vorfahrenmodule         |                                                        | entschieden |
-| sibling (Module)                    | Geschwister                             | die (Pl.)                         |                                                        | entschieden |
-| module tree                         | Modulbaum                               | der / die Modulbäume              |                                                        | entschieden |
-| glob operator                       | Glob-Operator                           | der / –                           |                                                        | entschieden |
-| front / back of house               | Front of House / Back of House          | das                               | Gastronomiebegriffe, englisch belassen                 | entschieden |
-| grapheme cluster                    | Graphem-Cluster                         | das / die Graphem-Cluster         |                                                        | entschieden |
-| Unicode scalar value                | Unicode-Skalarwert                      | der / die …werte                  |                                                        | entschieden |
-| wrapper                             | Wrapper                                 | der / die Wrapper                 | „ein Wrapper um …“                                     | entschieden |
-| hashing function / hasher           | Hashfunktion / Hasher                   | die / der                         |                                                        | entschieden |
-| Pig Latin                           | Pig Latin                               | das                               | Sprachspiel, englische Beispielwörter bleiben          | entschieden |
-| propagate (errors)                  | weitergeben / Weitergabe                | die                               | (_propagating_) bei der Einführung                     | entschieden |
-| file handle                         | Datei-Handle                            | das / die Datei-Handles           |                                                        | entschieden |
-| question mark operator              | Fragezeichen-Operator / Operator `?`    | der                               |                                                        | entschieden |
-| unwinding / aborting (panic)        | Abwickeln / Abbrechen                   | das                               | (_unwinding_) / (_aborting_) bei der Einführung        | entschieden |
-| backtrace                           | Backtrace                               | der / die Backtraces              |                                                        | entschieden |
-| contract (API)                      | Vertrag                                 | der / die Verträge                |                                                        | entschieden |
-| buffer overread                     | Buffer Overread                         | der                               | Glosse „Lesen über das Pufferende hinaus“              | entschieden |
-| standard library                    | Standardbibliothek                      | die / –                           |                                                        | entschieden |
-| dependency                          | Abhängigkeit                            | die / die Abhängigkeiten          |                                                        | entschieden |
-| compiler                            | Compiler                                | der / die Compiler                |                                                        | entschieden |
-| error / error message               | Fehler / Fehlermeldung                  | der / die                         |                                                        | entschieden |
-| recoverable / unrecoverable         | behebbar / nicht behebbar               | –                                 |                                                        | entschieden |
-| test / unit test / integration test | Test / Unit-Test / Integrationstest     | der                               |                                                        | entschieden |
-| test-driven development             | testgetriebene Entwicklung              | die / –                           |                                                        | entschieden |
-| release profile                     | Release-Profil                          | das / die Release-Profile         |                                                        | entschieden |
-| command line                        | Kommandozeile                           | die / –                           |                                                        | entschieden |
-| terminal                            | Terminal                                | das / die Terminals               |                                                        | entschieden |
-| environment variable                | Umgebungsvariable                       | die / die Umgebungsvariablen      |                                                        | entschieden |
-| standard output / error             | Standardausgabe / Standardfehlerausgabe | die                               |                                                        | entschieden |
-| memory                              | Speicher                                | der / –                           |                                                        | entschieden |
-| memory safety                       | Speichersicherheit                      | die / –                           |                                                        | entschieden |
-| memory leak                         | Speicherleck                            | das / die Speicherlecks           |                                                        | entschieden |
-| address                             | Adresse                                 | die / die Adressen                |                                                        | entschieden |
-| capacity / length                   | Kapazität / Länge                       | die                               |                                                        | entschieden |
-| reference counting                  | Referenzzählung                         | die / –                           |                                                        | entschieden |
-| reference cycle                     | Referenzzyklus                          | der / die Referenzzyklen          |                                                        | entschieden |
-| weak reference                      | schwache Referenz                       | die                               |                                                        | entschieden |
-| channel                             | Kanal                                   | der / die Kanäle                  |                                                        | entschieden |
-| message passing                     | Nachrichtenübermittlung                 | die / –                           | (_message passing_) beim ersten Auftreten              | entschieden |
-| atomic                              | atomar                                  | –                                 |                                                        | entschieden |
-| abstraction                         | Abstraktion                             | die / die Abstraktionen           |                                                        | entschieden |
-| encapsulation                       | Kapselung                               | die / –                           |                                                        | entschieden |
-| inheritance                         | Vererbung                               | die / –                           |                                                        | entschieden |
-| polymorphism                        | Polymorphie                             | die / –                           |                                                        | entschieden |
-| object-oriented                     | objektorientiert                        | –                                 |                                                        | entschieden |
-| invariant                           | Invariante                              | die / die Invarianten             |                                                        | entschieden |
-| monomorphization                    | Monomorphisierung                       | die / –                           |                                                        | entschieden |
-| fully qualified syntax              | vollständig qualifizierte Syntax        | die / –                           |                                                        | entschieden |
-| syntactic sugar                     | syntaktischer Zucker                    | der / –                           |                                                        | entschieden |
-| constructor                         | Konstruktor                             | der / die Konstruktoren           |                                                        | entschieden |
-| procedural / declarative macro      | prozedurales / deklaratives Makro       | das                               |                                                        | entschieden |
-| derive / derivable                  | ableiten / ableitbar                    | –                                 | (_derive_) beim ersten Auftreten; Code: `#[derive]`    | entschieden |
-| diagram                             | Diagramm                                | das / die Diagramme               |                                                        | entschieden |
-| quiz                                | Quiz                                    | das / die Quiz                    | Plural nach Duden; „Quizfragen“ für einzelne Fragen    | entschieden |
-| case study                          | Fallstudie                              | die / die Fallstudien             |                                                        | entschieden |
-| read-only                           | schreibgeschützt / nur lesbar           | –                                 |                                                        | entschieden |
-| live (Referenz „is live“)           | lebendig                                | –                                 | „solange `t` lebendig ist“                             | entschieden |
-| in use                              | in Gebrauch                             | –                                 |                                                        | entschieden |
-| invalidate                          | ungültig machen                         | –                                 |                                                        | entschieden |
-| downgrade                           | herabstufen                             | –                                 |                                                        | entschieden |
-| aliased (Daten)                     | einen Alias haben                       | –                                 | „data is aliased“ → „die Daten haben einen Alias“      | entschieden |
-| aliased data                        | gemeinsam genutzte Daten                | die (Pl.)                         | wenn „Daten mit Alias“ holprig wäre                    | entschieden |
-| snippet                             | Codeausschnitt                          | der / die Codeausschnitte         |                                                        | entschieden |
-| dereference operator                | Dereferenzierungsoperator               | der                               |                                                        | entschieden |
-| method-call syntax                  | Syntax für Methodenaufrufe              | die                               |                                                        | entschieden |
-| if-statement / then-block           | if-Anweisung / then-Block / else-Block  | die / der                         | ohne Backticks, wie im Original                        | entschieden |
-| ampersand                           | Ampersand                               | das / die Ampersands              | `&`; „Ampersand-Operator“                              | entschieden |
+| Englisch                                   | Deutsch                                      | Genus / Plural                    | Hinweis                                                | Status      |
+| ------------------------------------------ | -------------------------------------------- | --------------------------------- | ------------------------------------------------------ | ----------- |
+| package                                    | Paket                                        | das / die Pakete                  |                                                        | fest        |
+| module                                     | Modul                                        | das / die Module                  |                                                        | fest        |
+| module tree                                | Modulbaum                                    | der / die Modulbäume              |                                                        | entschieden |
+| macro                                      | Makro                                        | das / die Makros                  | deklaratives / prozedurales Makro                      | fest        |
+| reference                                  | Referenz                                     | die / die Referenzen              |                                                        | fest        |
+| immutable / shared reference               | unveränderliche / geteilte Referenz          | die                               | _shared reference_ beim ersten Auftreten englisch dazu | entschieden |
+| mutable / unique reference                 | veränderliche / exklusive Referenz           | die                               | _unique_ heißt hier „exklusiv“; englisch dazu          | entschieden |
+| dangling reference                         | hängende Referenz                            | die / die hängenden Referenzen    | (_dangling reference_) beim ersten Auftreten           | entschieden |
+| pointer                                    | Zeiger                                       | der / die Zeiger                  |                                                        | fest        |
+| non-owning pointer                         | nicht-besitzender Zeiger                     | der                               |                                                        | entschieden |
+| owned pointer                              | besitzender Zeiger                           | der                               |                                                        | entschieden |
+| function pointer                           | Funktionszeiger                              | der / die Funktionszeiger         |                                                        | entschieden |
+| mutable / immutable                        | veränderlich / unveränderlich                | –                                 | Glosse pro Seite, siehe Abschnitt 5                    | fest        |
+| mutability                                 | Veränderlichkeit                             | die / –                           |                                                        | entschieden |
+| interior mutability                        | innere Veränderlichkeit                      | die / –                           | beim ersten Auftreten: (_interior mutability_)         | offen       |
+| mutate / mutation                          | verändern / Veränderung                      | die / die Veränderungen           |                                                        | entschieden |
+| scope                                      | Gültigkeitsbereich                           | der / die Gültigkeitsbereiche     | nie „out of scope“; Glosse pro Seite                   | fest        |
+| permission                                 | Berechtigung                                 | die / die Berechtigungen          |                                                        | fest        |
+| undefined behavior                         | undefiniertes Verhalten                      | das / –                           |                                                        | fest        |
+| compile time                               | Kompilierzeit                                | die / –                           |                                                        | fest        |
+| runtime (Zeitpunkt)                        | Laufzeit                                     | die / –                           |                                                        | fest        |
+| statement                                  | Anweisung                                    | die / die Anweisungen             |                                                        | fest        |
+| expression                                 | Ausdruck                                     | der / die Ausdrücke               |                                                        | fest        |
+| field                                      | Feld                                         | das / die Felder                  |                                                        | fest        |
+| variant                                    | Variante                                     | die / die Varianten               |                                                        | fest        |
+| associated function                        | assoziierte Funktion                         | die / die assoziierten Funktionen |                                                        | fest        |
+| associated type                            | assoziierter Typ                             | der / die assoziierten Typen      |                                                        | entschieden |
+| method                                     | Methode                                      | die / die Methoden                |                                                        | entschieden |
+| method call                                | Methodenaufruf                               | der / die Methodenaufrufe         |                                                        | entschieden |
+| receiver                                   | Empfänger                                    | der / die Empfänger               | für Methoden und Kanäle                                | entschieden |
+| allocate / deallocate                      | allozieren / freigeben                       | –                                 |                                                        | fest        |
+| allocation / deallocation                  | Allokation / Freigabe                        | die                               |                                                        | entschieden |
+| allocator                                  | Allokator                                    | der / die Allokatoren             |                                                        | entschieden |
+| concurrency                                | Nebenläufigkeit                              | die / –                           |                                                        | fest        |
+| parallelism                                | Parallelität                                 | die / –                           |                                                        | entschieden |
+| listing                                    | Listing                                      | das / die Listings                |                                                        | fest        |
+| type                                       | Typ                                          | der / die Typen                   |                                                        | entschieden |
+| value                                      | Wert                                         | der / die Werte                   |                                                        | entschieden |
+| variable                                   | Variable                                     | die / die Variablen               |                                                        | entschieden |
+| function                                   | Funktion                                     | die / die Funktionen              |                                                        | entschieden |
+| parameter / argument                       | Parameter / Argument                         | der / das                         |                                                        | entschieden |
+| return value                               | Rückgabewert                                 | der / die Rückgabewerte           |                                                        | entschieden |
+| signature                                  | Signatur                                     | die / die Signaturen              |                                                        | entschieden |
+| implement / implementation                 | implementieren / Implementierung             | die                               | `impl`-Block                                           | entschieden |
+| default implementation                     | Standardimplementierung                      | die                               |                                                        | entschieden |
+| type annotation                            | Typannotation                                | die / die Typannotationen         |                                                        | entschieden |
+| type inference                             | Typinferenz                                  | die / –                           |                                                        | entschieden |
+| type alias                                 | Typalias                                     | der / die Typaliasse              |                                                        | entschieden |
+| dynamically sized type                     | Typ mit dynamischer Größe                    | der                               | (_dynamically sized type_, DST)                        | entschieden |
+| never type                                 | Never-Typ                                    | der / –                           |                                                        | entschieden |
+| unit type                                  | Unit-Typ                                     | der / –                           |                                                        | entschieden |
+| loop                                       | Schleife                                     | die / die Schleifen               |                                                        | entschieden |
+| loop label                                 | Schleifenlabel                               | das / die Schleifenlabels         |                                                        | entschieden |
+| control flow                               | Kontrollfluss                                | der / –                           |                                                        | entschieden |
+| branch                                     | Zweig                                        | der / die Zweige                  |                                                        | entschieden |
+| condition                                  | Bedingung                                    | die / die Bedingungen             |                                                        | entschieden |
+| tuple                                      | Tupel                                        | das / die Tupel                   |                                                        | entschieden |
+| vector                                     | Vektor                                       | der / die Vektoren                | Typ `Vec<T>`                                           | entschieden |
+| integer                                    | Ganzzahl                                     | die / die Ganzzahlen              | Ganzzahltyp, Ganzzahlüberlauf                          | entschieden |
+| floating-point number                      | Gleitkommazahl                               | die / die Gleitkommazahlen        |                                                        | entschieden |
+| Boolean                                    | boolescher Wert                              | der                               |                                                        | entschieden |
+| character                                  | Zeichen                                      | das / die Zeichen                 |                                                        | entschieden |
+| literal                                    | Literal                                      | das / die Literale                |                                                        | entschieden |
+| range                                      | Bereich                                      | der / die Bereiche                | (_range_) beim ersten Auftreten                        | entschieden |
+| keyword                                    | Schlüsselwort                                | das / die Schlüsselwörter         |                                                        | entschieden |
+| identifier                                 | Bezeichner                                   | der / die Bezeichner              |                                                        | entschieden |
+| operator                                   | Operator                                     | der / die Operatoren              | Dereferenzierungsoperator, Fragezeichen-Operator       | entschieden |
+| attribute                                  | Attribut                                     | das / die Attribute               |                                                        | entschieden |
+| comment / doc comment                      | Kommentar / Dokumentationskommentar          | der                               |                                                        | entschieden |
+| bracket(s)                                 | Klammer(n)                                   | die                               | geschweifte / eckige / spitze / runde Klammern         | entschieden |
+| semicolon                                  | Semikolon                                    | das / die Semikolons              |                                                        | entschieden |
+| placeholder                                | Platzhalter                                  | der / die Platzhalter             |                                                        | entschieden |
+| binding                                    | Bindung                                      | die / die Bindungen               |                                                        | entschieden |
+| destructure                                | destrukturieren / Destrukturierung           | die                               |                                                        | entschieden |
+| dereference                                | dereferenzieren / Dereferenzierung           | die                               |                                                        | entschieden |
+| path                                       | Pfad                                         | der / die Pfade                   |                                                        | entschieden |
+| public / private                           | öffentlich / privat                          | –                                 |                                                        | entschieden |
+| privacy / visibility                       | Sichtbarkeit                                 | die / –                           |                                                        | entschieden |
+| re-export                                  | Re-Export / reexportieren                    | der                               |                                                        | entschieden |
+| item (Modulsystem)                         | Element                                      | das / die Elemente                | Funktion, Struct, Modul usw.                           | entschieden |
+| parent / child module                      | Elternmodul / Kindmodul                      | das / die …module                 |                                                        | entschieden |
+| submodule                                  | Untermodul                                   | das / die Untermodule             |                                                        | entschieden |
+| ancestor module                            | Vorfahrenmodul                               | das / die Vorfahrenmodule         |                                                        | entschieden |
+| sibling (Module)                           | Geschwister                                  | die (Pl.)                         |                                                        | entschieden |
+| module tree                                | Modulbaum                                    | der / die Modulbäume              |                                                        | entschieden |
+| glob operator                              | Glob-Operator                                | der / –                           |                                                        | entschieden |
+| front / back of house                      | Front of House / Back of House               | das                               | Gastronomiebegriffe, englisch belassen                 | entschieden |
+| grapheme cluster                           | Graphem-Cluster                              | das / die Graphem-Cluster         |                                                        | entschieden |
+| Unicode scalar value                       | Unicode-Skalarwert                           | der / die …werte                  |                                                        | entschieden |
+| wrapper                                    | Wrapper                                      | der / die Wrapper                 | „ein Wrapper um …“                                     | entschieden |
+| hashing function / hasher                  | Hashfunktion / Hasher                        | die / der                         |                                                        | entschieden |
+| Pig Latin                                  | Pig Latin                                    | das                               | Sprachspiel, englische Beispielwörter bleiben          | entschieden |
+| propagate (errors)                         | weitergeben / Weitergabe                     | die                               | (_propagating_) bei der Einführung                     | entschieden |
+| file handle                                | Datei-Handle                                 | das / die Datei-Handles           |                                                        | entschieden |
+| question mark operator                     | Fragezeichen-Operator / Operator `?`         | der                               |                                                        | entschieden |
+| unwinding / aborting (panic)               | Abwickeln / Abbrechen                        | das                               | (_unwinding_) / (_aborting_) bei der Einführung        | entschieden |
+| backtrace                                  | Backtrace                                    | der / die Backtraces              |                                                        | entschieden |
+| contract (API)                             | Vertrag                                      | der / die Verträge                |                                                        | entschieden |
+| buffer overread                            | Buffer Overread                              | der                               | Glosse „Lesen über das Pufferende hinaus“              | entschieden |
+| coherence                                  | Kohärenz                                     | die                               | (_coherence_) bei der Einführung                       | entschieden |
+| implementor                                | Implementierer                               | der / die Implementierer          | Typ, der einen Trait implementiert                     | entschieden |
+| where clause                               | `where`-Klausel                              | die / die `where`-Klauseln        |                                                        | entschieden |
+| input / output lifetimes                   | Eingabe-Lifetimes / Ausgabe-Lifetimes        | die                               |                                                        | entschieden |
+| lifetime elision rules                     | Regeln zur Lifetime-Elision / Elisionsregeln | die                               |                                                        | entschieden |
+| static lifetime                            | statische Lifetime / Lifetime `'static`      | die                               |                                                        | entschieden |
+| pattern (allgemein, kein Pattern-Matching) | Schema / Muster vermeiden                    | das / die Schemata                | „Muster“ kollidiert mit Pattern; „Schema“ nehmen       | entschieden |
+| standard library                           | Standardbibliothek                           | die / –                           |                                                        | entschieden |
+| dependency                                 | Abhängigkeit                                 | die / die Abhängigkeiten          |                                                        | entschieden |
+| compiler                                   | Compiler                                     | der / die Compiler                |                                                        | entschieden |
+| error / error message                      | Fehler / Fehlermeldung                       | der / die                         |                                                        | entschieden |
+| recoverable / unrecoverable                | behebbar / nicht behebbar                    | –                                 |                                                        | entschieden |
+| test / unit test / integration test        | Test / Unit-Test / Integrationstest          | der                               |                                                        | entschieden |
+| test-driven development                    | testgetriebene Entwicklung                   | die / –                           |                                                        | entschieden |
+| release profile                            | Release-Profil                               | das / die Release-Profile         |                                                        | entschieden |
+| command line                               | Kommandozeile                                | die / –                           |                                                        | entschieden |
+| terminal                                   | Terminal                                     | das / die Terminals               |                                                        | entschieden |
+| environment variable                       | Umgebungsvariable                            | die / die Umgebungsvariablen      |                                                        | entschieden |
+| standard output / error                    | Standardausgabe / Standardfehlerausgabe      | die                               |                                                        | entschieden |
+| memory                                     | Speicher                                     | der / –                           |                                                        | entschieden |
+| memory safety                              | Speichersicherheit                           | die / –                           |                                                        | entschieden |
+| memory leak                                | Speicherleck                                 | das / die Speicherlecks           |                                                        | entschieden |
+| address                                    | Adresse                                      | die / die Adressen                |                                                        | entschieden |
+| capacity / length                          | Kapazität / Länge                            | die                               |                                                        | entschieden |
+| reference counting                         | Referenzzählung                              | die / –                           |                                                        | entschieden |
+| reference cycle                            | Referenzzyklus                               | der / die Referenzzyklen          |                                                        | entschieden |
+| weak reference                             | schwache Referenz                            | die                               |                                                        | entschieden |
+| channel                                    | Kanal                                        | der / die Kanäle                  |                                                        | entschieden |
+| message passing                            | Nachrichtenübermittlung                      | die / –                           | (_message passing_) beim ersten Auftreten              | entschieden |
+| atomic                                     | atomar                                       | –                                 |                                                        | entschieden |
+| abstraction                                | Abstraktion                                  | die / die Abstraktionen           |                                                        | entschieden |
+| encapsulation                              | Kapselung                                    | die / –                           |                                                        | entschieden |
+| inheritance                                | Vererbung                                    | die / –                           |                                                        | entschieden |
+| polymorphism                               | Polymorphie                                  | die / –                           |                                                        | entschieden |
+| object-oriented                            | objektorientiert                             | –                                 |                                                        | entschieden |
+| invariant                                  | Invariante                                   | die / die Invarianten             |                                                        | entschieden |
+| monomorphization                           | Monomorphisierung                            | die / –                           |                                                        | entschieden |
+| fully qualified syntax                     | vollständig qualifizierte Syntax             | die / –                           |                                                        | entschieden |
+| syntactic sugar                            | syntaktischer Zucker                         | der / –                           |                                                        | entschieden |
+| constructor                                | Konstruktor                                  | der / die Konstruktoren           |                                                        | entschieden |
+| procedural / declarative macro             | prozedurales / deklaratives Makro            | das                               |                                                        | entschieden |
+| derive / derivable                         | ableiten / ableitbar                         | –                                 | (_derive_) beim ersten Auftreten; Code: `#[derive]`    | entschieden |
+| diagram                                    | Diagramm                                     | das / die Diagramme               |                                                        | entschieden |
+| quiz                                       | Quiz                                         | das / die Quiz                    | Plural nach Duden; „Quizfragen“ für einzelne Fragen    | entschieden |
+| case study                                 | Fallstudie                                   | die / die Fallstudien             |                                                        | entschieden |
+| read-only                                  | schreibgeschützt / nur lesbar                | –                                 |                                                        | entschieden |
+| live (Referenz „is live“)                  | lebendig                                     | –                                 | „solange `t` lebendig ist“                             | entschieden |
+| in use                                     | in Gebrauch                                  | –                                 |                                                        | entschieden |
+| invalidate                                 | ungültig machen                              | –                                 |                                                        | entschieden |
+| downgrade                                  | herabstufen                                  | –                                 |                                                        | entschieden |
+| aliased (Daten)                            | einen Alias haben                            | –                                 | „data is aliased“ → „die Daten haben einen Alias“      | entschieden |
+| aliased data                               | gemeinsam genutzte Daten                     | die (Pl.)                         | wenn „Daten mit Alias“ holprig wäre                    | entschieden |
+| snippet                                    | Codeausschnitt                               | der / die Codeausschnitte         |                                                        | entschieden |
+| dereference operator                       | Dereferenzierungsoperator                    | der                               |                                                        | entschieden |
+| method-call syntax                         | Syntax für Methodenaufrufe                   | die                               |                                                        | entschieden |
+| if-statement / then-block                  | if-Anweisung / then-Block / else-Block       | die / der                         | ohne Backticks, wie im Original                        | entschieden |
+| ampersand                                  | Ampersand                                    | das / die Ampersands              | `&`; „Ampersand-Operator“                              | entschieden |
 
 ## 3. Verben
 
@@ -340,8 +347,9 @@ dort, wo das Buch sie definiert.
 
 ## Änderungsprotokoll
 
-| Datum  | Begriff                                                                                                          | alt | neu             | betroffene Dateien |
-| ------ | ---------------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
-| Kap. 7 | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house         | –   | neu aufgenommen | ch07-*             |
-| Kap. 8 | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                              | –   | neu aufgenommen | ch08-*             |
-| Kap. 9 | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread | –   | neu aufgenommen | ch09-*             |
+| Datum   | Begriff                                                                                                           | alt | neu             | betroffene Dateien |
+| ------- | ----------------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
+| Kap. 7  | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house          | –   | neu aufgenommen | ch07-*             |
+| Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                               | –   | neu aufgenommen | ch08-*             |
+| Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread  | –   | neu aufgenommen | ch09-*             |
+| Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein) | –   | neu aufgenommen | ch10-*             |

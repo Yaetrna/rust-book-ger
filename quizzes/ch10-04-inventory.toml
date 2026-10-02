@@ -2,7 +2,7 @@
 id = "9ff33b87-38e2-471b-8ca4-9c31a6431376"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 1:**
+**Programm 1:**
 
 ```ide
 /// Returns the n-th largest element in a slice
@@ -13,7 +13,7 @@ fn find_nth<T: Ord + Clone>(elems: &[T], n: usize) -> T {
 }
 ```
 
-If you tried to compile this program, which of the following best describes the compiler error you would get?
+Welche der folgenden Fehlermeldungen beschreibt am besten den Compilerfehler, den du beim Kompilieren dieses Programms bekommen würdest?
 """
 answer.answer = "cannot borrow `elems` as mutable for `sort`"
 prompt.distractors = [
@@ -22,8 +22,8 @@ prompt.distractors = [
   "the lifetime of `T` must outlive `&[T]`",
 ]
 context = """
-The method `slice::sort` expects a mutable reference to a slice, but
-instead gets an immutable reference.
+Die Methode `slice::sort` erwartet eine veränderliche Referenz auf einen Slice,
+bekommt aber eine unveränderliche Referenz.
 """
 
 
@@ -31,7 +31,7 @@ instead gets an immutable reference.
 id = "3ee8d846-d282-4de1-8e83-5ca0bc44fc13"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 1:**
+**Programm 1:**
 
 ```ide
 /// Returns the n-th largest element in a slice
@@ -42,7 +42,7 @@ fn find_nth<T: Ord + Clone>(elems: &[T], n: usize) -> T {
 }
 ```
 
-Normally if you try to compile this function, the compiler returns the following error:
+Wenn du versuchst, diese Funktion zu kompilieren, gibt der Compiler normalerweise folgenden Fehler aus:
 
 ```text
 error[E0596]: cannot borrow `*elems` as mutable, as it is behind a `&` reference
@@ -52,11 +52,11 @@ error[E0596]: cannot borrow `*elems` as mutable, as it is behind a `&` reference
   |     ^^^^^^^^^^^^ `elems` is a `&` reference, so the data it refers to cannot be borrowed as mutable
 ```
 
-Assume that the compiler did NOT reject this function. Which (if any) of the following programs would
-(1) pass the compiler, and (2) possibly cause undefined behavior if executed?
-Check each program that satisfies both criteria, OR check "None of these programs" if none are satisfying.
+Nimm an, der Compiler würde diese Funktion NICHT zurückweisen. Welche (falls überhaupt) der folgenden Programme würden
+(1) den Compiler passieren und (2) bei der Ausführung möglicherweise undefiniertes Verhalten verursachen?
+Wähle jedes Programm aus, das beide Kriterien erfüllt, ODER wähle „Keines dieser Programme“, wenn keines sie erfüllt.
 """
-answer.answer = ["None of these programs"]
+answer.answer = ["Keines dieser Programme"]
 prompt.distractors = [
 """
 ```
@@ -81,12 +81,12 @@ println!("{}", n);
 """,
 ]
 context = """
-This program is technically memory-safe because `slice::sort` is only capable of moving
-elements around, not freeing them. For instance, `&v[0]` is guaranteed to point to 
-*some* number after calling `find_nth`, even if it is not the *original* number.
+Dieses Programm ist technisch speichersicher, weil `slice::sort` Elemente nur umherschieben,
+aber nicht freigeben kann. So zeigt `&v[0]` nach dem Aufruf von `find_nth` garantiert auf 
+*irgendeine* Zahl, auch wenn es nicht die *ursprüngliche* Zahl ist.
 
-Note that `find_nth(&v, 10)` does not cause undefined behavior because Rust performs checks
-on array accesses, so evaluating `&v[10]` will panic.
+Beachte, dass `find_nth(&v, 10)` kein undefiniertes Verhalten verursacht, weil Rust Zugriffe auf Arrays
+prüft; die Auswertung von `&v[10]` löst daher einen Panic aus.
 """
 
 
@@ -94,7 +94,7 @@ on array accesses, so evaluating `&v[10]` will panic.
 id = "d070eb9e-4527-453a-8c9b-698739a3dd6a"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 1:**
+**Programm 1:**
 
 ```ide
 /// Returns the n-th largest element in a slice
@@ -105,10 +105,10 @@ fn find_nth<T: Ord + Clone>(elems: &[T], n: usize) -> T {
 }
 ```
 
-Of the following fixes (highlighted in yellow), which fix best satisfies these three criteria:
-1. The fixed function passes the Rust compiler,
-2. The fixed function preserves the intention of the original code, and
-3. The fixed function does not introduce unnecessary inefficiencies
+Welche der folgenden Korrekturen (gelb hervorgehoben) erfüllt diese drei Kriterien am besten:
+1. Die korrigierte Funktion besteht den Rust-Compiler,
+2. die korrigierte Funktion bewahrt die Absicht des ursprünglichen Codes und
+3. die korrigierte Funktion führt keine unnötigen Ineffizienzen ein?
 """
 answer.answer = """
 ```ide
@@ -151,20 +151,20 @@ fn find_nth<`[T: Ord]`>(`[mut elems: Vec<T>]`, n: usize) -> T {
 """,
 ]
 context = """
-A function like `find_nth` is clearly intended to be a read-only function, i.e. to
-extract some property of the input sequence. Any solution which mutates or drops the input therefore does not preserve the original function's intention, even if
-it is more efficient than creating an auxiliary vector. 
+Eine Funktion wie `find_nth` ist offensichtlich als rein lesende Funktion gedacht, d. h., sie soll
+eine Information über die Eingabefolge ermitteln. Jede Lösung, die die Eingabe verändert oder verwirft, bewahrt daher nicht die Absicht der ursprünglichen Funktion, selbst wenn
+sie effizienter ist, als einen Hilfsvektor anzulegen. 
 
-Creating a `Vec<&T>` is preferable to creating a `Vec<T>`, since if `T` is large, then
-`elems.to_vec()` could be expensive. However, if we knew that `T: Copy`, then `to_vec`
-would be preferable to reduce the number of pointer dereferences within `elems.sort()`.
+Einen `Vec<&T>` anzulegen ist besser, als einen `Vec<T>` anzulegen, denn wenn `T` groß ist, könnte
+`elems.to_vec()` teuer sein. Wüssten wir dagegen, dass `T: Copy` gilt, wäre `to_vec`
+vorzuziehen, um die Zahl der Zeiger-Dereferenzierungen in `elems.sort()` zu verringern.
 """
 
 [[questions]]
 id = "95979d75-5823-4059-a1cf-7e0eba69b41a"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 2:**
+**Programm 2:**
 
 ```ide
 struct TestResult {
@@ -191,7 +191,7 @@ impl TestResult {
 }
 ```
 
-If you tried to compile this program, which of the following best describes the compiler error you would get?
+Welche der folgenden Fehlermeldungen beschreibt am besten den Compilerfehler, den du beim Kompilieren dieses Programms bekommen würdest?
 """
 answer.answer = "in `apply_curve`, cannot borrow `self.scores` as mutable for `iter_mut`"
 prompt.distractors = [
@@ -200,10 +200,10 @@ prompt.distractors = [
   "in `apply_curve`, `*score` cannot be mutated"
 ]
 context = """
-Due to lifetime elision, the function `get_curve` has the type signature `get_curve<'a>(&'a self) -> &'a Option<usize>`. 
-This means that a call to `self.get_curve()` extends the entire borrow on `self`, not just on `self.curve`.
-Therefore `self` is immutably borrowed inside the scope of `let Some(curve) = ...`, and `self.scores.iter_mut()`
-cannot be called.
+Wegen der Lifetime-Elision hat die Funktion `get_curve` die Typsignatur `get_curve<'a>(&'a self) -> &'a Option<usize>`. 
+Das bedeutet, dass ein Aufruf von `self.get_curve()` die Ausleihe auf ganz `self` ausdehnt, nicht nur auf `self.curve`.
+Daher ist `self` im Gültigkeitsbereich von `let Some(curve) = ...` unveränderlich ausgeliehen, und `self.scores.iter_mut()`
+kann nicht aufgerufen werden.
 """
 
 
@@ -211,7 +211,7 @@ cannot be called.
 id = "dcb42a15-d9b7-437d-95ec-f000b64ce277"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 2:**
+**Programm 2:**
 
 ```ide
 struct TestResult {
@@ -238,7 +238,7 @@ impl TestResult {
 }
 ```
 
-Normally if you try to compile this function, the compiler returns the following error:
+Wenn du versuchst, diese Funktion zu kompilieren, gibt der Compiler normalerweise folgenden Fehler aus:
 
 ```text
 error[E0502]: cannot borrow `self.scores` as mutable because it is also borrowed as immutable
@@ -252,11 +252,11 @@ error[E0502]: cannot borrow `self.scores` as mutable because it is also borrowed
    |                           ------ immutable borrow later used here
 ```
 
-Assume that the compiler did NOT reject this function. Which (if any) of the following programs would
-(1) pass the compiler, and (2) possibly cause undefined behavior if executed?
-Check each program that satisfies both criteria, OR check "None of these programs" if none are satisfying.
+Nimm an, der Compiler würde diese Funktion NICHT zurückweisen. Welche (falls überhaupt) der folgenden Programme würden
+(1) den Compiler passieren und (2) bei der Ausführung möglicherweise undefiniertes Verhalten verursachen?
+Wähle jedes Programm aus, das beide Kriterien erfüllt, ODER wähle „Keines dieser Programme“, wenn keines sie erfüllt.
 """
-answer.answer = ["None of these programs"]
+answer.answer = ["Keines dieser Programme"]
 prompt.distractors = [
 """
 ```
@@ -290,16 +290,16 @@ println!("{:?}", result.scores);
 """,
 ]
 context = """
-This program is actually safe as written. It is a limitation of the borrow checker to not understand that `get_curve`
-only borrows `curve`, and doesn't affect `scores`. However, in theory if `get_curve` were changed to return a reference
-to something with `self.scores`, then memory safety could potentially be violated.
+So wie es geschrieben ist, ist dieses Programm eigentlich sicher. Es ist eine Einschränkung des Borrow-Checkers, dass er nicht versteht, dass `get_curve`
+nur `curve` ausleiht und `scores` nicht betrifft. Würde `get_curve` aber theoretisch so geändert, dass es eine Referenz
+auf etwas in `self.scores` zurückgibt, könnte die Speichersicherheit möglicherweise verletzt werden.
 """
 
 [[questions]]
 id = "aa93c497-9864-4799-b69b-7de42c158f2a"
 type = "MultipleChoice"
 prompt.prompt = """
-**Program 2:**
+**Programm 2:**
 
 ```ide
 struct TestResult {
@@ -326,10 +326,10 @@ impl TestResult {
 }
 ```
 
-Of the following fixes (highlighted in yellow), which fix best satisfies these three criteria:
-1. The fixed function passes the Rust compiler,
-2. The fixed function preserves the intention of the original code, and
-3. The fixed function does not introduce unnecessary inefficiencies
+Welche der folgenden Korrekturen (gelb hervorgehoben) erfüllt diese drei Kriterien am besten:
+1. Die korrigierte Funktion besteht den Rust-Compiler,
+2. die korrigierte Funktion bewahrt die Absicht des ursprünglichen Codes und
+3. die korrigierte Funktion führt keine unnötigen Ineffizienzen ein?
 """
 answer.answer = """
 ```ide
@@ -378,9 +378,9 @@ pub fn apply_curve(&mut self) {
 """,
 ]
 context = """
-By inlining the definition of `get_curve` into `apply_curve`, the borrow checker understands that `self.curve` is not `self.scores`,
-so it allows the function to compile. This is a common workaround for this type of borrow checker limitation.
+Wird die Definition von `get_curve` in `apply_curve` eingesetzt (Inlining), versteht der Borrow-Checker, dass `self.curve` nicht `self.scores` ist,
+und lässt die Funktion kompilieren. Das ist eine gängige Umgehung für diese Art von Einschränkung des Borrow-Checkers.
 
-Another option is to leverage the fact that `self.curve` is cheap to copy and use [`Option::copied`](https://doc.rust-lang.org/std/option/enum.Option.html#method.copied), 
-which would release the borrow on `self` as soon as `.copied()` is called.
+Eine andere Möglichkeit ist, auszunutzen, dass sich `self.curve` billig kopieren lässt, und [`Option::copied`](https://doc.rust-lang.org/std/option/enum.Option.html#method.copied) zu verwenden, 
+was die Ausleihe von `self` aufhebt, sobald `.copied()` aufgerufen wird.
 """
