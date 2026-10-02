@@ -1,15 +1,15 @@
 [[questions]]
 id = "a162c2c8-aadf-4963-a997-02a1035f2459"
 type = "MultipleChoice"
-prompt.prompt = "Which of the following statements best describes the function of the `use` keyword?"
-answer.answer = "`use` reduces the verbosity of referring to items in the used path"
+prompt.prompt = "Welche der folgenden Aussagen beschreibt die Funktion des Schlüsselworts `use` am besten?"
+answer.answer = "`use` macht Verweise auf Elemente im eingebundenen Pfad weniger umständlich"
 prompt.distractors = [
-  "`use` copies the contents of an item from one module to another",
-  "`use` allows access to items that circumvents normal privacy rules",
-  "`use` indicates to the compiler that an item will be used and should be optimized"
+  "`use` kopiert den Inhalt eines Elements von einem Modul in ein anderes",
+  "`use` ermöglicht einen Zugriff auf Elemente, der die normalen Sichtbarkeitsregeln umgeht",
+  "`use` teilt dem Compiler mit, dass ein Element verwendet wird und optimiert werden soll"
 ]
 context = """
-`use` allows references to items in the used path that are shorter than without the `use`, reducing the verbosity of reference.
+Mit `use` werden Verweise auf Elemente im eingebundenen Pfad kürzer als ohne das `use`, was Verweise weniger umständlich macht.
 """
 
 
@@ -17,7 +17,7 @@ context = """
 id = "eccc2099-9880-4628-8474-f1d55e2a4a4a"
 type = "ShortAnswer"
 prompt.prompt = """
-Consider this module and `use` statement:
+Betrachte dieses Modul und diese `use`-Anweisung:
 
 ```
 pub mod parent {
@@ -34,11 +34,11 @@ fn main() {
 }
 ```
 
-Inside `main`, what is the total number of paths that can refer to `a`, `b`, or `c` (not including those that use `self`, `super`, or `crate`)?
-Write your answer as a digit such as 0 or 1. For example, if the only two valid paths were `a` and `parent::b`, then the answer would be 2.
+Wie viele Pfade gibt es innerhalb von `main` insgesamt, die auf `a`, `b` oder `c` verweisen können (ohne solche, die `self`, `super` oder `crate` verwenden)?
+Gib deine Antwort als Ziffer an, etwa 0 oder 1. Wären zum Beispiel `a` und `parent::b` die einzigen beiden gültigen Pfade, wäre die Antwort 2.
 """
 answer.answer = "5"
 context = """
-There are two paths to `a`: `parent::a` and `a`. There are no paths to `b`, because it is private. There are three paths to `c`:
+Es gibt zwei Pfade zu `a`: `parent::a` und `a`. Zu `b` gibt es keine Pfade, weil es privat ist. Zu `c` gibt es drei Pfade:
 `parent::child::c`, `child::c`, `alias::c`.
 """

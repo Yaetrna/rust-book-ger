@@ -26,8 +26,8 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "c2"
 context = """
-`entry` uses the path `super::b::c::f`. `entry` is within the module `a`, so `super` refers to the parent module of `a`, which is the root crate. 
-Then the child `b` of the root is the outermost module `b`, whose child `c` contains a function `f` that prints `"c2"`.
+`entry` verwendet den Pfad `super::b::c::f`. `entry` liegt im Modul `a`, also verweist `super` auf das Elternmodul von `a`, also die Wurzel des Crates. 
+Das Kind `b` der Wurzel ist dann das äußerste Modul `b`, dessen Kind `c` eine Funktion `f` enthält, die `"c2"` ausgibt.
 """
 
 [[questions]]
@@ -52,6 +52,6 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 12
 context = """
-While the `Point` structure and the `origin` static method are both public, the field `i32` is not marked as pub. Therefore directly accessing `p.0` outside of
-the `point` module is not allowed. This program would compile if line 3 were changed to `pub struct Point(pub i32, pub i32)`.
+Das Struct `Point` und die statische Methode `origin` sind zwar beide öffentlich, aber das Feld `i32` ist nicht mit pub gekennzeichnet. Daher ist ein direkter Zugriff auf `p.0` außerhalb
+des Moduls `point` nicht erlaubt. Dieses Programm würde kompilieren, wenn Zeile 3 zu `pub struct Point(pub i32, pub i32)` geändert würde.
 """

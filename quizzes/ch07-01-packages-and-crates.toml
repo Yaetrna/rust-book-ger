@@ -2,19 +2,19 @@
 id = "904a0808-22d1-45e5-9611-cf143babbc41"
 type = "MultipleChoice"
 prompt.prompt = """
-Which is the correct order, where "A > B" means "A contains B"?
+Welche Reihenfolge ist richtig, wenn „A > B“ bedeutet „A enthält B“?
 """
-answer.answer = "package > crate > module"
-prompt.distractors = [ "module > crate > package", "crate > package > module" ]
+answer.answer = "Paket > Crate > Modul"
+prompt.distractors = [ "Modul > Crate > Paket", "Crate > Paket > Modul" ]
 context = """
-A package is the top-level organizational unit, containing crates. A crate contains modules.
+Ein Paket ist die oberste Organisationseinheit und enthält Crates. Ein Crate enthält Module.
 """
 
 [[questions]]
 id = "d45c7cbe-6089-40b9-843c-fbb9ff48ca49"
 type = "ShortAnswer"
 prompt.prompt = """
-Imagine you see a Rust package `foobar` with the following files:
+Stell dir vor, du siehst ein Rust-Paket `foobar` mit folgenden Dateien:
 
 ```text
 foobar
@@ -28,10 +28,10 @@ foobar
         └── alt.rs
 ```
 
-How many crates does this package contain? Write your answer as a digit, e.g. 0, 1, and so on.
+Wie viele Crates enthält dieses Paket? Gib deine Antwort als Ziffer an, z. B. 0, 1 und so weiter.
 """
 answer.answer = "3"
 context = """ 
-`main.rs` produces a binary crate, `lib.rs` produces a library crate, and `bin/alt.rs` produces a binary crate. The `util.rs` would presumably be used as a module within
-one of these crates, but it is not a special filename recognized by Rust, so it would not be its own crate. `build.rs` is a build script.
+`main.rs` erzeugt ein Binary-Crate, `lib.rs` ein Library-Crate und `bin/alt.rs` ein Binary-Crate. `util.rs` würde vermutlich als Modul innerhalb
+eines dieser Crates verwendet, ist aber kein besonderer Dateiname, den Rust erkennt, und wäre daher kein eigenes Crate. `build.rs` ist ein Build-Skript.
 """

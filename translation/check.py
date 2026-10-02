@@ -1018,9 +1018,10 @@ def cmd_restore_ws(files: list[str], base: str) -> int:
 
 
 def cmd_restore_code(files: list[str], base: str) -> int:
-    """Formatters may drop trailing blank lines inside fenced code blocks.
-    For each fence that differs from the base commit only in trailing
-    whitespace, copy the base lines back."""
+    """Formatters may drop trailing blank lines inside fenced code blocks,
+    and editors may turn non-breaking spaces into plain ones. For each fence
+    that differs from the base commit only in such whitespace, copy the base
+    lines back."""
     for path in files:
         if not path.endswith(".md"):
             continue
@@ -1036,7 +1037,8 @@ def cmd_restore_code(files: list[str], base: str) -> int:
         b_lines, t_lines = b.split("\n"), t.split("\n")
         changes = []
         for bf, tf in zip(b_fences, t_fences):
-            if bf.content != tf.content and bf.content.rstrip() == tf.content.rstrip() and bf.info == tf.info:
+            norm = lambda c: c.replace("\xa0", " ").rstrip()
+            if bf.content != tf.content and norm(bf.content) == norm(tf.content) and bf.info == tf.info:
                 changes.append((tf.map, b_lines[bf.map[0]: bf.map[1]]))
         for (start, end), new_lines in sorted(changes, reverse=True):
             t_lines[start:end] = new_lines

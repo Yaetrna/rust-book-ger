@@ -2,14 +2,14 @@
 id = "23c95879-aae2-4121-bf89-21278f7b6ec6"
 type = "MultipleChoice"
 prompt.prompt = """
-Which of the following is NOT a benefit of using modules?
+Was ist KEIN Vorteil von Modulen?
 """
-answer.answer = "Modules boost the runtime performance of interdependent code within the same module"
+answer.answer = "Module steigern die Laufzeitperformance von voneinander abhängigem Code innerhalb desselben Moduls"
 prompt.distractors = [
-  "Modules group related code so programmers can more easily work on a large codebase",
-  "Modules encapsulate implementation details that shouldn't be used by external clients",
-  "Modules provide a scope to avoid naming conflicts across parts of a codebase"
+  "Module gruppieren zusammengehörigen Code, sodass Programmierende leichter an einer großen Codebasis arbeiten können",
+  "Module kapseln Implementierungsdetails, die von externen Nutzern nicht verwendet werden sollten",
+  "Module bieten einen Gültigkeitsbereich, um Namenskonflikte zwischen Teilen einer Codebasis zu vermeiden"
 ]
 context = """
-Modules have no effect on runtime, they are purely for compile-time organization.
+Module haben keine Auswirkung auf die Laufzeit, sie dienen rein der Organisation zur Kompilierzeit.
 """

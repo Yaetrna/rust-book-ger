@@ -2,51 +2,63 @@
 
 <a id="managing-growing-projects-with-packages-crates-and-modules"></a>
 
-# Packages, Crates, and Modules
+# Pakete, Crates und Module {#packages-crates-and-modules}
 
-As you write large programs, organizing your code will become increasingly
-important. By grouping related functionality and separating code with distinct
-features, you’ll clarify where to find code that implements a particular
-feature and where to go to change how a feature works.
+Wenn du große Programme schreibst, wird es immer wichtiger, deinen Code zu
+organisieren. Indem du zusammengehörige Funktionalität gruppierst und Code mit
+unterschiedlichen Features trennst, machst du klar, wo der Code zu finden ist,
+der ein bestimmtes Feature implementiert, und wo du hingehen musst, um zu
+ändern, wie ein Feature funktioniert.
 
-The programs we’ve written so far have been in one module in one file. As a
-project grows, you should organize code by splitting it into multiple modules
-and then multiple files. A package can contain multiple binary crates and
-optionally one library crate. As a package grows, you can extract parts into
-separate crates that become external dependencies. This chapter covers all
-these techniques. For very large projects comprising a set of interrelated
-packages that evolve together, Cargo provides workspaces, which we’ll cover in
-[“Cargo Workspaces”][workspaces]<!-- ignore --> in Chapter 14.
+Die Programme, die wir bisher geschrieben haben, bestanden aus einem Modul in
+einer Datei. Wenn ein Projekt wächst, solltest du den Code organisieren, indem
+du ihn auf mehrere Module und dann auf mehrere Dateien aufteilst. Ein Paket kann
+mehrere Binary-Crates und optional ein Library-Crate enthalten. Wenn ein Paket
+wächst, kannst du Teile in separate Crates auslagern, die zu externen
+Abhängigkeiten werden. Dieses Kapitel behandelt all diese Techniken. Für sehr
+große Projekte, die aus einer Reihe zusammenhängender Pakete bestehen, die sich
+gemeinsam weiterentwickeln, bietet Cargo Workspaces, die wir in
+[„Cargo-Workspaces“][workspaces]<!-- ignore --> in Kapitel 14 behandeln.
 
-We’ll also discuss encapsulating implementation details, which lets you reuse
-code at a higher level: Once you’ve implemented an operation, other code can
-call your code via its public interface without having to know how the
-implementation works. The way you write code defines which parts are public for
-other code to use and which parts are private implementation details that you
-reserve the right to change. This is another way to limit the amount of detail
-you have to keep in your head.
+Außerdem besprechen wir die Kapselung von Implementierungsdetails, mit der du
+Code auf einer höheren Ebene wiederverwenden kannst: Sobald du eine Operation
+implementiert hast, kann anderer Code deinen Code über seine öffentliche
+Schnittstelle aufrufen, ohne wissen zu müssen, wie die Implementierung
+funktioniert. Wie du Code schreibst, legt fest, welche Teile öffentlich sind und
+von anderem Code verwendet werden können und welche Teile private
+Implementierungsdetails sind, die du dir vorbehältst zu ändern. Auch das ist
+eine Möglichkeit, die Menge an Details zu begrenzen, die du im Kopf behalten
+musst.
 
-A related concept is scope: The nested context in which code is written has a
-set of names that are defined as “in scope.” When reading, writing, and
-compiling code, programmers and compilers need to know whether a particular
-name at a particular spot refers to a variable, function, struct, enum, module,
-constant, or other item and what that item means. You can create scopes and
-change which names are in or out of scope. You can’t have two items with the
-same name in the same scope; tools are available to resolve name conflicts.
+Ein verwandtes Konzept ist der Gültigkeitsbereich (_scope_): Der verschachtelte
+Kontext, in dem Code geschrieben ist, hat eine Menge von Namen, die als „im
+Gültigkeitsbereich“ definiert sind. Beim Lesen, Schreiben und Kompilieren von
+Code müssen Programmierende und Compiler wissen, ob sich ein bestimmter Name an
+einer bestimmten Stelle auf eine Variable, eine Funktion, ein Struct, ein Enum,
+ein Modul, eine Konstante oder ein anderes Element bezieht und was dieses
+Element bedeutet. Du kannst Gültigkeitsbereiche erzeugen und ändern, welche
+Namen im Gültigkeitsbereich liegen und welche nicht. Du kannst nicht zwei
+Elemente mit demselben Namen im selben Gültigkeitsbereich haben; für
+Namenskonflikte gibt es Werkzeuge, um sie aufzulösen.
 
-Rust has a number of features that allow you to manage your code’s
-organization, including which details are exposed, which details are private,
-and what names are in each scope in your programs. These features, sometimes
-collectively referred to as the _module system_, include:
+Rust hat eine Reihe von Features, mit denen du die Organisation deines Codes
+steuern kannst, darunter, welche Details nach außen sichtbar sind, welche
+Details privat sind und welche Namen in den einzelnen Gültigkeitsbereichen
+deiner Programme existieren. Zu diesen Features, die manchmal zusammenfassend
+als _Modulsystem_ bezeichnet werden, gehören:
 
-* **Packages**: A Cargo feature that lets you build, test, and share crates
-* **Crates**: A tree of modules that produces a library or executable
-* **Modules and use**: Let you control the organization, scope, and privacy of
-paths
-* **Paths**: A way of naming an item, such as a struct, function, or module
+- **Pakete**: Ein Feature von Cargo, mit dem du Crates bauen, testen und teilen
+  kannst
+- **Crates**: Ein Baum von Modulen, der eine Bibliothek oder eine ausführbare
+  Datei erzeugt
+- **Module und use**: Damit steuerst du die Organisation, den Gültigkeitsbereich
+  und die Sichtbarkeit von Pfaden
+- **Pfade**: Eine Möglichkeit, ein Element zu benennen, etwa ein Struct, eine
+  Funktion oder ein Modul
 
-In this chapter, we’ll cover all these features, discuss how they interact, and
-explain how to use them to manage scope. By the end, you should have a solid
-understanding of the module system and be able to work with scopes like a pro!
+In diesem Kapitel behandeln wir all diese Features, besprechen, wie sie
+zusammenspielen, und erklären, wie du mit ihnen Gültigkeitsbereiche verwaltest.
+Am Ende solltest du das Modulsystem gut verstehen und wie ein Profi mit
+Gültigkeitsbereichen arbeiten können!
 
 [workspaces]: ch14-03-cargo-workspaces.html

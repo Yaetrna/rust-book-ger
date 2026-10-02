@@ -29,87 +29,87 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 
 ## 1. Englisch beibehalten (Rust-Begriffe)
 
-| Englisch                   | Deutsch                           | Genus / Plural                      | Hinweis                                                                      | Status      |
-| -------------------------- | --------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------- | ----------- |
-| trait                      | Trait                             | der / die Traits                    | nie „Eigenschaft“, „Merkmal“                                                 | fest        |
-| trait object               | Trait-Objekt                      | das / die Trait-Objekte             |                                                                              | fest        |
-| trait bound                | Trait-Bound                       | der / die Trait-Bounds              |                                                                              | fest        |
-| supertrait                 | Supertrait                        | der / die Supertraits               |                                                                              | entschieden |
-| crate                      | Crate                             | das / die Crates                    | nie „Kiste“                                                                  | fest        |
-| binary crate               | Binary-Crate                      | das / die Binary-Crates             | Cargo-Ausgabe sagt „binary“                                                  | entschieden |
-| library crate              | Library-Crate                     | das / die Library-Crates            | Cargo-Ausgabe sagt „library“                                                 | entschieden |
-| crate root                 | Crate-Root                        | die / die Crate-Roots               | beim ersten Auftreten: „Crate-Root (die Wurzeldatei des Modulbaums)“         | offen       |
-| struct                     | Struct                            | das / die Structs                   | nie „Struktur“                                                               | fest        |
-| tuple struct               | Tupel-Struct                      | das / die Tupel-Structs             |                                                                              | entschieden |
-| unit-like struct           | Unit-artiges Struct               | das / die Unit-artigen Structs      |                                                                              | entschieden |
-| enum                       | Enum                              | das / die Enums                     | nie „Aufzählung“                                                             | fest        |
-| closure                    | Closure                           | die / die Closures                  | nie „Abschluss“                                                              | fest        |
-| lifetime                   | Lifetime                          | die / die Lifetimes                 | nie „Lebensdauer“; Lifetime-Parameter, Lifetime-Annotation, Lifetime-Elision | fest        |
-| ownership                  | Ownership                         | die / –                             | nie „Eigentümerschaft“                                                       | fest        |
-| owner                      | Owner                             | der / die Owner                     | nie „Eigentümer“                                                             | fest        |
-| borrowing                  | Borrowing                         | das / –                             | Verb: ausleihen                                                              | fest        |
-| borrow (Nomen)             | Borrow                            | der / die Borrows                   |                                                                              | fest        |
-| borrow checker             | Borrow-Checker                    | der / die Borrow-Checker            | nie „Ausleihprüfer“                                                          | fest        |
-| move (Nomen)               | Move                              | der / die Moves                     | Verb: verschieben                                                            | fest        |
-| slice                      | Slice                             | der / die Slices                    |                                                                              | fest        |
-| string slice               | String-Slice                      | der / die String-Slices             |                                                                              | fest        |
-| string                     | String                            | der / die Strings                   | nie „Zeichenkette“                                                           | fest        |
-| stack                      | Stack                             | der / die Stacks                    | nie „Stapelspeicher“                                                         | fest        |
-| heap                       | Heap                              | der / die Heaps                     | nie „Haldenspeicher“                                                         | fest        |
-| (stack) frame              | Frame, Stack-Frame                | der / die Frames                    |                                                                              | fest        |
-| box                        | Box                               | die / die Boxen                     |                                                                              | fest        |
-| smart pointer              | Smart-Pointer                     | der / die Smart-Pointer             | nie „intelligenter Zeiger“                                                   | fest        |
-| raw pointer                | Raw-Pointer                       | der / die Raw-Pointer               | analog zu Smart-Pointer                                                      | entschieden |
-| pattern                    | Pattern                           | das / die Patterns                  | nie „Muster“                                                                 | fest        |
-| pattern matching           | Pattern-Matching                  | das / –                             |                                                                              | fest        |
-| match arm                  | Arm, `match`-Arm                  | der / die Arme                      | gleiches Wort im Deutschen                                                   | entschieden |
-| match expression / match (ohne Backticks im Original) | Match-Ausdruck, Match-Arm | der | mit Backticks im Original: `match`-Ausdruck; nie Backticks ergänzen | entschieden |
-| match guard                | Match-Guard                       | der / die Match-Guards              |                                                                              | entschieden |
-| generics                   | Generics                          | die (Pl.)                           | Adjektiv „generic“ → „generisch“ (generischer Typ, generische Funktion)      | fest        |
-| iterator                   | Iterator                          | der / die Iteratoren                |                                                                              | fest        |
-| panic (Nomen)              | Panic                             | der / die Panics                    | nie „Panik“; Verb: „einen Panic auslösen“                                    | fest        |
-| shadowing                  | Shadowing                         | das / –                             |                                                                              | fest        |
-| aliasing                   | Aliasing                          | das / –                             |                                                                              | fest        |
-| alias (Nomen)              | Alias                             | der / die Aliasse                   | „data is aliased“ → „auf die Daten gibt es Aliasse“ o. ä.                    | entschieden |
-| workspace                  | Workspace                         | der / die Workspaces                |                                                                              | fest        |
-| thread                     | Thread                            | der / die Threads                   |                                                                              | fest        |
-| future                     | Future                            | das / die Futures                   |                                                                              | fest        |
-| stream (async)             | Stream                            | der / die Streams                   |                                                                              | entschieden |
-| task (async)               | Task                              | der / die Tasks                     |                                                                              | entschieden |
-| runtime (async-Bibliothek) | Runtime                           | die / die Runtimes                  | nur für Async-Runtimes; Zeitpunkt „runtime“ → Laufzeit                       | entschieden |
-| executor                   | Executor                          | der / die Executors                 |                                                                              | entschieden |
-| place                      | Place                             | der / die Places                    | alles, was links in einer Zuweisung stehen kann                              | fest        |
-| prelude                    | Prelude                           | das / die Preludes                  |                                                                              | entschieden |
-| edition                    | Edition                           | die / die Editionen                 | Rust 2024 Edition → Rust-Edition 2024                                        | entschieden |
-| hash map                   | Hash-Map                          | die / die Hash-Maps                 | Typ `HashMap<K, V>`                                                          | entschieden |
-| collection                 | Collection                        | die / die Collections               | wie `std::collections`                                                       | entschieden |
-| array                      | Array                             | das / die Arrays                    | nicht „Feld“ (Verwechslung mit _field_)                                      | entschieden |
-| deref coercion             | Deref-Coercion                    | die / die Deref-Coercions           |                                                                              | entschieden |
-| newtype                    | Newtype, Newtype-Pattern          | der / das                           |                                                                              | entschieden |
-| design pattern             | Design-Pattern                    | das / die Design-Patterns           | nicht „Entwurfsmuster“ (hält den Review-Grep auf „Muster“ sauber)            | entschieden |
-| state pattern              | State-Pattern                     | das / –                             |                                                                              | entschieden |
-| builder pattern            | Builder-Pattern                   | das / –                             |                                                                              | entschieden |
-| orphan rule                | Orphan-Rule                       | die / –                             |                                                                              | entschieden |
-| blanket implementation     | Blanket-Implementierung           | die / die Blanket-Implementierungen |                                                                              | entschieden |
-| dispatch (static/dynamic)  | statischer / dynamischer Dispatch | der / –                             |                                                                              | entschieden |
-| zero-cost abstraction      | Zero-Cost-Abstraktion             | die / die Zero-Cost-Abstraktionen   |                                                                              | entschieden |
-| garbage collection         | Garbage-Collection                | die / –                             | wie in der deutschen Wikipedia                                               | entschieden |
-| garbage collector          | Garbage-Collector                 | der / die Garbage-Collectors        |                                                                              | entschieden |
-| data race                  | Data-Race                         | das / die Data-Races                |                                                                              | entschieden |
-| race condition             | Race-Condition                    | die / die Race-Conditions           |                                                                              | entschieden |
-| deadlock                   | Deadlock                          | der / die Deadlocks                 |                                                                              | entschieden |
-| mutex                      | Mutex                             | der / die Mutexe                    |                                                                              | entschieden |
-| use-after-free             | Use-after-free                    | das / –                             |                                                                              | entschieden |
-| double free                | Double-Free                       | das / –                             |                                                                              | entschieden |
-| registry                   | Registry                          | die / die Registrys                 | crates.io-Registry                                                           | entschieden |
-| toolchain                  | Toolchain                         | die / die Toolchains                |                                                                              | entschieden |
-| release channel            | Stable, Beta, Nightly             | –                                   | Kanalnamen bleiben englisch                                                  | entschieden |
-| getter                     | Getter                            | der / die Getter                    |                                                                              | entschieden |
-| feature flag               | Feature-Flag                      | das / die Feature-Flags             |                                                                              | entschieden |
-| unsafe Rust                | Unsafe Rust                       | –                                   | Eigenname des Sprachteils; Code: `unsafe`-Block, `unsafe`-Funktion           | entschieden |
-| refactoring                | Refactoring                       | das / die Refactorings              | Verb: refaktorisieren                                                        | entschieden |
-| feature (Sprachfeature)    | Feature                           | das / die Features                  | „language feature“ → Sprachfeature; nicht „Merkmal“, nicht „Eigenschaft“     | entschieden |
-| push (die Operation)       | Push                              | der / die Pushes                    | nur ohne Backticks im Original; mit Backticks bleibt es `push`               | entschieden |
+| Englisch                                              | Deutsch                           | Genus / Plural                      | Hinweis                                                                      | Status      |
+| ----------------------------------------------------- | --------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------- | ----------- |
+| trait                                                 | Trait                             | der / die Traits                    | nie „Eigenschaft“, „Merkmal“                                                 | fest        |
+| trait object                                          | Trait-Objekt                      | das / die Trait-Objekte             |                                                                              | fest        |
+| trait bound                                           | Trait-Bound                       | der / die Trait-Bounds              |                                                                              | fest        |
+| supertrait                                            | Supertrait                        | der / die Supertraits               |                                                                              | entschieden |
+| crate                                                 | Crate                             | das / die Crates                    | nie „Kiste“                                                                  | fest        |
+| binary crate                                          | Binary-Crate                      | das / die Binary-Crates             | Cargo-Ausgabe sagt „binary“                                                  | entschieden |
+| library crate                                         | Library-Crate                     | das / die Library-Crates            | Cargo-Ausgabe sagt „library“                                                 | entschieden |
+| crate root                                            | Crate-Root                        | die / die Crate-Roots               | beim ersten Auftreten: „Crate-Root (die Wurzeldatei des Modulbaums)“         | offen       |
+| struct                                                | Struct                            | das / die Structs                   | nie „Struktur“                                                               | fest        |
+| tuple struct                                          | Tupel-Struct                      | das / die Tupel-Structs             |                                                                              | entschieden |
+| unit-like struct                                      | Unit-artiges Struct               | das / die Unit-artigen Structs      |                                                                              | entschieden |
+| enum                                                  | Enum                              | das / die Enums                     | nie „Aufzählung“                                                             | fest        |
+| closure                                               | Closure                           | die / die Closures                  | nie „Abschluss“                                                              | fest        |
+| lifetime                                              | Lifetime                          | die / die Lifetimes                 | nie „Lebensdauer“; Lifetime-Parameter, Lifetime-Annotation, Lifetime-Elision | fest        |
+| ownership                                             | Ownership                         | die / –                             | nie „Eigentümerschaft“                                                       | fest        |
+| owner                                                 | Owner                             | der / die Owner                     | nie „Eigentümer“                                                             | fest        |
+| borrowing                                             | Borrowing                         | das / –                             | Verb: ausleihen                                                              | fest        |
+| borrow (Nomen)                                        | Borrow                            | der / die Borrows                   |                                                                              | fest        |
+| borrow checker                                        | Borrow-Checker                    | der / die Borrow-Checker            | nie „Ausleihprüfer“                                                          | fest        |
+| move (Nomen)                                          | Move                              | der / die Moves                     | Verb: verschieben                                                            | fest        |
+| slice                                                 | Slice                             | der / die Slices                    |                                                                              | fest        |
+| string slice                                          | String-Slice                      | der / die String-Slices             |                                                                              | fest        |
+| string                                                | String                            | der / die Strings                   | nie „Zeichenkette“                                                           | fest        |
+| stack                                                 | Stack                             | der / die Stacks                    | nie „Stapelspeicher“                                                         | fest        |
+| heap                                                  | Heap                              | der / die Heaps                     | nie „Haldenspeicher“                                                         | fest        |
+| (stack) frame                                         | Frame, Stack-Frame                | der / die Frames                    |                                                                              | fest        |
+| box                                                   | Box                               | die / die Boxen                     |                                                                              | fest        |
+| smart pointer                                         | Smart-Pointer                     | der / die Smart-Pointer             | nie „intelligenter Zeiger“                                                   | fest        |
+| raw pointer                                           | Raw-Pointer                       | der / die Raw-Pointer               | analog zu Smart-Pointer                                                      | entschieden |
+| pattern                                               | Pattern                           | das / die Patterns                  | nie „Muster“                                                                 | fest        |
+| pattern matching                                      | Pattern-Matching                  | das / –                             |                                                                              | fest        |
+| match arm                                             | Arm, `match`-Arm                  | der / die Arme                      | gleiches Wort im Deutschen                                                   | entschieden |
+| match expression / match (ohne Backticks im Original) | Match-Ausdruck, Match-Arm         | der                                 | mit Backticks im Original: `match`-Ausdruck; nie Backticks ergänzen          | entschieden |
+| match guard                                           | Match-Guard                       | der / die Match-Guards              |                                                                              | entschieden |
+| generics                                              | Generics                          | die (Pl.)                           | Adjektiv „generic“ → „generisch“ (generischer Typ, generische Funktion)      | fest        |
+| iterator                                              | Iterator                          | der / die Iteratoren                |                                                                              | fest        |
+| panic (Nomen)                                         | Panic                             | der / die Panics                    | nie „Panik“; Verb: „einen Panic auslösen“                                    | fest        |
+| shadowing                                             | Shadowing                         | das / –                             |                                                                              | fest        |
+| aliasing                                              | Aliasing                          | das / –                             |                                                                              | fest        |
+| alias (Nomen)                                         | Alias                             | der / die Aliasse                   | „data is aliased“ → „auf die Daten gibt es Aliasse“ o. ä.                    | entschieden |
+| workspace                                             | Workspace                         | der / die Workspaces                |                                                                              | fest        |
+| thread                                                | Thread                            | der / die Threads                   |                                                                              | fest        |
+| future                                                | Future                            | das / die Futures                   |                                                                              | fest        |
+| stream (async)                                        | Stream                            | der / die Streams                   |                                                                              | entschieden |
+| task (async)                                          | Task                              | der / die Tasks                     |                                                                              | entschieden |
+| runtime (async-Bibliothek)                            | Runtime                           | die / die Runtimes                  | nur für Async-Runtimes; Zeitpunkt „runtime“ → Laufzeit                       | entschieden |
+| executor                                              | Executor                          | der / die Executors                 |                                                                              | entschieden |
+| place                                                 | Place                             | der / die Places                    | alles, was links in einer Zuweisung stehen kann                              | fest        |
+| prelude                                               | Prelude                           | das / die Preludes                  |                                                                              | entschieden |
+| edition                                               | Edition                           | die / die Editionen                 | Rust 2024 Edition → Rust-Edition 2024                                        | entschieden |
+| hash map                                              | Hash-Map                          | die / die Hash-Maps                 | Typ `HashMap<K, V>`                                                          | entschieden |
+| collection                                            | Collection                        | die / die Collections               | wie `std::collections`                                                       | entschieden |
+| array                                                 | Array                             | das / die Arrays                    | nicht „Feld“ (Verwechslung mit _field_)                                      | entschieden |
+| deref coercion                                        | Deref-Coercion                    | die / die Deref-Coercions           |                                                                              | entschieden |
+| newtype                                               | Newtype, Newtype-Pattern          | der / das                           |                                                                              | entschieden |
+| design pattern                                        | Design-Pattern                    | das / die Design-Patterns           | nicht „Entwurfsmuster“ (hält den Review-Grep auf „Muster“ sauber)            | entschieden |
+| state pattern                                         | State-Pattern                     | das / –                             |                                                                              | entschieden |
+| builder pattern                                       | Builder-Pattern                   | das / –                             |                                                                              | entschieden |
+| orphan rule                                           | Orphan-Rule                       | die / –                             |                                                                              | entschieden |
+| blanket implementation                                | Blanket-Implementierung           | die / die Blanket-Implementierungen |                                                                              | entschieden |
+| dispatch (static/dynamic)                             | statischer / dynamischer Dispatch | der / –                             |                                                                              | entschieden |
+| zero-cost abstraction                                 | Zero-Cost-Abstraktion             | die / die Zero-Cost-Abstraktionen   |                                                                              | entschieden |
+| garbage collection                                    | Garbage-Collection                | die / –                             | wie in der deutschen Wikipedia                                               | entschieden |
+| garbage collector                                     | Garbage-Collector                 | der / die Garbage-Collectors        |                                                                              | entschieden |
+| data race                                             | Data-Race                         | das / die Data-Races                |                                                                              | entschieden |
+| race condition                                        | Race-Condition                    | die / die Race-Conditions           |                                                                              | entschieden |
+| deadlock                                              | Deadlock                          | der / die Deadlocks                 |                                                                              | entschieden |
+| mutex                                                 | Mutex                             | der / die Mutexe                    |                                                                              | entschieden |
+| use-after-free                                        | Use-after-free                    | das / –                             |                                                                              | entschieden |
+| double free                                           | Double-Free                       | das / –                             |                                                                              | entschieden |
+| registry                                              | Registry                          | die / die Registrys                 | crates.io-Registry                                                           | entschieden |
+| toolchain                                             | Toolchain                         | die / die Toolchains                |                                                                              | entschieden |
+| release channel                                       | Stable, Beta, Nightly             | –                                   | Kanalnamen bleiben englisch                                                  | entschieden |
+| getter                                                | Getter                            | der / die Getter                    |                                                                              | entschieden |
+| feature flag                                          | Feature-Flag                      | das / die Feature-Flags             |                                                                              | entschieden |
+| unsafe Rust                                           | Unsafe Rust                       | –                                   | Eigenname des Sprachteils; Code: `unsafe`-Block, `unsafe`-Funktion           | entschieden |
+| refactoring                                           | Refactoring                       | das / die Refactorings              | Verb: refaktorisieren                                                        | entschieden |
+| feature (Sprachfeature)                               | Feature                           | das / die Features                  | „language feature“ → Sprachfeature; nicht „Merkmal“, nicht „Eigenschaft“     | entschieden |
+| push (die Operation)                                  | Push                              | der / die Pushes                    | nur ohne Backticks im Original; mit Backticks bleibt es `push`               | entschieden |
 
 ## 2. Übersetzt
 
@@ -194,6 +194,14 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | public / private                    | öffentlich / privat                     | –                                 |                                                        | entschieden |
 | privacy / visibility                | Sichtbarkeit                            | die / –                           |                                                        | entschieden |
 | re-export                           | Re-Export / reexportieren               | der                               |                                                        | entschieden |
+| item (Modulsystem)                  | Element                                 | das / die Elemente                | Funktion, Struct, Modul usw.                           | entschieden |
+| parent / child module               | Elternmodul / Kindmodul                 | das / die …module                 |                                                        | entschieden |
+| submodule                           | Untermodul                              | das / die Untermodule             |                                                        | entschieden |
+| ancestor module                     | Vorfahrenmodul                          | das / die Vorfahrenmodule         |                                                        | entschieden |
+| sibling (Module)                    | Geschwister                             | die (Pl.)                         |                                                        | entschieden |
+| module tree                         | Modulbaum                               | der / die Modulbäume              |                                                        | entschieden |
+| glob operator                       | Glob-Operator                           | der / –                           |                                                        | entschieden |
+| front / back of house               | Front of House / Back of House          | das                               | Gastronomiebegriffe, englisch belassen                 | entschieden |
 | standard library                    | Standardbibliothek                      | die / –                           |                                                        | entschieden |
 | dependency                          | Abhängigkeit                            | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                            | Compiler                                | der / die Compiler                |                                                        | entschieden |
@@ -320,6 +328,6 @@ dort, wo das Buch sie definiert.
 
 ## Änderungsprotokoll
 
-| Datum | Begriff | alt | neu | betroffene Dateien |
-| ----- | ------- | --- | --- | ------------------ |
-| –     | –       | –   | –   | –                  |
+| Datum  | Begriff                                                                                                  | alt | neu             | betroffene Dateien |
+| ------ | -------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
+| Kap. 7 | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house | –   | neu aufgenommen | ch07-*             |

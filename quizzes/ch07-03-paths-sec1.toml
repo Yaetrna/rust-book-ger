@@ -1,10 +1,10 @@
 [[questions]]
 id = "4e18f340-e336-43c5-9a95-79dec1f49945"
 type = "ShortAnswer"
-prompt.prompt = "What is the keyword you use at the start of an absolute path to an item in the current crate?"
+prompt.prompt = "Welches Schlüsselwort verwendest du am Anfang eines absoluten Pfades zu einem Element im aktuellen Crate?"
 answer.answer = "crate"
 context = """
-For example, an absolute path to item `b` in module `a` would be `crate::a::b`.
+Ein absoluter Pfad zum Element `b` im Modul `a` wäre zum Beispiel `crate::a::b`.
 """
 
 [[questions]]
@@ -25,7 +25,7 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 9
 context = """
-`b` is not accessible to `main` because the module `bar` is not marked as `pub`.
+`b` ist für `main` nicht zugänglich, weil das Modul `bar` nicht mit `pub` gekennzeichnet ist.
 """
 
 [[questions]]
@@ -46,5 +46,5 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "b"
 context = """
-It is valid within `foo` to use a relative path to refer to items within `bar`.
+Innerhalb von `foo` ist es zulässig, mit einem relativen Pfad auf Elemente in `bar` zu verweisen.
 """
