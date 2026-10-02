@@ -1,41 +1,42 @@
-# Final Project: Building a Multithreaded Web Server
+# Abschlussprojekt: Einen Multithread-Webserver bauen {#final-project-building-a-multithreaded-web-server}
 
-It’s been a long journey, but we’ve reached the end of the book. In this
-chapter, we’ll build one more project together to demonstrate some of the
-concepts we covered in the final chapters, as well as recap some earlier
-lessons.
+Es war eine lange Reise, aber wir sind am Ende des Buches angekommen. In diesem
+Kapitel bauen wir gemeinsam noch ein weiteres Projekt, um einige der Konzepte zu
+demonstrieren, die wir in den letzten Kapiteln behandelt haben, und um einige
+frühere Lektionen zu wiederholen.
 
-For our final project, we’ll make a web server that says “Hello!” and looks like
-Figure 21-1 in a web browser.
+Für unser Abschlussprojekt erstellen wir einen Webserver, der „Hello!“ sagt und
+in einem Webbrowser wie Abbildung 21-1 aussieht.
 
-Here is our plan for building the web server:
+Hier ist unser Plan für den Bau des Webservers:
 
-1. Learn a bit about TCP and HTTP.
-2. Listen for TCP connections on a socket.
-3. Parse a small number of HTTP requests.
-4. Create a proper HTTP response.
-5. Improve the throughput of our server with a thread pool.
+1. Ein wenig über TCP und HTTP lernen.
+2. Auf einem Socket auf TCP-Verbindungen lauschen.
+3. Eine kleine Anzahl von HTTP-Anfragen parsen.
+4. Eine ordentliche HTTP-Antwort erstellen.
+5. Den Durchsatz unseres Servers mit einem Thread-Pool verbessern.
 
-<img alt="Screenshot of a web browser visiting the address 127.0.0.1:8080 displaying a webpage with the text content “Hello! Hi from Rust”" src="img/trpl21-01.png" class="center" style="width: 50%;" />
+<img alt="Screenshot eines Webbrowsers, der die Adresse 127.0.0.1:8080 aufruft und eine Webseite mit dem Textinhalt „Hello! Hi from Rust“ anzeigt" src="img/trpl21-01.png" class="center" style="width: 50%;" />
 
-<span class="caption">Figure 21-1: Our final shared project</span>
+<span class="caption">Abbildung 21-1: Unser gemeinsames Abschlussprojekt</span>
 
-Before we get started, we should mention two details. First, the method we’ll
-use won’t be the best way to build a web server with Rust. Community members
-have published a number of production-ready crates available at
-[crates.io](https://crates.io/) that provide more complete web server and
-thread pool implementations than we’ll build. However, our intention in this
-chapter is to help you learn, not to take the easy route. Because Rust is a
-systems programming language, we can choose the level of abstraction we want to
-work with and can go to a lower level than is possible or practical in other
-languages.
+Bevor wir anfangen, sollten wir zwei Details erwähnen. Erstens ist die Methode,
+die wir verwenden, nicht der beste Weg, einen Webserver mit Rust zu bauen.
+Mitglieder der Community haben auf [crates.io](https://crates.io/) eine Reihe
+produktionsreifer Crates veröffentlicht, die vollständigere Implementierungen
+von Webservern und Thread-Pools bieten, als wir sie bauen werden. Unsere Absicht
+in diesem Kapitel ist es aber, dir beim Lernen zu helfen, nicht den einfachen
+Weg zu gehen. Weil Rust eine Systemprogrammiersprache ist, können wir die
+Abstraktionsebene wählen, auf der wir arbeiten wollen, und können auf eine
+niedrigere Ebene gehen, als es in anderen Sprachen möglich oder praktikabel ist.
 
-Second, we will not be using async and await here. Building a thread pool is a
-big enough challenge on its own, without adding in building an async runtime!
-However, we will note how async and await might be applicable to some of the
-same problems we will see in this chapter. Ultimately, as we noted back in
-Chapter 17, many async runtimes use thread pools for managing their work.
+Zweitens verwenden wir hier weder async noch await. Einen Thread-Pool zu bauen,
+ist für sich genommen schon eine ausreichend große Herausforderung, auch ohne
+zusätzlich eine Async-Runtime zu bauen! Wir weisen jedoch darauf hin, wie async
+und await auf einige der Probleme anwendbar sein könnten, die uns in diesem
+Kapitel begegnen. Letztlich verwenden viele Async-Runtimes, wie wir in Kapitel
+17 angemerkt haben, Thread-Pools, um ihre Arbeit zu verwalten.
 
-We’ll therefore write the basic HTTP server and thread pool manually so that
-you can learn the general ideas and techniques behind the crates you might use
-in the future.
+Wir schreiben den einfachen HTTP-Server und den Thread-Pool daher von Hand,
+damit du die allgemeinen Ideen und Techniken hinter den Crates kennenlernst, die
+du in Zukunft vielleicht verwenden wirst.
