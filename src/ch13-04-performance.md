@@ -2,56 +2,61 @@
 
 <a id="comparing-performance-loops-vs-iterators"></a>
 
-## Performance in Loops vs. Iterators
+## Performance von Schleifen und Iteratoren {#performance-in-loops-vs-iterators}
 
-To determine whether to use loops or iterators, you need to know which
-implementation is faster: the version of the `search` function with an explicit
-`for` loop or the version with iterators.
+Um zu entscheiden, ob du Schleifen oder Iteratoren verwenden solltest, musst du
+wissen, welche Implementierung schneller ist: die Version der Funktion `search`
+mit einer expliziten `for`-Schleife oder die Version mit Iteratoren.
 
-We ran a benchmark by loading the entire contents of _The Adventures of
-Sherlock Holmes_ by Sir Arthur Conan Doyle into a `String` and looking for the
-word _the_ in the contents. Here are the results of the benchmark on the
-version of `search` using the `for` loop and the version using iterators:
+Wir haben einen Benchmark durchgeführt, bei dem wir den gesamten Inhalt von _The
+Adventures of Sherlock Holmes_ von Sir Arthur Conan Doyle in einen `String`
+geladen und im Inhalt nach dem Wort _the_ gesucht haben. Hier sind die
+Ergebnisse des Benchmarks für die Version von `search` mit der `for`-Schleife
+und die Version mit Iteratoren:
 
 ```text
 test bench_search_for  ... bench:  19,620,300 ns/iter (+/- 915,700)
 test bench_search_iter ... bench:  19,234,900 ns/iter (+/- 657,200)
 ```
 
-The two implementations have similar performance! We won’t explain the
-benchmark code here because the point is not to prove that the two versions
-are equivalent but to get a general sense of how these two implementations
-compare performance-wise.
+Die beiden Implementierungen haben eine ähnliche Performance! Wir erklären den
+Benchmark-Code hier nicht, weil es nicht darum geht zu beweisen, dass die beiden
+Versionen gleichwertig sind, sondern ein allgemeines Gefühl dafür zu bekommen,
+wie sich diese beiden Implementierungen in Sachen Performance vergleichen.
 
-For a more comprehensive benchmark, you should check using various texts of
-various sizes as the `contents`, different words and words of different lengths
-as the `query`, and all kinds of other variations. The point is this:
-Iterators, although a high-level abstraction, get compiled down to roughly the
-same code as if you’d written the lower-level code yourself. Iterators are one
-of Rust’s _zero-cost abstractions_, by which we mean that using the abstraction
-imposes no additional runtime overhead. This is analogous to how Bjarne
-Stroustrup, the original designer and implementor of C++, defines
-zero-overhead in his 2012 ETAPS keynote presentation “Foundations of C++”:
+Für einen umfassenderen Benchmark solltest du verschiedene Texte
+unterschiedlicher Größe als `contents`, verschiedene Wörter und Wörter
+unterschiedlicher Länge als `query` und alle möglichen anderen Variationen
+prüfen. Worauf es ankommt: Iteratoren sind zwar eine Abstraktion auf hoher
+Ebene, werden aber zu ungefähr demselben Code kompiliert, als hättest du den
+Code auf niedrigerer Ebene selbst geschrieben. Iteratoren sind eine der
+_Zero-Cost-Abstraktionen_ (_zero-cost abstractions_) von Rust, womit wir meinen,
+dass die Verwendung der Abstraktion keinen zusätzlichen Laufzeitaufwand
+verursacht. Das entspricht der Art, wie Bjarne Stroustrup, der ursprüngliche
+Designer und Implementierer von C++, „Zero-Overhead“ in seinem Keynote-Vortrag
+„Foundations of C++“ auf der ETAPS 2012 definiert:
 
-> In general, C++ implementations obey the zero-overhead principle: What you
-> don’t use, you don’t pay for. And further: What you do use, you couldn’t hand
-> code any better.
+> Im Allgemeinen folgen C++-Implementierungen dem Zero-Overhead-Prinzip: Was du
+> nicht verwendest, dafür zahlst du nicht. Und weiter: Was du verwendest,
+> könntest du von Hand nicht besser programmieren.
 
-In many cases, Rust code using iterators compiles to the same assembly you’d
-write by hand. Optimizations such as loop unrolling and eliminating bounds
-checking on array access apply and make the resultant code extremely efficient.
-Now that you know this, you can use iterators and closures without fear! They
-make code seem like it’s higher level but don’t impose a runtime performance
-penalty for doing so.
+In vielen Fällen wird Rust-Code mit Iteratoren zu demselben Assembler-Code
+kompiliert, den du von Hand schreiben würdest. Optimierungen wie das Abrollen
+von Schleifen (_loop unrolling_) und das Entfernen von Grenzprüfungen beim
+Array-Zugriff greifen und machen den resultierenden Code äußerst effizient.
+Jetzt, da du das weißt, kannst du Iteratoren und Closures ohne Bedenken
+verwenden! Sie lassen Code abstrakter wirken, kosten dafür aber keine
+Performance zur Laufzeit.
 
-## Summary
+## Zusammenfassung {#summary}
 
-Closures and iterators are Rust features inspired by functional programming
-language ideas. They contribute to Rust’s capability to clearly express
-high-level ideas at low-level performance. The implementations of closures and
-iterators are such that runtime performance is not affected. This is part of
-Rust’s goal to strive to provide zero-cost abstractions.
+Closures und Iteratoren sind Features von Rust, die von Ideen funktionaler
+Programmiersprachen inspiriert sind. Sie tragen dazu bei, dass Rust Ideen auf
+hoher Ebene klar ausdrücken kann und dabei die Performance von Code auf
+niedriger Ebene erreicht. Closures und Iteratoren sind so implementiert, dass
+die Performance zur Laufzeit nicht beeinträchtigt wird. Das ist Teil des Ziels
+von Rust, Zero-Cost-Abstraktionen bereitzustellen.
 
-Now that we’ve improved the expressiveness of our I/O project, let’s look at
-some more features of `cargo` that will help us share the project with the
-world.
+Nachdem wir die Ausdrucksstärke unseres I/O-Projekts verbessert haben, sehen wir
+uns einige weitere Features von `cargo` an, mit denen wir das Projekt mit der
+Welt teilen können.

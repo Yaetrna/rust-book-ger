@@ -2,25 +2,25 @@
 id = "e6cbd582-9692-4045-a984-8770a12e1b95"
 type = "MultipleChoice"
 prompt.prompt = """
-Which of the following best describes the rationale for why Rust will infer the types of arguments/returns for closures, but not top-level functions?
+Was beschreibt am besten die Begründung dafür, dass Rust die Typen von Argumenten und Rückgabewerten bei Closures ableitet, bei Funktionen auf oberster Ebene aber nicht?
 """
-answer.answer = "Top-level functions can be part of a library's external interface, while closures cannot be directly exposed"
+answer.answer = "Funktionen auf oberster Ebene können Teil der externen Schnittstelle einer Bibliothek sein, Closures dagegen können nicht direkt offengelegt werden"
 prompt.distractors = [
-  "Due to the halting problem, it is mathematically impossible for Rust to infer the types of top-level functions",
-  "For backwards compatibility with older versions of Rust",
-  "Anything assignable to a variable can be type-inferred, and top-level functions cannot be assigned to a variable"
+  "Wegen des Halteproblems ist es für Rust mathematisch unmöglich, die Typen von Funktionen auf oberster Ebene abzuleiten",
+  "Wegen der Abwärtskompatibilität mit älteren Rust-Versionen",
+  "Für alles, was sich einer Variable zuweisen lässt, kann der Typ abgeleitet werden, und Funktionen auf oberster Ebene lassen sich keiner Variable zuweisen"
 ]
 context = """
-Rust could, in theory, provide type inference for top-level functions. Functional languages like Haskell and OCaml have this feature.
-However, Rust designers made the conscious decision to require type annotations on top-level functions to promote clarity at the 
-interface level: a function will always have exactly the type it says it has.
+Rust könnte theoretisch Typableitung für Funktionen auf oberster Ebene bieten. Funktionale Sprachen wie Haskell und OCaml haben dieses Feature.
+Die Designer von Rust haben sich aber bewusst dafür entschieden, bei Funktionen auf oberster Ebene Typannotationen zu verlangen, um Klarheit auf 
+der Ebene der Schnittstellen zu fördern: Eine Funktion hat immer genau den Typ, den sie angibt.
 """
 
 [[questions]]
 id = "f844d1c2-3f63-4cdb-b16e-6e818e996e0d"
 type = "MultipleChoice"
 prompt.prompt = """
-Rust permits pattern matching within closure arguments, including the use of the underscore. For example, you could write the following:
+Rust erlaubt Pattern-Matching in Closure-Argumenten, einschließlich des Unterstrichs. Du könntest zum Beispiel Folgendes schreiben:
 
 ```rust
 let f = |_| (); // sometimes called the "toilet closure"
@@ -28,15 +28,15 @@ let s = String::from("Hello");
 f(s);
 ```
 
-Which of the following best describes the relationship between `f` and `s` in this program?
+Was beschreibt die Beziehung zwischen `f` und `s` in diesem Programm am besten?
 """
-answer.answer = "`f` causes `s` to be immediately dropped"
+answer.answer = "`f` sorgt dafür, dass `s` sofort verworfen wird"
 prompt.distractors = [
-  "`f` has no effect on `s`",
-  "`f` reads `s` and then throws away the result",
-  "`f` captures `s` in its environment"
+  "`f` hat keine Auswirkung auf `s`",
+  "`f` liest `s` und wirft das Ergebnis dann weg",
+  "`f` erfasst `s` in seiner Umgebung"
 ]
 context = """
-The toilet closure is similar to [`std::mem::drop`](https://doc.rust-lang.org/std/mem/fn.drop.html), i.e. a function that moves
-an argument and causes it to be dropped.
+Die „Toilet Closure“ ähnelt [`std::mem::drop`](https://doc.rust-lang.org/std/mem/fn.drop.html), also einer Funktion, die
+ein Argument verschiebt (*moves*) und dafür sorgt, dass es verworfen wird.
 """

@@ -230,6 +230,11 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | standard output / standard error           | Standardausgabe / Standardfehlerausgabe            | die                               | `stdout` / `stderr` bleiben                            | entschieden |
 | maintainer                                 | Maintainer                                         | der / die Maintainer              |                                                        | entschieden |
 | exit status / exit code                    | Exit-Status / Exit-Code                            | der                               |                                                        | entschieden |
+| capture (closure)                          | erfassen                                           | –                                 | (_capture_) bei der Einführung                         | entschieden |
+| environment (closure)                      | Umgebung                                           | die                               |                                                        | entschieden |
+| lazy (iterator)                            | lazy (träge)                                       | –                                 | Glosse „träge“ bei der Einführung                      | entschieden |
+| consume (iterator)                         | verbrauchen                                        | –                                 | (_consumes_) bei der Einführung                        | entschieden |
+| consuming adapter / iterator adapter       | verbrauchender Adapter / Iterator-Adapter          | der                               |                                                        | entschieden |
 | standard library                           | Standardbibliothek                                 | die / –                           |                                                        | entschieden |
 | dependency                                 | Abhängigkeit                                       | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                                   | Compiler                                           | der / die Compiler                |                                                        | entschieden |
@@ -364,3 +369,4 @@ dort, wo das Buch sie definiert.
 | Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein) | –   | neu aufgenommen | ch10-*             |
 | Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                        | –   | neu aufgenommen | ch11-*             |
 | Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                | –   | neu aufgenommen | ch12-*             |
+| Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                   | –   | neu aufgenommen | ch13-*             |
