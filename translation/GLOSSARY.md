@@ -235,6 +235,10 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | lazy (iterator)                            | lazy (träge)                                       | –                                 | Glosse „träge“ bei der Einführung                      | entschieden |
 | consume (iterator)                         | verbrauchen                                        | –                                 | (_consumes_) bei der Einführung                        | entschieden |
 | consuming adapter / iterator adapter       | verbrauchender Adapter / Iterator-Adapter          | der                               |                                                        | entschieden |
+| documentation comment                      | Dokumentationskommentar                            | der                               |                                                        | entschieden |
+| yank (crate version)                       | zurückziehen / Yank                                | der                               | Befehl `cargo yank` bleibt                             | entschieden |
+| binary target / library target             | Binary-Target / Library-Target                     | das                               |                                                        | entschieden |
+| Figure N-M (caption)                       | Abbildung N-M                                      | die                               | handgeschriebene Bildunterschriften                    | entschieden |
 | standard library                           | Standardbibliothek                                 | die / –                           |                                                        | entschieden |
 | dependency                                 | Abhängigkeit                                       | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                                   | Compiler                                           | der / die Compiler                |                                                        | entschieden |
@@ -370,3 +374,4 @@ dort, wo das Buch sie definiert.
 | Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                        | –   | neu aufgenommen | ch11-*             |
 | Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                | –   | neu aufgenommen | ch12-*             |
 | Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                   | –   | neu aufgenommen | ch13-*             |
+| Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                             | –   | neu aufgenommen | ch14-*             |

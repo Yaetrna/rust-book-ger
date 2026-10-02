@@ -38,7 +38,8 @@ Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 | Kapitel 11                                | ch11-* mit Quizzen                           | ✅     |
 | Kapitel 12                                | ch12-* (keine Quizze)                        | ✅     |
 | Kapitel 13                                | ch13-* mit Quizzen                           | ✅     |
-| Kapitel 14–21, Anhänge, end-of-experiment | –                                            | ⬜     |
+| Kapitel 14                                | ch14-* mit Quizzen                           | ✅     |
+| Kapitel 15–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
@@ -82,10 +83,5 @@ anpassen).
 
 | Ziel                                                         | Linktext                                                     | Quelle  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| ch14-02#exporting-a-convenient-public-api-with-pub-use       | „Eine bequeme öffentliche API exportieren“                   | ch07-04 |
-| ch11-01#how-to-write-tests                                   | „Wie man Tests schreibt“                                     | ch07-04 |
-| ch10-03#validating-references-with-lifetimes                 | „Referenzen mit Lifetimes validieren“                        | ch08-03 |
 | ch18-02#using-trait-objects-to-abstract-over-shared-behavior | „Mit Trait-Objekten über gemeinsames Verhalten abstrahieren“ | ch09-02 |
 | ch18-03#encoding-states-and-behavior-as-types                | „Zustände und Verhalten als Typen kodieren“                  | ch09-03 |
-| ch13-02 (Seite)                                              | „Eine Folge von Elementen mit Iteratoren verarbeiten“        | ch08-01 |
-| ch14-02#documentation-comments-as-tests                      | „Dokumentationskommentare als Tests“                         | ch11-01 |
