@@ -271,7 +271,7 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | Ownership Inventory #N                 | Ownership-Inventur #N                 | Kapiteltitel                                                             | offen       |
 | L1, L2, … (Diagramm-Marken)            | L1, L2, …                             | stehen so in den Diagrammen                                              | fest        |
 | question mark crab                     | Fragezeichen-Krabbe                   | Ferris mit Fragezeichen                                                  | entschieden |
-| Hello, World! / Hello, Cargo!          | unverändert                           | Namen der Beispielprogramme (die Ausgabe bleibt englisch)                | offen       |
+| Hello, World! / Hello, Cargo!          | unverändert                           | Namen der Beispielprogramme (die Ausgabe bleibt englisch)                | entschieden |
 | Kapiteltitel in Querverweisen          | wie in `src/SUMMARY.md`               | z. B. [„Referenzen mit Lifetimes validieren“](…)                         | entschieden |
 | `> Note: …` (von `trpl-note` erkannt)  | `> Note: …` unverändert, Rest deutsch | Präfix wird vom Präprozessor erkannt; siehe Bericht                      | fest        |
 | `*Note:*`, `**Note:**`, `<i>Note:</i>` | _Hinweis:_                            | werden von keinem Werkzeug ausgewertet                                   | entschieden |

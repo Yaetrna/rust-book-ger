@@ -27,13 +27,20 @@ Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 | `src/ch04-02-references-and-borrowing.md` | `ch04-02-references-sec{1-basics,2-perms,3-safety}.toml` | ✅     |
 | alle übrigen Dateien in `src/`            | alle übrigen Dateien in `quizzes/`                       | ⬜     |
 
-`book.toml`: `language = "de"` gesetzt; Titel „Die Programmiersprache Rust“
-als Vorschlag gesetzt (wartet auf Freigabe).
+`book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
 `src/experiment-intro.md`: nur der Übersetzerhinweis ist ergänzt; die Seite
 selbst ist noch nicht übersetzt.
 
-**Checkpoint:** Pilot abgeschlossen, wartet auf Freigabe.
+**Checkpoint:** Pilot freigegeben. Entscheidungen dazu:
+
+- Titel „Die Programmiersprache Rust“, auch in Zeile 1 von `src/SUMMARY.md`.
+- `src/title-page.md:14` („only available online and in English“) wird beim
+  Übersetzen sinngemäß angepasst, nicht wörtlich übersetzt.
+- „Hello, World!“ / „Hello, Cargo!“ bleiben.
+- `> Note:` bleibt englisch, bis der Präprozessor geändert ist.
+- Glossen für Compiler-Begriffe pro Seite (kann sich noch ändern).
+- Push auf den eigenen Fork erlaubt (kein PR).
 
 ## Werkzeuge und Build (Pilot)
 

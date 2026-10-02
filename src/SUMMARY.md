@@ -1,4 +1,4 @@
-# The Rust Programming Language
+# Die Programmiersprache Rust
 
 [Was ist an diesem Buch anders?](experiment-intro.md)
 [Die Programmiersprache Rust](title-page.md)
