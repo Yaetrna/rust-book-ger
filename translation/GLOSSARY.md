@@ -63,6 +63,7 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | pattern                    | Pattern                           | das / die Patterns                  | nie „Muster“                                                                 | fest        |
 | pattern matching           | Pattern-Matching                  | das / –                             |                                                                              | fest        |
 | match arm                  | Arm, `match`-Arm                  | der / die Arme                      | gleiches Wort im Deutschen                                                   | entschieden |
+| match expression / match (ohne Backticks im Original) | Match-Ausdruck, Match-Arm | der | mit Backticks im Original: `match`-Ausdruck; nie Backticks ergänzen | entschieden |
 | match guard                | Match-Guard                       | der / die Match-Guards              |                                                                              | entschieden |
 | generics                   | Generics                          | die (Pl.)                           | Adjektiv „generic“ → „generisch“ (generischer Typ, generische Funktion)      | fest        |
 | iterator                   | Iterator                          | der / die Iteratoren                |                                                                              | fest        |

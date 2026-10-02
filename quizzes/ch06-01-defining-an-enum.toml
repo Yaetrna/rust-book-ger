@@ -14,14 +14,14 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 6
 context = """ 
-Rust does not have null pointers, so the `null` keyword does not exist. An Option type should be used to represent the possibility of an object being null.
+Rust hat keine Null-Zeiger, daher gibt es das Schlüsselwort `null` nicht. Um auszudrücken, dass ein Objekt möglicherweise null ist, sollte ein Option-Typ verwendet werden.
 """
 
 [[questions]]
 id = "6226be11-31c3-4cac-b97c-515514a70af2"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider these two representations of a `Result` type that contains a value `T` if a computation succeeds, or an error `E` if it fails.
+Betrachte diese beiden Darstellungen eines `Result`-Typs, der einen Wert `T` enthält, wenn eine Berechnung erfolgreich ist, oder einen Fehler `E`, wenn sie fehlschlägt.
 
 ```
 struct Result1<T, E> {
@@ -35,19 +35,19 @@ enum Result2<T, E> {
 }
 ```
 
-The enum `Result2` is considered more idiomatic than the struct `Result1` in Rust. 
-Which statement below is **NOT** a valid reason why?
+Das Enum `Result2` gilt in Rust als idiomatischer als das Struct `Result1`. 
+Welche der folgenden Aussagen ist **KEIN** gültiger Grund dafür?
 """
-answer.answer = "The struct contains `Option` types, which are only intended to wrap structs"
+answer.answer = "Das Struct enthält `Option`-Typen, die nur dafür gedacht sind, Structs zu umhüllen"
 prompt.distractors = [
-  "The struct uses more space in memory at runtime than the enum",
-  "The struct could have `ok` and `err` both be `None`, while the enum must have at least one of them",
-  "The struct is more syntactically verbose to construct than the enum"
+  "Das Struct belegt zur Laufzeit mehr Speicher als das Enum",
+  "Beim Struct könnten `ok` und `err` beide `None` sein, das Enum muss dagegen mindestens eines davon haben",
+  "Das Struct ist syntaktisch umständlicher zu konstruieren als das Enum"
 ]
 context = """
-It's perfectly fine to have structs contain `Option` types as fields (the question asked for which is **NOT** a valid reason).
-But if your data structure has invariants like "exactly one of two optional fields should be `Some`",
-then that invariant is better ensured by use of an enum.
+Es ist völlig in Ordnung, wenn Structs `Option`-Typen als Felder enthalten (gefragt war nach dem, was **KEIN** gültiger Grund ist).
+Wenn deine Datenstruktur aber Invarianten hat wie „genau eines von zwei optionalen Feldern soll `Some` sein“,
+dann lässt sich diese Invariante mit einem Enum besser sicherstellen.
 """
 
 

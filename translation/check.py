@@ -1017,6 +1017,35 @@ def cmd_restore_ws(files: list[str], base: str) -> int:
     return 0
 
 
+def cmd_restore_code(files: list[str], base: str) -> int:
+    """Formatters may drop trailing blank lines inside fenced code blocks.
+    For each fence that differs from the base commit only in trailing
+    whitespace, copy the base lines back."""
+    for path in files:
+        if not path.endswith(".md"):
+            continue
+        b = base_text(path, base)
+        if b is None:
+            continue
+        full = REPO / path
+        t = full.read_text()
+        b_fences = [x for x in MD.parse(b) if x.type == "fence"]
+        t_fences = [x for x in MD.parse(TRANSLATOR_NOTE_RE.sub(lambda m: "\n" * m.group(0).count("\n"), t)) if x.type == "fence"]
+        if len(b_fences) != len(t_fences):
+            continue
+        b_lines, t_lines = b.split("\n"), t.split("\n")
+        changes = []
+        for bf, tf in zip(b_fences, t_fences):
+            if bf.content != tf.content and bf.content.rstrip() == tf.content.rstrip() and bf.info == tf.info:
+                changes.append((tf.map, b_lines[bf.map[0]: bf.map[1]]))
+        for (start, end), new_lines in sorted(changes, reverse=True):
+            t_lines[start:end] = new_lines
+        if changes:
+            full.write_text("\n".join(t_lines))
+            print(f"{path}: {len(changes)} Codeblöcke wiederhergestellt")
+    return 0
+
+
 MAIN_RE = re.compile(r"<main>(.*?)</main>", re.S)
 H_ID_RE = re.compile(r"<h([1-6]) id=\"([^\"]+)\"")
 ANY_ID_RE = re.compile(r"\bid=\"([^\"]+)\"")
@@ -1105,7 +1134,7 @@ def cmd_verify_html(html_dir: Path, base_html: Path | None) -> int:
 
 
 def main(argv: list[str]) -> int:
-    commands = {"check", "review", "english", "gen-heading-ids", "verify-html", "restore-ws"}
+    commands = {"check", "review", "english", "gen-heading-ids", "verify-html", "restore-ws", "restore-code"}
     command = "check"
     if argv and argv[0] in commands:
         command = argv.pop(0)
@@ -1146,6 +1175,8 @@ def main(argv: list[str]) -> int:
     selected = select_files(files, base, all_files)
     if command == "restore-ws":
         return cmd_restore_ws(selected, base)
+    if command == "restore-code":
+        return cmd_restore_code(selected, base)
     if command in ("review", "english"):
         return cmd_grep(command, selected, base)
 

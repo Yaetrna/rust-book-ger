@@ -12,3 +12,13 @@ reason = "„final project“, nicht „closure“"
 [[review_allow]]
 word = "Datenstruktur"
 reason = "allgemeiner Begriff „data structure“, nicht „struct“"
+
+[[english_allow]]
+file = "quizzes/*inventory*.toml"
+contains = "live long enough"
+reason = "Antwortoptionen geben englische Compiler-Meldungen wieder"
+
+[[english_allow]]
+file = "quizzes/*inventory*.toml"
+contains = "cannot "
+reason = "Antwortoptionen geben englische Compiler-Meldungen wieder"
