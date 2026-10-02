@@ -322,23 +322,29 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | blog post / draft / review                 | Blogbeitrag / Entwurf / Review                     | der / der / das                   | Beispiel in ch18-03                                    | entschieden |
 | design trade-off                           | Abwägung beim Design                               | die / die Abwägungen              | Glosse bei Einführung                                  | entschieden |
 | API client                                 | Nutzer der API                                     | der / die Nutzer                  | Quizze in ch18-05                                      | entschieden |
+| match arm                                  | Match-Arm                                          | der / die Match-Arme              | „`match`-Arm“ nur, wenn das Original Code setzt        | entschieden |
+| catch-all (pattern)                        | Auffang-Pattern / Auffangfall                      | das / der                         | wie in ch06-02                                         | entschieden |
+| wildcard                                   | Wildcard                                           | die / die Wildcards               | „Wildcard-Pattern“                                     | entschieden |
+| exhaustive                                 | erschöpfend (_exhaustive_)                         | –                                 | wie in ch06-02                                         | entschieden |
+| shadow (Verb)                              | überschatten (_shadow_)                            | –                                 | Nomen bleibt „Shadowing“                               | entschieden |
+| struct field shorthand                     | Kurzschreibweise für Struct-Felder                 | die                               |                                                        | entschieden |
 
 ## 3. Verben
 
-| Englisch                | Deutsch                                                               | Hinweis                                                                   | Status      |
-| ----------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------- |
-| move                    | verschieben                                                           | nie „moven“, „gemoved“                                                    | fest        |
-| borrow                  | ausleihen                                                             | nie „borrowen“, „geborrowt“                                               | fest        |
-| own                     | besitzen                                                              | „owned data“ je nach Kontext umschreiben („Daten, die … besitzt“)         | fest        |
-| drop                    | verwerfen                                                             | Funktion `drop` bleibt Code                                               | fest        |
-| clone                   | klonen                                                                |                                                                           | fest        |
-| panic                   | einen Panic auslösen                                                  | nie „panicken“                                                            | fest        |
-| match (Pattern)         | passen (auf), übereinstimmen                                          | nie „matchen“                                                             | entschieden |
-| await                   | abwarten (_await_)                                                    | Schlüsselwort `await` bleibt Code                                         | entschieden |
-| pin                     | fixieren (_pin_)                                                      | Typ `Pin` bleibt Code                                                     | entschieden |
-| refutable / irrefutable | refutable / irrefutable (Glosse: „kann fehlschlagen“ / „passt immer“) | Compiler: „refutable pattern in local binding“; Alternative „widerlegbar“ | offen       |
-| compile                 | kompilieren                                                           |                                                                           | entschieden |
-| refactor                | refaktorisieren                                                       |                                                                           | entschieden |
+| Englisch                | Deutsch                                               | Hinweis                                                             | Status      |
+| ----------------------- | ----------------------------------------------------- | ------------------------------------------------------------------- | ----------- |
+| move                    | verschieben                                           | nie „moven“, „gemoved“                                              | fest        |
+| borrow                  | ausleihen                                             | nie „borrowen“, „geborrowt“                                         | fest        |
+| own                     | besitzen                                              | „owned data“ je nach Kontext umschreiben („Daten, die … besitzt“)   | fest        |
+| drop                    | verwerfen                                             | Funktion `drop` bleibt Code                                         | fest        |
+| clone                   | klonen                                                |                                                                     | fest        |
+| panic                   | einen Panic auslösen                                  | nie „panicken“                                                      | fest        |
+| match (Pattern)         | passen (auf), übereinstimmen                          | nie „matchen“                                                       | entschieden |
+| await                   | abwarten (_await_)                                    | Schlüsselwort `await` bleibt Code                                   | entschieden |
+| pin                     | fixieren (_pin_)                                      | Typ `Pin` bleibt Code                                               | entschieden |
+| refutable / irrefutable | abweisbar / unabweisbar (_refutable_ / _irrefutable_) | Compilerausgabe bleibt Englisch; „Abweisbarkeit“ für _refutability_ | entschieden |
+| compile                 | kompilieren                                           |                                                                     | entschieden |
+| refactor                | refaktorisieren                                       |                                                                     | entschieden |
 
 ## 4. Begriffe dieses Buchs
 
@@ -398,17 +404,18 @@ dort, wo das Buch sie definiert.
 
 ## Änderungsprotokoll
 
-| Datum   | Begriff                                                                                                                                                 | alt                                                    | neu             | betroffene Dateien |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | --------------- | ------------------ |
-| Kap. 7  | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house                                                | –                                                      | neu aufgenommen | ch07-*             |
-| Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                                                                     | –                                                      | neu aufgenommen | ch08-*             |
-| Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread                                        | –                                                      | neu aufgenommen | ch09-*             |
-| Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein)                                       | –                                                      | neu aufgenommen | ch10-*             |
-| Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                                                              | –                                                      | neu aufgenommen | ch11-*             |
-| Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                                                      | –                                                      | neu aufgenommen | ch12-*             |
-| Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                                                         | –                                                      | neu aufgenommen | ch13-*             |
-| Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                                                                   | –                                                      | neu aufgenommen | ch14-*             |
-| Kap. 15 | pointer, design pattern, recursive type, indirection, memory leak, strong/weak reference, test double, destructor                                       | –                                                      | neu aufgenommen | ch15-*             |
-| Kap. 16 | fearless concurrency, spawn, main thread, join handle, transmitter/receiver, lock, concurrency primitive, marker trait                                  | –                                                      | neu aufgenommen | ch16-*             |
-| Kap. 17 | polling, await point, state machine, runtime, task, starve, cooperative multitasking, CPU-/I/O-bound, blocking, stream, self-referential, work stealing | –                                                      | neu aufgenommen | ch17-*             |
-| Kap. 18 | state object, subclass/parent/child class, single inheritance, duck typing, dyn compatibility, blog post/draft/review, design trade-off, API client     | raw pointer: ch16-04 auf „Raw-Pointer“ vereinheitlicht | neu aufgenommen | ch18-*             |
+| Datum   | Begriff                                                                                                                                                  | alt                                                    | neu             | betroffene Dateien |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | --------------- | ------------------ |
+| Kap. 7  | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house                                                 | –                                                      | neu aufgenommen | ch07-*             |
+| Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                                                                      | –                                                      | neu aufgenommen | ch08-*             |
+| Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread                                         | –                                                      | neu aufgenommen | ch09-*             |
+| Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein)                                        | –                                                      | neu aufgenommen | ch10-*             |
+| Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                                                               | –                                                      | neu aufgenommen | ch11-*             |
+| Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                                                       | –                                                      | neu aufgenommen | ch12-*             |
+| Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                                                          | –                                                      | neu aufgenommen | ch13-*             |
+| Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                                                                    | –                                                      | neu aufgenommen | ch14-*             |
+| Kap. 15 | pointer, design pattern, recursive type, indirection, memory leak, strong/weak reference, test double, destructor                                        | –                                                      | neu aufgenommen | ch15-*             |
+| Kap. 16 | fearless concurrency, spawn, main thread, join handle, transmitter/receiver, lock, concurrency primitive, marker trait                                   | –                                                      | neu aufgenommen | ch16-*             |
+| Kap. 17 | polling, await point, state machine, runtime, task, starve, cooperative multitasking, CPU-/I/O-bound, blocking, stream, self-referential, work stealing  | –                                                      | neu aufgenommen | ch17-*             |
+| Kap. 18 | state object, subclass/parent/child class, single inheritance, duck typing, dyn compatibility, blog post/draft/review, design trade-off, API client      | raw pointer: ch16-04 auf „Raw-Pointer“ vereinheitlicht | neu aufgenommen | ch18-*             |
+| Kap. 19 | refutable/irrefutable → abweisbar/unabweisbar, match arm, catch-all, wildcard, exhaustive, shadow (Verb, wie ch03: überschatten), struct field shorthand | refutable: offen → entschieden                         | neu aufgenommen | ch19-*             |

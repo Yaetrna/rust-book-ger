@@ -1,35 +1,38 @@
-## Pattern Syntax
+## Pattern-Syntax {#pattern-syntax}
 
-In this section, we gather all the syntax that is valid in patterns and discuss
-why and when you might want to use each one.
+In diesem Abschnitt tragen wir die gesamte Syntax zusammen, die in Patterns
+gültig ist, und besprechen, warum und wann du die einzelnen Formen verwenden
+möchtest.
 
-### Matching Literals
+### Literale abgleichen {#matching-literals}
 
-As you saw in Chapter 6, you can match patterns against literals directly. The
-following code gives some examples:
+Wie du in Kapitel 6 gesehen hast, kannst du Patterns direkt mit Literalen
+abgleichen. Der folgende Code zeigt einige Beispiele:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-01-literals/src/main.rs:here}}
 ```
 
-This code prints `one` because the value in `x` is `1`. This syntax is useful
-when you want your code to take an action if it gets a particular concrete
-value.
+Dieser Code gibt `one` aus, weil der Wert in `x` `1` ist. Diese Syntax ist
+nützlich, wenn dein Code eine Aktion ausführen soll, sobald er einen bestimmten
+konkreten Wert bekommt.
 
-### Matching Named Variables
+### Benannte Variablen abgleichen {#matching-named-variables}
 
-Named variables are irrefutable patterns that match any value, and we’ve used
-them many times in this book. However, there is a complication when you use
-named variables in `match`, `if let`, or `while let` expressions. Because each
-of these kinds of expressions starts a new scope, variables declared as part of
-a pattern inside these expressions will shadow those with the same name outside
-the constructs, as is the case with all variables. In Listing 19-11, we declare
-a variable named `x` with the value `Some(5)` and a variable `y` with the value
-`10`. We then create a `match` expression on the value `x`. Look at the
-patterns in the match arms and `println!` at the end, and try to figure out
-what the code will print before running this code or reading further.
+Benannte Variablen sind unabweisbare Patterns, die auf jeden Wert passen, und
+wir haben sie in diesem Buch schon oft verwendet. Es gibt jedoch eine
+Komplikation, wenn du benannte Variablen in `match`-, `if let`- oder
+`while let`-Ausdrücken verwendest. Weil jeder dieser Ausdrücke einen neuen
+Gültigkeitsbereich (_scope_) beginnt, überschatten (_shadow_) Variablen, die als
+Teil eines Patterns innerhalb dieser Ausdrücke deklariert werden, gleichnamige
+Variablen außerhalb der Konstrukte, wie es bei allen Variablen der Fall ist. In
+Listing 19-11 deklarieren wir eine Variable namens `x` mit dem Wert `Some(5)`
+und eine Variable `y` mit dem Wert `10`. Dann erstellen wir einen
+`match`-Ausdruck für den Wert `x`. Sieh dir die Patterns in den Match-Armen und
+das `println!` am Ende an und versuche herauszufinden, was der Code ausgeben
+wird, bevor du ihn ausführst oder weiterliest.
 
-<Listing number="19-11" file-name="src/main.rs" caption="A `match` expression with an arm that introduces a new variable which shadows an existing variable `y`">
+<Listing number="19-11" file-name="src/main.rs" caption="Ein `match`-Ausdruck mit einem Arm, der eine neue Variable einführt, die eine bestehende Variable `y` überschattet">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-11/src/main.rs:here}}
@@ -37,96 +40,104 @@ what the code will print before running this code or reading further.
 
 </Listing>
 
-Let’s walk through what happens when the `match` expression runs. The pattern
-in the first match arm doesn’t match the defined value of `x`, so the code
-continues.
+Gehen wir durch, was passiert, wenn der `match`-Ausdruck ausgeführt wird. Das
+Pattern im ersten Match-Arm passt nicht auf den definierten Wert von `x`, also
+geht der Code weiter.
 
-The pattern in the second match arm introduces a new variable named `y` that
-will match any value inside a `Some` value. Because we’re in a new scope inside
-the `match` expression, this is a new `y` variable, not the `y` we declared at
-the beginning with the value `10`. This new `y` binding will match any value
-inside a `Some`, which is what we have in `x`. Therefore, this new `y` binds to
-the inner value of the `Some` in `x`. That value is `5`, so the expression for
-that arm executes and prints `Matched, y = 5`.
+Das Pattern im zweiten Match-Arm führt eine neue Variable namens `y` ein, die
+auf jeden Wert innerhalb eines `Some`-Werts passt. Weil wir uns innerhalb des
+`match`-Ausdrucks in einem neuen Gültigkeitsbereich befinden, ist das eine neue
+Variable `y`, nicht das `y`, das wir am Anfang mit dem Wert `10` deklariert
+haben. Diese neue Bindung `y` passt auf jeden Wert innerhalb eines `Some`, und
+genau das haben wir in `x`. Daher wird dieses neue `y` an den inneren Wert des
+`Some` in `x` gebunden. Dieser Wert ist `5`, also wird der Ausdruck für diesen
+Arm ausgeführt und gibt `Matched, y = 5` aus.
 
-If `x` had been a `None` value instead of `Some(5)`, the patterns in the first
-two arms wouldn’t have matched, so the value would have matched to the
-underscore. We didn’t introduce the `x` variable in the pattern of the
-underscore arm, so the `x` in the expression is still the outer `x` that hasn’t
-been shadowed. In this hypothetical case, the `match` would print `Default case,
-x = None`.
+Wäre `x` ein `None`-Wert statt `Some(5)` gewesen, hätten die Patterns in den
+ersten beiden Armen nicht gepasst, und der Wert hätte auf den Unterstrich
+gepasst. Wir haben im Pattern des Unterstrich-Arms keine Variable `x`
+eingeführt, daher ist das `x` im Ausdruck immer noch das äußere `x`, das nicht
+überschattet wurde. In diesem hypothetischen Fall würde der `match`
+`Default case,
+x = None` ausgeben.
 
-When the `match` expression is done, its scope ends, and so does the scope of
-the inner `y`. The last `println!` produces `at the end: x = Some(5), y = 10`.
+Wenn der `match`-Ausdruck fertig ist, endet sein Gültigkeitsbereich und damit
+auch der Gültigkeitsbereich des inneren `y`. Das letzte `println!` erzeugt
+`at the end: x = Some(5), y = 10`.
 
-To create a `match` expression that compares the values of the outer `x` and
-`y`, rather than introducing a new variable that shadows the existing `y`
-variable, we would need to use a match guard conditional instead. We’ll talk
-about match guards later in the [“Adding Conditionals with Match
-Guards”](#adding-conditionals-with-match-guards)<!-- ignore --> section.
+Um einen `match`-Ausdruck zu erstellen, der die Werte des äußeren `x` und `y`
+vergleicht, statt eine neue Variable einzuführen, die die bestehende Variable
+`y` überschattet, müssten wir stattdessen eine Bedingung mit einem Match-Guard
+verwenden. Über Match-Guards sprechen wir später im Abschnitt
+[„Bedingungen mit
+Match-Guards hinzufügen“](#adding-conditionals-with-match-guards)<!-- ignore -->.
 
 <!-- Old headings. Do not remove or links may break. -->
+
 <a id="multiple-patterns"></a>
 
-### Matching Multiple Patterns
+### Mehrere Patterns abgleichen {#matching-multiple-patterns}
 
-In `match` expressions, you can match multiple patterns using the `|` syntax,
-which is the pattern _or_ operator. For example, in the following code, we match
-the value of `x` against the match arms, the first of which has an _or_ option,
-meaning if the value of `x` matches either of the values in that arm, that
-arm’s code will run:
-
+In `match`-Ausdrücken kannst du mit der Syntax `|`, dem _Oder_-Operator für
+Patterns, mehrere Patterns abgleichen. Im folgenden Code gleichen wir zum
+Beispiel den Wert von `x` mit den Match-Armen ab, von denen der erste eine
+_Oder_-Option hat. Das bedeutet: Wenn der Wert von `x` auf einen der Werte in
+diesem Arm passt, wird der Code dieses Arms ausgeführt:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-02-multiple-patterns/src/main.rs:here}}
 ```
 
-This code prints `one or two`.
+Dieser Code gibt `one or two` aus.
 
-### Matching Ranges of Values with `..=`
+### Wertebereiche mit `..=` abgleichen {#matching-ranges-of-values-with-}
 
-The `..=` syntax allows us to match to an inclusive range of values. In the
-following code, when a pattern matches any of the values within the given
-range, that arm will execute:
+Mit der Syntax `..=` können wir einen inklusiven Wertebereich (_range_)
+abgleichen. Wenn im folgenden Code ein Pattern auf einen der Werte im
+angegebenen Bereich passt, wird dieser Arm ausgeführt:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-03-ranges/src/main.rs:here}}
 ```
 
-If `x` is `1`, `2`, `3`, `4`, or `5`, the first arm will match. This syntax is
-more convenient for multiple match values than using the `|` operator to
-express the same idea; if we were to use `|`, we would have to specify `1 | 2 |
-3 | 4 | 5`. Specifying a range is much shorter, especially if we want to match,
-say, any number between 1 and 1,000!
+Wenn `x` `1`, `2`, `3`, `4` oder `5` ist, passt der erste Arm. Für mehrere
+Vergleichswerte ist diese Syntax bequemer, als dieselbe Idee mit dem Operator
+`|` auszudrücken; würden wir `|` verwenden, müssten wir `1 | 2 |
+3 | 4 | 5`
+angeben. Einen Bereich anzugeben, ist viel kürzer, besonders wenn wir etwa auf
+jede Zahl zwischen 1 und 1.000 prüfen wollen!
 
-The compiler checks that the range isn’t empty at compile time, and because the
-only types for which Rust can tell if a range is empty or not are `char` and
-numeric values, ranges are only allowed with numeric or `char` values.
+Der Compiler prüft zur Kompilierzeit, dass der Bereich nicht leer ist, und weil
+`char` und numerische Werte die einzigen Typen sind, bei denen Rust feststellen
+kann, ob ein Bereich leer ist oder nicht, sind Bereiche nur mit numerischen
+Werten oder `char`-Werten erlaubt.
 
-Here is an example using ranges of `char` values:
+Hier ist ein Beispiel mit Bereichen von `char`-Werten:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-04-ranges-of-char/src/main.rs:here}}
 ```
 
-Rust can tell that `'c'` is within the first pattern’s range and prints `early
-ASCII letter`.
+Rust erkennt, dass `'c'` im Bereich des ersten Patterns liegt, und gibt
+`early
+ASCII letter` aus.
 
-### Destructuring to Break Apart Values
+### Destrukturieren, um Werte zu zerlegen {#destructuring-to-break-apart-values}
 
-We can also use patterns to destructure structs, enums, and tuples to use
-different parts of these values. Let’s walk through each value.
+Wir können Patterns auch verwenden, um Structs, Enums und Tupel zu
+destrukturieren und so verschiedene Teile dieser Werte zu verwenden. Gehen wir
+die einzelnen Werte durch.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="destructuring-structs"></a>
 
-#### Structs
+#### Structs {#structs}
 
-Listing 19-12 shows a `Point` struct with two fields, `x` and `y`, that we can
-break apart using a pattern with a `let` statement.
+Listing 19-12 zeigt ein Struct `Point` mit zwei Feldern, `x` und `y`, das wir
+mit einem Pattern in einer `let`-Anweisung zerlegen können.
 
-<Listing number="19-12" file-name="src/main.rs" caption="Destructuring a struct’s fields into separate variables">
+<Listing number="19-12" file-name="src/main.rs" caption="Die Felder eines Structs in einzelne Variablen destrukturieren">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-12/src/main.rs}}
@@ -134,19 +145,19 @@ break apart using a pattern with a `let` statement.
 
 </Listing>
 
-This code creates the variables `a` and `b` that match the values of the `x`
-and `y` fields of the `p` struct. This example shows that the names of the
-variables in the pattern don’t have to match the field names of the struct.
-However, it’s common to match the variable names to the field names to make it
-easier to remember which variables came from which fields. Because of this
-common usage, and because writing `let Point { x: x, y: y } = p;` contains a
-lot of duplication, Rust has a shorthand for patterns that match struct fields:
-You only need to list the name of the struct field, and the variables created
-from the pattern will have the same names. Listing 19-13 behaves in the same
-way as the code in Listing 19-12, but the variables created in the `let`
-pattern are `x` and `y` instead of `a` and `b`.
+Dieser Code erzeugt die Variablen `a` und `b`, die auf die Werte der Felder `x`
+und `y` des Structs `p` passen. Dieses Beispiel zeigt, dass die Namen der
+Variablen im Pattern nicht mit den Feldnamen des Structs übereinstimmen müssen.
+Es ist jedoch üblich, die Variablennamen an die Feldnamen anzugleichen, damit
+man sich leichter merken kann, welche Variablen aus welchen Feldern stammen.
+Wegen dieser verbreiteten Verwendung und weil `let Point { x: x, y: y } = p;`
+viel Wiederholung enthält, hat Rust eine Kurzschreibweise für Patterns, die auf
+Struct-Felder passen: Du musst nur den Namen des Struct-Felds angeben, und die
+aus dem Pattern erzeugten Variablen haben dieselben Namen. Listing 19-13 verhält
+sich genauso wie der Code in Listing 19-12, aber die im `let`-Pattern erzeugten
+Variablen sind `x` und `y` statt `a` und `b`.
 
-<Listing number="19-13" file-name="src/main.rs" caption="Destructuring struct fields using struct field shorthand">
+<Listing number="19-13" file-name="src/main.rs" caption="Struct-Felder mit der Kurzschreibweise für Struct-Felder destrukturieren">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-13/src/main.rs}}
@@ -154,20 +165,20 @@ pattern are `x` and `y` instead of `a` and `b`.
 
 </Listing>
 
-This code creates the variables `x` and `y` that match the `x` and `y` fields
-of the `p` variable. The outcome is that the variables `x` and `y` contain the
-values from the `p` struct.
+Dieser Code erzeugt die Variablen `x` und `y`, die auf die Felder `x` und `y`
+der Variablen `p` passen. Im Ergebnis enthalten die Variablen `x` und `y` die
+Werte aus dem Struct `p`.
 
-We can also destructure with literal values as part of the struct pattern
-rather than creating variables for all the fields. Doing so allows us to test
-some of the fields for particular values while creating variables to
-destructure the other fields.
+Wir können auch mit Literalwerten als Teil des Struct-Patterns destrukturieren,
+statt für alle Felder Variablen zu erzeugen. So können wir einige Felder auf
+bestimmte Werte prüfen und gleichzeitig Variablen erzeugen, um die anderen
+Felder zu destrukturieren.
 
-In Listing 19-14, we have a `match` expression that separates `Point` values
-into three cases: points that lie directly on the `x` axis (which is true when
-`y = 0`), on the `y` axis (`x = 0`), or on neither axis.
+In Listing 19-14 haben wir einen `match`-Ausdruck, der `Point`-Werte in drei
+Fälle aufteilt: Punkte, die direkt auf der `x`-Achse liegen (was gilt, wenn
+`y = 0` ist), auf der `y`-Achse (`x = 0`) oder auf keiner der beiden Achsen.
 
-<Listing number="19-14" file-name="src/main.rs" caption="Destructuring and matching literal values in one pattern">
+<Listing number="19-14" file-name="src/main.rs" caption="Destrukturieren und Literalwerte abgleichen in einem einzigen Pattern">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-14/src/main.rs:here}}
@@ -175,35 +186,39 @@ into three cases: points that lie directly on the `x` axis (which is true when
 
 </Listing>
 
-The first arm will match any point that lies on the `x` axis by specifying that
-the `y` field matches if its value matches the literal `0`. The pattern still
-creates an `x` variable that we can use in the code for this arm.
+Der erste Arm passt auf jeden Punkt, der auf der `x`-Achse liegt, indem er
+angibt, dass das Feld `y` passt, wenn sein Wert auf das Literal `0` passt. Das
+Pattern erzeugt trotzdem eine Variable `x`, die wir im Code für diesen Arm
+verwenden können.
 
-Similarly, the second arm matches any point on the `y` axis by specifying that
-the `x` field matches if its value is `0` and creates a variable `y` for the
-value of the `y` field. The third arm doesn’t specify any literals, so it
-matches any other `Point` and creates variables for both the `x` and `y` fields.
+Ebenso passt der zweite Arm auf jeden Punkt auf der `y`-Achse, indem er angibt,
+dass das Feld `x` passt, wenn sein Wert `0` ist, und er erzeugt eine Variable
+`y` für den Wert des Felds `y`. Der dritte Arm gibt keine Literale an, passt
+also auf jeden anderen `Point` und erzeugt Variablen für die beiden Felder `x`
+und `y`.
 
-In this example, the value `p` matches the second arm by virtue of `x`
-containing a `0`, so this code will print `On the y axis at 7`.
+In diesem Beispiel passt der Wert `p` auf den zweiten Arm, weil `x` eine `0`
+enthält, daher gibt dieser Code `On the y axis at 7` aus.
 
-Remember that a `match` expression stops checking arms once it has found the
-first matching pattern, so even though `Point { x: 0, y: 0 }` is on the `x` axis
-and the `y` axis, this code would only print `On the x axis at 0`.
+Denk daran, dass ein `match`-Ausdruck die Arme nicht mehr weiter prüft, sobald
+er das erste passende Pattern gefunden hat. Obwohl `Point { x: 0, y: 0 }` also
+sowohl auf der `x`-Achse als auch auf der `y`-Achse liegt, würde dieser Code nur
+`On the x axis at 0` ausgeben.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="destructuring-enums"></a>
 
-#### Enums
+#### Enums {#enums}
 
-We’ve destructured enums in this book (for example, Listing 6-5 in Chapter 6),
-but we haven’t yet explicitly discussed that the pattern to destructure an enum
-corresponds to the way the data stored within the enum is defined. As an
-example, in Listing 19-15, we use the `Message` enum from Listing 6-2 and write
-a `match` with patterns that will destructure each inner value.
+Wir haben in diesem Buch bereits Enums destrukturiert (zum Beispiel in Listing
+6-5 in Kapitel 6), aber noch nicht ausdrücklich besprochen, dass das Pattern zum
+Destrukturieren eines Enums der Art entspricht, wie die im Enum gespeicherten
+Daten definiert sind. In Listing 19-15 verwenden wir als Beispiel das Enum
+`Message` aus Listing 6-2 und schreiben ein `match` mit Patterns, die jeden
+inneren Wert destrukturieren.
 
-<Listing number="19-15" file-name="src/main.rs" caption="Destructuring enum variants that hold different kinds of values">
+<Listing number="19-15" file-name="src/main.rs" caption="Enum-Varianten destrukturieren, die verschiedene Arten von Werten enthalten">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-15/src/main.rs}}
@@ -211,37 +226,38 @@ a `match` with patterns that will destructure each inner value.
 
 </Listing>
 
-This code will print `Change color to red 0, green 160, and blue 255`. Try
-changing the value of `msg` to see the code from the other arms run.
+Dieser Code gibt `Change color to red 0, green 160, and blue 255` aus. Versuche,
+den Wert von `msg` zu ändern, um den Code der anderen Arme ausgeführt zu sehen.
 
-For enum variants without any data, like `Message::Quit`, we can’t destructure
-the value any further. We can only match on the literal `Message::Quit` value,
-and no variables are in that pattern.
+Bei Enum-Varianten ohne Daten wie `Message::Quit` können wir den Wert nicht
+weiter destrukturieren. Wir können nur auf den literalen Wert `Message::Quit`
+prüfen, und in diesem Pattern gibt es keine Variablen.
 
-For struct-like enum variants, such as `Message::Move`, we can use a pattern
-similar to the pattern we specify to match structs. After the variant name, we
-place curly brackets and then list the fields with variables so that we break
-apart the pieces to use in the code for this arm. Here we use the shorthand
-form as we did in Listing 19-13.
+Bei Struct-ähnlichen Enum-Varianten wie `Message::Move` können wir ein Pattern
+verwenden, das dem Pattern ähnelt, mit dem wir Structs abgleichen. Nach dem
+Variantennamen setzen wir geschweifte Klammern und listen dann die Felder mit
+Variablen auf, sodass wir die Teile zerlegen, um sie im Code für diesen Arm zu
+verwenden. Hier verwenden wir die Kurzschreibweise wie in Listing 19-13.
 
-For tuple-like enum variants, like `Message::Write` that holds a tuple with one
-element and `Message::ChangeColor` that holds a tuple with three elements, the
-pattern is similar to the pattern we specify to match tuples. The number of
-variables in the pattern must match the number of elements in the variant we’re
-matching.
+Bei Tupel-ähnlichen Enum-Varianten wie `Message::Write`, das ein Tupel mit einem
+Element enthält, und `Message::ChangeColor`, das ein Tupel mit drei Elementen
+enthält, ähnelt das Pattern dem Pattern, mit dem wir Tupel abgleichen. Die
+Anzahl der Variablen im Pattern muss mit der Anzahl der Elemente in der Variante
+übereinstimmen, die wir abgleichen.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="destructuring-nested-structs-and-enums"></a>
 
-#### Nested Structs and Enums
+#### Verschachtelte Structs und Enums {#nested-structs-and-enums}
 
-So far, our examples have all been matching structs or enums one level deep,
-but matching can work on nested items too! For example, we can refactor the
-code in Listing 19-15 to support RGB and HSV colors in the `ChangeColor`
-message, as shown in Listing 19-16.
+Bisher haben unsere Beispiele alle Structs oder Enums abgeglichen, die eine
+Ebene tief waren, aber Matching funktioniert auch bei verschachtelten Elementen!
+Wir können zum Beispiel den Code in Listing 19-15 so umgestalten, dass er in der
+Nachricht `ChangeColor` RGB- und HSV-Farben unterstützt, wie in Listing 19-16
+gezeigt.
 
-<Listing number="19-16" caption="Matching on nested enums">
+<Listing number="19-16" caption="Verschachtelte Enums abgleichen">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-16/src/main.rs}}
@@ -249,55 +265,57 @@ message, as shown in Listing 19-16.
 
 </Listing>
 
-The pattern of the first arm in the `match` expression matches a
-`Message::ChangeColor` enum variant that contains a `Color::Rgb` variant; then,
-the pattern binds to the three inner `i32` values. The pattern of the second
-arm also matches a `Message::ChangeColor` enum variant, but the inner enum
-matches `Color::Hsv` instead. We can specify these complex conditions in one
-`match` expression, even though two enums are involved.
+Das Pattern des ersten Arms im `match`-Ausdruck passt auf eine Enum-Variante
+`Message::ChangeColor`, die eine Variante `Color::Rgb` enthält; dann bindet das
+Pattern die drei inneren `i32`-Werte. Das Pattern des zweiten Arms passt
+ebenfalls auf eine Enum-Variante `Message::ChangeColor`, aber das innere Enum
+passt stattdessen auf `Color::Hsv`. Wir können diese komplexen Bedingungen in
+einem einzigen `match`-Ausdruck angeben, obwohl zwei Enums beteiligt sind.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="destructuring-structs-and-tuples"></a>
 
-#### Structs and Tuples
+#### Structs und Tupel {#structs-and-tuples}
 
-We can mix, match, and nest destructuring patterns in even more complex ways.
-The following example shows a complicated destructure where we nest structs and
-tuples inside a tuple and destructure all the primitive values out:
+Wir können Destrukturierungs-Patterns auf noch komplexere Weise mischen,
+kombinieren und verschachteln. Das folgende Beispiel zeigt eine komplizierte
+Destrukturierung, bei der wir Structs und Tupel in einem Tupel verschachteln und
+alle primitiven Werte herausdestrukturieren:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-05-destructuring-structs-and-tuples/src/main.rs:here}}
 ```
 
-This code lets us break complex types into their component parts so that we can
-use the values we’re interested in separately.
+Mit diesem Code können wir komplexe Typen in ihre Bestandteile zerlegen, sodass
+wir die Werte, die uns interessieren, einzeln verwenden können.
 
-Destructuring with patterns is a convenient way to use pieces of values, such
-as the value from each field in a struct, separately from each other.
+Das Destrukturieren mit Patterns ist eine bequeme Möglichkeit, Teile von Werten,
+etwa den Wert jedes Felds in einem Struct, getrennt voneinander zu verwenden.
 
-### Ignoring Values in a Pattern
+### Werte in einem Pattern ignorieren {#ignoring-values-in-a-pattern}
 
-You’ve seen that it’s sometimes useful to ignore values in a pattern, such as
-in the last arm of a `match`, to get a catch-all that doesn’t actually do
-anything but does account for all remaining possible values. There are a few
-ways to ignore entire values or parts of values in a pattern: using the `_`
-pattern (which you’ve seen), using the `_` pattern within another pattern,
-using a name that starts with an underscore, or using `..` to ignore remaining
-parts of a value. Let’s explore how and why to use each of these patterns.
+Du hast gesehen, dass es manchmal nützlich ist, Werte in einem Pattern zu
+ignorieren, etwa im letzten Arm eines `match`, um einen Auffangfall zu haben,
+der eigentlich nichts tut, aber alle verbleibenden möglichen Werte
+berücksichtigt. Es gibt einige Möglichkeiten, ganze Werte oder Teile von Werten
+in einem Pattern zu ignorieren: das Pattern `_` (das du schon gesehen hast), das
+Pattern `_` innerhalb eines anderen Patterns, einen Namen, der mit einem
+Unterstrich beginnt, oder `..`, um die übrigen Teile eines Werts zu ignorieren.
+Sehen wir uns an, wie und warum man jedes dieser Patterns verwendet.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="ignoring-an-entire-value-with-_"></a>
 
-#### An Entire Value with `_`
+#### Einen ganzen Wert mit `_` {#an-entire-value-with-_}
 
-We’ve used the underscore as a wildcard pattern that will match any value but
-not bind to the value. This is especially useful as the last arm in a `match`
-expression, but we can also use it in any pattern, including function
-parameters, as shown in Listing 19-17.
+Wir haben den Unterstrich als Wildcard-Pattern verwendet, das auf jeden Wert
+passt, sich aber nicht an den Wert bindet. Das ist besonders nützlich als
+letzter Arm in einem `match`-Ausdruck, aber wir können es auch in jedem Pattern
+verwenden, auch in Funktionsparametern, wie in Listing 19-17 gezeigt.
 
-<Listing number="19-17" file-name="src/main.rs" caption="Using `_` in a function signature">
+<Listing number="19-17" file-name="src/main.rs" caption="`_` in einer Funktionssignatur verwenden">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-17/src/main.rs}}
@@ -305,31 +323,34 @@ parameters, as shown in Listing 19-17.
 
 </Listing>
 
-This code will completely ignore the value `3` passed as the first argument,
-and will print `This code only uses the y parameter: 4`.
+Dieser Code ignoriert den als erstes Argument übergebenen Wert `3` vollständig
+und gibt `This code only uses the y parameter: 4` aus.
 
-In most cases when you no longer need a particular function parameter, you
-would change the signature so that it doesn’t include the unused parameter.
-Ignoring a function parameter can be especially useful in cases when, for
-example, you’re implementing a trait when you need a certain type signature but
-the function body in your implementation doesn’t need one of the parameters.
-You then avoid getting a compiler warning about unused function parameters, as
-you would if you used a name instead.
+Wenn du einen bestimmten Funktionsparameter nicht mehr brauchst, würdest du in
+den meisten Fällen die Signatur so ändern, dass sie den unbenutzten Parameter
+nicht mehr enthält. Einen Funktionsparameter zu ignorieren, kann besonders
+nützlich sein, wenn du zum Beispiel einen Trait implementierst und eine
+bestimmte Typsignatur brauchst, der Funktionsrumpf in deiner Implementierung
+aber einen der Parameter nicht benötigt. So vermeidest du eine Compilerwarnung
+über unbenutzte Funktionsparameter, die du bekämst, wenn du stattdessen einen
+Namen verwenden würdest.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="ignoring-parts-of-a-value-with-a-nested-_"></a>
 
-#### Parts of a Value with a Nested `_`
+#### Teile eines Werts mit einem verschachtelten `_` {#parts-of-a-value-with-a-nested-_}
 
-We can also use `_` inside another pattern to ignore just part of a value, for
-example, when we want to test for only part of a value but have no use for the
-other parts in the corresponding code we want to run. Listing 19-18 shows code
-responsible for managing a setting’s value. The business requirements are that
-the user should not be allowed to overwrite an existing customization of a
-setting but can unset the setting and give it a value if it is currently unset.
+Wir können `_` auch innerhalb eines anderen Patterns verwenden, um nur einen
+Teil eines Werts zu ignorieren, zum Beispiel wenn wir nur einen Teil eines Werts
+prüfen wollen, die anderen Teile aber im zugehörigen Code, den wir ausführen
+wollen, nicht brauchen. Listing 19-18 zeigt Code, der für die Verwaltung des
+Werts einer Einstellung zuständig ist. Die geschäftlichen Anforderungen lauten,
+dass der Benutzer eine bestehende Anpassung einer Einstellung nicht
+überschreiben darf, die Einstellung aber zurücksetzen und ihr einen Wert geben
+kann, wenn sie derzeit nicht gesetzt ist.
 
-<Listing number="19-18" caption="Using an underscore within patterns that match `Some` variants when we don’t need to use the value inside the `Some`">
+<Listing number="19-18" caption="Einen Unterstrich in Patterns verwenden, die auf `Some`-Varianten passen, wenn wir den Wert innerhalb des `Some` nicht brauchen">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-18/src/main.rs:here}}
@@ -337,22 +358,23 @@ setting but can unset the setting and give it a value if it is currently unset.
 
 </Listing>
 
-This code will print `Can't overwrite an existing customized value` and then
-`setting is Some(5)`. In the first match arm, we don’t need to match on or use
-the values inside either `Some` variant, but we do need to test for the case
-when `setting_value` and `new_setting_value` are the `Some` variant. In that
-case, we print the reason for not changing `setting_value`, and it doesn’t get
-changed.
+Dieser Code gibt `Can't overwrite an existing customized value` und dann
+`setting is Some(5)` aus. Im ersten Match-Arm müssen wir die Werte innerhalb der
+beiden `Some`-Varianten weder abgleichen noch verwenden, aber wir müssen den
+Fall prüfen, in dem `setting_value` und `new_setting_value` die Variante `Some`
+sind. In diesem Fall geben wir den Grund aus, warum `setting_value` nicht
+geändert wird, und es wird nicht geändert.
 
-In all other cases (if either `setting_value` or `new_setting_value` is `None`)
-expressed by the `_` pattern in the second arm, we want to allow
-`setting_value` to be set to `new_setting_value`.
+In allen anderen Fällen (wenn entweder `setting_value` oder `new_setting_value`
+`None` ist), die durch das Pattern `_` im zweiten Arm ausgedrückt werden, wollen
+wir erlauben, dass `setting_value` auf `new_setting_value` gesetzt wird.
 
-We can also use underscores in multiple places within one pattern to ignore
-particular values. Listing 19-19 shows an example of ignoring the second and
-fourth values in a tuple of five items.
+Wir können Unterstriche auch an mehreren Stellen innerhalb eines Patterns
+verwenden, um bestimmte Werte zu ignorieren. Listing 19-19 zeigt ein Beispiel,
+in dem der zweite und vierte Wert in einem Tupel mit fünf Elementen ignoriert
+werden.
 
-<Listing number="19-19" caption="Ignoring multiple parts of a tuple">
+<Listing number="19-19" caption="Mehrere Teile eines Tupels ignorieren">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-19/src/main.rs:here}}
@@ -360,24 +382,26 @@ fourth values in a tuple of five items.
 
 </Listing>
 
-This code will print `Some numbers: 2, 8, 32`, and the values `4` and `16` will
-be ignored.
+Dieser Code gibt `Some numbers: 2, 8, 32` aus, und die Werte `4` und `16` werden
+ignoriert.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="ignoring-an-unused-variable-by-starting-its-name-with-_"></a>
 
-#### An Unused Variable by Starting Its Name with `_`
+#### Eine unbenutzte Variable, deren Name mit `_` beginnt {#an-unused-variable-by-starting-its-name-with-_}
 
-If you create a variable but don’t use it anywhere, Rust will usually issue a
-warning because an unused variable could be a bug. However, sometimes it’s
-useful to be able to create a variable you won’t use yet, such as when you’re
-prototyping or just starting a project. In this situation, you can tell Rust
-not to warn you about the unused variable by starting the name of the variable
-with an underscore. In Listing 19-20, we create two unused variables, but when
-we compile this code, we should only get a warning about one of them.
+Wenn du eine Variable erstellst, sie aber nirgends verwendest, gibt Rust
+normalerweise eine Warnung aus, weil eine unbenutzte Variable ein Bug sein
+könnte. Manchmal ist es aber nützlich, eine Variable erstellen zu können, die du
+noch nicht verwendest, etwa wenn du einen Prototyp baust oder gerade erst mit
+einem Projekt beginnst. In dieser Situation kannst du Rust anweisen, dich nicht
+vor der unbenutzten Variablen zu warnen, indem du den Namen der Variablen mit
+einem Unterstrich beginnst. In Listing 19-20 erstellen wir zwei unbenutzte
+Variablen, aber wenn wir diesen Code kompilieren, sollten wir nur für eine davon
+eine Warnung bekommen.
 
-<Listing number="19-20" file-name="src/main.rs" caption="Starting a variable name with an underscore to avoid getting unused variable warnings">
+<Listing number="19-20" file-name="src/main.rs" caption="Einen Variablennamen mit einem Unterstrich beginnen, um Warnungen über unbenutzte Variablen zu vermeiden">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-20/src/main.rs}}
@@ -385,15 +409,16 @@ we compile this code, we should only get a warning about one of them.
 
 </Listing>
 
-Here, we get a warning about not using the variable `y`, but we don’t get a
-warning about not using `_x`.
+Hier bekommen wir eine Warnung, dass die Variable `y` nicht verwendet wird, aber
+keine Warnung, dass `_x` nicht verwendet wird.
 
-Note that there is a subtle difference between using only `_` and using a name
-that starts with an underscore. The syntax `_x` still binds the value to the
-variable, whereas `_` doesn’t bind at all. To show a case where this
-distinction matters, Listing 19-21 will provide us with an error.
+Beachte, dass es einen feinen Unterschied gibt, ob man nur `_` verwendet oder
+einen Namen, der mit einem Unterstrich beginnt. Die Syntax `_x` bindet den Wert
+weiterhin an die Variable, während `_` überhaupt nicht bindet. Um einen Fall zu
+zeigen, in dem dieser Unterschied eine Rolle spielt, liefert uns Listing 19-21
+einen Fehler.
 
-<Listing number="19-21" caption="An unused variable starting with an underscore still binds the value, which might take ownership of the value.">
+<Listing number="19-21" caption="Eine unbenutzte Variable, die mit einem Unterstrich beginnt, bindet den Wert trotzdem, was die Ownership am Wert übernehmen kann.">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-21/src/main.rs:here}}
@@ -401,12 +426,12 @@ distinction matters, Listing 19-21 will provide us with an error.
 
 </Listing>
 
-We’ll receive an error because the `s` value will still be moved into `_s`,
-which prevents us from using `s` again. However, using the underscore by itself
-doesn’t ever bind to the value. Listing 19-22 will compile without any errors
-because `s` doesn’t get moved into `_`.
+Wir bekommen einen Fehler, weil der Wert `s` trotzdem in `_s` verschoben
+(_moved_) wird, was uns daran hindert, `s` erneut zu verwenden. Der Unterstrich
+allein bindet sich jedoch nie an den Wert. Listing 19-22 kompiliert ohne Fehler,
+weil `s` nicht in `_` verschoben wird.
 
-<Listing number="19-22" caption="Using an underscore does not bind the value.">
+<Listing number="19-22" caption="Ein Unterstrich bindet den Wert nicht.">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-22/src/main.rs:here}}
@@ -414,21 +439,23 @@ because `s` doesn’t get moved into `_`.
 
 </Listing>
 
-This code works just fine because we never bind `s` to anything; it isn’t moved.
+Dieser Code funktioniert problemlos, weil wir `s` nie an etwas binden; es wird
+nicht verschoben.
 
 <a id="ignoring-remaining-parts-of-a-value-with-"></a>
 
-#### Remaining Parts of a Value with `..`
+#### Die übrigen Teile eines Werts mit `..` {#remaining-parts-of-a-value-with-}
 
-With values that have many parts, we can use the `..` syntax to use specific
-parts and ignore the rest, avoiding the need to list underscores for each
-ignored value. The `..` pattern ignores any parts of a value that we haven’t
-explicitly matched in the rest of the pattern. In Listing 19-23, we have a
-`Point` struct that holds a coordinate in three-dimensional space. In the
-`match` expression, we want to operate only on the `x` coordinate and ignore
-the values in the `y` and `z` fields.
+Bei Werten, die viele Teile haben, können wir die Syntax `..` verwenden, um
+bestimmte Teile zu verwenden und den Rest zu ignorieren, sodass wir nicht für
+jeden ignorierten Wert einen Unterstrich angeben müssen. Das Pattern `..`
+ignoriert alle Teile eines Werts, die wir im restlichen Pattern nicht
+ausdrücklich abgeglichen haben. In Listing 19-23 haben wir ein Struct `Point`,
+das eine Koordinate im dreidimensionalen Raum enthält. Im `match`-Ausdruck
+wollen wir nur mit der Koordinate `x` arbeiten und die Werte in den Feldern `y`
+und `z` ignorieren.
 
-<Listing number="19-23" caption="Ignoring all fields of a `Point` except for `x` by using `..`">
+<Listing number="19-23" caption="Mit `..` alle Felder eines `Point` außer `x` ignorieren">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-23/src/main.rs:here}}
@@ -436,15 +463,15 @@ the values in the `y` and `z` fields.
 
 </Listing>
 
-We list the `x` value and then just include the `..` pattern. This is quicker
-than having to list `y: _` and `z: _`, particularly when we’re working with
-structs that have lots of fields in situations where only one or two fields are
-relevant.
+Wir geben den Wert `x` an und fügen dann einfach das Pattern `..` ein. Das geht
+schneller, als `y: _` und `z: _` aufzulisten, besonders wenn wir mit Structs
+arbeiten, die viele Felder haben, in Situationen, in denen nur ein oder zwei
+Felder relevant sind.
 
-The syntax `..` will expand to as many values as it needs to be. Listing 19-24
-shows how to use `..` with a tuple.
+Die Syntax `..` wird zu so vielen Werten erweitert, wie nötig. Listing 19-24
+zeigt, wie man `..` mit einem Tupel verwendet.
 
-<Listing number="19-24" file-name="src/main.rs" caption="Matching only the first and last values in a tuple and ignoring all other values">
+<Listing number="19-24" file-name="src/main.rs" caption="Nur den ersten und den letzten Wert in einem Tupel abgleichen und alle anderen Werte ignorieren">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-24/src/main.rs}}
@@ -452,15 +479,15 @@ shows how to use `..` with a tuple.
 
 </Listing>
 
-In this code, the first and last values are matched with `first` and `last`.
-The `..` will match and ignore everything in the middle.
+In diesem Code werden der erste und der letzte Wert mit `first` und `last`
+abgeglichen. Das `..` passt auf alles dazwischen und ignoriert es.
 
-However, using `..` must be unambiguous. If it is unclear which values are
-intended for matching and which should be ignored, Rust will give us an error.
-Listing 19-25 shows an example of using `..` ambiguously, so it will not
-compile.
+Die Verwendung von `..` muss jedoch eindeutig sein. Wenn unklar ist, welche
+Werte abgeglichen und welche ignoriert werden sollen, gibt Rust einen Fehler
+aus. Listing 19-25 zeigt ein Beispiel für eine mehrdeutige Verwendung von `..`,
+daher kompiliert es nicht.
 
-<Listing number="19-25" file-name="src/main.rs" caption="An attempt to use `..` in an ambiguous way">
+<Listing number="19-25" file-name="src/main.rs" caption="Ein Versuch, `..` mehrdeutig zu verwenden">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-25/src/main.rs}}
@@ -468,37 +495,40 @@ compile.
 
 </Listing>
 
-When we compile this example, we get this error:
+Wenn wir dieses Beispiel kompilieren, bekommen wir diesen Fehler:
 
 ```console
 {{#include ../listings/ch19-patterns-and-matching/listing-19-25/output.txt}}
 ```
 
-It’s impossible for Rust to determine how many values in the tuple to ignore
-before matching a value with `second` and then how many further values to
-ignore thereafter. This code could mean that we want to ignore `2`, bind
-`second` to `4`, and then ignore `8`, `16`, and `32`; or that we want to ignore
-`2` and `4`, bind `second` to `8`, and then ignore `16` and `32`; and so forth.
-The variable name `second` doesn’t mean anything special to Rust, so we get a
-compiler error because using `..` in two places like this is ambiguous.
+Rust kann unmöglich bestimmen, wie viele Werte im Tupel ignoriert werden sollen,
+bevor ein Wert mit `second` abgeglichen wird, und wie viele weitere Werte danach
+ignoriert werden sollen. Dieser Code könnte bedeuten, dass wir `2` ignorieren,
+`second` an `4` binden und dann `8`, `16` und `32` ignorieren wollen; oder dass
+wir `2` und `4` ignorieren, `second` an `8` binden und dann `16` und `32`
+ignorieren wollen; und so weiter. Der Variablenname `second` hat für Rust keine
+besondere Bedeutung, daher bekommen wir einen Compilerfehler, weil die
+Verwendung von `..` an zwei Stellen wie hier mehrdeutig ist.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="extra-conditionals-with-match-guards"></a>
 
-### Adding Conditionals with Match Guards
+### Bedingungen mit Match-Guards hinzufügen {#adding-conditionals-with-match-guards}
 
-A _match guard_ is an additional `if` condition, specified after the pattern in
-a `match` arm, that must also match for that arm to be chosen. Match guards are
-useful for expressing more complex ideas than a pattern alone allows. Note,
-however, that they are only available in `match` expressions, not `if let` or
-`while let` expressions.
+Ein _Match-Guard_ ist eine zusätzliche `if`-Bedingung, die nach dem Pattern in
+einem `match`-Arm angegeben wird und ebenfalls erfüllt sein muss, damit dieser
+Arm gewählt wird. Match-Guards sind nützlich, um komplexere Ideen auszudrücken,
+als ein Pattern allein erlaubt. Beachte jedoch, dass sie nur in
+`match`-Ausdrücken verfügbar sind, nicht in `if let`- oder
+`while let`-Ausdrücken.
 
-The condition can use variables created in the pattern. Listing 19-26 shows a
-`match` where the first arm has the pattern `Some(x)` and also has a match
-guard of `if x % 2 == 0` (which will be `true` if the number is even).
+Die Bedingung kann Variablen verwenden, die im Pattern erzeugt wurden. Listing
+19-26 zeigt ein `match`, bei dem der erste Arm das Pattern `Some(x)` und
+zusätzlich einen Match-Guard `if x % 2 == 0` hat (der `true` ist, wenn die Zahl
+gerade ist).
 
-<Listing number="19-26" caption="Adding a match guard to a pattern">
+<Listing number="19-26" caption="Einem Pattern einen Match-Guard hinzufügen">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-26/src/main.rs:here}}
@@ -506,29 +536,31 @@ guard of `if x % 2 == 0` (which will be `true` if the number is even).
 
 </Listing>
 
-This example will print `The number 4 is even`. When `num` is compared to the
-pattern in the first arm, it matches because `Some(4)` matches `Some(x)`. Then,
-the match guard checks whether the remainder of dividing `x` by 2 is equal to
-0, and because it is, the first arm is selected.
+Dieses Beispiel gibt `The number 4 is even` aus. Wenn `num` mit dem Pattern im
+ersten Arm verglichen wird, passt es, weil `Some(4)` auf `Some(x)` passt. Dann
+prüft der Match-Guard, ob der Rest der Division von `x` durch 2 gleich 0 ist,
+und weil das der Fall ist, wird der erste Arm gewählt.
 
-If `num` had been `Some(5)` instead, the match guard in the first arm would
-have been `false` because the remainder of 5 divided by 2 is 1, which is not
-equal to 0. Rust would then go to the second arm, which would match because the
-second arm doesn’t have a match guard and therefore matches any `Some` variant.
+Wäre `num` stattdessen `Some(5)` gewesen, wäre der Match-Guard im ersten Arm
+`false` gewesen, weil der Rest von 5 geteilt durch 2 gleich 1 ist, was nicht
+gleich 0 ist. Rust würde dann zum zweiten Arm übergehen, der passen würde, weil
+der zweite Arm keinen Match-Guard hat und daher auf jede `Some`-Variante passt.
 
-There is no way to express the `if x % 2 == 0` condition within a pattern, so
-the match guard gives us the ability to express this logic. The downside of
-this additional expressiveness is that the compiler doesn’t try to check for
-exhaustiveness when match guard expressions are involved.
+Es gibt keine Möglichkeit, die Bedingung `if x % 2 == 0` innerhalb eines
+Patterns auszudrücken, daher gibt uns der Match-Guard die Möglichkeit, diese
+Logik auszudrücken. Der Nachteil dieser zusätzlichen Ausdruckskraft ist, dass
+der Compiler nicht versucht zu prüfen, ob die Arme erschöpfend sind, wenn
+Match-Guard-Ausdrücke beteiligt sind.
 
-When discussing Listing 19-11, we mentioned that we could use match guards to
-solve our pattern-shadowing problem. Recall that we created a new variable
-inside the pattern in the `match` expression instead of using the variable
-outside the `match`. That new variable meant we couldn’t test against the value
-of the outer variable. Listing 19-27 shows how we can use a match guard to fix
-this problem.
+Bei der Besprechung von Listing 19-11 haben wir erwähnt, dass wir Match-Guards
+verwenden könnten, um unser Problem mit dem Überschatten durch Patterns zu
+lösen. Erinnere dich, dass wir innerhalb des Patterns im `match`-Ausdruck eine
+neue Variable erzeugt haben, statt die Variable außerhalb des `match` zu
+verwenden. Diese neue Variable bedeutete, dass wir nicht gegen den Wert der
+äußeren Variablen prüfen konnten. Listing 19-27 zeigt, wie wir dieses Problem
+mit einem Match-Guard beheben können.
 
-<Listing number="19-27" file-name="src/main.rs" caption="Using a match guard to test for equality with an outer variable">
+<Listing number="19-27" file-name="src/main.rs" caption="Einen Match-Guard verwenden, um auf Gleichheit mit einer äußeren Variablen zu prüfen">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-27/src/main.rs}}
@@ -536,26 +568,26 @@ this problem.
 
 </Listing>
 
-This code will now print `Default case, x = Some(5)`. The pattern in the second
-match arm doesn’t introduce a new variable `y` that would shadow the outer `y`,
-meaning we can use the outer `y` in the match guard. Instead of specifying the
-pattern as `Some(y)`, which would have shadowed the outer `y`, we specify
-`Some(n)`. This creates a new variable `n` that doesn’t shadow anything because
-there is no `n` variable outside the `match`.
+Dieser Code gibt jetzt `Default case, x = Some(5)` aus. Das Pattern im zweiten
+Match-Arm führt keine neue Variable `y` ein, die das äußere `y` überschatten
+würde, sodass wir das äußere `y` im Match-Guard verwenden können. Statt das
+Pattern als `Some(y)` anzugeben, was das äußere `y` überschattet hätte, geben
+wir `Some(n)` an. Das erzeugt eine neue Variable `n`, die nichts überschattet,
+weil es außerhalb des `match` keine Variable `n` gibt.
 
-The match guard `if n == y` is not a pattern and therefore doesn’t introduce new
-variables. This `y` _is_ the outer `y` rather than a new `y` shadowing it, and
-we can look for a value that has the same value as the outer `y` by comparing
-`n` to `y`.
+Der Match-Guard `if n == y` ist kein Pattern und führt daher keine neuen
+Variablen ein. Dieses `y` _ist_ das äußere `y` und kein neues `y`, das es
+überschattet, und wir können nach einem Wert suchen, der denselben Wert wie das
+äußere `y` hat, indem wir `n` mit `y` vergleichen.
 
-You can also use the _or_ operator `|` in a match guard to specify multiple
-patterns; the match guard condition will apply to all the patterns. Listing
-19-28 shows the precedence when combining a pattern that uses `|` with a match
-guard. The important part of this example is that the `if y` match guard
-applies to `4`, `5`, _and_ `6`, even though it might look like `if y` only
-applies to `6`.
+Du kannst in einem Match-Guard auch den _Oder_-Operator `|` verwenden, um
+mehrere Patterns anzugeben; die Bedingung des Match-Guards gilt dann für alle
+Patterns. Listing 19-28 zeigt den Vorrang, wenn man ein Pattern, das `|`
+verwendet, mit einem Match-Guard kombiniert. Das Wichtige an diesem Beispiel
+ist, dass der Match-Guard `if y` für `4`, `5` _und_ `6` gilt, auch wenn es so
+aussehen könnte, als gelte `if y` nur für `6`.
 
-<Listing number="19-28" caption="Combining multiple patterns with a match guard">
+<Listing number="19-28" caption="Mehrere Patterns mit einem Match-Guard kombinieren">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-28/src/main.rs:here}}
@@ -563,43 +595,43 @@ applies to `6`.
 
 </Listing>
 
-The match condition states that the arm only matches if the value of `x` is
-equal to `4`, `5`, or `6` _and_ if `y` is `true`. When this code runs, the
-pattern of the first arm matches because `x` is `4`, but the match guard `if y`
-is `false`, so the first arm is not chosen. The code moves on to the second
-arm, which does match, and this program prints `no`. The reason is that the
-`if` condition applies to the whole pattern `4 | 5 | 6`, not just to the last
-value `6`. In other words, the precedence of a match guard in relation to a
-pattern behaves like this:
+Die Match-Bedingung besagt, dass der Arm nur passt, wenn der Wert von `x` gleich
+`4`, `5` oder `6` ist _und_ wenn `y` `true` ist. Wenn dieser Code ausgeführt
+wird, passt das Pattern des ersten Arms, weil `x` `4` ist, aber der Match-Guard
+`if y` ist `false`, also wird der erste Arm nicht gewählt. Der Code geht zum
+zweiten Arm über, der passt, und dieses Programm gibt `no` aus. Der Grund ist,
+dass die `if`-Bedingung für das ganze Pattern `4 | 5 | 6` gilt, nicht nur für
+den letzten Wert `6`. Mit anderen Worten: Der Vorrang eines Match-Guards im
+Verhältnis zu einem Pattern verhält sich so:
 
 ```text
 (4 | 5 | 6) if y => ...
 ```
 
-rather than this:
+und nicht so:
 
 ```text
 4 | 5 | (6 if y) => ...
 ```
 
-After running the code, the precedence behavior is evident: If the match guard
-were applied only to the final value in the list of values specified using the
-`|` operator, the arm would have matched, and the program would have printed
-`yes`.
+Nach dem Ausführen des Codes ist das Vorrangverhalten offensichtlich: Würde der
+Match-Guard nur auf den letzten Wert in der mit dem Operator `|` angegebenen
+Liste von Werten angewendet, hätte der Arm gepasst, und das Programm hätte `yes`
+ausgegeben.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="-bindings"></a>
 
-### Using `@` Bindings
+### `@`-Bindungen verwenden {#using--bindings}
 
-The _at_ operator `@` lets us create a variable that holds a value at the same
-time we’re testing that value for a pattern match. In Listing 19-29, we want to
-test that a `Message::Hello` `id` field is within the range `3..=7`. We also
-want to bind the value to the variable `id` so that we can use it in the code
-associated with the arm.
+Mit dem _At_-Operator `@` können wir eine Variable erzeugen, die einen Wert
+enthält, während wir gleichzeitig prüfen, ob dieser Wert auf ein Pattern passt.
+In Listing 19-29 wollen wir prüfen, ob das Feld `id` eines `Message::Hello` im
+Bereich `3..=7` liegt. Außerdem wollen wir den Wert an die Variable `id` binden,
+damit wir ihn im Code verwenden können, der zum Arm gehört.
 
-<Listing number="19-29" caption="Using `@` to bind to a value in a pattern while also testing it">
+<Listing number="19-29" caption="Mit `@` in einem Pattern an einen Wert binden und ihn gleichzeitig prüfen">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-29/src/main.rs:here}}
@@ -607,35 +639,39 @@ associated with the arm.
 
 </Listing>
 
-This example will print `Found an id in range: 5`. By specifying `id @` before
-the range `3..=7`, we’re capturing whatever value matched the range in a
-variable named `id` while also testing that the value matched the range pattern.
+Dieses Beispiel gibt `Found an id in range: 5` aus. Indem wir `id @` vor dem
+Bereich `3..=7` angeben, erfassen wir den Wert, der auf den Bereich gepasst hat,
+in einer Variablen namens `id` und prüfen gleichzeitig, ob der Wert auf das
+Bereichs-Pattern gepasst hat.
 
-In the second arm, where we only have a range specified in the pattern, the code
-associated with the arm doesn’t have a variable that contains the actual value
-of the `id` field. The `id` field’s value could have been 10, 11, or 12, but
-the code that goes with that pattern doesn’t know which it is. The pattern code
-isn’t able to use the value from the `id` field because we haven’t saved the
-`id` value in a variable.
+Im zweiten Arm, in dem im Pattern nur ein Bereich angegeben ist, hat der Code,
+der zum Arm gehört, keine Variable, die den tatsächlichen Wert des Felds `id`
+enthält. Der Wert des Felds `id` hätte 10, 11 oder 12 sein können, aber der Code
+zu diesem Pattern weiß nicht, welcher es ist. Der Code des Patterns kann den
+Wert aus dem Feld `id` nicht verwenden, weil wir den Wert von `id` nicht in
+einer Variablen gespeichert haben.
 
-In the last arm, where we’ve specified a variable without a range, we do have
-the value available to use in the arm’s code in a variable named `id`. The
-reason is that we’ve used the struct field shorthand syntax. But we haven’t
-applied any test to the value in the `id` field in this arm, as we did with the
-first two arms: Any value would match this pattern.
+Im letzten Arm, in dem wir eine Variable ohne Bereich angegeben haben, steht der
+Wert im Code des Arms in einer Variablen namens `id` zur Verfügung. Der Grund
+ist, dass wir die Kurzschreibweise für Struct-Felder verwendet haben. Wir haben
+in diesem Arm aber keine Prüfung auf den Wert im Feld `id` angewendet, wie wir
+es bei den ersten beiden Armen getan haben: Jeder Wert würde auf dieses Pattern
+passen.
 
-Using `@` lets us test a value and save it in a variable within one pattern.
+Mit `@` können wir innerhalb eines einzigen Patterns einen Wert prüfen und ihn
+in einer Variablen speichern.
 
 {{#quiz ../quizzes/ch18-03-pattern-syntax.toml}}
 
-## Summary
+## Zusammenfassung {#summary}
 
-Rust’s patterns are very useful in distinguishing between different kinds of
-data. When used in `match` expressions, Rust ensures that your patterns cover
-every possible value, or your program won’t compile. Patterns in `let`
-statements and function parameters make those constructs more useful, enabling
-the destructuring of values into smaller parts and assigning those parts to
-variables. We can create simple or complex patterns to suit our needs.
+Die Patterns von Rust sind sehr nützlich, um zwischen verschiedenen Arten von
+Daten zu unterscheiden. Wenn sie in `match`-Ausdrücken verwendet werden, stellt
+Rust sicher, dass deine Patterns jeden möglichen Wert abdecken, sonst kompiliert
+dein Programm nicht. Patterns in `let`-Anweisungen und Funktionsparametern
+machen diese Konstrukte nützlicher, indem sie es ermöglichen, Werte in kleinere
+Teile zu destrukturieren und diese Teile Variablen zuzuweisen. Wir können
+einfache oder komplexe Patterns erstellen, die unseren Bedürfnissen entsprechen.
 
-Next, for the penultimate chapter of the book, we’ll look at some advanced
-aspects of a variety of Rust’s features.
+Als Nächstes sehen wir uns im vorletzten Kapitel des Buches einige
+fortgeschrittene Aspekte verschiedener Features von Rust an.

@@ -14,22 +14,22 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "B"
 context = """
-The first branch matches `y = 1`, which means `y != 0`, so the pattern fails.
-The second branch requires that `x == 0`, which is true, so the pattern succeeds.
+Der erste Zweig gleicht `y = 1` ab, also gilt `y != 0`, und das Pattern schlägt fehl.
+Der zweite Zweig verlangt, dass `x == 0` gilt, was wahr ist, also passt das Pattern.
 """
 
 [[questions]]
 id = "ac0045c7-981a-46cb-baeb-adaa533804ad"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the following program:
+Betrachte das folgende Programm:
 
 ```
 let a = [(0, 1)];
 let ?? = a;
 ```
 
-Which of the following are valid patterns that could replace the `??` placeholder?
+Welche der folgenden Patterns sind gültig und könnten den Platzhalter `??` ersetzen?
 """
 answer.answer = [
     "`_`",
@@ -40,7 +40,7 @@ prompt.distractors = [
     "`(_, n)`"
 ]
 context = """ 
-The pattern `(_, n)` is not valid because `a` is an array of tuples, not a tuple itself.
+Das Pattern `(_, n)` ist nicht gültig, weil `a` ein Array von Tupeln ist und selbst kein Tupel.
 """
 
 [[questions]]
@@ -59,15 +59,15 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 4
 context = """
-It is not valid to use `..` on both sides of a value, since it is ambiguous which
-array element is being referred to.
+Es ist nicht gültig, `..` auf beiden Seiten eines Werts zu verwenden, da dann mehrdeutig ist, welches
+Array-Element gemeint ist.
 """
 
 [[questions]]
 id = "a7d38ffa-66b2-472a-90a5-b026b28ad3df"
 type = "MultipleChoice"
 prompt.prompt = """
-Say we have a `Point` type with the following definition:
+Angenommen, wir haben einen Typ `Point` mit folgender Definition:
 
 ```
 struct Point {
@@ -76,13 +76,13 @@ struct Point {
 }
 ```
 
-Given the following pattern:
+Gegeben ist das folgende Pattern:
 
 ```
 Point { x: x @ 0 ..= 5, y } if x + y != 0
 ```
 
-Which of the following values will match this pattern?
+Welche der folgenden Werte passen auf dieses Pattern?
 """
 answer.answer = [
     "`Point { x: 5, y: -4 }`",
@@ -93,6 +93,6 @@ prompt.distractors = [
     "`Point { x: 3, y: -3 }`"
 ]
 context = """
-This pattern specifies that `x` must be between 0 and 5 (inclusive), and that `x + y != 0`.
-Therefore `(5, -4)` and `(0, 1)` are valid, while `(-1, 2)` and `(3, -3)` are not.
+Dieses Pattern legt fest, dass `x` zwischen 0 und 5 (einschließlich) liegen muss und dass `x + y != 0` gilt.
+Daher sind `(5, -4)` und `(0, 1)` gültig, `(-1, 2)` und `(3, -3)` dagegen nicht.
 """

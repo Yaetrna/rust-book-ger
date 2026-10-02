@@ -1,37 +1,45 @@
-## Refutability: Whether a Pattern Might Fail to Match
+## Abweisbarkeit: Ob ein Pattern möglicherweise nicht passt {#refutability-whether-a-pattern-might-fail-to-match}
 
-Patterns come in two forms: refutable and irrefutable. Patterns that will match
-for any possible value passed are _irrefutable_. An example would be `x` in the
-statement `let x = 5;` because `x` matches anything and therefore cannot fail
-to match. Patterns that can fail to match for some possible value are
-_refutable_. Here are some examples:
+Patterns gibt es in zwei Formen: abweisbar (_refutable_) und unabweisbar
+(_irrefutable_). Patterns, die auf jeden möglichen übergebenen Wert passen, sind
+_unabweisbar_. Ein Beispiel wäre `x` in der Anweisung `let x = 5;`, weil `x` auf
+alles passt und daher nicht fehlschlagen kann. Patterns, die für einen möglichen
+Wert nicht passen können, sind _abweisbar_. Hier sind einige Beispiele:
 
 <!-- BEGIN INTERVENTION: 3c29eb2d-cbe9-4a2c-99b8-aa5c6467c8b4 -->
-* In the expression `if let Some(x) = a_value`, then `Some(x)` is refutable. If the value in the `a_value` variable is `None` rather than
-`Some`, the `Some(x)` pattern will not match. 
-* In the expression `if let &[x, ..] = a_slice`, then `&[x, ..]` is refutable. If the value in the `a_slice` variable has zero elements, the `&[x, ..]` pattern will not match.
+
+- Im Ausdruck `if let Some(x) = a_value` ist `Some(x)` abweisbar. Wenn der Wert
+  in der Variablen `a_value` `None` statt `Some` ist, passt das Pattern
+  `Some(x)` nicht.
+- Im Ausdruck `if let &[x, ..] = a_slice` ist `&[x, ..]` abweisbar. Wenn der
+  Wert in der Variablen `a_slice` null Elemente hat, passt das Pattern
+  `&[x, ..]` nicht.
+
 <!-- END INTERVENTION: 3c29eb2d-cbe9-4a2c-99b8-aa5c6467c8b4 -->
 
-Function parameters, `let` statements, and `for` loops can only accept
-irrefutable patterns because the program cannot do anything meaningful when
-values don’t match. The `if let` and `while let` expressions and the
-`let...else` statement accept refutable and irrefutable patterns, but the
-compiler warns against irrefutable patterns because, by definition, they’re
-intended to handle possible failure: The functionality of a conditional is in
-its ability to perform differently depending on success or failure.
+Funktionsparameter, `let`-Anweisungen und `for`-Schleifen können nur
+unabweisbare Patterns akzeptieren, weil das Programm nichts Sinnvolles tun kann,
+wenn Werte nicht passen. Die Ausdrücke `if let` und `while let` sowie die
+Anweisung `let...else` akzeptieren abweisbare und unabweisbare Patterns, aber
+der Compiler warnt vor unabweisbaren Patterns, weil sie per Definition dazu
+gedacht sind, ein mögliches Fehlschlagen zu behandeln: Die Funktionalität einer
+Bedingung liegt darin, sich je nach Erfolg oder Fehlschlag unterschiedlich zu
+verhalten.
 
-In general, you shouldn’t have to worry about the distinction between refutable
-and irrefutable patterns; however, you do need to be familiar with the concept
-of refutability so that you can respond when you see it in an error message. In
-those cases, you’ll need to change either the pattern or the construct you’re
-using the pattern with, depending on the intended behavior of the code.
+Im Allgemeinen solltest du dir über die Unterscheidung zwischen abweisbaren und
+unabweisbaren Patterns keine Gedanken machen müssen; du musst aber mit dem
+Konzept der Abweisbarkeit (_refutability_) vertraut sein, damit du reagieren
+kannst, wenn es dir in einer Fehlermeldung begegnet. In diesen Fällen musst du
+je nach beabsichtigtem Verhalten des Codes entweder das Pattern oder das
+Konstrukt ändern, mit dem du das Pattern verwendest.
 
-Let’s look at an example of what happens when we try to use a refutable pattern
-where Rust requires an irrefutable pattern and vice versa. Listing 19-8 shows a
-`let` statement, but for the pattern, we’ve specified `Some(x)`, a refutable
-pattern. As you might expect, this code will not compile.
+Sehen wir uns ein Beispiel dafür an, was passiert, wenn wir versuchen, ein
+abweisbares Pattern dort zu verwenden, wo Rust ein unabweisbares Pattern
+verlangt, und umgekehrt. Listing 19-8 zeigt eine `let`-Anweisung, aber als
+Pattern haben wir `Some(x)` angegeben, ein abweisbares Pattern. Wie du
+vielleicht erwartest, kompiliert dieser Code nicht.
 
-<Listing number="19-8" caption="Attempting to use a refutable pattern with `let`">
+<Listing number="19-8" caption="Versuch, ein abweisbares Pattern mit `let` zu verwenden">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-08/src/main.rs:here}}
@@ -39,26 +47,27 @@ pattern. As you might expect, this code will not compile.
 
 </Listing>
 
-If `some_option_value` were a `None` value, it would fail to match the pattern
-`Some(x)`, meaning the pattern is refutable. However, the `let` statement can
-only accept an irrefutable pattern because there is nothing valid the code can
-do with a `None` value. At compile time, Rust will complain that we’ve tried to
-use a refutable pattern where an irrefutable pattern is required:
+Wäre `some_option_value` ein `None`-Wert, würde er nicht auf das Pattern
+`Some(x)` passen, das heißt, das Pattern ist abweisbar. Die `let`-Anweisung kann
+aber nur ein unabweisbares Pattern akzeptieren, weil der Code mit einem
+`None`-Wert nichts Gültiges anfangen kann. Zur Kompilierzeit beschwert sich
+Rust, dass wir versucht haben, ein abweisbares Pattern dort zu verwenden, wo ein
+unabweisbares Pattern erforderlich ist:
 
 ```console
 {{#include ../listings/ch19-patterns-and-matching/listing-19-08/output.txt}}
 ```
 
-Because we didn’t cover (and couldn’t cover!) every valid value with the
-pattern `Some(x)`, Rust rightfully produces a compiler error.
+Weil wir mit dem Pattern `Some(x)` nicht jeden gültigen Wert abgedeckt haben
+(und nicht abdecken konnten!), erzeugt Rust zu Recht einen Compilerfehler.
 
-If we have a refutable pattern where an irrefutable pattern is needed, we can
-fix it by changing the code that uses the pattern: Instead of using `let`, we
-can use `let...else`. Then, if the pattern doesn’t match, the code in the curly
-brackets will handle the value. Listing 19-9 shows how to fix the code in
-Listing 19-8.
+Wenn wir ein abweisbares Pattern haben, wo ein unabweisbares Pattern gebraucht
+wird, können wir das beheben, indem wir den Code ändern, der das Pattern
+verwendet: Statt `let` können wir `let...else` verwenden. Wenn das Pattern dann
+nicht passt, behandelt der Code in den geschweiften Klammern den Wert. Listing
+19-9 zeigt, wie man den Code in Listing 19-8 korrigiert.
 
-<Listing number="19-9" caption="Using `let...else` and a block with refutable patterns instead of `let`">
+<Listing number="19-9" caption="`let...else` und einen Block mit abweisbaren Patterns statt `let` verwenden">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-09/src/main.rs:here}}
@@ -66,12 +75,13 @@ Listing 19-8.
 
 </Listing>
 
-We’ve given the code an out! This code is perfectly valid, although it means we
-cannot use an irrefutable pattern without receiving a warning. If we give
-`let...else` a pattern that will always match, such as `x`, as shown in Listing
-19-10, the compiler will give a warning.
+Wir haben dem Code einen Ausweg gegeben! Dieser Code ist völlig gültig, auch
+wenn das bedeutet, dass wir kein unabweisbares Pattern verwenden können, ohne
+eine Warnung zu bekommen. Wenn wir `let...else` ein Pattern geben, das immer
+passt, etwa `x`, wie in Listing 19-10 gezeigt, gibt der Compiler eine Warnung
+aus.
 
-<Listing number="19-10" caption="Attempting to use an irrefutable pattern with `let...else`">
+<Listing number="19-10" caption="Versuch, ein unabweisbares Pattern mit `let...else` zu verwenden">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-10/src/main.rs:here}}
@@ -79,21 +89,21 @@ cannot use an irrefutable pattern without receiving a warning. If we give
 
 </Listing>
 
-Rust complains that it doesn’t make sense to use `let...else` with an
-irrefutable pattern:
+Rust beschwert sich, dass es keinen Sinn ergibt, `let...else` mit einem
+unabweisbaren Pattern zu verwenden:
 
 ```console
 {{#include ../listings/ch19-patterns-and-matching/listing-19-10/output.txt}}
 ```
 
-For this reason, match arms must use refutable patterns, except for the last
-arm, which should match any remaining values with an irrefutable pattern. Rust
-allows us to use an irrefutable pattern in a `match` with only one arm, but
-this syntax isn’t particularly useful and could be replaced with a simpler
-`let` statement.
+Aus diesem Grund müssen Match-Arme abweisbare Patterns verwenden, mit Ausnahme
+des letzten Arms, der alle verbleibenden Werte mit einem unabweisbaren Pattern
+abdecken sollte. Rust erlaubt es uns, in einem `match` mit nur einem Arm ein
+unabweisbares Pattern zu verwenden, aber diese Syntax ist nicht besonders
+nützlich und könnte durch eine einfachere `let`-Anweisung ersetzt werden.
 
-Now that you know where to use patterns and the difference between refutable
-and irrefutable patterns, let’s cover all the syntax we can use to create
-patterns.
+Jetzt, da du weißt, wo man Patterns verwendet und was der Unterschied zwischen
+abweisbaren und unabweisbaren Patterns ist, behandeln wir die gesamte Syntax,
+mit der wir Patterns erstellen können.
 
 {{#quiz ../quizzes/ch18-02-refutability.toml}}

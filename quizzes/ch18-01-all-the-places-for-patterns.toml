@@ -15,8 +15,8 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "6"
 context = """ 
-This example provides a valid use of `while let` matching and `let` matching. Note that you
-could combine them, e.g.
+Dieses Beispiel zeigt eine gültige Verwendung von Pattern-Matching mit `while let` und mit `let`. Beachte, dass du
+beide kombinieren könntest, z. B.
 
 ```
 while let Some((_, n)) = v.next() {

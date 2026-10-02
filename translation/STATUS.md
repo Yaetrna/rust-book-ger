@@ -43,7 +43,8 @@ Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 | Kapitel 16                                | ch16-* mit Quizzen                           | ✅     |
 | Kapitel 17                                | ch17-* mit Quizzen (async-*)                 | ✅     |
 | Kapitel 18                                | ch18-* mit Quizzen (ch17-0x-*, Inventur #4)  | ✅     |
-| Kapitel 19–21, Anhänge, end-of-experiment | –                                            | ⬜     |
+| Kapitel 19                                | ch19-* mit Quizzen (ch18-0x-*)               | ✅     |
+| Kapitel 20–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 

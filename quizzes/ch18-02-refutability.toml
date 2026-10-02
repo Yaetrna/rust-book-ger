@@ -2,30 +2,30 @@
 id = "35e59c95-3d83-4277-8d88-a1986f4086d7"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider pattern-matching on an expression of some type `T`.
-Which of these statements best describes the difference between a refutable and an irrefutable pattern?
+Betrachte Pattern-Matching auf einen Ausdruck eines Typs `T`.
+Welche dieser Aussagen beschreibt den Unterschied zwischen einem abweisbaren (*refutable*) und einem unabweisbaren (*irrefutable*) Pattern am besten?
 """
-answer.answer = "Refutable patterns do not match some value of type `T`, while irrefutable patterns match all values of type `T`"
+answer.answer = "Abweisbare Patterns passen auf mindestens einen Wert vom Typ `T` nicht, während unabweisbare Patterns auf alle Werte vom Typ `T` passen"
 prompt.distractors = [
-    "Refutable patterns match some values of a different type `S`, while irrefutable patterns only match values of type `T`",
-    "Refutable patterns do not match any values of type `T`, while irrefutable patterns match some values of type `T`",
-    "Refutable patterns are patterns where `T` is an enum, while irrefutable patterns are patterns where `T` is not an enum"
+    "Abweisbare Patterns passen auf manche Werte eines anderen Typs `S`, während unabweisbare Patterns nur auf Werte vom Typ `T` passen",
+    "Abweisbare Patterns passen auf keinen Wert vom Typ `T`, während unabweisbare Patterns auf manche Werte vom Typ `T` passen",
+    "Abweisbare Patterns sind Patterns, bei denen `T` ein Enum ist, während unabweisbare Patterns Patterns sind, bei denen `T` kein Enum ist"
 ]
 context = """
-A pattern is refutable if there exists some value of the expected type that isn't matched by the pattern.
+Ein Pattern ist abweisbar, wenn es einen Wert des erwarteten Typs gibt, auf den das Pattern nicht passt.
 """
 
 [[questions]]
 id = "3c29eb2d-cbe9-4a2c-99b8-aa5c6467c8b4"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the following program:
+Betrachte das folgende Programm:
 
 ```
 let x: &[(i32, i32)] = &[(0, 1)];
 ```
 
-Which of the following are **refutable** patterns for `x`?
+Welche der folgenden Patterns sind für `x` **abweisbar**?
 """
 answer.answer = [
     "`&[(x, y)]`",
@@ -36,6 +36,6 @@ prompt.distractors = [
     "`_`"
 ]
 context = """ 
-A slice does not have a fixed length, so any pattern which asserts that
-`x` must have at least one element is refutable.
+Ein Slice hat keine feste Länge, daher ist jedes Pattern abweisbar, das voraussetzt,
+dass `x` mindestens ein Element haben muss.
 """
