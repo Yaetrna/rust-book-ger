@@ -239,6 +239,11 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | yank (crate version)                       | zurückziehen / Yank                                | der                               | Befehl `cargo yank` bleibt                             | entschieden |
 | binary target / library target             | Binary-Target / Library-Target                     | das                               |                                                        | entschieden |
 | Figure N-M (caption)                       | Abbildung N-M                                      | die                               | handgeschriebene Bildunterschriften                    | entschieden |
+| recursive type / cons list                 | rekursiver Typ / Cons-Liste                        | der / die                         |                                                        | entschieden |
+| indirection                                | Indirektion                                        | die                               |                                                        | entschieden |
+| strong / weak reference                    | starke / schwache Referenz                         | die                               |                                                        | entschieden |
+| test double / mock object                  | Test-Double / Mock-Objekt                          | das                               |                                                        | entschieden |
+| destructor / constructor                   | Destruktor / Konstruktor                           | der                               |                                                        | entschieden |
 | standard library                           | Standardbibliothek                                 | die / –                           |                                                        | entschieden |
 | dependency                                 | Abhängigkeit                                       | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                                   | Compiler                                           | der / die Compiler                |                                                        | entschieden |
@@ -375,3 +380,4 @@ dort, wo das Buch sie definiert.
 | Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                | –   | neu aufgenommen | ch12-*             |
 | Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                   | –   | neu aufgenommen | ch13-*             |
 | Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                             | –   | neu aufgenommen | ch14-*             |
+| Kap. 15 | pointer, design pattern, recursive type, indirection, memory leak, strong/weak reference, test double, destructor | –   | neu aufgenommen | ch15-*             |

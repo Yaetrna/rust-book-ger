@@ -18,14 +18,14 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 11
 context = """
-An owned value cannot be dropped twice, so it is a compiler error to call a drop the second time.
+Ein besessener Wert kann nicht zweimal verworfen werden, daher ist es ein Compilerfehler, drop ein zweites Mal aufzurufen.
 """
 
 [[questions]]
 id = "b9121273-1c1e-4e99-9cff-a23f845aaeeb"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider this snippet that allocates a string:
+Betrachte diesen Codeausschnitt, der einen String alloziert:
 
 ```rust
 fn main() {
@@ -34,13 +34,13 @@ fn main() {
 }
 ```
 
-Which of the following are valid operations to fill in the underscore that would cause `s` to be dropped?
+Welche der folgenden Operationen sind gültig, um die Lücke zu füllen, und würden dafür sorgen, dass `s` verworfen wird?
 """
 answer.answer = ["`drop(s);`", "`(|_| ())(s);`", "`{ s };`"]
 prompt.distractors = [
     "`s.drop();`",    
 ]
 context = """
-Any use of `s` that moves it and discards the result will cause `s` to be dropped. However, `s.drop()` cannot be
-called directly.
+Jede Verwendung von `s`, die es verschiebt (*moves*) und das Ergebnis verwirft, sorgt dafür, dass `s` verworfen wird. `s.drop()` kann jedoch nicht
+direkt aufgerufen werden.
 """

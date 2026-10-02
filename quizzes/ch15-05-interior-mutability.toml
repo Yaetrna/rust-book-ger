@@ -2,24 +2,24 @@
 id = "01904807-74c7-41ad-8d8b-cfb30e5ce10c"
 type = "MultipleChoice"
 prompt.prompt = """
-Which of the following best describes the concept of *interior mutability* in Rust?
+Was beschreibt das Konzept der *inneren Veränderlichkeit* in Rust am besten?
 """
-answer.answer = "Allowing data to be mutated through an immutable reference"
+answer.answer = "Erlauben, dass Daten über eine unveränderliche Referenz verändert werden"
 prompt.distractors = [
-    "Wrapping `unsafe` code in a safe API",
-    "Allowing data on the inside of a data structure to be mutated",
-    "Using the borrow checker to enforce memory safety at runtime"
+    "`unsafe`-Code in eine sichere API verpacken",
+    "Erlauben, dass Daten im Inneren einer Datenstruktur verändert werden",
+    "Mit dem Borrow-Checker zur Laufzeit Speichersicherheit durchsetzen"
 ]
 context = """
-The main idea of interior mutability is taking a value of type `&T` and being able to 
-safely mutate data within `T`.
+Die Grundidee der inneren Veränderlichkeit ist, einen Wert vom Typ `&T` zu nehmen und 
+Daten in `T` sicher verändern zu können.
 """
 
 [[questions]]
 id = "380cd865-76c5-419c-8961-af4c59d2ab71"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider an API that tracks the number of calls to a particular method:
+Betrachte eine API, die die Anzahl der Aufrufe einer bestimmten Methode zählt:
 
 ```
 struct Api {
@@ -34,27 +34,27 @@ impl Api {
 }
 ```
 
-Say the count is represented as a `usize`. Which of the following would be the most appropriate wrapper type
-to use for this situation?
+Angenommen, der Zähler wird als `usize` dargestellt. Welcher der folgenden Wrapper-Typen wäre
+in dieser Situation am besten geeignet?
 """
 answer.answer = "`RefCell<usize>`"
 prompt.distractors = [
     "`Rc<usize>`",
     "`Box<usize>`",
-    "None, `usize` is fine"
+    "Keiner, `usize` genügt"
 ]
 context = """
-Here a `RefCell` is useful to mutate an internal field even though `some_method` takes
-an immutable reference as input. If the internal field is just an integer, an even better choice of type
-would be `Cell<usize>` or `AtomicUsize`.
+Hier ist eine `RefCell` nützlich, um ein internes Feld zu verändern, obwohl `some_method`
+eine unveränderliche Referenz als Eingabe nimmt. Ist das interne Feld nur eine Ganzzahl, wäre `Cell<usize>`
+oder `AtomicUsize` eine noch bessere Wahl.
 """
 
 [[questions]]
 id = "d4ae1b8e-79a7-4485-828f-fb30cdeb29d5"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the following incorrect implementation of a `RefCell` that does not check
-whether the interior value is borrowed:
+Betrachte folgende fehlerhafte Implementierung einer `RefCell`, die nicht prüft,
+ob der innere Wert ausgeliehen ist:
 
 ```
 use std::cell::UnsafeCell;
@@ -66,13 +66,13 @@ impl<T> BadRefCell<T> {
 }
 ```
 
-Now say we have a `BadRefCell` like this:
+Angenommen, wir haben eine `BadRefCell` wie diese:
 
 ```
 let v = BadRefCell(UnsafeCell::new(vec![1, 2, 3]));
 ```
 
-Which of the following snippets would violate memory safety using this API?
+Welcher der folgenden Codeausschnitte würde mit dieser API die Speichersicherheit verletzen?
 """
 answer.answer = """
 ```
@@ -106,6 +106,6 @@ println!("{n}");
 """
 ]
 context = """
-The `BadRefCell` allows us to have two mutable references to the underlying data at the same time,
-which permits a memory safety violation like reallocating a vector while holding a reference to its contents.
+Die `BadRefCell` erlaubt uns, gleichzeitig zwei veränderliche Referenzen auf die zugrunde liegenden Daten zu haben,
+was eine Verletzung der Speichersicherheit ermöglicht, etwa einen Vektor neu zu allozieren, während eine Referenz auf seinen Inhalt gehalten wird.
 """

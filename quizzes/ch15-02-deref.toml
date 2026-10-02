@@ -29,6 +29,6 @@ deref
 0 -1
 """
 context = """
-The `AccessLogger` will print "deref" every time `n` is dereferenced, which occurs twice.
-Note that copying `n` to `n2` does not dereference `n`.
+`AccessLogger` gibt jedes Mal „deref“ aus, wenn `n` dereferenziert wird, was zweimal geschieht.
+Beachte, dass das Kopieren von `n` nach `n2` `n` nicht dereferenziert.
 """

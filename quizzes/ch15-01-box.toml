@@ -12,23 +12,23 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "2"
 context = """
-A box can hold a mutable reference, so dereferencing `b` twice gets back to `n`.
+Eine Box kann eine veränderliche Referenz enthalten, daher führt das zweifache Dereferenzieren von `b` zurück zu `n`.
 """
 
 [[questions]]
 id = "57595a80-c79f-4aae-a1d4-cdaf212d7c21"
 type = "ShortAnswer"
 prompt.prompt = """
-Say we have a program with a variable:
+Angenommen, wir haben ein Programm mit einer Variable:
 
 ```
 let x: [Box<(usize, usize)>; 4] = /* ... */
 ```
 
-For a compile target with a 64-bit architecture, what is the minimum possible size in memory (in bytes) of `x` on the stack? 
-Write your answer in digits, e.g. 0, 1, so on.
+Was ist bei einem Kompilierziel mit 64-Bit-Architektur die kleinstmögliche Größe von `x` im Speicher (in Bytes) auf dem Stack? 
+Gib deine Antwort in Ziffern an, z. B. 0, 1 und so weiter.
 """
 answer.answer = "32"
 context = """
-A box contains a pointer, which is 8 bytes on a 64-bit architecture. An array of 4 pointers is therefore at least 4 * 8 = 32 bytes.
+Eine Box enthält einen Zeiger, der auf einer 64-Bit-Architektur 8 Bytes groß ist. Ein Array aus 4 Zeigern ist daher mindestens 4 * 8 = 32 Bytes groß.
 """

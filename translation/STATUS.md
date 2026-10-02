@@ -39,7 +39,8 @@ Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 | Kapitel 12                                | ch12-* (keine Quizze)                        | ✅     |
 | Kapitel 13                                | ch13-* mit Quizzen                           | ✅     |
 | Kapitel 14                                | ch14-* mit Quizzen                           | ✅     |
-| Kapitel 15–21, Anhänge, end-of-experiment | –                                            | ⬜     |
+| Kapitel 15                                | ch15-* mit Quizzen                           | ✅     |
+| Kapitel 16–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
