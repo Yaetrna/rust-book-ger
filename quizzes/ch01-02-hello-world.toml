@@ -1,10 +1,10 @@
 [[questions]]
 id = "87c3b09e-84d3-49d7-8680-0b2d068a7fc5"
 type = "ShortAnswer"
-prompt.prompt = "Every executable Rust program must contain a function with the name:"
+prompt.prompt = "Jedes ausführbare Rust-Programm muss eine Funktion mit folgendem Namen enthalten:"
 answer.answer = "main"
 context = """
-In your program, you add a main function like this:
+In deinem Programm fügst du eine main-Funktion so hinzu:
 
 ```
 fn main() {
@@ -17,7 +17,7 @@ fn main() {
 id = "0d78d302-eb3d-4ac7-a1ac-f2d661810744"
 type = "MultipleChoice"
 prompt.prompt = """
-Let's say you have the following program in a file `hello.rs`:
+Angenommen, du hast folgendes Programm in einer Datei `hello.rs`:
 
 ```
 fn main() {
@@ -25,14 +25,14 @@ fn main() {
 }
 ```
 
-Say you then run the command `rustc hello.rs` from the command-line. Which statement best describes what happens next?
+Angenommen, du führst dann auf der Kommandozeile den Befehl `rustc hello.rs` aus. Welche Aussage beschreibt am besten, was als Nächstes passiert?
 """
-answer.answer = "`rustc` generates a binary executable named `hello`"
+answer.answer = "`rustc` erzeugt eine ausführbare Binärdatei namens `hello`"
 prompt.distractors = [
-  "`rustc` will print an error because this is an invalid program",
-  "`rustc` executes the program and prints out `Hello world!`",
-  "`rustc` reformats `hello.rs` according to the Rust style guide"
+  "`rustc` gibt einen Fehler aus, weil das Programm ungültig ist",
+  "`rustc` führt das Programm aus und gibt `Hello world!` aus",
+  "`rustc` formatiert `hello.rs` gemäß dem Rust-Styleguide neu"
 ]
 context = """
-Running `rustc` checks and compiles your program, but does not execute it.
+`rustc` prüft und kompiliert dein Programm, führt es aber nicht aus.
 """

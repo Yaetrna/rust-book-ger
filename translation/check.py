@@ -86,7 +86,7 @@ TRANSLATOR_NOTE_RE = re.compile(
 HEADING_ATTR_RE = re.compile(r"\s*\{#([A-Za-z0-9_\-]+)\}\s*$")
 DIRECTIVE_RE = re.compile(r"\{\{#.*?\}\}")
 PERM_RE = re.compile(r"@Perm(?:\[[^\]]*\])?\{[^}]*\}")
-URL_RE = re.compile(r"https?://[^\s<>)\]\"'`]+")
+URL_RE = re.compile(r"https?://[^\s<>)\]\"'`\x00]*[^\s<>)\]\"'`\x00.,;:!?]")
 TRANSLATABLE_ATTRS = {"alt", "title", "caption"}
 CODE_SPAN_RE = re.compile(r"(`+)(.+?)\1", re.S)
 REF_DEF_RE = re.compile(r"^ {0,3}\[(?!\^)[^\]]+\]:\s")
@@ -234,7 +234,9 @@ class HtmlScan(HTMLParser):
         self.items.append(("end", tag))
 
     def handle_comment(self, data):
-        self.items.append(("comment", data))
+        # Line wrapping may move a line break inside a comment such as
+        # "<!-- ignore -->"; only the words matter.
+        self.items.append(("comment", " ".join(data.split())))
 
     def handle_data(self, data):
         self.text.append(data)
