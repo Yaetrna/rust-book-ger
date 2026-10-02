@@ -1,23 +1,18 @@
-# The Rust Programming Language
+# Die Programmiersprache Rust {#the-rust-programming-language}
 
-*by Steve Klabnik, Carol Nichols, and Chris Krycho, with contributions from the Rust Community*
+_von Steve Klabnik, Carol Nichols und Chris Krycho, unter Mitwirkung der Rust-Community_
 
-*(and with experimental modifications!)*
+_(und mit experimentellen Änderungen!)_
 
-This version of the text assumes you’re using Rust 1.90.0 (released 2025-09-18)
-or later with `edition = "2024"` in the *Cargo.toml* file of all projects to
-configure them to use Rust 2024 Edition idioms. See the [“Installation” section
-of Chapter 1][install]<!-- ignore --> for instructions on installing or
-updating Rust, and see [Appendix E][appendix-e]<!-- ignore --> for information
-on editions.
+Diese Fassung des Textes geht davon aus, dass du Rust 1.90.0 (veröffentlicht am 18.09.2025) oder neuer verwendest und in der Datei _Cargo.toml_ aller Projekte `edition = "2024"` angibst, damit sie die Idiome der Rust-Edition 2024 nutzen. Im [Abschnitt „Installation“ in Kapitel 1][install]<!-- ignore --> erfährst du, wie du Rust installierst oder aktualisierst, und in [Anhang E][appendix-e]<!-- ignore --> findest du Informationen zu Editionen.
 
-The experimental version is only available online and in English. 
-The non-experimental version is available offline with installations of Rust made with `rustup`; run `rustup doc
---book` to open.
+Die experimentelle Fassung gibt es nur online; das Original ist auf Englisch, und diese deutsche Übersetzung ist inoffiziell.
+Die nicht-experimentelle Fassung ist bei Rust-Installationen mit `rustup` offline verfügbar; führe `rustup doc
+--book` aus, um sie zu öffnen.
 
-Several community [translations] of the non-experimental version are also available.
-The non-experimental text is available in [paperback and ebook format from No Starch
-Press][nsprust].
+Von der nicht-experimentellen Fassung gibt es außerdem mehrere [Übersetzungen][translations] aus der Community.
+Der nicht-experimentelle Text ist [als Taschenbuch und E-Book bei No Starch
+Press][nsprust] erhältlich.
 
 [install]: ch01-01-installation.html
 [appendix-e]: appendix-05-editions.html
