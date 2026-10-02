@@ -2,8 +2,9 @@
 # in `nostarch/book.toml`!
 
 [book]
-title = "The Rust Programming Language"
+title = "Die Programmiersprache Rust"
 authors = ["Steve Klabnik", "Carol Nichols", "Contributions from the Rust Community"]
+language = "de"
 
 [output.html]
 additional-css = [

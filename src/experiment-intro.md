@@ -1,5 +1,11 @@
 # What's Different About This Book?
 
+<!-- de:translator-note:start -->
+
+> **Hinweis zur Übersetzung:** Dies ist eine inoffizielle deutsche Übersetzung der experimentellen Ausgabe von *The Rust Programming Language* des Cognitive Engineering Lab der Brown University. Grundlage ist der Commit [`88250e0`](https://github.com/cognitive-engineering-lab/rust-book/commit/88250e0392cef0622f318e35469108d68694c1f7) von <https://github.com/cognitive-engineering-lab/rust-book>. Rust-spezifische Begriffe wie Trait, Crate, Ownership oder Borrow-Checker bleiben bewusst englisch, damit du sie in Compiler-Meldungen und in der Dokumentation wiedererkennst.
+
+<!-- de:translator-note:end -->
+
 <div style="display: flex; gap: 2em"> 
 
 This book is an experimental fork of [*The Rust Programming Language*](http://doc.rust-lang.org/book/) created by researchers at the <a href="https://cel.cs.brown.edu/">Cognitive Engineering Lab</a> at Brown University. If you're curious, this page explains what makes this book different from the original TRPL book. But if you just want to get started learning Rust, then feel free to skip this page and come back later.

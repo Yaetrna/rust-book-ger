@@ -1,0 +1,14 @@
+# Begründete Ausnahmen für translation/check.py.
+#
+# review_allow: Treffer des Review-Greps, die keinen Rust-Begriff übersetzen.
+# english_allow: Blöcke, die absichtlich englischen Text enthalten
+#                (z. B. zitierte Compiler-Meldungen).
+# Jeder Eintrag braucht eine Begründung.
+
+[[review_allow]]
+word = "Abschlussprojekt"
+reason = "„final project“, nicht „closure“"
+
+[[review_allow]]
+word = "Datenstruktur"
+reason = "allgemeiner Begriff „data structure“, nicht „struct“"

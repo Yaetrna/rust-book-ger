@@ -1,0 +1,3192 @@
+{
+ "src/appendix-00.md": [
+  {
+   "level": 1,
+   "text": "Appendix",
+   "id": "appendix"
+  }
+ ],
+ "src/appendix-01-keywords.md": [
+  {
+   "level": 2,
+   "text": "Appendix A: Keywords",
+   "id": "appendix-a-keywords"
+  },
+  {
+   "level": 3,
+   "text": "Keywords Currently in Use",
+   "id": "keywords-currently-in-use"
+  },
+  {
+   "level": 3,
+   "text": "Keywords Reserved for Future Use",
+   "id": "keywords-reserved-for-future-use"
+  },
+  {
+   "level": 3,
+   "text": "Raw Identifiers",
+   "id": "raw-identifiers"
+  }
+ ],
+ "src/appendix-02-operators.md": [
+  {
+   "level": 2,
+   "text": "Appendix B: Operators and Symbols",
+   "id": "appendix-b-operators-and-symbols"
+  },
+  {
+   "level": 3,
+   "text": "Operators",
+   "id": "operators"
+  },
+  {
+   "level": 3,
+   "text": "Non-operator Symbols",
+   "id": "non-operator-symbols"
+  }
+ ],
+ "src/appendix-03-derivable-traits.md": [
+  {
+   "level": 2,
+   "text": "Appendix C: Derivable Traits",
+   "id": "appendix-c-derivable-traits"
+  },
+  {
+   "level": 3,
+   "text": "`Debug` for Programmer Output",
+   "id": "debug-for-programmer-output"
+  },
+  {
+   "level": 3,
+   "text": "`PartialEq` and `Eq` for Equality Comparisons",
+   "id": "partialeq-and-eq-for-equality-comparisons"
+  },
+  {
+   "level": 3,
+   "text": "`PartialOrd` and `Ord` for Ordering Comparisons",
+   "id": "partialord-and-ord-for-ordering-comparisons"
+  },
+  {
+   "level": 3,
+   "text": "`Clone` and `Copy` for Duplicating Values",
+   "id": "clone-and-copy-for-duplicating-values"
+  },
+  {
+   "level": 3,
+   "text": "`Hash` for Mapping a Value to a Value of Fixed Size",
+   "id": "hash-for-mapping-a-value-to-a-value-of-fixed-size"
+  },
+  {
+   "level": 3,
+   "text": "`Default` for Default Values",
+   "id": "default-for-default-values"
+  }
+ ],
+ "src/appendix-04-useful-development-tools.md": [
+  {
+   "level": 2,
+   "text": "Appendix D: Useful Development Tools",
+   "id": "appendix-d-useful-development-tools"
+  },
+  {
+   "level": 3,
+   "text": "Automatic Formatting with `rustfmt`",
+   "id": "automatic-formatting-with-rustfmt"
+  },
+  {
+   "level": 3,
+   "text": "Fix Your Code with `rustfix`",
+   "id": "fix-your-code-with-rustfix"
+  },
+  {
+   "level": 3,
+   "text": "More Lints with Clippy",
+   "id": "more-lints-with-clippy"
+  },
+  {
+   "level": 3,
+   "text": "IDE Integration Using `rust-analyzer`",
+   "id": "ide-integration-using-rust-analyzer"
+  }
+ ],
+ "src/appendix-05-editions.md": [
+  {
+   "level": 2,
+   "text": "Appendix E: Editions",
+   "id": "appendix-e-editions"
+  }
+ ],
+ "src/appendix-06-translation.md": [
+  {
+   "level": 2,
+   "text": "Appendix F: Translations of the Book",
+   "id": "appendix-f-translations-of-the-book"
+  }
+ ],
+ "src/appendix-07-nightly-rust.md": [
+  {
+   "level": 2,
+   "text": "Appendix G - How Rust is Made and “Nightly Rust”",
+   "id": "appendix-g---how-rust-is-made-and-nightly-rust"
+  },
+  {
+   "level": 3,
+   "text": "Stability Without Stagnation",
+   "id": "stability-without-stagnation"
+  },
+  {
+   "level": 3,
+   "text": "Choo, Choo! Release Channels and Riding the Trains",
+   "id": "choo-choo-release-channels-and-riding-the-trains"
+  },
+  {
+   "level": 3,
+   "text": "Maintenance time",
+   "id": "maintenance-time"
+  },
+  {
+   "level": 3,
+   "text": "Unstable Features",
+   "id": "unstable-features"
+  },
+  {
+   "level": 3,
+   "text": "Rustup and the Role of Rust Nightly",
+   "id": "rustup-and-the-role-of-rust-nightly"
+  },
+  {
+   "level": 3,
+   "text": "The RFC Process and Teams",
+   "id": "the-rfc-process-and-teams"
+  }
+ ],
+ "src/ch00-00-introduction.md": [
+  {
+   "level": 1,
+   "text": "Introduction",
+   "id": "introduction"
+  },
+  {
+   "level": 2,
+   "text": "Who Rust Is For",
+   "id": "who-rust-is-for"
+  },
+  {
+   "level": 3,
+   "text": "Teams of Developers",
+   "id": "teams-of-developers"
+  },
+  {
+   "level": 3,
+   "text": "Students",
+   "id": "students"
+  },
+  {
+   "level": 3,
+   "text": "Companies",
+   "id": "companies"
+  },
+  {
+   "level": 3,
+   "text": "Open Source Developers",
+   "id": "open-source-developers"
+  },
+  {
+   "level": 3,
+   "text": "People Who Value Speed and Stability",
+   "id": "people-who-value-speed-and-stability"
+  },
+  {
+   "level": 2,
+   "text": "Who This Book Is For",
+   "id": "who-this-book-is-for"
+  },
+  {
+   "level": 2,
+   "text": "How to Use This Book",
+   "id": "how-to-use-this-book"
+  },
+  {
+   "level": 2,
+   "text": "Source Code",
+   "id": "source-code"
+  }
+ ],
+ "src/ch01-00-getting-started.md": [
+  {
+   "level": 1,
+   "text": "Getting Started",
+   "id": "getting-started"
+  }
+ ],
+ "src/ch01-01-installation.md": [
+  {
+   "level": 2,
+   "text": "Installation",
+   "id": "installation"
+  },
+  {
+   "level": 3,
+   "text": "Command Line Notation",
+   "id": "command-line-notation"
+  },
+  {
+   "level": 3,
+   "text": "Installing `rustup` on Linux or macOS",
+   "id": "installing-rustup-on-linux-or-macos"
+  },
+  {
+   "level": 3,
+   "text": "Installing `rustup` on Windows",
+   "id": "installing-rustup-on-windows"
+  },
+  {
+   "level": 3,
+   "text": "Troubleshooting",
+   "id": "troubleshooting"
+  },
+  {
+   "level": 3,
+   "text": "Updating and Uninstalling",
+   "id": "updating-and-uninstalling"
+  },
+  {
+   "level": 3,
+   "text": "Reading the Local Documentation",
+   "id": "reading-the-local-documentation"
+  },
+  {
+   "level": 3,
+   "text": "Using Text Editors and IDEs",
+   "id": "using-text-editors-and-ides"
+  },
+  {
+   "level": 3,
+   "text": "Working Offline with This Book",
+   "id": "working-offline-with-this-book"
+  }
+ ],
+ "src/ch01-02-hello-world.md": [
+  {
+   "level": 2,
+   "text": "Hello, World!",
+   "id": "hello-world"
+  },
+  {
+   "level": 3,
+   "text": "Project Directory Setup",
+   "id": "project-directory-setup"
+  },
+  {
+   "level": 3,
+   "text": "Rust Program Basics",
+   "id": "rust-program-basics"
+  },
+  {
+   "level": 3,
+   "text": "The Anatomy of a Rust Program",
+   "id": "the-anatomy-of-a-rust-program"
+  },
+  {
+   "level": 3,
+   "text": "Compilation and Execution",
+   "id": "compilation-and-execution"
+  }
+ ],
+ "src/ch01-03-hello-cargo.md": [
+  {
+   "level": 2,
+   "text": "Hello, Cargo!",
+   "id": "hello-cargo"
+  },
+  {
+   "level": 3,
+   "text": "Creating a Project with Cargo",
+   "id": "creating-a-project-with-cargo"
+  },
+  {
+   "level": 3,
+   "text": "Building and Running a Cargo Project",
+   "id": "building-and-running-a-cargo-project"
+  },
+  {
+   "level": 3,
+   "text": "Building for Release",
+   "id": "building-for-release"
+  },
+  {
+   "level": 3,
+   "text": "Leveraging Cargo’s Conventions",
+   "id": "leveraging-cargos-conventions"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch02-00-guessing-game-tutorial.md": [
+  {
+   "level": 1,
+   "text": "Programming a Guessing Game",
+   "id": "programming-a-guessing-game"
+  },
+  {
+   "level": 2,
+   "text": "Setting Up a New Project",
+   "id": "setting-up-a-new-project"
+  },
+  {
+   "level": 2,
+   "text": "Processing a Guess",
+   "id": "processing-a-guess"
+  },
+  {
+   "level": 3,
+   "text": "Storing Values with Variables",
+   "id": "storing-values-with-variables"
+  },
+  {
+   "level": 3,
+   "text": "Receiving User Input",
+   "id": "receiving-user-input"
+  },
+  {
+   "level": 3,
+   "text": "Handling Potential Failure with `Result`",
+   "id": "handling-potential-failure-with-result"
+  },
+  {
+   "level": 3,
+   "text": "Printing Values with `println!` Placeholders",
+   "id": "printing-values-with-println-placeholders"
+  },
+  {
+   "level": 3,
+   "text": "Testing the First Part",
+   "id": "testing-the-first-part"
+  },
+  {
+   "level": 2,
+   "text": "Generating a Secret Number",
+   "id": "generating-a-secret-number"
+  },
+  {
+   "level": 3,
+   "text": "Increasing Functionality with a Crate",
+   "id": "increasing-functionality-with-a-crate"
+  },
+  {
+   "level": 4,
+   "text": "Ensuring Reproducible Builds",
+   "id": "ensuring-reproducible-builds"
+  },
+  {
+   "level": 4,
+   "text": "Updating a Crate to Get a New Version",
+   "id": "updating-a-crate-to-get-a-new-version"
+  },
+  {
+   "level": 3,
+   "text": "Generating a Random Number",
+   "id": "generating-a-random-number"
+  },
+  {
+   "level": 2,
+   "text": "Comparing the Guess to the Secret Number",
+   "id": "comparing-the-guess-to-the-secret-number"
+  },
+  {
+   "level": 2,
+   "text": "Allowing Multiple Guesses with Looping",
+   "id": "allowing-multiple-guesses-with-looping"
+  },
+  {
+   "level": 3,
+   "text": "Quitting After a Correct Guess",
+   "id": "quitting-after-a-correct-guess"
+  },
+  {
+   "level": 3,
+   "text": "Handling Invalid Input",
+   "id": "handling-invalid-input"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch03-00-common-programming-concepts.md": [
+  {
+   "level": 1,
+   "text": "Common Programming Concepts",
+   "id": "common-programming-concepts"
+  },
+  {
+   "level": 4,
+   "text": "Keywords",
+   "id": "keywords"
+  }
+ ],
+ "src/ch03-01-variables-and-mutability.md": [
+  {
+   "level": 2,
+   "text": "Variables and Mutability",
+   "id": "variables-and-mutability"
+  },
+  {
+   "level": 3,
+   "text": "Declaring Constants",
+   "id": "declaring-constants"
+  },
+  {
+   "level": 3,
+   "text": "Shadowing",
+   "id": "shadowing"
+  }
+ ],
+ "src/ch03-02-data-types.md": [
+  {
+   "level": 2,
+   "text": "Data Types",
+   "id": "data-types"
+  },
+  {
+   "level": 3,
+   "text": "Scalar Types",
+   "id": "scalar-types"
+  },
+  {
+   "level": 4,
+   "text": "Integer Types",
+   "id": "integer-types"
+  },
+  {
+   "level": 5,
+   "text": "Integer Overflow",
+   "id": "integer-overflow"
+  },
+  {
+   "level": 4,
+   "text": "Floating-Point Types",
+   "id": "floating-point-types"
+  },
+  {
+   "level": 4,
+   "text": "Numeric Operations",
+   "id": "numeric-operations"
+  },
+  {
+   "level": 4,
+   "text": "The Boolean Type",
+   "id": "the-boolean-type"
+  },
+  {
+   "level": 4,
+   "text": "The Character Type",
+   "id": "the-character-type"
+  },
+  {
+   "level": 3,
+   "text": "Compound Types",
+   "id": "compound-types"
+  },
+  {
+   "level": 4,
+   "text": "The Tuple Type",
+   "id": "the-tuple-type"
+  },
+  {
+   "level": 4,
+   "text": "The Array Type",
+   "id": "the-array-type"
+  },
+  {
+   "level": 4,
+   "text": "Array Element Access",
+   "id": "array-element-access"
+  },
+  {
+   "level": 4,
+   "text": "Invalid Array Element Access",
+   "id": "invalid-array-element-access"
+  }
+ ],
+ "src/ch03-03-how-functions-work.md": [
+  {
+   "level": 2,
+   "text": "Functions",
+   "id": "functions"
+  },
+  {
+   "level": 3,
+   "text": "Parameters",
+   "id": "parameters"
+  },
+  {
+   "level": 3,
+   "text": "Statements and Expressions",
+   "id": "statements-and-expressions"
+  },
+  {
+   "level": 3,
+   "text": "Functions with Return Values",
+   "id": "functions-with-return-values"
+  }
+ ],
+ "src/ch03-04-comments.md": [
+  {
+   "level": 2,
+   "text": "Comments",
+   "id": "comments"
+  }
+ ],
+ "src/ch03-05-control-flow.md": [
+  {
+   "level": 2,
+   "text": "Control Flow",
+   "id": "control-flow"
+  },
+  {
+   "level": 3,
+   "text": "`if` Expressions",
+   "id": "if-expressions"
+  },
+  {
+   "level": 4,
+   "text": "Handling Multiple Conditions with `else if`",
+   "id": "handling-multiple-conditions-with-else-if"
+  },
+  {
+   "level": 4,
+   "text": "Using `if` in a `let` Statement",
+   "id": "using-if-in-a-let-statement"
+  },
+  {
+   "level": 3,
+   "text": "Repetition with Loops",
+   "id": "repetition-with-loops"
+  },
+  {
+   "level": 4,
+   "text": "Repeating Code with `loop`",
+   "id": "repeating-code-with-loop"
+  },
+  {
+   "level": 4,
+   "text": "Returning Values from Loops",
+   "id": "returning-values-from-loops"
+  },
+  {
+   "level": 4,
+   "text": "Disambiguating with Loop Labels",
+   "id": "disambiguating-with-loop-labels"
+  },
+  {
+   "level": 4,
+   "text": "Streamlining Conditional Loops with while",
+   "id": "streamlining-conditional-loops-with-while"
+  },
+  {
+   "level": 4,
+   "text": "Looping Through a Collection with `for`",
+   "id": "looping-through-a-collection-with-for"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch04-00-understanding-ownership.md": [
+  {
+   "level": 1,
+   "text": "Understanding Ownership",
+   "id": "understanding-ownership"
+  }
+ ],
+ "src/ch04-01-what-is-ownership.md": [
+  {
+   "level": 2,
+   "text": "What Is Ownership?",
+   "id": "what-is-ownership"
+  },
+  {
+   "level": 3,
+   "text": "Safety is the Absence of Undefined Behavior",
+   "id": "safety-is-the-absence-of-undefined-behavior"
+  },
+  {
+   "level": 3,
+   "text": "Ownership as a Discipline for Memory Safety",
+   "id": "ownership-as-a-discipline-for-memory-safety"
+  },
+  {
+   "level": 3,
+   "text": "Variables Live in the Stack",
+   "id": "variables-live-in-the-stack"
+  },
+  {
+   "level": 3,
+   "text": "Boxes Live in the Heap",
+   "id": "boxes-live-in-the-heap"
+  },
+  {
+   "level": 3,
+   "text": "Rust Does Not Permit Manual Memory Management",
+   "id": "rust-does-not-permit-manual-memory-management"
+  },
+  {
+   "level": 3,
+   "text": "A Box's Owner Manages Deallocation",
+   "id": "a-boxs-owner-manages-deallocation"
+  },
+  {
+   "level": 3,
+   "text": "Collections Use Boxes",
+   "id": "collections-use-boxes"
+  },
+  {
+   "level": 3,
+   "text": "Variables Cannot Be Used After Being Moved",
+   "id": "variables-cannot-be-used-after-being-moved"
+  },
+  {
+   "level": 3,
+   "text": "Cloning Avoids Moves",
+   "id": "cloning-avoids-moves"
+  },
+  {
+   "level": 3,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch04-02-references-and-borrowing.md": [
+  {
+   "level": 2,
+   "text": "References and Borrowing",
+   "id": "references-and-borrowing"
+  },
+  {
+   "level": 3,
+   "text": "References Are Non-Owning Pointers",
+   "id": "references-are-non-owning-pointers"
+  },
+  {
+   "level": 3,
+   "text": "Dereferencing a Pointer Accesses Its Data",
+   "id": "dereferencing-a-pointer-accesses-its-data"
+  },
+  {
+   "level": 3,
+   "text": "Rust Avoids Simultaneous Aliasing and Mutation",
+   "id": "rust-avoids-simultaneous-aliasing-and-mutation"
+  },
+  {
+   "level": 3,
+   "text": "References Change Permissions on Places",
+   "id": "references-change-permissions-on-places"
+  },
+  {
+   "level": 3,
+   "text": "The Borrow Checker Finds Permission Violations",
+   "id": "the-borrow-checker-finds-permission-violations"
+  },
+  {
+   "level": 3,
+   "text": "Mutable References Provide Unique and Non-Owning Access to Data",
+   "id": "mutable-references-provide-unique-and-non-owning-access-to-data"
+  },
+  {
+   "level": 3,
+   "text": "Permissions Are Returned At The End of a Reference's Lifetime",
+   "id": "permissions-are-returned-at-the-end-of-a-references-lifetime"
+  },
+  {
+   "level": 3,
+   "text": "Data Must Outlive All Of Its References",
+   "id": "data-must-outlive-all-of-its-references"
+  },
+  {
+   "level": 3,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch04-03-fixing-ownership-errors.md": [
+  {
+   "level": 2,
+   "text": "Fixing Ownership Errors",
+   "id": "fixing-ownership-errors"
+  },
+  {
+   "level": 3,
+   "text": "Fixing an Unsafe Program: Returning a Reference to the Stack",
+   "id": "fixing-an-unsafe-program-returning-a-reference-to-the-stack"
+  },
+  {
+   "level": 3,
+   "text": "Fixing an Unsafe Program: Not Enough Permissions",
+   "id": "fixing-an-unsafe-program-not-enough-permissions"
+  },
+  {
+   "level": 3,
+   "text": "Fixing an Unsafe Program: Aliasing and Mutating a Data Structure",
+   "id": "fixing-an-unsafe-program-aliasing-and-mutating-a-data-structure"
+  },
+  {
+   "level": 3,
+   "text": "Fixing an Unsafe Program: Copying vs. Moving Out of a Collection",
+   "id": "fixing-an-unsafe-program-copying-vs-moving-out-of-a-collection"
+  },
+  {
+   "level": 3,
+   "text": "Fixing a Safe Program: Mutating Different Tuple Fields",
+   "id": "fixing-a-safe-program-mutating-different-tuple-fields"
+  },
+  {
+   "level": 3,
+   "text": "Fixing a Safe Program: Mutating Different Array Elements",
+   "id": "fixing-a-safe-program-mutating-different-array-elements"
+  },
+  {
+   "level": 3,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch04-04-slices.md": [
+  {
+   "level": 2,
+   "text": "The Slice Type",
+   "id": "the-slice-type"
+  },
+  {
+   "level": 3,
+   "text": "String Slices",
+   "id": "string-slices"
+  },
+  {
+   "level": 4,
+   "text": "Range syntax",
+   "id": "range-syntax"
+  },
+  {
+   "level": 4,
+   "text": "Rewriting `first_word` with string slices",
+   "id": "rewriting-first_word-with-string-slices"
+  },
+  {
+   "level": 4,
+   "text": "String Literals Are Slices",
+   "id": "string-literals-are-slices"
+  },
+  {
+   "level": 4,
+   "text": "String Slices as Parameters",
+   "id": "string-slices-as-parameters"
+  },
+  {
+   "level": 3,
+   "text": "Other Slices",
+   "id": "other-slices"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch04-05-ownership-recap.md": [
+  {
+   "level": 2,
+   "text": "Ownership Recap",
+   "id": "ownership-recap"
+  },
+  {
+   "level": 3,
+   "text": "Ownership versus Garbage Collection",
+   "id": "ownership-versus-garbage-collection"
+  },
+  {
+   "level": 3,
+   "text": "The Concepts of Ownership",
+   "id": "the-concepts-of-ownership"
+  },
+  {
+   "level": 4,
+   "text": "Ownership at Runtime",
+   "id": "ownership-at-runtime"
+  },
+  {
+   "level": 4,
+   "text": "Ownership at Compile-time",
+   "id": "ownership-at-compile-time"
+  },
+  {
+   "level": 4,
+   "text": "Connecting Ownership between Compile-time and Runtime",
+   "id": "connecting-ownership-between-compile-time-and-runtime"
+  },
+  {
+   "level": 3,
+   "text": "The Rest of Ownership",
+   "id": "the-rest-of-ownership"
+  }
+ ],
+ "src/ch05-00-structs.md": [
+  {
+   "level": 1,
+   "text": "Using Structs to Structure Related Data",
+   "id": "using-structs-to-structure-related-data"
+  }
+ ],
+ "src/ch05-01-defining-structs.md": [
+  {
+   "level": 2,
+   "text": "Defining and Instantiating Structs",
+   "id": "defining-and-instantiating-structs"
+  },
+  {
+   "level": 3,
+   "text": "Using the Field Init Shorthand",
+   "id": "using-the-field-init-shorthand"
+  },
+  {
+   "level": 3,
+   "text": "Creating Instances with Struct Update Syntax",
+   "id": "creating-instances-with-struct-update-syntax"
+  },
+  {
+   "level": 3,
+   "text": "Creating Different Types with Tuple Structs",
+   "id": "creating-different-types-with-tuple-structs"
+  },
+  {
+   "level": 3,
+   "text": "Defining Unit-Like Structs",
+   "id": "defining-unit-like-structs"
+  },
+  {
+   "level": 3,
+   "text": "Ownership of Struct Data",
+   "id": "ownership-of-struct-data"
+  },
+  {
+   "level": 3,
+   "text": "Borrowing Fields of a Struct",
+   "id": "borrowing-fields-of-a-struct"
+  }
+ ],
+ "src/ch05-02-example-structs.md": [
+  {
+   "level": 2,
+   "text": "An Example Program Using Structs",
+   "id": "an-example-program-using-structs"
+  },
+  {
+   "level": 3,
+   "text": "Refactoring with Tuples",
+   "id": "refactoring-with-tuples"
+  },
+  {
+   "level": 3,
+   "text": "Refactoring with Structs",
+   "id": "refactoring-with-structs"
+  },
+  {
+   "level": 3,
+   "text": "Adding Functionality with Derived Traits",
+   "id": "adding-functionality-with-derived-traits"
+  }
+ ],
+ "src/ch05-03-method-syntax.md": [
+  {
+   "level": 2,
+   "text": "Methods",
+   "id": "methods"
+  },
+  {
+   "level": 3,
+   "text": "Method Syntax",
+   "id": "method-syntax"
+  },
+  {
+   "level": 3,
+   "text": "Methods with More Parameters",
+   "id": "methods-with-more-parameters"
+  },
+  {
+   "level": 3,
+   "text": "Associated Functions",
+   "id": "associated-functions"
+  },
+  {
+   "level": 3,
+   "text": "Multiple `impl` Blocks",
+   "id": "multiple-impl-blocks"
+  },
+  {
+   "level": 3,
+   "text": "Method Calls are Syntactic Sugar for Function Calls",
+   "id": "method-calls-are-syntactic-sugar-for-function-calls"
+  },
+  {
+   "level": 3,
+   "text": "Methods and Ownership",
+   "id": "methods-and-ownership"
+  },
+  {
+   "level": 4,
+   "text": "Reads and Writes with `&self` and `&mut self`",
+   "id": "reads-and-writes-with-self-and-mut-self"
+  },
+  {
+   "level": 4,
+   "text": "Moves with `self`",
+   "id": "moves-with-self"
+  },
+  {
+   "level": 4,
+   "text": "Good Moves and Bad Moves",
+   "id": "good-moves-and-bad-moves"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch06-00-enums.md": [
+  {
+   "level": 1,
+   "text": "Enums and Pattern Matching",
+   "id": "enums-and-pattern-matching"
+  }
+ ],
+ "src/ch06-01-defining-an-enum.md": [
+  {
+   "level": 2,
+   "text": "Defining an Enum",
+   "id": "defining-an-enum"
+  },
+  {
+   "level": 3,
+   "text": "Enum Values",
+   "id": "enum-values"
+  },
+  {
+   "level": 3,
+   "text": "The `Option` Enum",
+   "id": "the-option-enum"
+  }
+ ],
+ "src/ch06-02-match.md": [
+  {
+   "level": 2,
+   "text": "The `match` Control Flow Construct",
+   "id": "the-match-control-flow-construct"
+  },
+  {
+   "level": 3,
+   "text": "Patterns That Bind to Values",
+   "id": "patterns-that-bind-to-values"
+  },
+  {
+   "level": 3,
+   "text": "The `Option<T>` `match` Pattern",
+   "id": "the-optiont-match-pattern"
+  },
+  {
+   "level": 3,
+   "text": "Matches Are Exhaustive",
+   "id": "matches-are-exhaustive"
+  },
+  {
+   "level": 3,
+   "text": "Catch-All Patterns and the `_` Placeholder",
+   "id": "catch-all-patterns-and-the-_-placeholder"
+  },
+  {
+   "level": 3,
+   "text": "How Matches Interact with Ownership",
+   "id": "how-matches-interact-with-ownership"
+  }
+ ],
+ "src/ch06-03-if-let.md": [
+  {
+   "level": 2,
+   "text": "Concise Control Flow with `if let` and `let...else`",
+   "id": "concise-control-flow-with-if-let-and-letelse"
+  },
+  {
+   "level": 2,
+   "text": "Staying on the “Happy Path” with `let...else`",
+   "id": "staying-on-the-happy-path-with-letelse"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch06-04-inventory.md": [
+  {
+   "level": 2,
+   "text": "Ownership Inventory #1",
+   "id": "ownership-inventory-1"
+  },
+  {
+   "level": 3,
+   "text": "A new technology: the in-browser IDE",
+   "id": "a-new-technology-the-in-browser-ide"
+  },
+  {
+   "level": 3,
+   "text": "The Quiz",
+   "id": "the-quiz"
+  }
+ ],
+ "src/ch07-00-managing-growing-projects-with-packages-crates-and-modules.md": [
+  {
+   "level": 1,
+   "text": "Packages, Crates, and Modules",
+   "id": "packages-crates-and-modules"
+  }
+ ],
+ "src/ch07-01-packages-and-crates.md": [
+  {
+   "level": 2,
+   "text": "Packages and Crates",
+   "id": "packages-and-crates"
+  }
+ ],
+ "src/ch07-02-defining-modules-to-control-scope-and-privacy.md": [
+  {
+   "level": 2,
+   "text": "Control Scope and Privacy with Modules",
+   "id": "control-scope-and-privacy-with-modules"
+  },
+  {
+   "level": 3,
+   "text": "Modules Cheat Sheet",
+   "id": "modules-cheat-sheet"
+  },
+  {
+   "level": 3,
+   "text": "Grouping Related Code in Modules",
+   "id": "grouping-related-code-in-modules"
+  }
+ ],
+ "src/ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md": [
+  {
+   "level": 2,
+   "text": "Paths for Referring to an Item in the Module Tree",
+   "id": "paths-for-referring-to-an-item-in-the-module-tree"
+  },
+  {
+   "level": 3,
+   "text": "Exposing Paths with the `pub` Keyword",
+   "id": "exposing-paths-with-the-pub-keyword"
+  },
+  {
+   "level": 4,
+   "text": "Best Practices for Packages with a Binary and a Library",
+   "id": "best-practices-for-packages-with-a-binary-and-a-library"
+  },
+  {
+   "level": 3,
+   "text": "Starting Relative Paths with `super`",
+   "id": "starting-relative-paths-with-super"
+  },
+  {
+   "level": 3,
+   "text": "Making Structs and Enums Public",
+   "id": "making-structs-and-enums-public"
+  }
+ ],
+ "src/ch07-04-bringing-paths-into-scope-with-the-use-keyword.md": [
+  {
+   "level": 2,
+   "text": "Bringing Paths into Scope with the `use` Keyword",
+   "id": "bringing-paths-into-scope-with-the-use-keyword"
+  },
+  {
+   "level": 3,
+   "text": "Creating Idiomatic `use` Paths",
+   "id": "creating-idiomatic-use-paths"
+  },
+  {
+   "level": 3,
+   "text": "Providing New Names with the `as` Keyword",
+   "id": "providing-new-names-with-the-as-keyword"
+  },
+  {
+   "level": 3,
+   "text": "Re-exporting Names with `pub use`",
+   "id": "re-exporting-names-with-pub-use"
+  },
+  {
+   "level": 3,
+   "text": "Using External Packages",
+   "id": "using-external-packages"
+  },
+  {
+   "level": 3,
+   "text": "Using Nested Paths to Clean Up `use` Lists",
+   "id": "using-nested-paths-to-clean-up-use-lists"
+  },
+  {
+   "level": 3,
+   "text": "Importing Items with the Glob Operator",
+   "id": "importing-items-with-the-glob-operator"
+  }
+ ],
+ "src/ch07-05-separating-modules-into-different-files.md": [
+  {
+   "level": 2,
+   "text": "Separating Modules into Different Files",
+   "id": "separating-modules-into-different-files"
+  },
+  {
+   "level": 3,
+   "text": "Alternate File Paths",
+   "id": "alternate-file-paths"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch08-00-common-collections.md": [
+  {
+   "level": 1,
+   "text": "Common Collections",
+   "id": "common-collections"
+  }
+ ],
+ "src/ch08-01-vectors.md": [
+  {
+   "level": 2,
+   "text": "Storing Lists of Values with Vectors",
+   "id": "storing-lists-of-values-with-vectors"
+  },
+  {
+   "level": 3,
+   "text": "Creating a New Vector",
+   "id": "creating-a-new-vector"
+  },
+  {
+   "level": 3,
+   "text": "Updating a Vector",
+   "id": "updating-a-vector"
+  },
+  {
+   "level": 3,
+   "text": "Reading Elements of Vectors",
+   "id": "reading-elements-of-vectors"
+  },
+  {
+   "level": 3,
+   "text": "Iterating Over the Values in a Vector",
+   "id": "iterating-over-the-values-in-a-vector"
+  },
+  {
+   "level": 3,
+   "text": "Safely Using Iterators",
+   "id": "safely-using-iterators"
+  },
+  {
+   "level": 3,
+   "text": "Using an Enum to Store Multiple Types",
+   "id": "using-an-enum-to-store-multiple-types"
+  },
+  {
+   "level": 3,
+   "text": "Dropping a Vector Drops Its Elements",
+   "id": "dropping-a-vector-drops-its-elements"
+  }
+ ],
+ "src/ch08-02-strings.md": [
+  {
+   "level": 2,
+   "text": "Storing UTF-8 Encoded Text with Strings",
+   "id": "storing-utf-8-encoded-text-with-strings"
+  },
+  {
+   "level": 3,
+   "text": "Defining Strings",
+   "id": "defining-strings"
+  },
+  {
+   "level": 3,
+   "text": "Creating a New String",
+   "id": "creating-a-new-string"
+  },
+  {
+   "level": 3,
+   "text": "Updating a String",
+   "id": "updating-a-string"
+  },
+  {
+   "level": 4,
+   "text": "Appending with `push_str` or `push`",
+   "id": "appending-with-push_str-or-push"
+  },
+  {
+   "level": 4,
+   "text": "Concatenating with `+` or `format!`",
+   "id": "concatenating-with--or-format"
+  },
+  {
+   "level": 3,
+   "text": "Indexing into Strings",
+   "id": "indexing-into-strings"
+  },
+  {
+   "level": 4,
+   "text": "Internal Representation",
+   "id": "internal-representation"
+  },
+  {
+   "level": 4,
+   "text": "Bytes, Scalar Values, and Grapheme Clusters",
+   "id": "bytes-scalar-values-and-grapheme-clusters"
+  },
+  {
+   "level": 3,
+   "text": "Slicing Strings",
+   "id": "slicing-strings"
+  },
+  {
+   "level": 3,
+   "text": "Iterating Over Strings",
+   "id": "iterating-over-strings"
+  },
+  {
+   "level": 3,
+   "text": "Handling the Complexities of Strings",
+   "id": "handling-the-complexities-of-strings"
+  }
+ ],
+ "src/ch08-03-hash-maps.md": [
+  {
+   "level": 2,
+   "text": "Storing Keys with Associated Values in Hash Maps",
+   "id": "storing-keys-with-associated-values-in-hash-maps"
+  },
+  {
+   "level": 3,
+   "text": "Creating a New Hash Map",
+   "id": "creating-a-new-hash-map"
+  },
+  {
+   "level": 3,
+   "text": "Accessing Values in a Hash Map",
+   "id": "accessing-values-in-a-hash-map"
+  },
+  {
+   "level": 3,
+   "text": "Managing Ownership in Hash Maps",
+   "id": "managing-ownership-in-hash-maps"
+  },
+  {
+   "level": 3,
+   "text": "Updating a Hash Map",
+   "id": "updating-a-hash-map"
+  },
+  {
+   "level": 4,
+   "text": "Overwriting a Value",
+   "id": "overwriting-a-value"
+  },
+  {
+   "level": 4,
+   "text": "Adding a Key and Value Only If a Key Isn’t Present",
+   "id": "adding-a-key-and-value-only-if-a-key-isnt-present"
+  },
+  {
+   "level": 4,
+   "text": "Updating a Value Based on the Old Value",
+   "id": "updating-a-value-based-on-the-old-value"
+  },
+  {
+   "level": 3,
+   "text": "Hashing Functions",
+   "id": "hashing-functions"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch08-04-inventory.md": [
+  {
+   "level": 2,
+   "text": "Ownership Inventory #2",
+   "id": "ownership-inventory-2"
+  }
+ ],
+ "src/ch09-00-error-handling.md": [
+  {
+   "level": 1,
+   "text": "Error Handling",
+   "id": "error-handling"
+  }
+ ],
+ "src/ch09-01-unrecoverable-errors-with-panic.md": [
+  {
+   "level": 2,
+   "text": "Unrecoverable Errors with `panic!`",
+   "id": "unrecoverable-errors-with-panic"
+  },
+  {
+   "level": 3,
+   "text": "Unwinding the Stack or Aborting in Response to a Panic",
+   "id": "unwinding-the-stack-or-aborting-in-response-to-a-panic"
+  }
+ ],
+ "src/ch09-02-recoverable-errors-with-result.md": [
+  {
+   "level": 2,
+   "text": "Recoverable Errors with `Result`",
+   "id": "recoverable-errors-with-result"
+  },
+  {
+   "level": 3,
+   "text": "Matching on Different Errors",
+   "id": "matching-on-different-errors"
+  },
+  {
+   "level": 4,
+   "text": "Alternatives to Using `match` with `Result<T, E>`",
+   "id": "alternatives-to-using-match-with-resultt-e"
+  },
+  {
+   "level": 4,
+   "text": "Shortcuts for Panic on Error",
+   "id": "shortcuts-for-panic-on-error"
+  },
+  {
+   "level": 3,
+   "text": "Propagating Errors",
+   "id": "propagating-errors"
+  },
+  {
+   "level": 4,
+   "text": "The `?` Operator Shortcut",
+   "id": "the--operator-shortcut"
+  },
+  {
+   "level": 4,
+   "text": "Where to Use the `?` Operator",
+   "id": "where-to-use-the--operator"
+  }
+ ],
+ "src/ch09-03-to-panic-or-not-to-panic.md": [
+  {
+   "level": 2,
+   "text": "To `panic!` or Not to `panic!`",
+   "id": "to-panic-or-not-to-panic"
+  },
+  {
+   "level": 3,
+   "text": "Examples, Prototype Code, and Tests",
+   "id": "examples-prototype-code-and-tests"
+  },
+  {
+   "level": 3,
+   "text": "When You Have More Information Than the Compiler",
+   "id": "when-you-have-more-information-than-the-compiler"
+  },
+  {
+   "level": 3,
+   "text": "Guidelines for Error Handling",
+   "id": "guidelines-for-error-handling"
+  },
+  {
+   "level": 3,
+   "text": "Custom Types for Validation",
+   "id": "custom-types-for-validation"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch10-00-generics.md": [
+  {
+   "level": 1,
+   "text": "Generic Types, Traits, and Lifetimes",
+   "id": "generic-types-traits-and-lifetimes"
+  },
+  {
+   "level": 2,
+   "text": "Removing Duplication by Extracting a Function",
+   "id": "removing-duplication-by-extracting-a-function"
+  }
+ ],
+ "src/ch10-01-syntax.md": [
+  {
+   "level": 2,
+   "text": "Generic Data Types",
+   "id": "generic-data-types"
+  },
+  {
+   "level": 3,
+   "text": "In Function Definitions",
+   "id": "in-function-definitions"
+  },
+  {
+   "level": 3,
+   "text": "In Struct Definitions",
+   "id": "in-struct-definitions"
+  },
+  {
+   "level": 3,
+   "text": "In Enum Definitions",
+   "id": "in-enum-definitions"
+  },
+  {
+   "level": 3,
+   "text": "In Method Definitions",
+   "id": "in-method-definitions"
+  },
+  {
+   "level": 3,
+   "text": "Performance of Code Using Generics",
+   "id": "performance-of-code-using-generics"
+  }
+ ],
+ "src/ch10-02-traits.md": [
+  {
+   "level": 2,
+   "text": "Defining Shared Behavior with Traits",
+   "id": "defining-shared-behavior-with-traits"
+  },
+  {
+   "level": 3,
+   "text": "Defining a Trait",
+   "id": "defining-a-trait"
+  },
+  {
+   "level": 3,
+   "text": "Implementing a Trait on a Type",
+   "id": "implementing-a-trait-on-a-type"
+  },
+  {
+   "level": 3,
+   "text": "Using Default Implementations",
+   "id": "using-default-implementations"
+  },
+  {
+   "level": 3,
+   "text": "Using Traits as Parameters",
+   "id": "using-traits-as-parameters"
+  },
+  {
+   "level": 4,
+   "text": "Trait Bound Syntax",
+   "id": "trait-bound-syntax"
+  },
+  {
+   "level": 4,
+   "text": "Multiple Trait Bounds with the `+` Syntax",
+   "id": "multiple-trait-bounds-with-the--syntax"
+  },
+  {
+   "level": 4,
+   "text": "Clearer Trait Bounds with `where` Clauses",
+   "id": "clearer-trait-bounds-with-where-clauses"
+  },
+  {
+   "level": 3,
+   "text": "Returning Types That Implement Traits",
+   "id": "returning-types-that-implement-traits"
+  },
+  {
+   "level": 3,
+   "text": "Using Trait Bounds to Conditionally Implement Methods",
+   "id": "using-trait-bounds-to-conditionally-implement-methods"
+  }
+ ],
+ "src/ch10-03-lifetime-syntax.md": [
+  {
+   "level": 2,
+   "text": "Validating References with Lifetimes",
+   "id": "validating-references-with-lifetimes"
+  },
+  {
+   "level": 3,
+   "text": "Dangling References",
+   "id": "dangling-references"
+  },
+  {
+   "level": 3,
+   "text": "The Borrow Checker Ensures Data Outlives Its References",
+   "id": "the-borrow-checker-ensures-data-outlives-its-references"
+  },
+  {
+   "level": 3,
+   "text": "Generic Lifetimes in Functions",
+   "id": "generic-lifetimes-in-functions"
+  },
+  {
+   "level": 3,
+   "text": "Lifetime Annotation Syntax",
+   "id": "lifetime-annotation-syntax"
+  },
+  {
+   "level": 3,
+   "text": "In Function Signatures",
+   "id": "in-function-signatures"
+  },
+  {
+   "level": 3,
+   "text": "Relationships",
+   "id": "relationships"
+  },
+  {
+   "level": 3,
+   "text": "In Struct Definitions",
+   "id": "in-struct-definitions"
+  },
+  {
+   "level": 3,
+   "text": "Lifetime Elision",
+   "id": "lifetime-elision"
+  },
+  {
+   "level": 3,
+   "text": "In Method Definitions",
+   "id": "in-method-definitions"
+  },
+  {
+   "level": 3,
+   "text": "The Static Lifetime",
+   "id": "the-static-lifetime"
+  },
+  {
+   "level": 2,
+   "text": "Generic Type Parameters, Trait Bounds, and Lifetimes",
+   "id": "generic-type-parameters-trait-bounds-and-lifetimes"
+  },
+  {
+   "level": 3,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch10-04-inventory.md": [
+  {
+   "level": 2,
+   "text": "Ownership Inventory #3",
+   "id": "ownership-inventory-3"
+  }
+ ],
+ "src/ch11-00-testing.md": [
+  {
+   "level": 1,
+   "text": "Writing Automated Tests",
+   "id": "writing-automated-tests"
+  }
+ ],
+ "src/ch11-01-writing-tests.md": [
+  {
+   "level": 2,
+   "text": "How to Write Tests",
+   "id": "how-to-write-tests"
+  },
+  {
+   "level": 3,
+   "text": "Structuring Test Functions",
+   "id": "structuring-test-functions"
+  },
+  {
+   "level": 3,
+   "text": "Checking Results with `assert!`",
+   "id": "checking-results-with-assert"
+  },
+  {
+   "level": 3,
+   "text": "Testing Equality with `assert_eq!` and `assert_ne!`",
+   "id": "testing-equality-with-assert_eq-and-assert_ne"
+  },
+  {
+   "level": 3,
+   "text": "Adding Custom Failure Messages",
+   "id": "adding-custom-failure-messages"
+  },
+  {
+   "level": 3,
+   "text": "Checking for Panics with `should_panic`",
+   "id": "checking-for-panics-with-should_panic"
+  },
+  {
+   "level": 3,
+   "text": "Using `Result<T, E>` in Tests",
+   "id": "using-resultt-e-in-tests"
+  }
+ ],
+ "src/ch11-02-running-tests.md": [
+  {
+   "level": 2,
+   "text": "Controlling How Tests Are Run",
+   "id": "controlling-how-tests-are-run"
+  },
+  {
+   "level": 3,
+   "text": "Running Tests in Parallel or Consecutively",
+   "id": "running-tests-in-parallel-or-consecutively"
+  },
+  {
+   "level": 3,
+   "text": "Showing Function Output",
+   "id": "showing-function-output"
+  },
+  {
+   "level": 3,
+   "text": "Running a Subset of Tests by Name",
+   "id": "running-a-subset-of-tests-by-name"
+  },
+  {
+   "level": 4,
+   "text": "Running Single Tests",
+   "id": "running-single-tests"
+  },
+  {
+   "level": 4,
+   "text": "Filtering to Run Multiple Tests",
+   "id": "filtering-to-run-multiple-tests"
+  },
+  {
+   "level": 3,
+   "text": "Ignoring Tests Unless Specifically Requested",
+   "id": "ignoring-tests-unless-specifically-requested"
+  }
+ ],
+ "src/ch11-03-test-organization.md": [
+  {
+   "level": 2,
+   "text": "Test Organization",
+   "id": "test-organization"
+  },
+  {
+   "level": 3,
+   "text": "Unit Tests",
+   "id": "unit-tests"
+  },
+  {
+   "level": 4,
+   "text": "The `tests` Module and `#[cfg(test)]`",
+   "id": "the-tests-module-and-cfgtest"
+  },
+  {
+   "level": 4,
+   "text": "Private Function Tests",
+   "id": "private-function-tests"
+  },
+  {
+   "level": 3,
+   "text": "Integration Tests",
+   "id": "integration-tests"
+  },
+  {
+   "level": 4,
+   "text": "The _tests_ Directory",
+   "id": "the-tests-directory"
+  },
+  {
+   "level": 4,
+   "text": "Submodules in Integration Tests",
+   "id": "submodules-in-integration-tests"
+  },
+  {
+   "level": 4,
+   "text": "Integration Tests for Binary Crates",
+   "id": "integration-tests-for-binary-crates"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch12-00-an-io-project.md": [
+  {
+   "level": 1,
+   "text": "An I/O Project: Building a Command Line Program",
+   "id": "an-io-project-building-a-command-line-program"
+  }
+ ],
+ "src/ch12-01-accepting-command-line-arguments.md": [
+  {
+   "level": 2,
+   "text": "Accepting Command Line Arguments",
+   "id": "accepting-command-line-arguments"
+  },
+  {
+   "level": 3,
+   "text": "Reading the Argument Values",
+   "id": "reading-the-argument-values"
+  },
+  {
+   "level": 3,
+   "text": "The `args` Function and Invalid Unicode",
+   "id": "the-args-function-and-invalid-unicode"
+  },
+  {
+   "level": 3,
+   "text": "Saving the Argument Values in Variables",
+   "id": "saving-the-argument-values-in-variables"
+  }
+ ],
+ "src/ch12-02-reading-a-file.md": [
+  {
+   "level": 2,
+   "text": "Reading a File",
+   "id": "reading-a-file"
+  }
+ ],
+ "src/ch12-03-improving-error-handling-and-modularity.md": [
+  {
+   "level": 2,
+   "text": "Refactoring to Improve Modularity and Error Handling",
+   "id": "refactoring-to-improve-modularity-and-error-handling"
+  },
+  {
+   "level": 3,
+   "text": "Separating Concerns in Binary Projects",
+   "id": "separating-concerns-in-binary-projects"
+  },
+  {
+   "level": 4,
+   "text": "Extracting the Argument Parser",
+   "id": "extracting-the-argument-parser"
+  },
+  {
+   "level": 4,
+   "text": "Grouping Configuration Values",
+   "id": "grouping-configuration-values"
+  },
+  {
+   "level": 3,
+   "text": "The Trade-Offs of Using `clone`",
+   "id": "the-trade-offs-of-using-clone"
+  },
+  {
+   "level": 4,
+   "text": "Creating a Constructor for `Config`",
+   "id": "creating-a-constructor-for-config"
+  },
+  {
+   "level": 3,
+   "text": "Fixing the Error Handling",
+   "id": "fixing-the-error-handling"
+  },
+  {
+   "level": 4,
+   "text": "Improving the Error Message",
+   "id": "improving-the-error-message"
+  },
+  {
+   "level": 4,
+   "text": "Returning a `Result` Instead of Calling `panic!`",
+   "id": "returning-a-result-instead-of-calling-panic"
+  },
+  {
+   "level": 4,
+   "text": "Calling `Config::build` and Handling Errors",
+   "id": "calling-configbuild-and-handling-errors"
+  },
+  {
+   "level": 3,
+   "text": "Extracting Logic from `main`",
+   "id": "extracting-logic-from-main"
+  },
+  {
+   "level": 4,
+   "text": "Returning Errors from `run`",
+   "id": "returning-errors-from-run"
+  },
+  {
+   "level": 4,
+   "text": "Handling Errors Returned from `run` in `main`",
+   "id": "handling-errors-returned-from-run-in-main"
+  },
+  {
+   "level": 3,
+   "text": "Splitting Code into a Library Crate",
+   "id": "splitting-code-into-a-library-crate"
+  }
+ ],
+ "src/ch12-04-testing-the-librarys-functionality.md": [
+  {
+   "level": 2,
+   "text": "Adding Functionality with Test-Driven Development",
+   "id": "adding-functionality-with-test-driven-development"
+  },
+  {
+   "level": 3,
+   "text": "Writing a Failing Test",
+   "id": "writing-a-failing-test"
+  },
+  {
+   "level": 3,
+   "text": "Writing Code to Pass the Test",
+   "id": "writing-code-to-pass-the-test"
+  },
+  {
+   "level": 4,
+   "text": "Iterating Through Lines with the `lines` Method",
+   "id": "iterating-through-lines-with-the-lines-method"
+  },
+  {
+   "level": 4,
+   "text": "Searching Each Line for the Query",
+   "id": "searching-each-line-for-the-query"
+  },
+  {
+   "level": 4,
+   "text": "Storing Matching Lines",
+   "id": "storing-matching-lines"
+  }
+ ],
+ "src/ch12-05-working-with-environment-variables.md": [
+  {
+   "level": 2,
+   "text": "Working with Environment Variables",
+   "id": "working-with-environment-variables"
+  },
+  {
+   "level": 3,
+   "text": "Writing a Failing Test for Case-Insensitive Search",
+   "id": "writing-a-failing-test-for-case-insensitive-search"
+  },
+  {
+   "level": 3,
+   "text": "Implementing the `search_case_insensitive` Function",
+   "id": "implementing-the-search_case_insensitive-function"
+  }
+ ],
+ "src/ch12-06-writing-to-stderr-instead-of-stdout.md": [
+  {
+   "level": 2,
+   "text": "Redirecting Errors to Standard Error",
+   "id": "redirecting-errors-to-standard-error"
+  },
+  {
+   "level": 3,
+   "text": "Checking Where Errors Are Written",
+   "id": "checking-where-errors-are-written"
+  },
+  {
+   "level": 3,
+   "text": "Printing Errors to Standard Error",
+   "id": "printing-errors-to-standard-error"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch13-00-functional-features.md": [
+  {
+   "level": 1,
+   "text": "Functional Language Features: Iterators and Closures",
+   "id": "functional-language-features-iterators-and-closures"
+  }
+ ],
+ "src/ch13-01-closures.md": [
+  {
+   "level": 2,
+   "text": "Closures",
+   "id": "closures"
+  },
+  {
+   "level": 3,
+   "text": "Capturing the Environment",
+   "id": "capturing-the-environment"
+  },
+  {
+   "level": 3,
+   "text": "Inferring and Annotating Closure Types",
+   "id": "inferring-and-annotating-closure-types"
+  },
+  {
+   "level": 3,
+   "text": "Capturing References or Moving Ownership",
+   "id": "capturing-references-or-moving-ownership"
+  },
+  {
+   "level": 3,
+   "text": "Moving Captured Values Out of Closures",
+   "id": "moving-captured-values-out-of-closures"
+  }
+ ],
+ "src/ch13-02-iterators.md": [
+  {
+   "level": 2,
+   "text": "Processing a Series of Items with Iterators",
+   "id": "processing-a-series-of-items-with-iterators"
+  },
+  {
+   "level": 3,
+   "text": "The `Iterator` Trait and the `next` Method",
+   "id": "the-iterator-trait-and-the-next-method"
+  },
+  {
+   "level": 3,
+   "text": "Methods That Consume the Iterator",
+   "id": "methods-that-consume-the-iterator"
+  },
+  {
+   "level": 3,
+   "text": "Methods That Produce Other Iterators",
+   "id": "methods-that-produce-other-iterators"
+  },
+  {
+   "level": 3,
+   "text": "Closures That Capture Their Environment",
+   "id": "closures-that-capture-their-environment"
+  }
+ ],
+ "src/ch13-03-improving-our-io-project.md": [
+  {
+   "level": 2,
+   "text": "Improving Our I/O Project",
+   "id": "improving-our-io-project"
+  },
+  {
+   "level": 3,
+   "text": "Removing a `clone` Using an Iterator",
+   "id": "removing-a-clone-using-an-iterator"
+  },
+  {
+   "level": 4,
+   "text": "Using the Returned Iterator Directly",
+   "id": "using-the-returned-iterator-directly"
+  },
+  {
+   "level": 4,
+   "text": "Using `Iterator` Trait Methods",
+   "id": "using-iterator-trait-methods"
+  },
+  {
+   "level": 3,
+   "text": "Clarifying Code with Iterator Adapters",
+   "id": "clarifying-code-with-iterator-adapters"
+  },
+  {
+   "level": 3,
+   "text": "Choosing Between Loops and Iterators",
+   "id": "choosing-between-loops-and-iterators"
+  }
+ ],
+ "src/ch13-04-performance.md": [
+  {
+   "level": 2,
+   "text": "Performance in Loops vs. Iterators",
+   "id": "performance-in-loops-vs-iterators"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch14-00-more-about-cargo.md": [
+  {
+   "level": 1,
+   "text": "More About Cargo and Crates.io",
+   "id": "more-about-cargo-and-cratesio"
+  }
+ ],
+ "src/ch14-01-release-profiles.md": [
+  {
+   "level": 2,
+   "text": "Customizing Builds with Release Profiles",
+   "id": "customizing-builds-with-release-profiles"
+  }
+ ],
+ "src/ch14-02-publishing-to-crates-io.md": [
+  {
+   "level": 2,
+   "text": "Publishing a Crate to Crates.io",
+   "id": "publishing-a-crate-to-cratesio"
+  },
+  {
+   "level": 3,
+   "text": "Making Useful Documentation Comments",
+   "id": "making-useful-documentation-comments"
+  },
+  {
+   "level": 4,
+   "text": "Commonly Used Sections",
+   "id": "commonly-used-sections"
+  },
+  {
+   "level": 4,
+   "text": "Documentation Comments as Tests",
+   "id": "documentation-comments-as-tests"
+  },
+  {
+   "level": 4,
+   "text": "Contained Item Comments",
+   "id": "contained-item-comments"
+  },
+  {
+   "level": 3,
+   "text": "Exporting a Convenient Public API",
+   "id": "exporting-a-convenient-public-api"
+  },
+  {
+   "level": 3,
+   "text": "Setting Up a Crates.io Account",
+   "id": "setting-up-a-cratesio-account"
+  },
+  {
+   "level": 3,
+   "text": "Adding Metadata to a New Crate",
+   "id": "adding-metadata-to-a-new-crate"
+  },
+  {
+   "level": 3,
+   "text": "Publishing to Crates.io",
+   "id": "publishing-to-cratesio"
+  },
+  {
+   "level": 3,
+   "text": "Publishing a New Version of an Existing Crate",
+   "id": "publishing-a-new-version-of-an-existing-crate"
+  },
+  {
+   "level": 3,
+   "text": "Deprecating Versions from Crates.io",
+   "id": "deprecating-versions-from-cratesio"
+  }
+ ],
+ "src/ch14-03-cargo-workspaces.md": [
+  {
+   "level": 2,
+   "text": "Cargo Workspaces",
+   "id": "cargo-workspaces"
+  },
+  {
+   "level": 3,
+   "text": "Creating a Workspace",
+   "id": "creating-a-workspace"
+  },
+  {
+   "level": 3,
+   "text": "Creating the Second Package in the Workspace",
+   "id": "creating-the-second-package-in-the-workspace"
+  },
+  {
+   "level": 3,
+   "text": "Depending on an External Package",
+   "id": "depending-on-an-external-package"
+  },
+  {
+   "level": 3,
+   "text": "Adding a Test to a Workspace",
+   "id": "adding-a-test-to-a-workspace"
+  }
+ ],
+ "src/ch14-04-installing-binaries.md": [
+  {
+   "level": 2,
+   "text": "Installing Binaries with `cargo install`",
+   "id": "installing-binaries-with-cargo-install"
+  }
+ ],
+ "src/ch14-05-extending-cargo.md": [
+  {
+   "level": 2,
+   "text": "Extending Cargo with Custom Commands",
+   "id": "extending-cargo-with-custom-commands"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch15-00-smart-pointers.md": [
+  {
+   "level": 1,
+   "text": "Smart Pointers",
+   "id": "smart-pointers"
+  }
+ ],
+ "src/ch15-01-box.md": [
+  {
+   "level": 2,
+   "text": "Using `Box<T>` to Point to Data on the Heap",
+   "id": "using-boxt-to-point-to-data-on-the-heap"
+  },
+  {
+   "level": 3,
+   "text": "Storing Data on the Heap",
+   "id": "storing-data-on-the-heap"
+  },
+  {
+   "level": 3,
+   "text": "Enabling Recursive Types with Boxes",
+   "id": "enabling-recursive-types-with-boxes"
+  },
+  {
+   "level": 4,
+   "text": "Understanding the Cons List",
+   "id": "understanding-the-cons-list"
+  },
+  {
+   "level": 4,
+   "text": "Computing the Size of a Non-Recursive Type",
+   "id": "computing-the-size-of-a-non-recursive-type"
+  },
+  {
+   "level": 4,
+   "text": "Getting a Recursive Type with a Known Size",
+   "id": "getting-a-recursive-type-with-a-known-size"
+  }
+ ],
+ "src/ch15-02-deref.md": [
+  {
+   "level": 2,
+   "text": "Treating Smart Pointers Like Regular References",
+   "id": "treating-smart-pointers-like-regular-references"
+  },
+  {
+   "level": 3,
+   "text": "Following the Reference to the Value",
+   "id": "following-the-reference-to-the-value"
+  },
+  {
+   "level": 3,
+   "text": "Using `Box<T>` Like a Reference",
+   "id": "using-boxt-like-a-reference"
+  },
+  {
+   "level": 3,
+   "text": "Defining Our Own Smart Pointer",
+   "id": "defining-our-own-smart-pointer"
+  },
+  {
+   "level": 3,
+   "text": "Implementing the `Deref` Trait",
+   "id": "implementing-the-deref-trait"
+  },
+  {
+   "level": 3,
+   "text": "Using Deref Coercion in Functions and Methods",
+   "id": "using-deref-coercion-in-functions-and-methods"
+  },
+  {
+   "level": 3,
+   "text": "Handling Deref Coercion with Mutable References",
+   "id": "handling-deref-coercion-with-mutable-references"
+  }
+ ],
+ "src/ch15-03-drop.md": [
+  {
+   "level": 2,
+   "text": "Running Code on Cleanup with the `Drop` Trait",
+   "id": "running-code-on-cleanup-with-the-drop-trait"
+  }
+ ],
+ "src/ch15-04-rc.md": [
+  {
+   "level": 2,
+   "text": "`Rc<T>`, the Reference-Counted Smart Pointer",
+   "id": "rct-the-reference-counted-smart-pointer"
+  },
+  {
+   "level": 3,
+   "text": "Sharing Data",
+   "id": "sharing-data"
+  },
+  {
+   "level": 3,
+   "text": "Cloning to Increase the Reference Count",
+   "id": "cloning-to-increase-the-reference-count"
+  }
+ ],
+ "src/ch15-05-interior-mutability.md": [
+  {
+   "level": 2,
+   "text": "`RefCell<T>` and the Interior Mutability Pattern",
+   "id": "refcellt-and-the-interior-mutability-pattern"
+  },
+  {
+   "level": 3,
+   "text": "Enforcing Borrowing Rules at Runtime",
+   "id": "enforcing-borrowing-rules-at-runtime"
+  },
+  {
+   "level": 3,
+   "text": "Using Interior Mutability",
+   "id": "using-interior-mutability"
+  },
+  {
+   "level": 4,
+   "text": "Testing with Mock Objects",
+   "id": "testing-with-mock-objects"
+  },
+  {
+   "level": 4,
+   "text": "Tracking Borrows at Runtime",
+   "id": "tracking-borrows-at-runtime"
+  },
+  {
+   "level": 3,
+   "text": "Allowing Multiple Owners of Mutable Data",
+   "id": "allowing-multiple-owners-of-mutable-data"
+  }
+ ],
+ "src/ch15-06-reference-cycles.md": [
+  {
+   "level": 2,
+   "text": "Reference Cycles Can Leak Memory",
+   "id": "reference-cycles-can-leak-memory"
+  },
+  {
+   "level": 3,
+   "text": "Creating a Reference Cycle",
+   "id": "creating-a-reference-cycle"
+  },
+  {
+   "level": 3,
+   "text": "Preventing Reference Cycles Using `Weak<T>`",
+   "id": "preventing-reference-cycles-using-weakt"
+  },
+  {
+   "level": 4,
+   "text": "Creating a Tree Data Structure",
+   "id": "creating-a-tree-data-structure"
+  },
+  {
+   "level": 4,
+   "text": "Adding a Reference from a Child to Its Parent",
+   "id": "adding-a-reference-from-a-child-to-its-parent"
+  },
+  {
+   "level": 4,
+   "text": "Visualizing Changes to `strong_count` and `weak_count`",
+   "id": "visualizing-changes-to-strong_count-and-weak_count"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch16-00-concurrency.md": [
+  {
+   "level": 1,
+   "text": "Fearless Concurrency",
+   "id": "fearless-concurrency"
+  }
+ ],
+ "src/ch16-01-threads.md": [
+  {
+   "level": 2,
+   "text": "Using Threads to Run Code Simultaneously",
+   "id": "using-threads-to-run-code-simultaneously"
+  },
+  {
+   "level": 3,
+   "text": "Creating a New Thread with `spawn`",
+   "id": "creating-a-new-thread-with-spawn"
+  },
+  {
+   "level": 3,
+   "text": "Waiting for All Threads to Finish",
+   "id": "waiting-for-all-threads-to-finish"
+  },
+  {
+   "level": 3,
+   "text": "Using `move` Closures with Threads",
+   "id": "using-move-closures-with-threads"
+  }
+ ],
+ "src/ch16-02-message-passing.md": [
+  {
+   "level": 2,
+   "text": "Transfer Data Between Threads with Message Passing",
+   "id": "transfer-data-between-threads-with-message-passing"
+  },
+  {
+   "level": 3,
+   "text": "Transferring Ownership Through Channels",
+   "id": "transferring-ownership-through-channels"
+  },
+  {
+   "level": 3,
+   "text": "Sending Multiple Values",
+   "id": "sending-multiple-values"
+  },
+  {
+   "level": 3,
+   "text": "Creating Multiple Producers",
+   "id": "creating-multiple-producers"
+  }
+ ],
+ "src/ch16-03-shared-state.md": [
+  {
+   "level": 2,
+   "text": "Shared-State Concurrency",
+   "id": "shared-state-concurrency"
+  },
+  {
+   "level": 3,
+   "text": "Controlling Access with Mutexes",
+   "id": "controlling-access-with-mutexes"
+  },
+  {
+   "level": 4,
+   "text": "The API of `Mutex<T>`",
+   "id": "the-api-of-mutext"
+  },
+  {
+   "level": 4,
+   "text": "Shared Access to `Mutex<T>`",
+   "id": "shared-access-to-mutext"
+  },
+  {
+   "level": 4,
+   "text": "Multiple Ownership with Multiple Threads",
+   "id": "multiple-ownership-with-multiple-threads"
+  },
+  {
+   "level": 4,
+   "text": "Atomic Reference Counting with `Arc<T>`",
+   "id": "atomic-reference-counting-with-arct"
+  },
+  {
+   "level": 3,
+   "text": "Comparing `RefCell<T>`/`Rc<T>` and `Mutex<T>`/`Arc<T>`",
+   "id": "comparing-refcelltrct-and-mutextarct"
+  }
+ ],
+ "src/ch16-04-extensible-concurrency-sync-and-send.md": [
+  {
+   "level": 2,
+   "text": "Extensible Concurrency with `Send` and `Sync`",
+   "id": "extensible-concurrency-with-send-and-sync"
+  },
+  {
+   "level": 3,
+   "text": "Transferring Ownership Between Threads",
+   "id": "transferring-ownership-between-threads"
+  },
+  {
+   "level": 3,
+   "text": "Accessing from Multiple Threads",
+   "id": "accessing-from-multiple-threads"
+  },
+  {
+   "level": 3,
+   "text": "Implementing `Send` and `Sync` Manually Is Unsafe",
+   "id": "implementing-send-and-sync-manually-is-unsafe"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch17-00-async-await.md": [
+  {
+   "level": 1,
+   "text": "Fundamentals of Asynchronous Programming: Async, Await, Futures, and Streams",
+   "id": "fundamentals-of-asynchronous-programming-async-await-futures-and-streams"
+  },
+  {
+   "level": 2,
+   "text": "Parallelism and Concurrency",
+   "id": "parallelism-and-concurrency"
+  }
+ ],
+ "src/ch17-01-futures-and-syntax.md": [
+  {
+   "level": 2,
+   "text": "Futures and the Async Syntax",
+   "id": "futures-and-the-async-syntax"
+  },
+  {
+   "level": 2,
+   "text": "Our First Async Program",
+   "id": "our-first-async-program"
+  },
+  {
+   "level": 3,
+   "text": "Defining the page_title Function",
+   "id": "defining-the-page_title-function"
+  },
+  {
+   "level": 3,
+   "text": "Executing an Async Function with a Runtime",
+   "id": "executing-an-async-function-with-a-runtime"
+  },
+  {
+   "level": 3,
+   "text": "Racing Two URLs Against Each Other Concurrently",
+   "id": "racing-two-urls-against-each-other-concurrently"
+  }
+ ],
+ "src/ch17-02-concurrency-with-async.md": [
+  {
+   "level": 2,
+   "text": "Applying Concurrency with Async",
+   "id": "applying-concurrency-with-async"
+  },
+  {
+   "level": 3,
+   "text": "Creating a New Task with `spawn_task`",
+   "id": "creating-a-new-task-with-spawn_task"
+  },
+  {
+   "level": 3,
+   "text": "Sending Data Between Two Tasks Using Message Passing",
+   "id": "sending-data-between-two-tasks-using-message-passing"
+  },
+  {
+   "level": 4,
+   "text": "Code Within One Async Block Executes Linearly",
+   "id": "code-within-one-async-block-executes-linearly"
+  },
+  {
+   "level": 4,
+   "text": "Moving Ownership Into an Async Block",
+   "id": "moving-ownership-into-an-async-block"
+  },
+  {
+   "level": 4,
+   "text": "Joining a Number of Futures with the `join!` Macro",
+   "id": "joining-a-number-of-futures-with-the-join-macro"
+  }
+ ],
+ "src/ch17-03-more-futures.md": [
+  {
+   "level": 3,
+   "text": "Yielding Control to the Runtime",
+   "id": "yielding-control-to-the-runtime"
+  },
+  {
+   "level": 3,
+   "text": "Building Our Own Async Abstractions",
+   "id": "building-our-own-async-abstractions"
+  }
+ ],
+ "src/ch17-04-streams.md": [
+  {
+   "level": 2,
+   "text": "Streams: Futures in Sequence",
+   "id": "streams-futures-in-sequence"
+  }
+ ],
+ "src/ch17-05-traits-for-async.md": [
+  {
+   "level": 2,
+   "text": "A Closer Look at the Traits for Async",
+   "id": "a-closer-look-at-the-traits-for-async"
+  },
+  {
+   "level": 3,
+   "text": "The `Future` Trait",
+   "id": "the-future-trait"
+  },
+  {
+   "level": 3,
+   "text": "The `Pin` Type and the `Unpin` Trait",
+   "id": "the-pin-type-and-the-unpin-trait"
+  },
+  {
+   "level": 3,
+   "text": "The `Stream` Trait",
+   "id": "the-stream-trait"
+  }
+ ],
+ "src/ch17-06-futures-tasks-threads.md": [
+  {
+   "level": 2,
+   "text": "Putting It All Together: Futures, Tasks, and Threads",
+   "id": "putting-it-all-together-futures-tasks-and-threads"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch18-00-oop.md": [
+  {
+   "level": 1,
+   "text": "Object-Oriented Programming Features",
+   "id": "object-oriented-programming-features"
+  }
+ ],
+ "src/ch18-01-what-is-oo.md": [
+  {
+   "level": 2,
+   "text": "Characteristics of Object-Oriented Languages",
+   "id": "characteristics-of-object-oriented-languages"
+  },
+  {
+   "level": 3,
+   "text": "Objects Contain Data and Behavior",
+   "id": "objects-contain-data-and-behavior"
+  },
+  {
+   "level": 3,
+   "text": "Encapsulation That Hides Implementation Details",
+   "id": "encapsulation-that-hides-implementation-details"
+  },
+  {
+   "level": 3,
+   "text": "Inheritance as a Type System and as Code Sharing",
+   "id": "inheritance-as-a-type-system-and-as-code-sharing"
+  },
+  {
+   "level": 3,
+   "text": "Polymorphism",
+   "id": "polymorphism"
+  }
+ ],
+ "src/ch18-02-trait-objects.md": [
+  {
+   "level": 2,
+   "text": "Using Trait Objects to Abstract over Shared Behavior",
+   "id": "using-trait-objects-to-abstract-over-shared-behavior"
+  },
+  {
+   "level": 3,
+   "text": "Defining a Trait for Common Behavior",
+   "id": "defining-a-trait-for-common-behavior"
+  },
+  {
+   "level": 3,
+   "text": "Implementing the Trait",
+   "id": "implementing-the-trait"
+  },
+  {
+   "level": 3,
+   "text": "Using the Trait",
+   "id": "using-the-trait"
+  },
+  {
+   "level": 3,
+   "text": "Trait Objects and Type Inference",
+   "id": "trait-objects-and-type-inference"
+  },
+  {
+   "level": 3,
+   "text": "Performing Dynamic Dispatch",
+   "id": "performing-dynamic-dispatch"
+  }
+ ],
+ "src/ch18-03-oo-design-patterns.md": [
+  {
+   "level": 2,
+   "text": "Implementing an Object-Oriented Design Pattern",
+   "id": "implementing-an-object-oriented-design-pattern"
+  },
+  {
+   "level": 3,
+   "text": "Attempting Traditional Object-Oriented Style",
+   "id": "attempting-traditional-object-oriented-style"
+  },
+  {
+   "level": 4,
+   "text": "Defining `Post` and Creating a New Instance",
+   "id": "defining-post-and-creating-a-new-instance"
+  },
+  {
+   "level": 4,
+   "text": "Storing the Text of the Post Content",
+   "id": "storing-the-text-of-the-post-content"
+  },
+  {
+   "level": 4,
+   "text": "Ensuring That the Content of a Draft Post Is Empty",
+   "id": "ensuring-that-the-content-of-a-draft-post-is-empty"
+  },
+  {
+   "level": 4,
+   "text": "Requesting a Review, Which Changes the Post’s State",
+   "id": "requesting-a-review-which-changes-the-posts-state"
+  },
+  {
+   "level": 4,
+   "text": "Adding `approve` to Change `content`'s Behavior",
+   "id": "adding-approve-to-change-contents-behavior"
+  },
+  {
+   "level": 3,
+   "text": "Why Not An Enum?",
+   "id": "why-not-an-enum"
+  },
+  {
+   "level": 4,
+   "text": "Evaluating the State Pattern",
+   "id": "evaluating-the-state-pattern"
+  },
+  {
+   "level": 3,
+   "text": "Encoding States and Behavior as Types",
+   "id": "encoding-states-and-behavior-as-types"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch18-04-inventory.md": [
+  {
+   "level": 2,
+   "text": "Ownership Inventory #4",
+   "id": "ownership-inventory-4"
+  }
+ ],
+ "src/ch18-05-design-challenge.md": [
+  {
+   "level": 1,
+   "text": "Design Trade-offs",
+   "id": "design-trade-offs"
+  },
+  {
+   "level": 2,
+   "text": "References",
+   "id": "references"
+  },
+  {
+   "level": 2,
+   "text": "Trait Trees",
+   "id": "trait-trees"
+  },
+  {
+   "level": 2,
+   "text": "Dispatch",
+   "id": "dispatch"
+  },
+  {
+   "level": 2,
+   "text": "Intermediates",
+   "id": "intermediates"
+  }
+ ],
+ "src/ch19-00-patterns.md": [
+  {
+   "level": 1,
+   "text": "Patterns and Matching",
+   "id": "patterns-and-matching"
+  }
+ ],
+ "src/ch19-01-all-the-places-for-patterns.md": [
+  {
+   "level": 2,
+   "text": "All the Places Patterns Can Be Used",
+   "id": "all-the-places-patterns-can-be-used"
+  },
+  {
+   "level": 3,
+   "text": "`match` Arms",
+   "id": "match-arms"
+  },
+  {
+   "level": 3,
+   "text": "`let` Statements",
+   "id": "let-statements"
+  },
+  {
+   "level": 3,
+   "text": "Conditional `if let` Expressions",
+   "id": "conditional-if-let-expressions"
+  },
+  {
+   "level": 3,
+   "text": "`while let` Conditional Loops",
+   "id": "while-let-conditional-loops"
+  },
+  {
+   "level": 3,
+   "text": "`for` Loops",
+   "id": "for-loops"
+  },
+  {
+   "level": 3,
+   "text": "Function Parameters",
+   "id": "function-parameters"
+  }
+ ],
+ "src/ch19-02-refutability.md": [
+  {
+   "level": 2,
+   "text": "Refutability: Whether a Pattern Might Fail to Match",
+   "id": "refutability-whether-a-pattern-might-fail-to-match"
+  }
+ ],
+ "src/ch19-03-pattern-syntax.md": [
+  {
+   "level": 2,
+   "text": "Pattern Syntax",
+   "id": "pattern-syntax"
+  },
+  {
+   "level": 3,
+   "text": "Matching Literals",
+   "id": "matching-literals"
+  },
+  {
+   "level": 3,
+   "text": "Matching Named Variables",
+   "id": "matching-named-variables"
+  },
+  {
+   "level": 3,
+   "text": "Matching Multiple Patterns",
+   "id": "matching-multiple-patterns"
+  },
+  {
+   "level": 3,
+   "text": "Matching Ranges of Values with `..=`",
+   "id": "matching-ranges-of-values-with-"
+  },
+  {
+   "level": 3,
+   "text": "Destructuring to Break Apart Values",
+   "id": "destructuring-to-break-apart-values"
+  },
+  {
+   "level": 4,
+   "text": "Structs",
+   "id": "structs"
+  },
+  {
+   "level": 4,
+   "text": "Enums",
+   "id": "enums"
+  },
+  {
+   "level": 4,
+   "text": "Nested Structs and Enums",
+   "id": "nested-structs-and-enums"
+  },
+  {
+   "level": 4,
+   "text": "Structs and Tuples",
+   "id": "structs-and-tuples"
+  },
+  {
+   "level": 3,
+   "text": "Ignoring Values in a Pattern",
+   "id": "ignoring-values-in-a-pattern"
+  },
+  {
+   "level": 4,
+   "text": "An Entire Value with `_`",
+   "id": "an-entire-value-with-_"
+  },
+  {
+   "level": 4,
+   "text": "Parts of a Value with a Nested `_`",
+   "id": "parts-of-a-value-with-a-nested-_"
+  },
+  {
+   "level": 4,
+   "text": "An Unused Variable by Starting Its Name with `_`",
+   "id": "an-unused-variable-by-starting-its-name-with-_"
+  },
+  {
+   "level": 4,
+   "text": "Remaining Parts of a Value with `..`",
+   "id": "remaining-parts-of-a-value-with-"
+  },
+  {
+   "level": 3,
+   "text": "Adding Conditionals with Match Guards",
+   "id": "adding-conditionals-with-match-guards"
+  },
+  {
+   "level": 3,
+   "text": "Using `@` Bindings",
+   "id": "using--bindings"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch20-00-advanced-features.md": [
+  {
+   "level": 1,
+   "text": "Advanced Features",
+   "id": "advanced-features"
+  }
+ ],
+ "src/ch20-01-unsafe-rust.md": [
+  {
+   "level": 2,
+   "text": "Unsafe Rust",
+   "id": "unsafe-rust"
+  },
+  {
+   "level": 3,
+   "text": "Performing Unsafe Superpowers",
+   "id": "performing-unsafe-superpowers"
+  },
+  {
+   "level": 3,
+   "text": "Dereferencing a Raw Pointer",
+   "id": "dereferencing-a-raw-pointer"
+  },
+  {
+   "level": 3,
+   "text": "Calling an Unsafe Function or Method",
+   "id": "calling-an-unsafe-function-or-method"
+  },
+  {
+   "level": 4,
+   "text": "Creating a Safe Abstraction over Unsafe Code",
+   "id": "creating-a-safe-abstraction-over-unsafe-code"
+  },
+  {
+   "level": 4,
+   "text": "Using `extern` Functions to Call External Code",
+   "id": "using-extern-functions-to-call-external-code"
+  },
+  {
+   "level": 4,
+   "text": "Calling Rust Functions from Other Languages",
+   "id": "calling-rust-functions-from-other-languages"
+  },
+  {
+   "level": 3,
+   "text": "Accessing or Modifying a Mutable Static Variable",
+   "id": "accessing-or-modifying-a-mutable-static-variable"
+  },
+  {
+   "level": 3,
+   "text": "Implementing an Unsafe Trait",
+   "id": "implementing-an-unsafe-trait"
+  },
+  {
+   "level": 3,
+   "text": "Accessing Fields of a Union",
+   "id": "accessing-fields-of-a-union"
+  },
+  {
+   "level": 3,
+   "text": "Using Miri to Check Unsafe Code",
+   "id": "using-miri-to-check-unsafe-code"
+  },
+  {
+   "level": 3,
+   "text": "Using Unsafe Code Correctly",
+   "id": "using-unsafe-code-correctly"
+  }
+ ],
+ "src/ch20-02-advanced-traits.md": [
+  {
+   "level": 2,
+   "text": "Advanced Traits",
+   "id": "advanced-traits"
+  },
+  {
+   "level": 3,
+   "text": "Defining Traits with Associated Types",
+   "id": "defining-traits-with-associated-types"
+  },
+  {
+   "level": 3,
+   "text": "Using Default Generic Parameters and Operator Overloading",
+   "id": "using-default-generic-parameters-and-operator-overloading"
+  },
+  {
+   "level": 3,
+   "text": "Disambiguating Between Identically Named Methods",
+   "id": "disambiguating-between-identically-named-methods"
+  },
+  {
+   "level": 3,
+   "text": "Using Supertraits",
+   "id": "using-supertraits"
+  },
+  {
+   "level": 3,
+   "text": "Implementing External Traits with the Newtype Pattern",
+   "id": "implementing-external-traits-with-the-newtype-pattern"
+  }
+ ],
+ "src/ch20-03-advanced-types.md": [
+  {
+   "level": 2,
+   "text": "Advanced Types",
+   "id": "advanced-types"
+  },
+  {
+   "level": 3,
+   "text": "Type Safety and Abstraction with the Newtype Pattern",
+   "id": "type-safety-and-abstraction-with-the-newtype-pattern"
+  },
+  {
+   "level": 3,
+   "text": "Type Synonyms and Type Aliases",
+   "id": "type-synonyms-and-type-aliases"
+  },
+  {
+   "level": 3,
+   "text": "The Never Type That Never Returns",
+   "id": "the-never-type-that-never-returns"
+  },
+  {
+   "level": 3,
+   "text": "Dynamically Sized Types and the `Sized` Trait",
+   "id": "dynamically-sized-types-and-the-sized-trait"
+  }
+ ],
+ "src/ch20-04-advanced-functions-and-closures.md": [
+  {
+   "level": 2,
+   "text": "Advanced Functions and Closures",
+   "id": "advanced-functions-and-closures"
+  },
+  {
+   "level": 3,
+   "text": "Function Pointers",
+   "id": "function-pointers"
+  },
+  {
+   "level": 3,
+   "text": "Returning Closures",
+   "id": "returning-closures"
+  }
+ ],
+ "src/ch20-05-macros.md": [
+  {
+   "level": 2,
+   "text": "Macros",
+   "id": "macros"
+  },
+  {
+   "level": 3,
+   "text": "The Difference Between Macros and Functions",
+   "id": "the-difference-between-macros-and-functions"
+  },
+  {
+   "level": 3,
+   "text": "Declarative Macros for General Metaprogramming",
+   "id": "declarative-macros-for-general-metaprogramming"
+  },
+  {
+   "level": 3,
+   "text": "Procedural Macros for Generating Code from Attributes",
+   "id": "procedural-macros-for-generating-code-from-attributes"
+  },
+  {
+   "level": 3,
+   "text": "Custom `derive` Macros",
+   "id": "custom-derive-macros"
+  },
+  {
+   "level": 3,
+   "text": "Attribute-Like Macros",
+   "id": "attribute-like-macros"
+  },
+  {
+   "level": 3,
+   "text": "Function-Like Macros",
+   "id": "function-like-macros"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/ch21-00-final-project-a-web-server.md": [
+  {
+   "level": 1,
+   "text": "Final Project: Building a Multithreaded Web Server",
+   "id": "final-project-building-a-multithreaded-web-server"
+  }
+ ],
+ "src/ch21-01-single-threaded.md": [
+  {
+   "level": 2,
+   "text": "Building a Single-Threaded Web Server",
+   "id": "building-a-single-threaded-web-server"
+  },
+  {
+   "level": 3,
+   "text": "Listening to the TCP Connection",
+   "id": "listening-to-the-tcp-connection"
+  },
+  {
+   "level": 3,
+   "text": "Reading the Request",
+   "id": "reading-the-request"
+  },
+  {
+   "level": 3,
+   "text": "Looking More Closely at an HTTP Request",
+   "id": "looking-more-closely-at-an-http-request"
+  },
+  {
+   "level": 3,
+   "text": "Writing a Response",
+   "id": "writing-a-response"
+  },
+  {
+   "level": 3,
+   "text": "Returning Real HTML",
+   "id": "returning-real-html"
+  },
+  {
+   "level": 3,
+   "text": "Validating the Request and Selectively Responding",
+   "id": "validating-the-request-and-selectively-responding"
+  },
+  {
+   "level": 3,
+   "text": "Refactoring",
+   "id": "refactoring"
+  }
+ ],
+ "src/ch21-02-multithreaded.md": [
+  {
+   "level": 2,
+   "text": "From a Single-Threaded to a Multithreaded Server",
+   "id": "from-a-single-threaded-to-a-multithreaded-server"
+  },
+  {
+   "level": 3,
+   "text": "Simulating a Slow Request",
+   "id": "simulating-a-slow-request"
+  },
+  {
+   "level": 3,
+   "text": "Improving Throughput with a Thread Pool",
+   "id": "improving-throughput-with-a-thread-pool"
+  },
+  {
+   "level": 4,
+   "text": "Spawning a Thread for Each Request",
+   "id": "spawning-a-thread-for-each-request"
+  },
+  {
+   "level": 4,
+   "text": "Creating a Finite Number of Threads",
+   "id": "creating-a-finite-number-of-threads"
+  },
+  {
+   "level": 4,
+   "text": "Building `ThreadPool` Using Compiler-Driven Development",
+   "id": "building-threadpool-using-compiler-driven-development"
+  },
+  {
+   "level": 4,
+   "text": "Validating the Number of Threads in `new`",
+   "id": "validating-the-number-of-threads-in-new"
+  },
+  {
+   "level": 4,
+   "text": "Creating Space to Store the Threads",
+   "id": "creating-space-to-store-the-threads"
+  },
+  {
+   "level": 4,
+   "text": "Sending Code from the `ThreadPool` to a Thread",
+   "id": "sending-code-from-the-threadpool-to-a-thread"
+  },
+  {
+   "level": 4,
+   "text": "Sending Requests to Threads via Channels",
+   "id": "sending-requests-to-threads-via-channels"
+  },
+  {
+   "level": 4,
+   "text": "Implementing the `execute` Method",
+   "id": "implementing-the-execute-method"
+  }
+ ],
+ "src/ch21-03-graceful-shutdown-and-cleanup.md": [
+  {
+   "level": 2,
+   "text": "Graceful Shutdown and Cleanup",
+   "id": "graceful-shutdown-and-cleanup"
+  },
+  {
+   "level": 3,
+   "text": "Implementing the `Drop` Trait on `ThreadPool`",
+   "id": "implementing-the-drop-trait-on-threadpool"
+  },
+  {
+   "level": 3,
+   "text": "Signaling to the Threads to Stop Listening for Jobs",
+   "id": "signaling-to-the-threads-to-stop-listening-for-jobs"
+  },
+  {
+   "level": 2,
+   "text": "Summary",
+   "id": "summary"
+  }
+ ],
+ "src/end-of-experiment.md": [
+  {
+   "level": 1,
+   "text": "End of Experiment",
+   "id": "end-of-experiment"
+  }
+ ],
+ "src/experiment-intro.md": [
+  {
+   "level": 1,
+   "text": "What's Different About This Book?",
+   "id": "whats-different-about-this-book"
+  },
+  {
+   "level": 2,
+   "text": "Interactive Mechanics",
+   "id": "interactive-mechanics"
+  },
+  {
+   "level": 2,
+   "text": "Content Changes",
+   "id": "content-changes"
+  },
+  {
+   "level": 2,
+   "text": "Publications",
+   "id": "publications"
+  },
+  {
+   "level": 2,
+   "text": "Acknowledgments",
+   "id": "acknowledgments"
+  }
+ ],
+ "src/foreword.md": [
+  {
+   "level": 1,
+   "text": "Foreword",
+   "id": "foreword"
+  }
+ ],
+ "src/title-page.md": [
+  {
+   "level": 1,
+   "text": "The Rust Programming Language",
+   "id": "the-rust-programming-language"
+  }
+ ]
+}
