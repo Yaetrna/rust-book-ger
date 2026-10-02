@@ -2,7 +2,7 @@
 id = "1665d1ef-961f-4451-a988-ec46121531f9"
 type = "MultipleChoice"
 prompt.prompt = """
-Which call to this `find_until` function will cause a runtime panic?
+Welcher Aufruf dieser Funktion `find_until` löst zur Laufzeit einen Panic aus?
 
 ```
 fn find_until(v: &Vec<i32>, n: i32, til: usize) -> Option<usize> {
@@ -22,8 +22,8 @@ prompt.distractors = [
   "`find_until(&vec![1, 2, 3], 1, 4)`"
 ]
 context = """
-If `til = 4`, then for a vector of length 3, the for-loop will attempt to index the vector with `i = 3`, which is out of bounds.
-This function does not panic if `n = 1` because it returns before reaching the out-of-bounds index.
+Ist `til = 4`, versucht die for-Schleife bei einem Vektor der Länge 3, den Vektor mit `i = 3` zu indexieren, was außerhalb der Grenzen liegt.
+Bei `n = 1` löst diese Funktion keinen Panic aus, weil sie zurückkehrt, bevor sie den Index außerhalb der Grenzen erreicht.
 """
 
 [[questions]]
@@ -42,7 +42,7 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 6
 context = """
-`Vec::push` moves its argument, so `s` is not usable after calling `v.push(s)`. Therefore calling `println!("original: {}", s)` is not ownership-safe.
+`Vec::push` verschiebt (*moves*) sein Argument, daher ist `s` nach dem Aufruf `v.push(s)` nicht mehr verwendbar. Der Aufruf `println!("original: {}", s)` ist daher nicht Ownership-sicher.
 """
 
 [[questions]]
@@ -59,7 +59,6 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 3
 context = """
-Non-copyable types cannot be moved out of a vector by indexing. Only methods such as `Vec::remove` permit moving out of a vector. See Section 4.3 
-["Copying vs. Moving Out of a Collection"](ch04-03-fixing-ownership-errors.html#fixing-an-unsafe-program-copying-vs-moving-out-of-a-collection)
-for a deeper explanation of why.
+Nicht kopierbare Typen können nicht per Indexierung aus einem Vektor herausverschoben werden. Nur Methoden wie `Vec::remove` erlauben es, aus einem Vektor herauszuverschieben. Eine ausführlichere Erklärung findest du in Abschnitt 4.3 
+[„Aus einer Collection kopieren oder verschieben“](ch04-03-fixing-ownership-errors.html#fixing-an-unsafe-program-copying-vs-moving-out-of-a-collection).
 """

@@ -202,6 +202,11 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | module tree                         | Modulbaum                               | der / die Modulbäume              |                                                        | entschieden |
 | glob operator                       | Glob-Operator                           | der / –                           |                                                        | entschieden |
 | front / back of house               | Front of House / Back of House          | das                               | Gastronomiebegriffe, englisch belassen                 | entschieden |
+| grapheme cluster                    | Graphem-Cluster                         | das / die Graphem-Cluster         |                                                        | entschieden |
+| Unicode scalar value                | Unicode-Skalarwert                      | der / die …werte                  |                                                        | entschieden |
+| wrapper                             | Wrapper                                 | der / die Wrapper                 | „ein Wrapper um …“                                     | entschieden |
+| hashing function / hasher           | Hashfunktion / Hasher                   | die / der                         |                                                        | entschieden |
+| Pig Latin                           | Pig Latin                               | das                               | Sprachspiel, englische Beispielwörter bleiben          | entschieden |
 | standard library                    | Standardbibliothek                      | die / –                           |                                                        | entschieden |
 | dependency                          | Abhängigkeit                            | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                            | Compiler                                | der / die Compiler                |                                                        | entschieden |
@@ -331,3 +336,4 @@ dort, wo das Buch sie definiert.
 | Datum  | Begriff                                                                                                  | alt | neu             | betroffene Dateien |
 | ------ | -------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
 | Kap. 7 | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house | –   | neu aufgenommen | ch07-*             |
+| Kap. 8 | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                      | –   | neu aufgenommen | ch08-*             |

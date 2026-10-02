@@ -29,10 +29,11 @@ Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 | Kapitel 2                                | ch02-00                                      | ✅     |
 | Kapitel 3                                | ch03-* mit Quizzen                           | ✅     |
 | Kapitel 4                                | ch04-* mit Quizzen                           | ✅     |
-| Kapitel 5                                | ch05-* mit Quizzen                           | ✅      |
-| Kapitel 6                                | ch06-* mit Quizzen                           | ✅      |
-| Kapitel 7                                | ch07-* mit Quizzen                           | ✅      |
-| Kapitel 8–21, Anhänge, end-of-experiment | –                                            | ⬜      |
+| Kapitel 5                                | ch05-* mit Quizzen                           | ✅     |
+| Kapitel 6                                | ch06-* mit Quizzen                           | ✅     |
+| Kapitel 7                                | ch07-* mit Quizzen                           | ✅     |
+| Kapitel 8                                | ch08-* mit Quizzen                           | ✅     |
+| Kapitel 9–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
