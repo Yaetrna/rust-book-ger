@@ -1,24 +1,24 @@
 [[questions]]
 id = "8bd8d8bc-e61e-48c7-ba78-0c89339e5995"
 type = "MultipleChoice"
-prompt.prompt = "Which statement best describes what it means if a variable `x` is immutable?"
-answer.answer = "`x` cannot be changed after being assigned a value."
+prompt.prompt = "Welche Aussage beschreibt am besten, was es bedeutet, wenn eine Variable `x` unveränderlich ist?"
+answer.answer = "`x` kann nicht mehr geändert werden, nachdem ihr ein Wert zugewiesen wurde."
 prompt.distractors = [
-  "`x` is stored in the immutable region of memory.",
-  "After being defined, `x` can be changed at most once.",
-  "You cannot create a reference to `x`."
+  "`x` wird im unveränderlichen Bereich des Speichers abgelegt.",
+  "Nach der Definition kann `x` höchstens einmal geändert werden.",
+  "Man kann keine Referenz auf `x` erzeugen."
 ]
 context = """
-Immutable means "not mutable", or not changeable.
+Unveränderlich (*immutable*) heißt „nicht veränderlich“, also nicht änderbar.
 """
 
 [[questions]]
 id = "dcf53c67-b3c9-4c54-8da0-90749cc669e8"
 type = "ShortAnswer"
-prompt.prompt = "What is the keyword used after `let` to indicate that a variable can be mutated?"
+prompt.prompt = "Welches Schlüsselwort steht nach `let`, um anzuzeigen, dass eine Variable verändert werden kann?"
 answer.answer = "mut"
 context = """
-For example, you can make a mutable variable `x` by writing: `let mut x = 1`.
+Eine veränderliche Variable `x` erzeugst du zum Beispiel so: `let mut x = 1`.
 """
 
 [[questions]]
@@ -35,5 +35,5 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 4
 context = """
-This is a compiler error because line 4 tries to mutate `x` when `x` is not marked as `mut`.
+Das ist ein Compilerfehler, weil Zeile 4 versucht, `x` zu verändern, obwohl `x` nicht als `mut` markiert ist.
 """

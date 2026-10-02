@@ -14,7 +14,7 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "1"
 context = """
-The statement `x += 2` only affects the shadowed `x` inside the inner curly braces, not the outer `x` on line 2.
+Die Anweisung `x += 2` betrifft nur das überschattende `x` innerhalb der inneren geschweiften Klammern, nicht das äußere `x` in Zeile 2.
 """
 
 [[questions]]
@@ -30,5 +30,5 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 3
 context = """
-A variable cannot be assigned to a value of a different type than its original type.
+Einer Variable kann kein Wert zugewiesen werden, dessen Typ sich von ihrem ursprünglichen Typ unterscheidet.
 """

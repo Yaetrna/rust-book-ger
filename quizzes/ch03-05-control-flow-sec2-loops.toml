@@ -2,7 +2,7 @@
 id = "c5b27431-c318-4243-9621-cadacb737f5a"
 type = "MultipleChoice"
 prompt.prompt = """
-True/false: this code will terminate (that is, it will not loop forever).
+Wahr oder falsch: Dieser Code terminiert (läuft also nicht endlos in einer Schleife).
 
 ```
 fn main() {
@@ -21,10 +21,10 @@ fn main() {
 }
 ```
 """
-answer.answer = "True"
-prompt.distractors = [ "False" ]
+answer.answer = "Wahr"
+prompt.distractors = [ "Falsch" ]
 context = """
-It will in fact terminate after the first iteration of the loop.
+Er terminiert tatsächlich schon nach der ersten Iteration der Schleife.
 """
 
 [[questions]]
@@ -43,5 +43,5 @@ fn main() {
 answer.doesCompile = true
 answer.stdout = "50"
 context = """
-The array `a` has the element `5` repeated 10 times, therefore its sum is `50`. The answer is not `15` --- note that the syntax `[5; 10]` is different from `[5, 10]`.
+Das Array `a` enthält das Element `5` zehnmal, daher ist seine Summe `50`. Die Antwort ist nicht `15` – beachte, dass sich die Syntax `[5; 10]` von `[5, 10]` unterscheidet.
 """

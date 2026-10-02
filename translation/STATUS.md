@@ -21,16 +21,17 @@ Alle Prüfungen in `translation/check.py` vergleichen gegen diesen Commit.
 
 Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 
-| Datei                                     | Quizze                                                   | Status |
-| ----------------------------------------- | -------------------------------------------------------- | ------ |
-| `src/SUMMARY.md`                          | –                                                        | ✅     |
-| `src/ch04-02-references-and-borrowing.md` | `ch04-02-references-sec{1-basics,2-perms,3-safety}.toml` | ✅     |
-| alle übrigen Dateien in `src/`            | alle übrigen Dateien in `quizzes/`                       | ⬜     |
+| Teil                                     | Dateien                                      | Status |
+| ---------------------------------------- | -------------------------------------------- | ------ |
+| `src/SUMMARY.md`                         | –                                            | ✅     |
+| Vorspann                                 | experiment-intro, title-page, foreword, ch00 | ✅     |
+| Kapitel 1                                | ch01-* mit Quizzen                           | ✅     |
+| Kapitel 2                                | ch02-00                                      | ✅     |
+| Kapitel 3                                | ch03-* mit Quizzen                           | ✅     |
+| Kapitel 4                                | ch04-02 ✅, übrige ⬜                        | 🔶     |
+| Kapitel 5–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
-
-`src/experiment-intro.md`: nur der Übersetzerhinweis ist ergänzt; die Seite
-selbst ist noch nicht übersetzt.
 
 **Checkpoint:** Pilot freigegeben. Entscheidungen dazu:
 

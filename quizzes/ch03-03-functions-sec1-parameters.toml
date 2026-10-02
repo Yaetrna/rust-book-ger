@@ -1,7 +1,7 @@
 [[questions]]
 id = "8e2d2cd0-48d4-4901-a8c5-c994fb318014"
 type = "ShortAnswer"
-prompt.prompt = "The keyword for declaring a new function in Rust is:"
+prompt.prompt = "Das Schlüsselwort zum Deklarieren einer neuen Funktion in Rust lautet:"
 answer.answer = "fn"
 
 [[questions]]
@@ -19,5 +19,5 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 1
 context = """
-A function must declare the types of its parameters.
+Eine Funktion muss die Typen ihrer Parameter deklarieren.
 """

@@ -2,14 +2,14 @@
 id = "5ae11501-25d9-4b94-8e88-aa1c2122779f"
 type = "MultipleChoice"
 prompt.prompt = """
-True/false: executing these two pieces of code results in the same value for `x`.
+Wahr oder falsch: Diese beiden Codestücke ergeben beim Ausführen denselben Wert für `x`.
 
-Snippet 1:
+Codeausschnitt 1:
 ```
 let x = if cond { 1 } else { 2 };
 ```
 
-Snippet 2:
+Codeausschnitt 2:
 ```
 let x;
 if cond {
@@ -19,16 +19,16 @@ if cond {
 }
 ```
 
-(Note: both of these snippets compile!)
+(Hinweis: Beide Codeausschnitte lassen sich kompilieren!)
 """
-answer.answer = "True"
-prompt.distractors = [ "False" ]
+answer.answer = "Wahr"
+prompt.distractors = [ "Falsch" ]
 context = """
-The first if-expression is a more concise way of representing the behavior of the second if-statement.
+Der erste if-Ausdruck ist eine knappere Form, das Verhalten der zweiten if-Anweisung auszudrücken.
 
-Note that Rust **does not** require `x` to be initially declared with `let mut` in the second snippet.
-This is because Rust can determine that `x` is only ever assigned once, since only one branch of the 
-if-statement will ever execute.
+Beachte, dass Rust im zweiten Codeausschnitt **nicht** verlangt, dass `x` anfangs mit `let mut` deklariert wird.
+Das liegt daran, dass Rust erkennen kann, dass `x` nur ein einziges Mal etwas zugewiesen wird, da immer nur ein Zweig der 
+if-Anweisung ausgeführt wird.
 """
 
 [[questions]]
@@ -44,5 +44,5 @@ fn main() {
 answer.doesCompile = false
 answer.lineNumber = 3
 context = """
-The condition to an if-expression must be a boolean. Rust does not have a concept of "truthy" or "falsy" values.
+Die Bedingung eines if-Ausdrucks muss ein boolescher Wert sein. Rust kennt kein Konzept von „truthy“- oder „falsy“-Werten.
 """
