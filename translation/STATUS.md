@@ -42,22 +42,19 @@ selbst ist noch nicht übersetzt.
 - Glossen für Compiler-Begriffe pro Seite (kann sich noch ändern).
 - Push auf den eigenen Fork erlaubt (kein PR).
 
-## Werkzeuge und Build (Pilot)
+## Werkzeuge und Build
 
-- mdBook 0.5.2 (Release-Binary, wie in CI).
-- mdbook-quiz 0.5.0, lokal **ohne** das Feature `aquascope` gebaut
-  (`cargo install mdbook-quiz --version 0.5.0 --no-default-features`). Das
-  „full“-Release-Binary braucht beim Start die Aquascope-Nightly-Toolchain.
-- mdbook-aquascope: **nicht installiert** (braucht `nightly-2026-05-01` mit
-  `rustc-dev` und `miri`). Für den Build wird ein Durchreich-Stub verwendet. Die
-  `aquascope`-Blöcke werden darum nicht als Diagramme gerendert; ihre
-  Byte-Identität prüft `check.py`.
-- mdbook-trpl-note / mdbook-trpl-listing: aus `packages/mdbook-trpl` per
-  `cargo run` (wie in `book.toml` konfiguriert).
-- dprint 0.50.2 mit `@dprint/markdown` 0.17.8 (gleiche Plugin-Version wie in
-  `dprint.jsonc`, lokal aus npm, da `plugins.dprint.dev` im Sandbox-Netz
-  gesperrt ist).
-- Python 3.11 + `markdown-it-py` 3.0.0 für `check.py`.
+Seit dem Checkpoint wird mit denselben Werkzeugen wie in CI gebaut:
+
+- mdBook 0.5.2, mdbook-quiz 0.5.0 („full“), Aquascope 0.4.0 (Release-Binaries).
+- Toolchain `nightly-2026-05-01` mit `rust-src`, `rustc-dev`,
+  `llvm-tools-preview`, `miri`; `cargo +nightly-2026-05-01 miri setup`;
+  `LD_LIBRARY_PATH=$(rustup run nightly-2026-05-01 rustc --print target-libdir)`.
+- mdbook-trpl-note / mdbook-trpl-listing aus `packages/mdbook-trpl` per
+  `cargo run` (wie in `book.toml`).
+- dprint 0.50.2 mit `@dprint/markdown` 0.17.8 (aus npm, da
+  `plugins.dprint.dev` im Sandbox-Netz gesperrt ist).
+- Python 3.11 + `markdown-it-py` 3.0.0 + `mdit-py-plugins` für `check.py`.
 
 ## Wiederaufnahme nach Unterbrechung
 
