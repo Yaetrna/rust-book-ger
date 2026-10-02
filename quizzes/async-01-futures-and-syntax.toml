@@ -1,22 +1,22 @@
 [[questions]]
 type = "MultipleChoice"
-prompt.prompt = "If you want to wait on a future in non-async code, you should do which of the following?"
+prompt.prompt = "Was solltest du tun, wenn du in nicht asynchronem Code auf ein Future warten willst?"
 prompt.distractors = [
-  "Put an `.await` directly after the future",
-  "Give the future to Rust's built-in async runtime",
-  "Wrap the future in an `async` block and `.await` the block",  
+  "Ein `.await` direkt hinter das Future setzen",
+  "Das Future an die eingebaute Async-Runtime von Rust übergeben",
+  "Das Future in einen `async`-Block verpacken und den Block mit `.await` abwarten",  
 ]
-answer.answer = "Give the future to a third-party async runtime" 
+answer.answer = "Das Future an eine Async-Runtime eines Drittanbieters übergeben" 
 context = """
-Rust does not let you use `.await` outside of `async` blocks or functions. Rust also does not have a built-in async runtime.
-You should use a third-party async runtime like `tokio` or `trpl`. 
+Rust erlaubt `.await` nicht außerhalb von `async`-Blöcken oder -Funktionen. Rust hat auch keine eingebaute Async-Runtime.
+Du solltest eine Async-Runtime eines Drittanbieters wie `tokio` oder `trpl` verwenden. 
 """
 id = "de2a5023-dd5c-412e-8425-c8ed638f18f0"
 
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-The async function below desugars into which type signature?
+In welche Typsignatur wird die folgende async-Funktion aufgelöst (ohne syntaktischen Zucker)?
 
 ```rust
 async fn calculate(nums: &[i32]) -> i32 {
@@ -47,9 +47,9 @@ fn calculate<'a>(nums: &'a [i32]) -> impl Future<Output = i32> + 'a;
 ```
 """
 context = """
-An async function returns an anonymous type that implements the `Future` trait whose output is the function's return type. 
-So here, that is represented as `impl Future<Output = i32>`. The future captures any lifetimes in the function's arguments.
-Therefore the returned type has the bound `+ 'a` and the input slice has the type `&'a [i32]`. This indicates that the slice 
-must live at least as long as the future which captures it.
+Eine async-Funktion gibt einen anonymen Typ zurück, der den Trait `Future` implementiert und dessen Ausgabe der Rückgabetyp der Funktion ist. 
+Hier wird das also als `impl Future<Output = i32>` dargestellt. Das Future erfasst alle Lifetimes in den Argumenten der Funktion.
+Daher hat der zurückgegebene Typ den Bound `+ 'a`, und der Eingabe-Slice hat den Typ `&'a [i32]`. Das zeigt an, dass der Slice 
+mindestens so lange leben muss wie das Future, das ihn erfasst.
 """
 id = "9c000322-464b-4d34-9e30-55591f9283d2"

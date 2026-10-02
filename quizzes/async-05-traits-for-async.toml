@@ -1,24 +1,24 @@
 [[questions]]
 type = "MultipleChoice"
-prompt.prompt = "Given a future `f`, which of the following best describes how `f.await` works?"
+prompt.prompt = "Welche der folgenden Aussagen beschreibt bei einem gegebenen Future `f` am besten, wie `f.await` funktioniert?"
 prompt.distractors = [
-  "It calls `f.poll()` once, which blocks in-place until `f` is ready",
-  "It calls `f.poll()` in a loop, exiting if `f` is ready, or immediately polling again if `f` is not ready",
-  "It calls `f.push(...)` once, which executes a callback containing the remaining code after `f.await` once `f` is ready"
+  "Es ruft `f.poll()` einmal auf, was an Ort und Stelle blockiert, bis `f` fertig ist",
+  "Es ruft `f.poll()` in einer Schleife auf und beendet sie, wenn `f` fertig ist, oder pollt sofort erneut, wenn `f` nicht fertig ist",
+  "Es ruft `f.push(...)` einmal auf, was einen Callback mit dem restlichen Code nach `f.await` ausführt, sobald `f` fertig ist"
 ]
-answer.answer = "It calls `f.poll()` in a loop, exiting if `f` is ready, or returning control to the async runtime if `f` is not ready"
+answer.answer = "Es ruft `f.poll()` in einer Schleife auf und beendet sie, wenn `f` fertig ist, oder gibt die Kontrolle an die Async-Runtime zurück, wenn `f` nicht fertig ist"
 context = """
-Rust uses a poll-based model for future execution. An await point desugars into a loop which repeatedly calls `.poll()`, 
-and cedes control to the async runtime after each unsuccessful poll to allow other async code to run. The runtime can later
-"wake up" the `f.await` code to poll `f` again.
+Rust verwendet für die Ausführung von Futures ein Modell, das auf Polling basiert. Ein Await-Punkt wird zu einer Schleife aufgelöst, die wiederholt `.poll()` aufruft
+und nach jedem erfolglosen Poll die Kontrolle an die Async-Runtime abgibt, damit anderer asynchroner Code laufen kann. Die Runtime kann den Code von `f.await` später
+„aufwecken“, damit er `f` erneut pollt.
 """
 id = "c4d90f3c-7286-4272-921c-241b266e9f91"
 
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Imagine Rust did not require that futures were pinned in order to be polled. 
-Which of the following async functions could potentially cause undefined behavior if not pinned?
+Stell dir vor, Rust würde nicht verlangen, dass Futures fixiert sind, um gepollt zu werden.
+Welche der folgenden async-Funktionen könnte ohne Fixieren potenziell undefiniertes Verhalten verursachen?
 """
 prompt.distractors = [
 """
@@ -57,8 +57,8 @@ async fn example(x: i32) -> i32 {
 ```
 """
 context = """
-The core problem addressed by pinning is self-reference, or a future which contains a pointer to itself. 
-This happens when an async block contains a local variable that refers to another local variable in the future.
-Here, that would be `y = &x`.
+Das Kernproblem, das das Fixieren löst, ist Selbstreferenz, also ein Future, das einen Zeiger auf sich selbst enthält.
+Das passiert, wenn ein async-Block eine lokale Variable enthält, die auf eine andere lokale Variable im Future verweist.
+Hier wäre das `y = &x`.
 """
 id = "bc8b4acb-d111-4fec-b89a-e5d1bc77c8f2"

@@ -1,7 +1,7 @@
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Given a function `sleep(d)` that sleeps for the given duration, consider this function:
+Gegeben ist eine Funktion `sleep(d)`, die für die angegebene Dauer schläft. Betrachte diese Funktion:
 
 ```rust
 let futs: Vec<_> = [1, 2, 3].iter().map(|n| async move {
@@ -15,25 +15,25 @@ for fut in futs {
 }
 ```
 
-When executed, about how many seconds should this take to execute?
+Wie viele Sekunden sollte die Ausführung ungefähr dauern?
 """
 prompt.distractors = ["5", "0"]
 answer.answer = "15"
 context = """
-Without using a function like `join_all`, the futures will not run concurrently. Therefore this code would take 15 seconds (5 seconds per list element).
+Ohne eine Funktion wie `join_all` laufen die Futures nicht nebenläufig. Daher würde dieser Code 15 Sekunden dauern (5 Sekunden pro Listenelement).
 """
 id = "68680e2e-7a9f-4cee-8080-70e57fe5a2b3"
 
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Say you are designing a utility function with the following specification:
+Angenommen, du entwirfst eine Hilfsfunktion mit folgender Spezifikation:
 
-> `map_stringify` takes two arguments: a vector of inputs, and an async function that converts the input to an output,
-> where the outputs can be converted to strings.
-> `map_stringify` returns a vector of stringified outputs.
+> `map_stringify` nimmt zwei Argumente: einen Vektor von Eingaben und eine async-Funktion, die die Eingabe in eine Ausgabe umwandelt,
+> wobei sich die Ausgaben in Strings umwandeln lassen.
+> `map_stringify` gibt einen Vektor der in Strings umgewandelten Ausgaben zurück.
 
-Which function type signature best encodes this specification?
+Welche Typsignatur einer Funktion bildet diese Spezifikation am besten ab?
 """
 prompt.distractors = [
 """
@@ -72,7 +72,7 @@ where
 ```
 """
 context = """
-Here's one implementation of the specified function:
+Hier ist eine Implementierung der spezifizierten Funktion:
 
 ```rust
 async fn map_stringify<I, O, F>(
@@ -95,8 +95,8 @@ id = "b42a9c5b-bfe7-4d6f-967a-f8ff2a6faa0d"
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Say you are writing a program that needs to run some async code, but every 500ms check to see if the computation should be halted.
-Which helper function would be most appropriate for accomplishing this task?
+Angenommen, du schreibst ein Programm, das asynchronen Code ausführen, aber alle 500 ms prüfen muss, ob die Berechnung angehalten werden soll.
+Welche Hilfsfunktion wäre für diese Aufgabe am besten geeignet?
 """
 prompt.distractors = [
   "`join`",
@@ -105,6 +105,6 @@ prompt.distractors = [
 ]
 answer.answer = "`race` / `select`"
 context = """
-For instance, you could run a `select` in a loop between a long-running future and a sleep future that completes in 500ms.
+Du könntest zum Beispiel in einer Schleife ein `select` zwischen einem langwierigen Future und einem Schlaf-Future ausführen, das nach 500 ms fertig ist.
 """
 id = "7da21e95-8e03-412b-8c4d-90ccfc8c6802"

@@ -302,6 +302,18 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | method-call syntax                         | Syntax für Methodenaufrufe                         | die                               |                                                        | entschieden |
 | if-statement / then-block                  | if-Anweisung / then-Block / else-Block             | die / der                         | ohne Backticks, wie im Original                        | entschieden |
 | ampersand                                  | Ampersand                                          | das / die Ampersands              | `&`; „Ampersand-Operator“                              | entschieden |
+| polling / poll (Future)                    | Polling / pollen                                   | das / –                           | „ein Future pollen“, „wird gepollt“                    | entschieden |
+| await point                                | Await-Punkt                                        | der / die Await-Punkte            |                                                        | entschieden |
+| state machine                              | Zustandsautomat                                    | der / die Zustandsautomaten       |                                                        | entschieden |
+| runtime (async)                            | Runtime                                            | die / die Runtimes                | „Async-Runtime“; „zur Laufzeit“ für _at runtime_       | entschieden |
+| task (async)                               | Task                                               | der / die Tasks                   |                                                        | entschieden |
+| starve                                     | aushungern (_starving_)                            | –                                 |                                                        | entschieden |
+| cooperative multitasking                   | kooperatives Multitasking                          | das                               |                                                        | entschieden |
+| CPU-bound / compute-bound / I/O-bound      | CPU-gebunden / rechengebunden / I/O-gebunden       | –                                 |                                                        | entschieden |
+| blocking                                   | blockierend                                        | –                                 |                                                        | entschieden |
+| stream                                     | Stream                                             | der / die Streams                 |                                                        | entschieden |
+| self-referential                           | selbstreferenziell                                 | –                                 |                                                        | entschieden |
+| work stealing                              | Work Stealing                                      | das                               | kursiv bei Einführung                                  | entschieden |
 
 ## 3. Verben
 
@@ -314,8 +326,8 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | clone                   | klonen                                                                |                                                                           | fest        |
 | panic                   | einen Panic auslösen                                                  | nie „panicken“                                                            | fest        |
 | match (Pattern)         | passen (auf), übereinstimmen                                          | nie „matchen“                                                             | entschieden |
-| await                   | abwarten (_await_)                                                    | Schlüsselwort `await` bleibt Code                                         | offen       |
-| pin                     | fixieren (_pin_)                                                      | Typ `Pin` bleibt Code                                                     | offen       |
+| await                   | abwarten (_await_)                                                    | Schlüsselwort `await` bleibt Code                                         | entschieden |
+| pin                     | fixieren (_pin_)                                                      | Typ `Pin` bleibt Code                                                     | entschieden |
 | refutable / irrefutable | refutable / irrefutable (Glosse: „kann fehlschlagen“ / „passt immer“) | Compiler: „refutable pattern in local binding“; Alternative „widerlegbar“ | offen       |
 | compile                 | kompilieren                                                           |                                                                           | entschieden |
 | refactor                | refaktorisieren                                                       |                                                                           | entschieden |
@@ -378,15 +390,16 @@ dort, wo das Buch sie definiert.
 
 ## Änderungsprotokoll
 
-| Datum   | Begriff                                                                                                                             | alt | neu             | betroffene Dateien |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
-| Kap. 7  | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house                            | –   | neu aufgenommen | ch07-*             |
-| Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                                                 | –   | neu aufgenommen | ch08-*             |
-| Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread                    | –   | neu aufgenommen | ch09-*             |
-| Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein)                   | –   | neu aufgenommen | ch10-*             |
-| Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                                          | –   | neu aufgenommen | ch11-*             |
-| Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                                  | –   | neu aufgenommen | ch12-*             |
-| Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                                     | –   | neu aufgenommen | ch13-*             |
-| Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                                               | –   | neu aufgenommen | ch14-*             |
-| Kap. 15 | pointer, design pattern, recursive type, indirection, memory leak, strong/weak reference, test double, destructor                   | –   | neu aufgenommen | ch15-*             |
-| Kap. 16 | fearless concurrency, spawn, main thread, join handle, transmitter/receiver, lock, concurrency primitive, marker trait, raw pointer | –   | neu aufgenommen | ch16-*             |
+| Datum   | Begriff                                                                                                                                                 | alt | neu             | betroffene Dateien |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
+| Kap. 7  | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house                                                | –   | neu aufgenommen | ch07-*             |
+| Kap. 8  | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                                                                     | –   | neu aufgenommen | ch08-*             |
+| Kap. 9  | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread                                        | –   | neu aufgenommen | ch09-*             |
+| Kap. 10 | coherence, implementor, where clause, input/output lifetimes, elision rules, static lifetime, pattern (allgemein)                                       | –   | neu aufgenommen | ch10-*             |
+| Kap. 11 | assert/assertion, test runner/harness, pass/fail, doc test                                                                                              | –   | neu aufgenommen | ch11-*             |
+| Kap. 12 | separation of concerns, case-(in)sensitive, stdout/stderr, maintainer, exit status                                                                      | –   | neu aufgenommen | ch12-*             |
+| Kap. 13 | capture, environment, lazy, consume, consuming/iterator adapter                                                                                         | –   | neu aufgenommen | ch13-*             |
+| Kap. 14 | release profile, documentation comment, yank, binary/library target, registry, Figure                                                                   | –   | neu aufgenommen | ch14-*             |
+| Kap. 15 | pointer, design pattern, recursive type, indirection, memory leak, strong/weak reference, test double, destructor                                       | –   | neu aufgenommen | ch15-*             |
+| Kap. 16 | fearless concurrency, spawn, main thread, join handle, transmitter/receiver, lock, concurrency primitive, marker trait                                  | –   | neu aufgenommen | ch16-*             |
+| Kap. 17 | polling, await point, state machine, runtime, task, starve, cooperative multitasking, CPU-/I/O-bound, blocking, stream, self-referential, work stealing | –   | neu aufgenommen | ch17-*             |

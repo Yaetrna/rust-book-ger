@@ -41,7 +41,7 @@ zu `Arc<T>` gewechselt sind, das `Send` implementiert, hat der Code kompiliert.
 
 Jeder Typ, der vollständig aus `Send`-Typen besteht, wird automatisch ebenfalls
 als `Send` gekennzeichnet. Fast alle primitiven Typen sind `Send`, abgesehen von
-Rohzeigern (_raw pointers_), die wir in Kapitel 20 besprechen.
+Raw-Pointern (_raw pointers_), die wir in Kapitel 20 besprechen.
 
 <!-- Old headings. Do not remove or links may break. -->
 

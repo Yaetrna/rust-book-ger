@@ -1,7 +1,7 @@
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the following function:
+Betrachte folgende Funktion:
 
 ```rust
 async fn print_letters() {
@@ -14,24 +14,24 @@ async fn print_letters() {
 }
 ```
 
-Which of the following strings can possibly be printed after running `print_letters().await`?
+Welche der folgenden Strings können möglicherweise ausgegeben werden, nachdem `print_letters().await` ausgeführt wurde?
 """
 prompt.distractors = ["`ABC`", "`BCA`", "`ACB`"]
 answer.answer = ["`CBA`"]
 context = """
-This program has deterministic behavior. The prints do not execute until the async blocks are awaited.
-The blocks are awaited in the order `c`/`b`/`a`, so the program will only print `CBA`.
+Dieses Programm verhält sich deterministisch. Die Ausgaben werden erst ausgeführt, wenn die async-Blöcke abgewartet werden.
+Die Blöcke werden in der Reihenfolge `c`/`b`/`a` abgewartet, daher gibt das Programm nur `CBA` aus.
 """
 id = "8f62c158-525a-43a2-aa6a-0cc106cada10"
 
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Say you are given a helper function `wait_all(a, b)` with the following behavior:
-* `wait_all` guarantees that `a` and `b` are executed to completion.
-* `wait_all` makes no guarantees regarding fairness or initial execution order.
+Angenommen, du hast eine Hilfsfunktion `wait_all(a, b)` mit folgendem Verhalten:
+* `wait_all` garantiert, dass `a` und `b` vollständig ausgeführt werden.
+* `wait_all` gibt keine Garantien hinsichtlich Fairness oder anfänglicher Ausführungsreihenfolge.
 
-Then given the following code:
+Gegeben ist dann folgender Code:
 
 ```rust
 async fn print_letters() {
@@ -49,24 +49,24 @@ async fn print_letters() {
 }
 ```
 
-Which of the following strings can possibly be printed after running `print_letters().await`?
+Welche der folgenden Strings können möglicherweise ausgegeben werden, nachdem `print_letters().await` ausgeführt wurde?
 """
 prompt.distractors = ["`DABC`"]
 answer.answer = [
   "`ABCD`", "`CADB`", "`ACBD`"
 ]
 context = """
-The hypothetical `wait_all` primitive is like `join` but with fewer guarantees. Given only the spec in this problem, any interleaving of the
-two futures is valid. The only invalid output is one that inverts program execution order, i.e., `DABC` which would have `D` printed before `C`.
+Das hypothetische Primitiv `wait_all` ist wie `join`, aber mit weniger Garantien. Mit nur der Spezifikation in dieser Aufgabe ist jede Verschränkung der
+beiden Futures gültig. Die einzige ungültige Ausgabe ist eine, die die Ausführungsreihenfolge im Programm umkehrt, also `DABC`, bei der `D` vor `C` ausgegeben würde.
 """
 id = "4b28f13e-9781-4d29-b886-7639fa527f36"
 
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Say you are given a message-passing channel `channel()` which is non-blocking and *bounded*, 
-meaning `send` returns a future that completes once there is capacity in the channel.
-Assume you also have a function `join(a, b)` which *fairly* waits on both its arguments to completion. Then given this async code:
+Angenommen, du hast einen Kanal zur Nachrichtenübermittlung `channel()`, der nicht blockierend und *begrenzt* ist, 
+d. h., `send` gibt ein Future zurück, das fertig ist, sobald im Kanal Kapazität frei ist.
+Angenommen, du hast außerdem eine Funktion `join(a, b)`, die *fair* darauf wartet, dass beide Argumente fertig sind. Gegeben ist dann dieser asynchrone Code:
 
 ```rust
 let (tx, mut rx) = channel(16);
@@ -76,15 +76,15 @@ let (n, _) = join(recv_fut, send_fut).await;
 println!("{}", n.unwrap());
 ```
 
-What will happen as a result of executing this code?
+Was passiert, wenn dieser Code ausgeführt wird?
 """
 prompt.distractors = [
-  "The program prints `0` and loops forever",
-  "The program prints nothing and loops forever",
-  "The program panics"
+  "Das Programm gibt `0` aus und läuft endlos weiter",
+  "Das Programm gibt nichts aus und läuft endlos weiter",
+  "Das Programm löst einen Panic aus"
 ]
-answer.answer = "The program prints `0` and exits"
+answer.answer = "Das Programm gibt `0` aus und beendet sich"
 context = """
-Because the channel is non-blocking, we can create a receive future before sending without looping forever.
+Da der Kanal nicht blockiert, können wir vor dem Senden ein Empfangs-Future erzeugen, ohne in eine Endlosschleife zu geraten.
 """
 id = "e23b7c48-3780-44e7-8ea4-df35032548a1"

@@ -2,39 +2,44 @@
 
 <a id="streams"></a>
 
-## Streams: Futures in Sequence
+## Streams: Futures in Folge {#streams-futures-in-sequence}
 
-Recall how we used the receiver for our async channel earlier in this chapter
-in the [“Message Passing”][17-02-messages]<!-- ignore --> section. The async
-`recv` method produces a sequence of items over time. This is an instance of a
-much more general pattern known as a _stream_. Many concepts are naturally
-represented as streams: items becoming available in a queue, chunks of data
-being pulled incrementally from the filesystem when the full data set is too
-large for the computer’s memory, or data arriving over the network over time.
-Because streams are futures, we can use them with any other kind of future and
-combine them in interesting ways. For example, we can batch up events to avoid
-triggering too many network calls, set timeouts on sequences of long-running
-operations, or throttle user interface events to avoid doing needless work.
+Erinnere dich daran, wie wir früher in diesem Kapitel im Abschnitt
+[„Nachrichtenübermittlung“][17-02-messages]<!-- ignore --> den Empfänger unseres
+asynchronen Kanals verwendet haben. Die asynchrone Methode `recv` erzeugt im
+Lauf der Zeit eine Folge von Elementen. Das ist ein Beispiel für ein viel
+allgemeineres Schema, das als _Stream_ bezeichnet wird. Viele Konzepte lassen
+sich auf natürliche Weise als Streams darstellen: Elemente, die in einer
+Warteschlange verfügbar werden, Datenblöcke, die schrittweise aus dem
+Dateisystem geladen werden, wenn der gesamte Datensatz zu groß für den Speicher
+des Computers ist, oder Daten, die im Lauf der Zeit über das Netzwerk
+eintreffen. Weil Streams Futures sind, können wir sie mit jeder anderen Art von
+Future verwenden und auf interessante Weise kombinieren. Zum Beispiel können wir
+Ereignisse bündeln, um nicht zu viele Netzwerkaufrufe auszulösen, Timeouts für
+Folgen langwieriger Operationen festlegen oder Ereignisse der Benutzeroberfläche
+drosseln, um unnötige Arbeit zu vermeiden.
 
-We saw a sequence of items back in Chapter 13, when we looked at the Iterator
-trait in [“The Iterator Trait and the `next` Method”][iterator-trait]<!--
-ignore --> section, but there are two differences between iterators and the
-async channel receiver. The first difference is time: iterators are
-synchronous, while the channel receiver is asynchronous. The second difference
-is the API. When working directly with `Iterator`, we call its synchronous
-`next` method. With the `trpl::Receiver` stream in particular, we called an
-asynchronous `recv` method instead. Otherwise, these APIs feel very similar,
-and that similarity isn’t a coincidence. A stream is like an asynchronous form
-of iteration. Whereas the `trpl::Receiver` specifically waits to receive
-messages, though, the general-purpose stream API is much broader: it provides
-the next item the way `Iterator` does, but asynchronously.
+Eine Folge von Elementen haben wir schon in Kapitel 13 gesehen, als wir uns im
+Abschnitt [„Der Trait Iterator und die Methode `next`“][iterator-trait]<!--
+ignore --> den Iterator-Trait angesehen haben, aber zwischen Iteratoren und dem
+Empfänger des asynchronen Kanals gibt es zwei Unterschiede. Der erste
+Unterschied ist die Zeit: Iteratoren sind synchron, während der Empfänger des
+Kanals asynchron ist. Der zweite Unterschied ist die API. Wenn wir direkt mit
+`Iterator` arbeiten, rufen wir seine synchrone Methode `next` auf. Speziell beim
+Stream `trpl::Receiver` haben wir stattdessen eine asynchrone Methode `recv`
+aufgerufen. Ansonsten fühlen sich diese APIs sehr ähnlich an, und diese
+Ähnlichkeit ist kein Zufall. Ein Stream ist so etwas wie eine asynchrone Form
+der Iteration. Während `trpl::Receiver` aber speziell auf den Empfang von
+Nachrichten wartet, ist die allgemeine Stream-API viel breiter angelegt: Sie
+liefert das nächste Element so, wie `Iterator` es tut, aber asynchron.
 
-The similarity between iterators and streams in Rust means we can actually
-create a stream from any iterator. As with an iterator, we can work with a
-stream by calling its `next` method and then awaiting the output, as in Listing
-17-21, which won’t compile yet.
+Die Ähnlichkeit zwischen Iteratoren und Streams in Rust bedeutet, dass wir aus
+jedem Iterator tatsächlich einen Stream erzeugen können. Wie bei einem Iterator
+können wir mit einem Stream arbeiten, indem wir seine Methode `next` aufrufen
+und dann auf die Ausgabe warten, wie in Listing 17-21, das noch nicht
+kompiliert.
 
-<Listing number="17-21" caption="Creating a stream from an iterator and printing its values" file-name="src/main.rs">
+<Listing number="17-21" caption="Einen Stream aus einem Iterator erzeugen und seine Werte ausgeben" file-name="src/main.rs">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-21/src/main.rs:stream}}
@@ -42,13 +47,14 @@ stream by calling its `next` method and then awaiting the output, as in Listing
 
 </Listing>
 
-We start with an array of numbers, which we convert to an iterator and then
-call `map` on to double all the values. Then we convert the iterator into a
-stream using the `trpl::stream_from_iter` function. Next, we loop over the
-items in the stream as they arrive with the `while let` loop.
+Wir beginnen mit einem Array von Zahlen, das wir in einen Iterator umwandeln,
+auf dem wir dann `map` aufrufen, um alle Werte zu verdoppeln. Dann wandeln wir
+den Iterator mit der Funktion `trpl::stream_from_iter` in einen Stream um.
+Anschließend durchlaufen wir die Elemente des Streams mit der
+`while let`-Schleife, sobald sie eintreffen.
 
-Unfortunately, when we try to run the code, it doesn’t compile but instead
-reports that there’s no `next` method available:
+Leider kompiliert der Code nicht, wenn wir versuchen, ihn auszuführen, sondern
+meldet, dass keine Methode `next` verfügbar ist:
 
 <!-- manual-regeneration
 cd listings/ch17-async-await/listing-17-21
@@ -80,23 +86,25 @@ help: there is a method `try_next` with a similar name
    |                                        ~~~~~~~~
 ```
 
-As this output explains, the reason for the compiler error is that we need the
-right trait in scope to be able to use the `next` method. Given our discussion
-so far, you might reasonably expect that trait to be `Stream`, but it’s
-actually `StreamExt`. Short for _extension_, `Ext` is a common pattern in the
-Rust community for extending one trait with another.
+Wie diese Ausgabe erklärt, liegt der Grund für den Compilerfehler darin, dass
+wir den richtigen Trait im Gültigkeitsbereich (_scope_) brauchen, um die Methode
+`next` verwenden zu können. Nach unserer bisherigen Diskussion würdest du
+vernünftigerweise erwarten, dass dieser Trait `Stream` ist, tatsächlich ist es
+aber `StreamExt`. `Ext` ist die Abkürzung für _extension_ (Erweiterung) und ein
+gängiges Schema in der Rust-Community, um einen Trait durch einen anderen zu
+erweitern.
 
-The `Stream` trait defines a low-level interface that effectively combines the
-`Iterator` and `Future` traits. `StreamExt` supplies a higher-level set of APIs
-on top of `Stream`, including the `next` method as well as other utility
-methods similar to those provided by the `Iterator` trait. `Stream` and
-`StreamExt` are not yet part of Rust’s standard library, but most ecosystem
-crates use similar definitions.
+Der Trait `Stream` definiert eine Low-Level-Schnittstelle, die die Traits
+`Iterator` und `Future` im Grunde kombiniert. `StreamExt` stellt auf Basis von
+`Stream` eine höhere Ebene von APIs bereit, darunter die Methode `next` sowie
+weitere Hilfsmethoden, die denen des Traits `Iterator` ähneln. `Stream` und
+`StreamExt` sind noch nicht Teil der Standardbibliothek von Rust, aber die
+meisten Crates im Ökosystem verwenden ähnliche Definitionen.
 
-The fix to the compiler error is to add a `use` statement for
-`trpl::StreamExt`, as in Listing 17-22.
+Um den Compilerfehler zu beheben, fügen wir eine `use`-Anweisung für
+`trpl::StreamExt` hinzu, wie in Listing 17-22.
 
-<Listing number="17-22" caption="Successfully using an iterator as the basis for a stream" file-name="src/main.rs">
+<Listing number="17-22" caption="Einen Iterator erfolgreich als Grundlage für einen Stream verwenden" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-22/src/main.rs:all}}
@@ -104,9 +112,9 @@ The fix to the compiler error is to add a `use` statement for
 
 </Listing>
 
-With all those pieces put together, this code works the way we want! What’s
-more, now that we have `StreamExt` in scope, we can use all of its utility
-methods, just as with iterators.
+Wenn all diese Teile zusammengefügt sind, funktioniert dieser Code so, wie wir
+es wollen! Und mehr noch: Jetzt, da `StreamExt` im Gültigkeitsbereich ist,
+können wir all seine Hilfsmethoden verwenden, genau wie bei Iteratoren.
 
 {{#quiz ../quizzes/async-04-streams.toml}}
 
