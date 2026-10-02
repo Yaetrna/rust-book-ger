@@ -2,19 +2,19 @@
 id = "8c9f9173-c5ba-4914-9cfa-e3432f8414e1"
 type = "MultipleChoice"
 prompt.prompt = """
-Which of the following is NOT a valid kind of fix to the issue of returning a stack reference from a function?
+Welche der folgenden Möglichkeiten ist KEINE gültige Lösung für das Problem, eine Referenz auf den Stack aus einer Funktion zurückzugeben?
 """
-answer.answer = "Extend the lifetime of the stack frame"
-prompt.distractors = ["Use a reference-counted pointer", "Take ownership of the returned value", "Expect a mutable slot from the caller"]
+answer.answer = "Die Lifetime des Stack-Frames verlängern"
+prompt.distractors = ["Einen Zeiger mit Referenzzählung verwenden", "Die Ownership des zurückgegebenen Werts übernehmen", "Von der aufrufenden Stelle einen veränderlichen Platz erwarten"]
 context = """
-A stack frame cannot have its lifetime extended, so that is not a valid solution.
+Die Lifetime eines Stack-Frames lässt sich nicht verlängern, daher ist das keine gültige Lösung.
 """
 
 [[questions]]
 id = "e6bc84ef-069c-4d1d-99ec-69b13492569c"
 type = "MultipleChoice"
 prompt.prompt = """
-Let's say a programmer tried writing the following function:
+Angenommen, jemand hat versucht, folgende Funktion zu schreiben:
 
 ```
 /// Returns a person's name with "Ph.D." added as a title
@@ -25,7 +25,7 @@ fn award_phd(name: &String) -> String {
 }
 ```
 
-The Rust compiler rejects their code with the following error:
+Der Rust-Compiler weist den Code mit folgendem Fehler zurück:
 
 ```text
 error[E0507]: cannot move out of `*name` which is behind a shared reference
@@ -38,8 +38,8 @@ error[E0507]: cannot move out of `*name` which is behind a shared reference
   |                    help: consider borrowing here: `&*name`
 ```
 
-Given the stated purpose of the function, which of the following would be the most idiomatic fix to the program? 
-The differences from the function above are highlighted.
+Welche der folgenden Korrekturen wäre angesichts des angegebenen Zwecks der Funktion die idiomatischste? 
+Die Unterschiede zur obigen Funktion sind hervorgehoben.
 """
 answer.answer = """
 ```
@@ -77,16 +77,16 @@ fn award_phd(`[name: &mut String]`) {
 """
 ]
 context = """
-The function is not intended to change someone's original name, so changing the type of `name` to either `&mut String` or `String` 
-would be inappropriate. The solution proposed by the compiler of `&*name` is not sufficient --- an acceptable solution is to 
-clone the data with `name.clone()` and mutate the local copy.
+Die Funktion soll den ursprünglichen Namen einer Person nicht ändern, daher wäre es unpassend, den Typ von `name` in `&mut String` oder `String` 
+zu ändern. Die vom Compiler vorgeschlagene Lösung `&*name` reicht nicht aus – eine akzeptable Lösung ist, 
+die Daten mit `name.clone()` zu klonen und die lokale Kopie zu verändern.
 """
 
 [[questions]]
 id = "8020e4a2-f0b4-4eae-90ac-a87712d9d00b"
 type = "MultipleChoice"
 prompt.prompt = """
-Let's say a programmer tried writing the following function:
+Angenommen, jemand hat versucht, folgende Funktion zu schreiben:
 
 ```
 /// Rounds all the floats in a vector to the nearest integer, in-place
@@ -97,7 +97,7 @@ fn round_in_place(v: &Vec<f32>) {
 }
 ```
 
-The Rust compiler rejects their code with the following error:
+Der Rust-Compiler weist den Code mit folgendem Fehler zurück:
 
 ```text
 error[E0594]: cannot assign to `*n`, which is behind a `&` reference
@@ -109,8 +109,8 @@ error[E0594]: cannot assign to `*n`, which is behind a `&` reference
   |         ^^^^^^^^^^^^^^ `n` is a `&` reference, so the data it refers to cannot be written
 ```
 
-Given the stated purpose of the function, which of the following would be the most idiomatic fix to the program? 
-The differences from the function above are highlighted.
+Welche der folgenden Korrekturen wäre angesichts des angegebenen Zwecks der Funktion die idiomatischste? 
+Die Unterschiede zur obigen Funktion sind hervorgehoben.
 """
 answer.answer = """
 ```
@@ -153,8 +153,8 @@ fn round_in_place(v: &Vec<f32>) {
 """,
 ]
 context = """
-Because this function is supposed to round a vector in-place, it would not be
-idiomatic to return a new copy of the same vector (`-> Vec<f32>`) or to consume
-ownership of the vector (`mut v: Vec<f32>`). The best solution is to change 
-the type signature from `&Vec<f32>` to `&mut Vec<f32>`.
+Weil diese Funktion einen Vektor direkt an Ort und Stelle runden soll, wäre es nicht
+idiomatisch, eine neue Kopie desselben Vektors zurückzugeben (`-> Vec<f32>`) oder die
+Ownership des Vektors zu übernehmen (`mut v: Vec<f32>`). Die beste Lösung ist, 
+die Typsignatur von `&Vec<f32>` in `&mut Vec<f32>` zu ändern.
 """

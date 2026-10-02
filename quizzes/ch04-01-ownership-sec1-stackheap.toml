@@ -2,25 +2,25 @@
 id = "5d774a01-8604-4386-8d81-498496ccd96c"
 type = "MultipleChoice"
 prompt.prompt = """
-Which of the following best describes the difference between the stack and the heap?
+Welche der folgenden Aussagen beschreibt den Unterschied zwischen Stack und Heap am besten?
 """
-answer.answer = "The stack holds data associated with a specific function, while the heap holds data that can outlive a function"
+answer.answer = "Der Stack enthält Daten, die zu einer bestimmten Funktion gehören, der Heap dagegen Daten, die eine Funktion überleben können"
 prompt.distractors = [ 
-  "The stack can hold pointers to data stored on the heap, while the heap only holds data without pointers",
-  "The stack holds immutable data, while the heap holds mutable data.",
-  "The stack holds copyable data, while the heap holds uncopyable data."
+  "Der Stack kann Zeiger auf Daten im Heap enthalten, der Heap dagegen nur Daten ohne Zeiger",
+  "Der Stack enthält unveränderliche Daten, der Heap dagegen veränderliche Daten.",
+  "Der Stack enthält kopierbare Daten, der Heap dagegen nicht kopierbare Daten."
 ]
 context = """
-Frames in the stack are associated with a specific function, and are deallocated when the function returns.
-Data on the heap can live indefinitely. Note that both stack and heap data can be mutable and can be copyable. The heap is allowed to
-contain pointers (even to the stack, as we will see later).
+Frames auf dem Stack gehören zu einer bestimmten Funktion und werden freigegeben, wenn die Funktion zurückkehrt.
+Daten auf dem Heap können unbegrenzt lange leben. Beachte, dass Daten sowohl auf dem Stack als auch auf dem Heap veränderlich und kopierbar sein können. Der Heap darf
+Zeiger enthalten (sogar auf den Stack, wie wir später sehen werden).
 """
 
 [[questions]]
 id = "4c953b2d-65bf-4dab-bbbb-14c9b15a690e"
 type = "ShortAnswer"
 prompt.prompt = """
-Consider the execution of the following snippet, with the final state shown:
+Betrachte die Ausführung des folgenden Codeausschnitts; der Endzustand ist dargestellt:
 
 ```aquascope,interpreter
 #fn main() {
@@ -30,9 +30,9 @@ let c = Box::new(15);`[]`
 #}
 ```
 
-In the final state, how many copies of the number `15` live anywhere in memory? Write your answer as a digit, such as 0 or 1.
+Wie viele Kopien der Zahl `15` gibt es im Endzustand irgendwo im Speicher? Gib deine Antwort als Ziffer an, z. B. 0 oder 1.
 """
 answer.answer = "2"
 context = """
-The two boxes contain the two copies of the number 15. The assignment `let b = a` copies the heap pointer, but not the number on the heap.
+Die beiden Boxen enthalten die zwei Kopien der Zahl 15. Die Zuweisung `let b = a` kopiert den Heap-Zeiger, aber nicht die Zahl auf dem Heap.
 """

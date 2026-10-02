@@ -2,11 +2,11 @@
 id = "1ec0098c-c5dc-46de-a889-b6659c0af757"
 type = "MultipleChoice"
 prompt.prompt = """
-Say you are writing a function with the following spec:
+Angenommen, du schreibst eine Funktion mit folgender Spezifikation:
 
-> `round_all` takes as input a list of floating point numbers, and it rounds each number in-place to the nearest integer.
+> `round_all` nimmt eine Liste von Gleitkommazahlen als Eingabe und rundet jede Zahl an Ort und Stelle auf die nächste Ganzzahl.
 
-Which of the following is the most appropriate type signature for a function implementing this spec?
+Welche der folgenden Typsignaturen passt am besten für eine Funktion, die diese Spezifikation umsetzt?
 """
 answer.answer = """
 ```
@@ -31,20 +31,20 @@ fn round_all(v: &Vec<f32>);
 """
 ]
 context = """
-The spec calls for the input to be mutated in-place, therefore the most appropriate type signature accepts a mutable reference to the input.
-An immutable reference or an owned vector are both inappropriate for this spec.
+Die Spezifikation verlangt, dass die Eingabe an Ort und Stelle verändert wird; die passendste Typsignatur nimmt daher eine veränderliche Referenz auf die Eingabe.
+Eine unveränderliche Referenz oder ein Vektor mit Ownership passen beide nicht zu dieser Spezifikation.
 """
 
 [[questions]]
 id = "f8ca5ab2-0e5d-4c0d-bca2-99e6763ba9c5"
 type = "MultipleChoice"
 prompt.prompt = """
-Say you are writing a function with the following spec:
+Angenommen, du schreibst eine Funktion mit folgender Spezifikation:
 
-> `find_contains` takes as input a collection of strings and a target substring. 
-> It returns a list of all the strings in the collection that contain the target substring.
+> `find_contains` nimmt eine Collection von Strings und einen gesuchten Teilstring als Eingabe. 
+> Sie gibt eine Liste aller Strings in der Collection zurück, die den gesuchten Teilstring enthalten.
 
-Which of the following is the most appropriate type signature for a function implementing this spec?
+Welche der folgenden Typsignaturen passt am besten für eine Funktion, die diese Spezifikation umsetzt?
 """
 answer.answer = """
 ```
@@ -69,19 +69,19 @@ fn find_contains(haystack: &Vec<String>, needle: &str) -> &[String];
 """
 ]
 context = """
-For `haystack`, the slice type `&[String]` can accept more inputs than `&Vec<String>`, so it is preferred.
-For `needle`, the target substring does not need to be heap-allocated, so `&str` is preferred to `String`.
-For the return type, `Vec<String>` is not desirable because it would require cloning the input strings.
-`&[String]` is not desirable because it can only return a contiguous subsequence of the input.
-`Vec<&String>` is the most preferable because it only incurs the cost of allocating the vector, not the strings themselves.
+Für `haystack` kann der Slice-Typ `&[String]` mehr Eingaben annehmen als `&Vec<String>`, daher ist er vorzuziehen.
+Für `needle` muss der gesuchte Teilstring nicht auf dem Heap alloziert sein, daher ist `&str` gegenüber `String` vorzuziehen.
+Als Rückgabetyp ist `Vec<String>` nicht wünschenswert, weil dafür die Eingabe-Strings geklont werden müssten.
+`&[String]` ist nicht wünschenswert, weil damit nur eine zusammenhängende Teilfolge der Eingabe zurückgegeben werden kann.
+`Vec<&String>` ist am besten, weil nur die Kosten für die Allokation des Vektors anfallen, nicht für die Strings selbst.
 """
 
 [[questions]]
 id = "868a4edf-16f0-4191-8aed-835c812b8b25"
 type = "MultipleChoice"
 prompt.prompt = """
-Rust normally disallows multiple mutable accesses to the same array, even when those accesses are disjoint. 
-For example, this function does not compile:
+Rust verbietet normalerweise mehrere veränderliche Zugriffe auf dasselbe Array, selbst wenn sich diese Zugriffe nicht überschneiden. 
+Diese Funktion lässt sich zum Beispiel nicht kompilieren:
 
 ```
 fn main() {
@@ -92,7 +92,7 @@ fn main() {
 }
 ```
 
-However, the Rust standard library has a function `slice::split_at_mut` that does permit this functionality:
+Die Standardbibliothek von Rust hat jedoch eine Funktion `slice::split_at_mut`, die genau das ermöglicht:
 
 ```
 fn main() {
@@ -103,17 +103,17 @@ fn main() {
 }
 ```
 
-Which of the following best describes how it's possible to implement `split_at_mut`?
+Welche der folgenden Aussagen beschreibt am besten, wie sich `split_at_mut` implementieren lässt?
 """
-answer.answer = "`split_at_mut` uses unsafe code to circumvent the borrow checker with raw pointers"
+answer.answer = "`split_at_mut` verwendet unsicheren Code, um den Borrow-Checker mit Raw-Pointern zu umgehen"
 prompt.distractors = [
-"`split_at_mut` is a special compiler primitive that cannot be implemented within the language",
-"`split_at_mut` uses unsafe code to disable the borrow checker from checking the safety of mutable references",
-"`split_at_mut` calls into a C library that can't be analyzed by Rust"
+"`split_at_mut` ist ein spezielles Compiler-Primitiv, das sich nicht innerhalb der Sprache implementieren lässt",
+"`split_at_mut` verwendet unsicheren Code, um die Sicherheitsprüfung veränderlicher Referenzen durch den Borrow-Checker abzuschalten",
+"`split_at_mut` ruft eine C-Bibliothek auf, die Rust nicht analysieren kann"
 ]
 context = """
-As discussed in [Chapter 4.3 "Fixing a Safe Program: Mutating Different Array Elements"](ch04-03-fixing-ownership-errors.html#fixing-a-safe-program-mutating-different-array-elements), functions like `split_at_mut` are implemented with the `unsafe` feature.
-This feature doesn't completely disable the borrow checker, but rather enables the use of specific unsafe features like raw pointers.
+Wie in [Kapitel 4.3, „Ein sicheres Programm reparieren: Verschiedene Array-Elemente verändern“](ch04-03-fixing-ownership-errors.html#fixing-a-safe-program-mutating-different-array-elements) besprochen, werden Funktionen wie `split_at_mut` mit dem Feature `unsafe` implementiert.
+Dieses Feature schaltet den Borrow-Checker nicht vollständig ab, sondern ermöglicht die Verwendung bestimmter unsicherer Features wie Raw-Pointer.
 """
 
 
@@ -121,7 +121,7 @@ This feature doesn't completely disable the borrow checker, but rather enables t
 id = "ba32e57a-e5f2-42e4-8cfd-eb265990c690"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the permissions in the following program:
+Betrachte die Berechtigungen im folgenden Programm:
 
 ```aquascope,permissions,boundaries,stepper
 #fn main() {
@@ -131,38 +131,38 @@ let s_ref = &s;`(focus,paths:*s_ref)`
 #}
 ```
 
-Which of the following best explains why `*s_ref` does not have the @Perm{own} (own) permission?
+Welche der folgenden Aussagen erklärt am besten, warum `*s_ref` die Berechtigung @Perm{own} (Own, besitzen) nicht hat?
 """
-answer.answer = "Ownership permits moving, and moving out of a reference can cause a double-free"
+answer.answer = "Ownership erlaubt das Verschieben, und das Herausverschieben aus einer Referenz kann einen Double-Free verursachen"
 prompt.distractors = [
-  "Ownership permits borrowing, and reborrowing `*s_ref` can cause a double-free",
-  "Ownership permits mutation, and mutating `*s_ref` can cause a use-after-free",
-  "Ownership permits reading, and reading `*s_ref` can cause a use-after-free"
+  "Ownership erlaubt das Ausleihen, und erneutes Ausleihen von `*s_ref` kann einen Double-Free verursachen",
+  "Ownership erlaubt das Verändern, und das Verändern von `*s_ref` kann ein Use-after-free verursachen",
+  "Ownership erlaubt das Lesen, und das Lesen von `*s_ref` kann ein Use-after-free verursachen"
 ]
 context = """
-The @Perm{own} permission represents ownership of an object. There can only exist one owner of an object, so it is important
-that references cannot transfer ownership of non-copyable types like `String`. If two variables thought they owned
-the same string, then they would both attempt to deallocate it, causing a double-free.
+Die Berechtigung @Perm{own} steht für die Ownership eines Objekts. Ein Objekt kann nur einen einzigen Owner haben, daher ist es wichtig,
+dass Referenzen die Ownership nicht kopierbarer Typen wie `String` nicht übertragen können. Würden zwei Variablen glauben, denselben
+String zu besitzen, würden beide versuchen, ihn freizugeben, was einen Double-Free verursacht.
 """
 
 [[questions]]
 id = "3a5f5de5-23a9-49fb-bdb4-acc9c3fbb4a6"
 type = "MultipleChoice"
 prompt.prompt = """
-Consider the set of Rust programs that contain no `unsafe` code. 
-Select each of the following statements that is true about the kinds of programs accepted and rejected by the borrow checker:
+Betrachte die Menge der Rust-Programme, die keinen `unsafe`-Code enthalten. 
+Wähle jede der folgenden Aussagen aus, die über die vom Borrow-Checker akzeptierten und zurückgewiesenen Programme wahr ist:
 """
 answer.answer = [
-  "The borrow checker always rejects programs with undefined behavior",
-  "The borrow checker sometimes rejects programs without undefined behavior",
+  "Der Borrow-Checker weist Programme mit undefiniertem Verhalten immer zurück",
+  "Der Borrow-Checker weist manchmal Programme ohne undefiniertes Verhalten zurück",
 ]
 prompt.distractors = [
-  "The borrow checker always accepts programs without undefined behavior",  
-  "The borrow checker sometimes accepts programs with undefined behavior"
+  "Der Borrow-Checker akzeptiert Programme ohne undefiniertes Verhalten immer",  
+  "Der Borrow-Checker akzeptiert manchmal Programme mit undefiniertem Verhalten"
 ]
 context = """
-The borrow checker always rejects programs with undefined behavior, but may sometimes reject programs without undefined behavior (i.e., are perfectly safe).
-In technical terms, the borrow checker is a sound and incomplete analysis.
+Der Borrow-Checker weist Programme mit undefiniertem Verhalten immer zurück, kann aber manchmal auch Programme ohne undefiniertes Verhalten (d. h. vollkommen sichere Programme) zurückweisen.
+Fachlich ausgedrückt ist der Borrow-Checker eine korrekte (*sound*), aber unvollständige (*incomplete*) Analyse.
 """
 
 
@@ -170,7 +170,7 @@ In technical terms, the borrow checker is a sound and incomplete analysis.
 id = "208e0e38-a706-4d96-9809-f0e12f574136"
 type = "MultipleChoice"
 prompt.prompt = """
-The function `extract` is rejected by the borrow checker:
+Die Funktion `extract` wird vom Borrow-Checker zurückgewiesen:
 
 ```rust
 fn extract(b: &Box<i32>) -> i32 {
@@ -179,13 +179,13 @@ fn extract(b: &Box<i32>) -> i32 {
 }
 ```
 
-Imagine that the borrow checker did not reject this function. 
-Determine whether there exists an input such that the function would cause undefined behavior if executed on that input.
+Stell dir vor, der Borrow-Checker würde diese Funktion nicht zurückweisen. 
+Bestimme, ob es eine Eingabe gibt, bei der die Funktion undefiniertes Verhalten verursachen würde, wenn sie mit dieser Eingabe ausgeführt wird.
 """
-answer.answer = "This function COULD cause undefined behavior"
-prompt.distractors = ["This function could NOT cause undefined behavior"]
+answer.answer = "Diese Funktion KÖNNTE undefiniertes Verhalten verursachen"
+prompt.distractors = ["Diese Funktion könnte KEIN undefiniertes Verhalten verursachen"]
 context = """
-This function would cause a double-free on any input.
+Diese Funktion würde bei jeder Eingabe einen Double-Free verursachen.
 """
 
 
@@ -193,7 +193,7 @@ This function would cause a double-free on any input.
 id = "dcfd54f8-7fe6-4483-aefd-ea95ba5b5eb0"
 type = "MultipleChoice"
 prompt.prompt = """
-The function `transfer_string` is rejected by the borrow checker:
+Die Funktion `transfer_string` wird vom Borrow-Checker zurückgewiesen:
 
 ```rust
 fn get_first(strs: &mut (String, String)) -> &mut String {
@@ -212,15 +212,15 @@ fn transfer_string(strs: &mut (String, String)) {
 }
 ```
 
-Imagine that the borrow checker did not reject this function. 
-Determine whether there exists an input such that the function would cause undefined behavior if executed on that input.
+Stell dir vor, der Borrow-Checker würde diese Funktion nicht zurückweisen. 
+Bestimme, ob es eine Eingabe gibt, bei der die Funktion undefiniertes Verhalten verursachen würde, wenn sie mit dieser Eingabe ausgeführt wird.
 """
-answer.answer = "This function could NOT cause undefined behavior"
-prompt.distractors = ["This function COULD cause undefined behavior"]
+answer.answer = "Diese Funktion könnte KEIN undefiniertes Verhalten verursachen"
+prompt.distractors = ["Diese Funktion KÖNNTE undefiniertes Verhalten verursachen"]
 context = """
-The borrow checker rejects this function because it assumes that `get_first` and `get_second` could return a mutable
-reference to either component of the tuple, and so `fst` and `snd` could possibly point to the same value. But they are
-always distinct in this program, so this function is actually safe.
+Der Borrow-Checker weist diese Funktion zurück, weil er annimmt, dass `get_first` und `get_second` eine veränderliche
+Referenz auf jede der beiden Komponenten des Tupels zurückgeben könnten, sodass `fst` und `snd` möglicherweise auf denselben Wert zeigen. In diesem Programm
+sind sie aber immer verschieden, also ist diese Funktion tatsächlich sicher.
 """
 
 
