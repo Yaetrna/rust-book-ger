@@ -1,41 +1,45 @@
 <!-- Old headings. Do not remove or links may break. -->
+
 <a id="developing-the-librarys-functionality-with-test-driven-development"></a>
 
-## Adding Functionality with Test-Driven Development
+## Funktionalität mit testgetriebener Entwicklung hinzufügen {#adding-functionality-with-test-driven-development}
 
-Now that we have the search logic in _src/lib.rs_ separate from the `main`
-function, it’s much easier to write tests for the core functionality of our
-code. We can call functions directly with various arguments and check return
-values without having to call our binary from the command line.
+Da die Suchlogik jetzt getrennt von der Funktion `main` in _src/lib.rs_ steht,
+ist es viel einfacher, Tests für die Kernfunktionalität unseres Codes zu
+schreiben. Wir können Funktionen direkt mit verschiedenen Argumenten aufrufen
+und Rückgabewerte prüfen, ohne unsere Binärdatei von der Kommandozeile aus
+aufrufen zu müssen.
 
-In this section, we’ll add the searching logic to the `minigrep` program using
-the test-driven development (TDD) process with the following steps:
+In diesem Abschnitt fügen wir dem Programm `minigrep` die Suchlogik mithilfe der
+testgetriebenen Entwicklung (_test-driven development_, TDD) mit folgenden
+Schritten hinzu:
 
-1. Write a test that fails and run it to make sure it fails for the reason you
-   expect.
-2. Write or modify just enough code to make the new test pass.
-3. Refactor the code you just added or changed and make sure the tests continue
-   to pass.
-4. Repeat from step 1!
+1. Schreib einen Test, der fehlschlägt, und führe ihn aus, um sicherzugehen,
+   dass er aus dem erwarteten Grund fehlschlägt.
+2. Schreib oder ändere gerade so viel Code, dass der neue Test besteht.
+3. Refaktorisiere den Code, den du gerade hinzugefügt oder geändert hast, und
+   stell sicher, dass die Tests weiterhin bestehen.
+4. Wiederhole ab Schritt 1!
 
-Though it’s just one of many ways to write software, TDD can help drive code
-design. Writing the test before you write the code that makes the test pass
-helps maintain high test coverage throughout the process.
+Auch wenn TDD nur eine von vielen Arten ist, Software zu schreiben, kann sie den
+Entwurf des Codes vorantreiben. Den Test zu schreiben, bevor du den Code
+schreibst, der den Test bestehen lässt, hilft, während des gesamten Vorgangs
+eine hohe Testabdeckung beizubehalten.
 
-We’ll test-drive the implementation of the functionality that will actually do
-the searching for the query string in the file contents and produce a list of
-lines that match the query. We’ll add this functionality in a function called
-`search`.
+Wir entwickeln die Implementierung der Funktionalität testgetrieben, die
+tatsächlich im Dateiinhalt nach dem Suchstring sucht und eine Liste der Zeilen
+erzeugt, die zur Suchanfrage passen. Diese Funktionalität fügen wir in einer
+Funktion namens `search` hinzu.
 
-### Writing a Failing Test
+### Einen fehlschlagenden Test schreiben {#writing-a-failing-test}
 
-In _src/lib.rs_, we’ll add a `tests` module with a test function, as we did in
-[Chapter 11][ch11-anatomy]<!-- ignore -->. The test function specifies the
-behavior we want the `search` function to have: It will take a query and the
-text to search, and it will return only the lines from the text that contain
-the query. Listing 12-15 shows this test.
+In _src/lib.rs_ fügen wir wie in [Kapitel 11][ch11-anatomy]<!-- ignore --> ein
+Modul `tests` mit einer Testfunktion hinzu. Die Testfunktion legt das Verhalten
+fest, das die Funktion `search` haben soll: Sie nimmt eine Suchanfrage und den
+zu durchsuchenden Text und gibt nur die Zeilen des Textes zurück, die die
+Suchanfrage enthalten. Listing 12-15 zeigt diesen Test.
 
-<Listing number="12-15" file-name="src/lib.rs" caption="Creating a failing test for the `search` function for the functionality we wish we had">
+<Listing number="12-15" file-name="src/lib.rs" caption="Einen fehlschlagenden Test für die Funktion `search` mit der Funktionalität erstellen, die wir gern hätten">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-15/src/lib.rs:here}}
@@ -43,21 +47,24 @@ the query. Listing 12-15 shows this test.
 
 </Listing>
 
-This test searches for the string `"duct"`. The text we’re searching is three
-lines, only one of which contains `"duct"` (note that the backslash after the
-opening double quote tells Rust not to put a newline character at the beginning
-of the contents of this string literal). We assert that the value returned from
-the `search` function contains only the line we expect.
+Dieser Test sucht nach dem String `"duct"`. Der Text, den wir durchsuchen, hat
+drei Zeilen, von denen nur eine `"duct"` enthält (beachte, dass der Backslash
+nach dem öffnenden doppelten Anführungszeichen Rust anweist, am Anfang des
+Inhalts dieses String-Literals kein Zeilenumbruchzeichen einzufügen). Wir
+sichern zu, dass der von der Funktion `search` zurückgegebene Wert nur die Zeile
+enthält, die wir erwarten.
 
-If we run this test, it will currently fail because the `unimplemented!` macro
-panics with the message “not implemented”. In accordance with TDD principles,
-we’ll take a small step of adding just enough code to get the test to not panic
-when calling the function by defining the `search` function to always return an
-empty vector, as shown in Listing 12-16. Then, the test should compile and fail
-because an empty vector doesn’t match a vector containing the line `"safe,
-fast, productive."`.
+Wenn wir diesen Test ausführen, schlägt er derzeit fehl, weil das Makro
+`unimplemented!` mit der Meldung „not implemented“ einen Panic auslöst. Gemäß
+den Prinzipien von TDD machen wir einen kleinen Schritt und fügen gerade so viel
+Code hinzu, dass der Test beim Aufruf der Funktion keinen Panic mehr auslöst:
+Wir definieren die Funktion `search` so, dass sie immer einen leeren Vektor
+zurückgibt, wie in Listing 12-16 gezeigt. Dann sollte der Test kompilieren und
+fehlschlagen, weil ein leerer Vektor nicht mit einem Vektor übereinstimmt, der
+die Zeile `"safe,
+fast, productive."` enthält.
 
-<Listing number="12-16" file-name="src/lib.rs" caption="Defining just enough of the `search` function so that calling it won’t panic">
+<Listing number="12-16" file-name="src/lib.rs" caption="Gerade so viel von der Funktion `search` definieren, dass ihr Aufruf keinen Panic auslöst">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-16/src/lib.rs:here}}
@@ -65,62 +72,64 @@ fast, productive."`.
 
 </Listing>
 
-Now let’s discuss why we need to define an explicit lifetime `'a` in the
-signature of `search` and use that lifetime with the `contents` argument and
-the return value. Recall in [Chapter 10][ch10-lifetimes]<!-- ignore --> that
-the lifetime parameters specify which argument lifetime is connected to the
-lifetime of the return value. In this case, we indicate that the returned
-vector should contain string slices that reference slices of the argument
-`contents` (rather than the argument `query`).
+Besprechen wir nun, warum wir in der Signatur von `search` eine explizite
+Lifetime `'a` definieren und diese Lifetime beim Argument `contents` und beim
+Rückgabewert verwenden müssen. Erinnere dich aus
+[Kapitel 10][ch10-lifetimes]<!-- ignore -->, dass die Lifetime-Parameter
+angeben, welche Lifetime eines Arguments mit der Lifetime des Rückgabewerts
+verbunden ist. In diesem Fall geben wir an, dass der zurückgegebene Vektor
+String-Slices enthalten soll, die auf Slices des Arguments `contents` verweisen
+(und nicht auf das Argument `query`).
 
-In other words, we tell Rust that the data returned by the `search` function
-will live as long as the data passed into the `search` function in the
-`contents` argument. This is important! The data referenced _by_ a slice needs
-to be valid for the reference to be valid; if the compiler assumes we’re making
-string slices of `query` rather than `contents`, it will do its safety checking
-incorrectly.
+Mit anderen Worten: Wir teilen Rust mit, dass die von der Funktion `search`
+zurückgegebenen Daten so lange leben wie die Daten, die der Funktion `search` im
+Argument `contents` übergeben werden. Das ist wichtig! Die Daten, auf die ein
+Slice _verweist_, müssen gültig sein, damit die Referenz gültig ist; nimmt der
+Compiler an, dass wir String-Slices von `query` statt von `contents` bilden,
+führt er seine Sicherheitsprüfungen falsch durch.
 
-If we forget the lifetime annotations and try to compile this function, we’ll
-get this error:
+Wenn wir die Lifetime-Annotationen vergessen und versuchen, diese Funktion zu
+kompilieren, erhalten wir diesen Fehler:
 
 ```console
 {{#include ../listings/ch12-an-io-project/output-only-02-missing-lifetimes/output.txt}}
 ```
 
-Rust can’t know which of the two parameters we need for the output, so we need
-to tell it explicitly. Note that the help text suggests specifying the same
-lifetime parameter for all the parameters and the output type, which is
-incorrect! Because `contents` is the parameter that contains all of our text
-and we want to return the parts of that text that match, we know `contents` is
-the only parameter that should be connected to the return value using the
-lifetime syntax.
+Rust kann nicht wissen, welchen der beiden Parameter wir für die Ausgabe
+brauchen, also müssen wir es ihm explizit mitteilen. Beachte, dass der Hilfetext
+vorschlägt, für alle Parameter und den Ausgabetyp denselben Lifetime-Parameter
+anzugeben, was falsch ist! Da `contents` der Parameter ist, der unseren gesamten
+Text enthält, und wir die passenden Teile dieses Textes zurückgeben wollen,
+wissen wir, dass `contents` der einzige Parameter ist, der über die
+Lifetime-Syntax mit dem Rückgabewert verbunden werden sollte.
 
-Other programming languages don’t require you to connect arguments to return
-values in the signature, but this practice will get easier over time. You might
-want to compare this example with the examples in the [“Validating References
-with Lifetimes”][validating-references-with-lifetimes]<!-- ignore --> section
-in Chapter 10.
+Andere Programmiersprachen verlangen nicht, dass du Argumente in der Signatur
+mit Rückgabewerten verbindest, aber mit der Zeit fällt dir diese Praxis
+leichter. Vergleiche dieses Beispiel ruhig mit den Beispielen im Abschnitt
+[„Referenzen mit Lifetimes validieren“][validating-references-with-lifetimes]<!-- ignore -->
+in Kapitel 10.
 
-### Writing Code to Pass the Test
+### Code schreiben, der den Test bestehen lässt {#writing-code-to-pass-the-test}
 
-Currently, our test is failing because we always return an empty vector. To fix
-that and implement `search`, our program needs to follow these steps:
+Derzeit schlägt unser Test fehl, weil wir immer einen leeren Vektor zurückgeben.
+Um das zu beheben und `search` zu implementieren, muss unser Programm diese
+Schritte ausführen:
 
-1. Iterate through each line of the contents.
-2. Check whether the line contains our query string.
-3. If it does, add it to the list of values we’re returning.
-4. If it doesn’t, do nothing.
-5. Return the list of results that match.
+1. Über jede Zeile des Inhalts iterieren.
+2. Prüfen, ob die Zeile unseren Suchstring enthält.
+3. Wenn ja, sie zur Liste der Werte hinzufügen, die wir zurückgeben.
+4. Wenn nicht, nichts tun.
+5. Die Liste der passenden Ergebnisse zurückgeben.
 
-Let’s work through each step, starting with iterating through lines.
+Gehen wir jeden Schritt durch und beginnen mit dem Iterieren über die Zeilen.
 
-#### Iterating Through Lines with the `lines` Method
+#### Mit der Methode `lines` über Zeilen iterieren {#iterating-through-lines-with-the-lines-method}
 
-Rust has a helpful method to handle line-by-line iteration of strings,
-conveniently named `lines`, that works as shown in Listing 12-17. Note that
-this won’t compile yet.
+Rust hat eine hilfreiche Methode, um zeilenweise über Strings zu iterieren, die
+praktischerweise `lines` heißt und wie in Listing 12-17 gezeigt funktioniert.
+Beachte, dass das noch nicht kompiliert.
 
-<Listing number="12-17" file-name="src/lib.rs" caption="Iterating through each line in `contents`">
+<Listing number="12-17" file-name="src/lib.rs" caption="Über jede Zeile in `contents` iterieren">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-17/src/lib.rs:here}}
@@ -128,19 +137,22 @@ this won’t compile yet.
 
 </Listing>
 
-The `lines` method returns an iterator. We’ll talk about iterators in depth in
-[Chapter 13][ch13-iterators]<!-- ignore -->. But recall that you saw this way
-of using an iterator in [Listing 3-5][ch3-iter]<!-- ignore -->, where we used a
-`for` loop with an iterator to run some code on each item in a collection.
+Die Methode `lines` gibt einen Iterator zurück. Über Iteratoren sprechen wir
+ausführlich in [Kapitel 13][ch13-iterators]<!-- ignore -->. Erinnere dich aber,
+dass du diese Art, einen Iterator zu verwenden, in
+[Listing 3-5][ch3-iter]<!-- ignore --> gesehen hast, wo wir eine `for`-Schleife
+mit einem Iterator verwendet haben, um für jedes Element einer Collection Code
+auszuführen.
 
-#### Searching Each Line for the Query
+#### Jede Zeile nach der Suchanfrage durchsuchen {#searching-each-line-for-the-query}
 
-Next, we’ll check whether the current line contains our query string.
-Fortunately, strings have a helpful method named `contains` that does this for
-us! Add a call to the `contains` method in the `search` function, as shown in
-Listing 12-18. Note that this still won’t compile yet.
+Als Nächstes prüfen wir, ob die aktuelle Zeile unseren Suchstring enthält. Zum
+Glück haben Strings eine hilfreiche Methode namens `contains`, die das für uns
+erledigt! Füge in der Funktion `search` einen Aufruf der Methode `contains`
+hinzu, wie in Listing 12-18 gezeigt. Beachte, dass auch das noch nicht
+kompiliert.
 
-<Listing number="12-18" file-name="src/lib.rs" caption="Adding functionality to see whether the line contains the string in `query`">
+<Listing number="12-18" file-name="src/lib.rs" caption="Funktionalität hinzufügen, die prüft, ob die Zeile den String in `query` enthält">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-18/src/lib.rs:here}}
@@ -148,18 +160,19 @@ Listing 12-18. Note that this still won’t compile yet.
 
 </Listing>
 
-At the moment, we’re building up functionality. To get the code to compile, we
-need to return a value from the body as we indicated we would in the function
-signature.
+Im Moment bauen wir die Funktionalität schrittweise auf. Damit der Code
+kompiliert, müssen wir aus dem Rumpf einen Wert zurückgeben, wie wir es in der
+Funktionssignatur angekündigt haben.
 
-#### Storing Matching Lines
+#### Passende Zeilen speichern {#storing-matching-lines}
 
-To finish this function, we need a way to store the matching lines that we want
-to return. For that, we can make a mutable vector before the `for` loop and
-call the `push` method to store a `line` in the vector. After the `for` loop,
-we return the vector, as shown in Listing 12-19.
+Um diese Funktion fertigzustellen, brauchen wir eine Möglichkeit, die passenden
+Zeilen zu speichern, die wir zurückgeben wollen. Dazu können wir vor der
+`for`-Schleife einen veränderlichen (_mutable_) Vektor anlegen und die Methode
+`push` aufrufen, um eine `line` im Vektor zu speichern. Nach der `for`-Schleife
+geben wir den Vektor zurück, wie in Listing 12-19 gezeigt.
 
-<Listing number="12-19" file-name="src/lib.rs" caption="Storing the lines that match so that we can return them">
+<Listing number="12-19" file-name="src/lib.rs" caption="Die passenden Zeilen speichern, damit wir sie zurückgeben können">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-19/src/lib.rs:here}}
@@ -167,49 +180,52 @@ we return the vector, as shown in Listing 12-19.
 
 </Listing>
 
-Now the `search` function should return only the lines that contain `query`,
-and our test should pass. Let’s run the test:
+Jetzt sollte die Funktion `search` nur die Zeilen zurückgeben, die `query`
+enthalten, und unser Test sollte bestehen. Führen wir den Test aus:
 
 ```console
 {{#include ../listings/ch12-an-io-project/listing-12-19/output.txt}}
 ```
 
-Our test passed, so we know it works!
+Unser Test besteht, also wissen wir, dass es funktioniert!
 
-At this point, we could consider opportunities for refactoring the
-implementation of the search function while keeping the tests passing to
-maintain the same functionality. The code in the search function isn’t too bad,
-but it doesn’t take advantage of some useful features of iterators. We’ll
-return to this example in [Chapter 13][ch13-iterators]<!-- ignore -->, where
-we’ll explore iterators in detail, and look at how to improve it.
+An dieser Stelle könnten wir Möglichkeiten erwägen, die Implementierung der
+Suchfunktion zu refaktorisieren, während die Tests weiterhin bestehen, damit die
+Funktionalität gleich bleibt. Der Code in der Suchfunktion ist nicht allzu
+schlecht, nutzt aber einige nützliche Features von Iteratoren nicht. Wir kehren
+in [Kapitel 13][ch13-iterators]<!-- ignore --> zu diesem Beispiel zurück, wo wir
+Iteratoren ausführlich erkunden, und sehen uns an, wie man es verbessern kann.
 
-Now the entire program should work! Let’s try it out, first with a word that
-should return exactly one line from the Emily Dickinson poem: _frog_.
+Jetzt sollte das gesamte Programm funktionieren! Probieren wir es aus, zuerst
+mit einem Wort, das genau eine Zeile aus dem Gedicht von Emily Dickinson
+zurückgeben sollte: _frog_.
 
 ```console
 {{#include ../listings/ch12-an-io-project/no-listing-02-using-search-in-run/output.txt}}
 ```
 
-Cool! Now let’s try a word that will match multiple lines, like _body_:
+Klasse! Probieren wir jetzt ein Wort, das zu mehreren Zeilen passt, etwa _body_:
 
 ```console
 {{#include ../listings/ch12-an-io-project/output-only-03-multiple-matches/output.txt}}
 ```
 
-And finally, let’s make sure that we don’t get any lines when we search for a
-word that isn’t anywhere in the poem, such as _monomorphization_:
+Und schließlich stellen wir sicher, dass wir keine Zeilen erhalten, wenn wir
+nach einem Wort suchen, das nirgends im Gedicht vorkommt, etwa
+_monomorphization_:
 
 ```console
 {{#include ../listings/ch12-an-io-project/output-only-04-no-matches/output.txt}}
 ```
 
-Excellent! We’ve built our own mini version of a classic tool and learned a lot
-about how to structure applications. We’ve also learned a bit about file input
-and output, lifetimes, testing, and command line parsing.
+Hervorragend! Wir haben unsere eigene Miniversion eines klassischen Werkzeugs
+gebaut und viel darüber gelernt, wie man Anwendungen strukturiert. Außerdem
+haben wir einiges über Dateiein- und -ausgabe, Lifetimes, Tests und das Parsen
+der Kommandozeile gelernt.
 
-To round out this project, we’ll briefly demonstrate how to work with
-environment variables and how to print to standard error, both of which are
-useful when you’re writing command line programs.
+Um dieses Projekt abzurunden, zeigen wir kurz, wie man mit Umgebungsvariablen
+arbeitet und wie man auf die Standardfehlerausgabe schreibt. Beides ist
+nützlich, wenn du Kommandozeilenprogramme schreibst.
 
 [validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validating-references-with-lifetimes
 [ch11-anatomy]: ch11-01-writing-tests.html#the-anatomy-of-a-test-function
