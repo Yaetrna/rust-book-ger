@@ -1,24 +1,24 @@
-# Error Handling
+# Fehlerbehandlung {#error-handling}
 
-Errors are a fact of life in software, so Rust has a number of features for
-handling situations in which something goes wrong. In many cases, Rust requires
-you to acknowledge the possibility of an error and take some action before your
-code will compile. This requirement makes your program more robust by ensuring
-that you’ll discover errors and handle them appropriately before deploying your
-code to production!
+Fehler gehören in der Software einfach dazu, daher hat Rust eine Reihe von
+Features für Situationen, in denen etwas schiefgeht. In vielen Fällen verlangt
+Rust von dir, die Möglichkeit eines Fehlers anzuerkennen und etwas zu
+unternehmen, bevor dein Code kompiliert. Diese Anforderung macht dein Programm
+robuster, weil sie sicherstellt, dass du Fehler entdeckst und angemessen
+behandelst, bevor du deinen Code in Produktion bringst!
 
-Rust groups errors into two major categories: recoverable and unrecoverable
-errors. For a _recoverable error_, such as a _file not found_ error, we most
-likely just want to report the problem to the user and retry the operation.
-_Unrecoverable errors_ are always symptoms of bugs, such as trying to access a
-location beyond the end of an array, and so we want to immediately stop the
-program.
+Rust teilt Fehler in zwei große Kategorien ein: behebbare und nicht behebbare
+Fehler. Bei einem _behebbaren Fehler_ (_recoverable error_), etwa einem Fehler
+_Datei nicht gefunden_, wollen wir das Problem höchstwahrscheinlich nur melden
+und die Operation erneut versuchen. _Nicht behebbare Fehler_ (_unrecoverable
+errors_) sind immer Symptome von Bugs, etwa der Versuch, auf eine Stelle hinter
+dem Ende eines Arrays zuzugreifen, daher wollen wir das Programm sofort beenden.
 
-Most languages don’t distinguish between these two kinds of errors and handle
-both in the same way, using mechanisms such as exceptions. Rust doesn’t have
-exceptions. Instead, it has the type `Result<T, E>` for recoverable errors and
-the `panic!` macro that stops execution when the program encounters an
-unrecoverable error. This chapter covers calling `panic!` first and then talks
-about returning `Result<T, E>` values. Additionally, we’ll explore
-considerations when deciding whether to try to recover from an error or to stop
-execution.
+Die meisten Sprachen unterscheiden nicht zwischen diesen beiden Arten von
+Fehlern und behandeln beide gleich, mit Mechanismen wie Exceptions. Rust hat
+keine Exceptions. Stattdessen gibt es den Typ `Result<T, E>` für behebbare
+Fehler und das Makro `panic!`, das die Ausführung stoppt, wenn das Programm auf
+einen nicht behebbaren Fehler stößt. Dieses Kapitel behandelt zuerst den Aufruf
+von `panic!` und geht dann auf die Rückgabe von `Result<T, E>`-Werten ein.
+Außerdem sehen wir uns an, was man bedenken sollte, wenn man entscheidet, ob man
+versucht, einen Fehler zu beheben, oder die Ausführung stoppt.

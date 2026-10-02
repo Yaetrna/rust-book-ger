@@ -1,23 +1,23 @@
 [[questions]]
 id = "18bf21e1-4e1a-4e98-861d-c7032710a8ad"
 type = "ShortAnswer"
-prompt.prompt = "What is the name of the environment variable you should set to `1` to see the backtrace of a panic?"
+prompt.prompt = "Wie heißt die Umgebungsvariable, die du auf `1` setzen solltest, um den Backtrace eines Panics zu sehen?"
 answer.answer = "RUST_BACKTRACE"
 context = """
-For example, you can run from the command line: `RUST_BACKTRACE=1 cargo run`
+Du kannst zum Beispiel auf der Kommandozeile Folgendes ausführen: `RUST_BACKTRACE=1 cargo run`
 """
 
 [[questions]]
 id = "23cabd75-88f5-4ff8-8bf5-4bd4d1a9e64a"
 type = "MultipleChoice"
-prompt.prompt = "Which of the following is NOT a good reason to use a panic?"
-answer.answer = "The program has reached an error state which should be communicated to a caller function"
+prompt.prompt = "Was ist KEIN guter Grund, einen Panic zu verwenden?"
+answer.answer = "Das Programm hat einen Fehlerzustand erreicht, der einer aufrufenden Funktion mitgeteilt werden sollte"
 prompt.distractors = [
-  "The program is about to perform a dangerous operation",
-  "The program should stop executing as soon as possible",
-  "The program has reached an unrecoverable error state"
+  "Das Programm ist im Begriff, eine gefährliche Operation auszuführen",
+  "Das Programm soll die Ausführung so schnell wie möglich beenden",
+  "Das Programm hat einen nicht behebbaren Fehlerzustand erreicht"
 ]
 context = """
-A panic should not be used to communicate failure *within* the program. The default assumption is that caller functions
-will not try to catch panics.
+Ein Panic sollte nicht verwendet werden, um einen Fehlschlag *innerhalb* des Programms mitzuteilen. Standardmäßig wird angenommen, dass aufrufende Funktionen
+nicht versuchen, Panics abzufangen.
 """

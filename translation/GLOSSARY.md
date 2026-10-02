@@ -207,6 +207,13 @@ Keine Terminologie aus anderen deutschen Rust-Übersetzungen übernehmen.
 | wrapper                             | Wrapper                                 | der / die Wrapper                 | „ein Wrapper um …“                                     | entschieden |
 | hashing function / hasher           | Hashfunktion / Hasher                   | die / der                         |                                                        | entschieden |
 | Pig Latin                           | Pig Latin                               | das                               | Sprachspiel, englische Beispielwörter bleiben          | entschieden |
+| propagate (errors)                  | weitergeben / Weitergabe                | die                               | (_propagating_) bei der Einführung                     | entschieden |
+| file handle                         | Datei-Handle                            | das / die Datei-Handles           |                                                        | entschieden |
+| question mark operator              | Fragezeichen-Operator / Operator `?`    | der                               |                                                        | entschieden |
+| unwinding / aborting (panic)        | Abwickeln / Abbrechen                   | das                               | (_unwinding_) / (_aborting_) bei der Einführung        | entschieden |
+| backtrace                           | Backtrace                               | der / die Backtraces              |                                                        | entschieden |
+| contract (API)                      | Vertrag                                 | der / die Verträge                |                                                        | entschieden |
+| buffer overread                     | Buffer Overread                         | der                               | Glosse „Lesen über das Pufferende hinaus“              | entschieden |
 | standard library                    | Standardbibliothek                      | die / –                           |                                                        | entschieden |
 | dependency                          | Abhängigkeit                            | die / die Abhängigkeiten          |                                                        | entschieden |
 | compiler                            | Compiler                                | der / die Compiler                |                                                        | entschieden |
@@ -333,7 +340,8 @@ dort, wo das Buch sie definiert.
 
 ## Änderungsprotokoll
 
-| Datum  | Begriff                                                                                                  | alt | neu             | betroffene Dateien |
-| ------ | -------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
-| Kap. 7 | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house | –   | neu aufgenommen | ch07-*             |
-| Kap. 8 | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                      | –   | neu aufgenommen | ch08-*             |
+| Datum  | Begriff                                                                                                          | alt | neu             | betroffene Dateien |
+| ------ | ---------------------------------------------------------------------------------------------------------------- | --- | --------------- | ------------------ |
+| Kap. 7 | item, parent/child module, submodule, ancestor, sibling, module tree, glob operator, front/back of house         | –   | neu aufgenommen | ch07-*             |
+| Kap. 8 | grapheme cluster, Unicode scalar value, wrapper, hashing function/hasher, Pig Latin                              | –   | neu aufgenommen | ch08-*             |
+| Kap. 9 | propagate, file handle, question mark operator, unwinding/aborting, backtrace, getter, contract, buffer overread | –   | neu aufgenommen | ch09-*             |

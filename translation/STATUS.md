@@ -21,19 +21,20 @@ Alle Prüfungen in `translation/check.py` vergleichen gegen diesen Commit.
 
 Legende: ✅ übersetzt und geprüft · 🔶 in Arbeit · ⬜ offen
 
-| Teil                                     | Dateien                                      | Status |
-| ---------------------------------------- | -------------------------------------------- | ------ |
-| `src/SUMMARY.md`                         | –                                            | ✅     |
-| Vorspann                                 | experiment-intro, title-page, foreword, ch00 | ✅     |
-| Kapitel 1                                | ch01-* mit Quizzen                           | ✅     |
-| Kapitel 2                                | ch02-00                                      | ✅     |
-| Kapitel 3                                | ch03-* mit Quizzen                           | ✅     |
-| Kapitel 4                                | ch04-* mit Quizzen                           | ✅     |
-| Kapitel 5                                | ch05-* mit Quizzen                           | ✅     |
-| Kapitel 6                                | ch06-* mit Quizzen                           | ✅     |
-| Kapitel 7                                | ch07-* mit Quizzen                           | ✅     |
-| Kapitel 8                                | ch08-* mit Quizzen                           | ✅     |
-| Kapitel 9–21, Anhänge, end-of-experiment | –                                            | ⬜     |
+| Teil                                      | Dateien                                      | Status |
+| ----------------------------------------- | -------------------------------------------- | ------ |
+| `src/SUMMARY.md`                          | –                                            | ✅     |
+| Vorspann                                  | experiment-intro, title-page, foreword, ch00 | ✅     |
+| Kapitel 1                                 | ch01-* mit Quizzen                           | ✅     |
+| Kapitel 2                                 | ch02-00                                      | ✅     |
+| Kapitel 3                                 | ch03-* mit Quizzen                           | ✅     |
+| Kapitel 4                                 | ch04-* mit Quizzen                           | ✅     |
+| Kapitel 5                                 | ch05-* mit Quizzen                           | ✅     |
+| Kapitel 6                                 | ch06-* mit Quizzen                           | ✅     |
+| Kapitel 7                                 | ch07-* mit Quizzen                           | ✅     |
+| Kapitel 8                                 | ch08-* mit Quizzen                           | ✅     |
+| Kapitel 9                                 | ch09-* mit Quizzen                           | ✅     |
+| Kapitel 10–21, Anhänge, end-of-experiment | –                                            | ⬜     |
 
 `book.toml`: `language = "de"`, Titel „Die Programmiersprache Rust“ (freigegeben).
 
@@ -68,3 +69,18 @@ Seit dem Checkpoint wird mit denselben Werkzeugen wie in CI gebaut:
 3. Vor jedem Kapitel `translation/GLOSSARY.md` lesen.
 4. Nach jeder Datei: `python3 translation/check.py <datei> <quizze>` und
    `python3 translation/check.py --review <datei>`.
+
+## Vorwärtsverweise
+
+Links auf Abschnitte, die noch nicht übersetzt sind. Beim Übersetzen des Ziels
+die Überschrift so wählen, dass sie zum Linktext passt (oder den Linktext
+anpassen).
+
+| Ziel                                                         | Linktext                                                     | Quelle  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
+| ch14-02#exporting-a-convenient-public-api-with-pub-use       | „Eine bequeme öffentliche API exportieren“                   | ch07-04 |
+| ch11-01#how-to-write-tests                                   | „Wie man Tests schreibt“                                     | ch07-04 |
+| ch10-03#validating-references-with-lifetimes                 | „Referenzen mit Lifetimes validieren“                        | ch08-03 |
+| ch18-02#using-trait-objects-to-abstract-over-shared-behavior | „Mit Trait-Objekten über gemeinsames Verhalten abstrahieren“ | ch09-02 |
+| ch18-03#encoding-states-and-behavior-as-types                | „Zustände und Verhalten als Typen kodieren“                  | ch09-03 |
+| ch13-02 (Seite)                                              | „Eine Folge von Elementen mit Iteratoren verarbeiten“        | ch08-01 |

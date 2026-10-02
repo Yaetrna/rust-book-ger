@@ -1,13 +1,13 @@
 [[questions]]
 id = "8f9e0e79-f4a7-4056-b35e-f7ae65b78888"
 type = "MultipleChoice"
-prompt.prompt = "Which of these statements best describes why `File::open` returns a `Result` and not an `Option`?"
-answer.answer = "Because `Result` can represent why an operation failed, and file opening can fail for many reasons"
+prompt.prompt = "Welche dieser Aussagen beschreibt am besten, warum `File::open` ein `Result` und keine `Option` zurückgibt?"
+answer.answer = "Weil `Result` darstellen kann, warum eine Operation fehlgeschlagen ist, und das Öffnen einer Datei aus vielen Gründen fehlschlagen kann"
 prompt.distractors = [
-  "Because `Result` represents the possibility of failure, while `Option` cannot represent failures",
-  "Because `Result` uses fewer bytes at runtime than `Option` to represent failures",
-  "Because `Result` represents errors the same way as the underlying system calls"
+  "Weil `Result` die Möglichkeit eines Fehlschlags darstellt, während `Option` keine Fehlschläge darstellen kann",
+  "Weil `Result` zur Laufzeit weniger Bytes als `Option` braucht, um Fehlschläge darzustellen",
+  "Weil `Result` Fehler genauso darstellt wie die zugrunde liegenden Systemaufrufe"
 ]
 context = """
-`Option` can just represent *that* an operation has failed, but `Result` can explain *why* the operation has failed.
+`Option` kann nur darstellen, *dass* eine Operation fehlgeschlagen ist, `Result` dagegen kann erklären, *warum* sie fehlgeschlagen ist.
 """
